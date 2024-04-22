@@ -4,14 +4,18 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {ClassBinder} from "@skautoteka-frontend/common";
 
 @Component({
-  selector: 'lib-sidenav',
+  selector: 'skt-ui-sidenav',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  providers: [ClassBinder]
 })
-export class SidenavComponent {}
+export class SidenavComponent {
+
+}

@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@skautoteka-frontend/common": ["libs/common/src/index.ts"],
+      "@skautoteka-frontend/test-utils": ["libs/test-utils/src/index.ts"],
       "@skautoteka-frontend/ui": ["libs/ui/src/index.ts"]
     }
   },
