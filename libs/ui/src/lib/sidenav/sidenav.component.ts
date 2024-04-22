@@ -17,5 +17,7 @@ import {ClassBinder} from "@skautoteka-frontend/common";
   providers: [ClassBinder]
 })
 export class SidenavComponent {
-
+  constructor(classBinder: ClassBinder) {
+    classBinder.bind('skt-sidenav');
+  }
 }
