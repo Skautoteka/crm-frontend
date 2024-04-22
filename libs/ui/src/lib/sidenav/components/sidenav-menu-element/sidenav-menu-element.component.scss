@@ -1,1 +1,5 @@
-.skt-ui-sidenav-menu-element {}
+.skt-ui-sidenav-menu-element {
+  &__li {
+    display: flex;
+  }
+}

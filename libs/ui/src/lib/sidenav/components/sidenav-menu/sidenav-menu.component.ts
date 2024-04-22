@@ -6,13 +6,14 @@ import {
 import {ClassBinder} from "@skautoteka-frontend/common";
 import {SidenavElement} from "../../interfaces";
 import {NgFor} from "@angular/common";
+import {SidenavMenuElementComponent} from "../sidenav-menu-element/sidenav-menu-element.component";
 
 @Component({
   selector: 'skt-ui-sidenav-menu',
   templateUrl: './sidenav-menu.component.html',
   styleUrl: './sidenav-menu.component.scss',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, SidenavMenuElementComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [ClassBinder]

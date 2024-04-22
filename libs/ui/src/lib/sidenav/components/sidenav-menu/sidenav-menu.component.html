@@ -1,7 +1,5 @@
-<nav class="skt-sidenav-menu__navigation">
-  <ul class="skt-sidenav-menu__navigation-list">
-    <li *ngFor="let element of elements">
-      {{ element.label }}
-    </li>
+<nav class="skt-ui-sidenav-menu__navigation">
+  <ul class="skt-ui-sidenav-menu__navigation-list">
+    <skt-ui-sidenav-menu-element *ngFor="let element of elements" [element]="element" />
   </ul>
 </nav>
