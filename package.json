@@ -2,7 +2,9 @@
   "name": "@skautoteka-frontend/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start": "nx run skautoteka-frontend:serve:development"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~17.2.0",
