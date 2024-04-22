@@ -11,12 +11,12 @@ import {SidenavComponent} from "@skautoteka-frontend/ui";
 })
 export class AppComponent {
   public navigationElements = [
-    { label: 'Zadania', icon: 'test' },
-    { label: 'Harmonogram', icon: 'test' },
-    { label: 'Raporty', icon: 'test' },
-    { label: 'Zawodnicy', icon: 'test' },
-    { label: 'Drużyny', icon: 'test' },
-    { label: 'Analiza', icon: 'test' },
-    { label: 'Pomoc', icon: 'test' },
+    { label: 'Zadania', icon: 'move-task' },
+    { label: 'Harmonogram', icon: 'calendar-today' },
+    { label: 'Raporty', icon: 'file-document' },
+    { label: 'Zawodnicy', icon: 'user' },
+    { label: 'Drużyny', icon: 'organisation' },
+    { label: 'Analiza', icon: 'chart' },
+    { label: 'Pomoc', icon: 'info' },
   ];
 }

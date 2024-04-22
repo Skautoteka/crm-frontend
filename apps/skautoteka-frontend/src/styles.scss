@@ -2,6 +2,10 @@
 
 @import 'css.gg/icons/icons.scss';
 
+:root {
+  --ggs: 0.85;
+}
+
 html {
   box-sizing: border-box;
   font-size: 16px;

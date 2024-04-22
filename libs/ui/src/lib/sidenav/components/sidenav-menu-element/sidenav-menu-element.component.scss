@@ -1,5 +1,12 @@
 .skt-ui-sidenav-menu-element {
   &__li {
     display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__label {
+    font-size: 0.8125rem;
+    font-weight: 500;
   }
 }
