@@ -1,10 +1,17 @@
 .skt-ui-sidenav-menu {
+  height: 100vh;
+  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 10fr;
+  grid-template-columns: minmax(18rem, 22rem) auto;
+
+  &__navigation {
+    background-color: var(--primary-black);
+  }
 
   &__navigation-list {
     position: relative;
-    display: block;
-    max-width: 12rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
   }
 }
