@@ -11,7 +11,7 @@ import {ClassBinder} from "@skautoteka-frontend/common";
   standalone: true,
   imports: [CommonModule],
   templateUrl: './sidenav.component.html',
-  styleUrl: './sidenav.component.css',
+  styleUrl: './sidenav.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [ClassBinder]
