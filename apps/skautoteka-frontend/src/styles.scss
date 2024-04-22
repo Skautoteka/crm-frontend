@@ -7,15 +7,24 @@
 
   // ACCENT COLORS
   --primary-black: #060606;
+  --primary-white: #F5F5F5;
 
   // BASIC COLORS
   --basic-5: #818181;
+  --basic-10: #CBCBCB;
+
+  // PRIMARY COLORS
+  --primary-2: #46615B;
+  --primary-3: #5D7470;
 }
 
 html {
   box-sizing: border-box;
   font-size: 16px;
   font-family: "IBM Plex Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--primary-white);
 }
 
 *, *:before, *:after {
