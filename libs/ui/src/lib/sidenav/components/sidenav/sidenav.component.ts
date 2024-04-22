@@ -21,6 +21,6 @@ export class SidenavComponent {
   @Input({ required: true }) elements: SidenavElement[] = [];
 
   constructor(classBinder: ClassBinder) {
-    classBinder.bind('skt-sidenav');
+    classBinder.bind('skt-ui-sidenav');
   }
 }

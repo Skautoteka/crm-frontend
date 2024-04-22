@@ -21,6 +21,6 @@ export class SidenavMenuComponent {
   @Input() elements: SidenavElement[] = [];
 
   constructor(classBinder: ClassBinder) {
-    classBinder.bind('skt-sidenav-menu');
+    classBinder.bind('skt-ui-sidenav-menu');
   }
 }

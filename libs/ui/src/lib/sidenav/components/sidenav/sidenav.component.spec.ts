@@ -21,6 +21,6 @@ describe('SidenavComponent', () => {
   });
 
   it('binds correct class', () => {
-    expect(hasClass(fixture.debugElement, 'skt-sidenav')).toBeTruthy();
+    expect(hasClass(fixture.debugElement, 'skt-ui-sidenav')).toBeTruthy();
   })
 });
