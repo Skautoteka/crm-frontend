@@ -10,5 +10,13 @@ import {SidenavComponent} from "@skautoteka-frontend/ui";
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'skautoteka-frontend';
+  public navigationElements = [
+    { label: 'Zadania', icon: 'test' },
+    { label: 'Harmonogram', icon: 'test' },
+    { label: 'Raporty', icon: 'test' },
+    { label: 'Zawodnicy', icon: 'test' },
+    { label: 'Drużyny', icon: 'test' },
+    { label: 'Analiza', icon: 'test' },
+    { label: 'Pomoc', icon: 'test' },
+  ];
 }
