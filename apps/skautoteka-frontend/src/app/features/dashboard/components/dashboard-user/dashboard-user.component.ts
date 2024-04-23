@@ -4,6 +4,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
+import { DashboardUserActionsComponent } from '../dashboard-user-actions/dashboard-user-actions.component';
 
 @Component({
   standalone: true,
@@ -13,6 +14,7 @@ import { ClassBinder } from '@skautoteka-frontend/common';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [DashboardUserActionsComponent],
 })
 export class DashboardUserComponent {
   public userName = 'John Smith';
