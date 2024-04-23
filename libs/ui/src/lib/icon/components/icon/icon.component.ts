@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, input, Input, ViewEncapsulation} from "@angular/core";
+import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from "@angular/core";
 import {ClassBinder} from "@skautoteka-frontend/common";
 import {NgClass} from "@angular/common";
 
@@ -15,7 +15,7 @@ import {NgClass} from "@angular/common";
   providers: [ClassBinder]
 })
 export class IconComponent {
-  iconName = input.required<string>();
+  @Input({ required: true }) iconName = '';
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-ui-icon')
