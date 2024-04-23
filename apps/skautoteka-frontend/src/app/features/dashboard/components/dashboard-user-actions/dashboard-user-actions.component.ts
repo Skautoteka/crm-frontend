@@ -1,6 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
+  Output,
   ViewEncapsulation,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
@@ -17,6 +19,13 @@ import { SquareButtonComponent } from '../../../../../../../../libs/ui/src/lib/b
   imports: [SquareButtonComponent],
 })
 export class DashboardUserActionsComponent {
+  @Output() actionClicked: EventEmitter<'notifications' | 'user-profile'> =
+    new EventEmitter<'notifications' | 'user-profile'>();
+
+  public onActionClicked(type: 'notifications' | 'user-profile'): void {
+    this.actionClicked.emit(type);
+  }
+
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-dashboard-user-actions');
   }

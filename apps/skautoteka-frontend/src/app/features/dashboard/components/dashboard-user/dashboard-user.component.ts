@@ -23,4 +23,8 @@ export class DashboardUserComponent {
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-dashboard-user');
   }
+
+  public onActionClicked(type: 'notifications' | 'user-profile'): void {
+    console.log(type);
+  }
 }
