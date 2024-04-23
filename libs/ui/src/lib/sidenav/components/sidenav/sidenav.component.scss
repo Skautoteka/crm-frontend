@@ -1,3 +1,11 @@
-.skt-sidenav {
-  display: flex;
+.skt-ui-sidenav {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(18rem, 22rem) auto;
+
+  &__wrapper {
+    background-color: var(--primary-black);
+    padding: 2.5rem 0;
+  }
 }

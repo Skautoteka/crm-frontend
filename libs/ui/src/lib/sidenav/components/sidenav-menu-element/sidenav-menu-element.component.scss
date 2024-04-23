@@ -1,8 +1,9 @@
 .skt-ui-sidenav-menu-element {
   display: block;
-  padding: 0.25rem 2rem;
+  padding: 0.25rem 2.25rem;
   color: var(--basic-5);
   transition: all 0.3s;
+  cursor: pointer;
 
   &:hover {
     background-color: rgba(#46615B, 0.05);
@@ -13,7 +14,6 @@
     display: flex;
     gap: 0.5rem;
     align-items: center;
-    cursor: pointer;
   }
 
   &__label {

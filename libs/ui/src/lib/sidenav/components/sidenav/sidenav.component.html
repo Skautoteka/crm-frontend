@@ -1,2 +1,10 @@
-<ng-content select="[user-info]"></ng-content>
-<skt-ui-sidenav-menu [elements]="elements"></skt-ui-sidenav-menu>
+<div class="skt-ui-sidenav__wrapper">
+  <div class="skt-ui-sidenav__top-section">
+    <ng-content select="[top-section]"></ng-content>
+  </div>
+  <skt-ui-sidenav-menu [elements]="elements"></skt-ui-sidenav-menu>
+</div>
+
+<div class="skt-ui-sidenav__router-content">
+  <ng-content select="[content]"></ng-content>
+</div>
