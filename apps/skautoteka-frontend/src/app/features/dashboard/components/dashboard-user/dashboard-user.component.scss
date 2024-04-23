@@ -1,0 +1,26 @@
+.skt-dashboard-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 3rem 0;
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  &__info-name {
+    color: var(--basic-8);
+    font-weight: 500;
+    font-size: 1.25rem;
+  }
+
+  &__info-role {
+    color: var(--basic-5);
+    font-weight: 500;
+    font-size: 0.8125rem;
+  }
+}

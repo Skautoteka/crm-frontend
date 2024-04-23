@@ -15,6 +15,9 @@ import { ClassBinder } from '@skautoteka-frontend/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardUserComponent {
+  public userName = 'John Smith';
+  public userRole = 'Junior Skaut';
+
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-dashboard-user');
   }

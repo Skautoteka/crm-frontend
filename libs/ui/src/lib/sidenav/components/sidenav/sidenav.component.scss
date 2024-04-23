@@ -5,6 +5,8 @@
   grid-template-columns: minmax(18rem, 22rem) auto;
 
   &__wrapper {
+    display: flex;
+    flex-direction: column;
     background-color: var(--primary-black);
     padding: 2.5rem 0;
   }
