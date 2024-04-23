@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SidenavComponent } from './sidenav.component';
-import {hasClass} from "@skautoteka-frontend/test-utils";
+import { hasClass } from '@skautoteka-frontend/test-utils';
 
 describe('SidenavComponent', () => {
   let component: SidenavComponent;
@@ -22,5 +22,5 @@ describe('SidenavComponent', () => {
 
   it('binds correct class', () => {
     expect(hasClass(fixture.debugElement, 'skt-ui-sidenav')).toBeTruthy();
-  })
+  });
 });

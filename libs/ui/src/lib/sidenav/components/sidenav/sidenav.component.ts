@@ -1,11 +1,12 @@
 import {
   ChangeDetectionStrategy,
-  Component, Input,
+  Component,
+  Input,
   ViewEncapsulation,
 } from '@angular/core';
-import {ClassBinder} from "@skautoteka-frontend/common";
-import {SidenavMenuComponent} from "../sidenav-menu/sidenav-menu.component";
-import {SidenavElement} from "../../interfaces";
+import { ClassBinder } from '@skautoteka-frontend/common';
+import { SidenavMenuComponent } from '../sidenav-menu/sidenav-menu.component';
+import { SidenavElement } from '../../interfaces';
 
 @Component({
   selector: 'skt-ui-sidenav',
@@ -15,7 +16,7 @@ import {SidenavElement} from "../../interfaces";
   imports: [SidenavMenuComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [ClassBinder]
+  providers: [ClassBinder],
 })
 export class SidenavComponent {
   @Input({ required: true }) elements: SidenavElement[] = [];

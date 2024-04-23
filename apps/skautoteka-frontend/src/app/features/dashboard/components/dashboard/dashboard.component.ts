@@ -1,16 +1,20 @@
-import {ChangeDetectionStrategy, Component, ViewEncapsulation} from "@angular/core";
-import {SidenavComponent} from "@skautoteka-frontend/ui";
-import {ClassBinder} from "@skautoteka-frontend/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
+import { SidenavComponent } from '@skautoteka-frontend/ui';
+import { ClassBinder } from '@skautoteka-frontend/common';
 
 @Component({
   standalone: true,
   selector: 'skt-dashboard',
   templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.scss',
   imports: [SidenavComponent],
   providers: [ClassBinder],
-  styles: './dashboard.component.scss',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent {
   public elements = [

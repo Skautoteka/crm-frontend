@@ -7,37 +7,49 @@
 
   // ACCENT COLORS
   --primary-black: #060606;
-  --primary-white: #F5F5F5;
+  --primary-white: #f5f5f5;
 
   // BASIC COLORS
   --basic-5: #818181;
-  --basic-10: #CBCBCB;
+  --basic-10: #cbcbcb;
 
   // PRIMARY COLORS
-  --primary-2: #46615B;
-  --primary-3: #5D7470;
+  --primary-2: #46615b;
+  --primary-3: #5d7470;
 }
 
 html {
   box-sizing: border-box;
   font-size: 16px;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--primary-white);
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
-body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
   margin: 0;
   padding: 0;
   font-weight: normal;
 }
 
-ol, ul {
+ol,
+ul {
   list-style: none;
 }
 
