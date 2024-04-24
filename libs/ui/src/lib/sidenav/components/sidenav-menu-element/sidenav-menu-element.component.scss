@@ -5,6 +5,10 @@
   transition: all 0.3s;
   cursor: pointer;
 
+  @media (max-width: 850px) {
+    padding: 0.25rem 1.5rem;
+  }
+
   &:hover {
     background-color: rgba(#46615b, 0.05);
     color: var(--basic-10);
