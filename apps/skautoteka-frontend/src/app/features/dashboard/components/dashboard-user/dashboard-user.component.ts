@@ -5,6 +5,8 @@ import {
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { DashboardUserActionsComponent } from '../dashboard-user-actions/dashboard-user-actions.component';
+import { DeviceService } from '../../../../../../../../libs/common/src/lib/services/device.service';
+import { AsyncPipe, NgIf } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -14,13 +16,13 @@ import { DashboardUserActionsComponent } from '../dashboard-user-actions/dashboa
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [DashboardUserActionsComponent],
+  imports: [DashboardUserActionsComponent, NgIf, AsyncPipe],
 })
 export class DashboardUserComponent {
   public userName = 'John Smith';
   public userRole = 'Junior Skaut';
 
-  constructor(classBinder: ClassBinder) {
+  constructor(classBinder: ClassBinder, public device: DeviceService) {
     classBinder.bind('skt-dashboard-user');
   }
 
