@@ -4,10 +4,39 @@
   display: grid;
   grid-template-columns: minmax(18rem, 22rem) auto;
 
+  @media (max-width: 850px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 6rem 1fr;
+  }
+
   &__wrapper {
     display: flex;
     flex-direction: column;
     background-color: var(--primary-black);
     padding: 2.5rem 0;
+
+    @media (max-width: 850px) {
+      flex-direction: row;
+      padding: 0;
+    }
+  }
+
+  &__mobile-menu {
+    position: absolute;
+    top: 6rem;
+    width: 100%;
+    height: calc(100% - 6rem);
+    background-color: var(--primary-black);
+    transition: all .3s;
+
+    &--hidden {
+      transform: translate(-100%);
+    }
+  }
+
+  &__top-section {
+    @media (max-width: 850px) {
+      display: flex;
+    }
   }
 }

@@ -2,9 +2,19 @@
   <div class="skt-ui-sidenav__top-section">
     <ng-content select="[top-section]"></ng-content>
   </div>
-  <skt-ui-sidenav-menu [elements]="elements"></skt-ui-sidenav-menu>
+  <skt-ui-sidenav-menu
+    *ngIf="(device.isMobile$ | async) === false; else mobileMenuTpl"
+    [elements]="elements"
+  ></skt-ui-sidenav-menu>
 </div>
 
 <div class="skt-ui-sidenav__router-content">
   <ng-content select="[content]"></ng-content>
 </div>
+
+<ng-template #mobileMenuTpl>
+  <div class="skt-ui-sidenav__mobile-menu" [class.skt-ui-sidenav__mobile-menu--hidden]="!isMenuVisible">
+    <skt-ui-sidenav-menu [elements]="elements"></skt-ui-sidenav-menu>
+  </div>
+</ng-template>
+
