@@ -1,0 +1,13 @@
+<nav class="skt-ui-sidenav-menu__navigation">
+  <ul class="skt-ui-sidenav-menu__navigation-list">
+    <skt-ui-sidenav-menu-element
+      *ngFor="let element of elements"
+      [element]="element"
+    />
+  </ul>
+
+  <div class="skt-ui-sidenav-menu__navigation-bottom">
+    <skt-ui-icon iconName="log-in"></skt-ui-icon>
+    <span class="skt-ui-sidenav-menu-element__label">Wyloguj się</span>
+  </div>
+</nav>

@@ -1,0 +1,41 @@
+.skt-ui-sidenav-menu {
+  display: block;
+  flex: 1;
+
+  @media (max-width: 850px) {
+    height: 100%;
+    padding: 2rem 0;
+  }
+
+  &__navigation {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__navigation-bottom {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0.25rem 2.25rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--basic-5);
+    transition: all 0.3s;
+
+    @media (max-width: 850px) {
+      padding: 0.25rem 1.5rem;
+    }
+
+    &:hover {
+      color: var(--basic-10);
+    }
+  }
+
+  &__navigation-list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+}

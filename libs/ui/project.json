@@ -1,8 +1,8 @@
 {
-  "name": "ui",
+  "name": "skt-ui",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/ui/src",
-  "prefix": "lib",
+  "prefix": "skt-ui",
   "tags": [],
   "projectType": "library",
   "targets": {

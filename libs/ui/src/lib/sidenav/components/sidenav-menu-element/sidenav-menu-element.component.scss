@@ -1,0 +1,27 @@
+.skt-ui-sidenav-menu-element {
+  display: block;
+  padding: 0.25rem 2.25rem;
+  color: var(--basic-5);
+  transition: all 0.3s;
+  cursor: pointer;
+
+  @media (max-width: 850px) {
+    padding: 0.25rem 1.5rem;
+  }
+
+  &:hover {
+    background-color: rgba(#46615b, 0.05);
+    color: var(--basic-10);
+  }
+
+  &__wrapper {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  &__label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+  }
+}

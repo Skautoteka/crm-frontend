@@ -1,1 +1,63 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+@import 'css.gg/icons/icons.scss';
+
+:root {
+  --ggs: 0.85;
+
+  // ACCENT COLORS
+  --primary-black: #060606;
+  --primary-white: #f5f5f5;
+
+  // BASIC COLORS
+  --basic-5: #818181;
+  --basic-8: #CCCCCC;
+  --basic-10: #cbcbcb;
+
+  // PRIMARY COLORS
+  --primary-2: #46615b;
+  --primary-3: #5d7470;
+  --primary-5: #A3B0AD;
+  --primary-6: #D1D7D6;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--primary-white);
+  overflow: hidden;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
