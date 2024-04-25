@@ -6,13 +6,14 @@ import {
 import { SidenavComponent } from '@skautoteka-frontend/ui';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { DashboardUserComponent } from '../dashboard-user/dashboard-user.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'skt-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
-  imports: [SidenavComponent, DashboardUserComponent],
+  imports: [SidenavComponent, DashboardUserComponent, RouterOutlet],
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
