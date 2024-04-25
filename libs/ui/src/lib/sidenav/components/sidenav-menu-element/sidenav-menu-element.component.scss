@@ -5,6 +5,11 @@
   transition: all 0.3s;
   cursor: pointer;
 
+  &--active {
+    background-color: rgba(#46615b, 0.1);
+    color: var(--basic-10);
+  }
+
   @media (max-width: 850px) {
     padding: 0.25rem 1.5rem;
   }

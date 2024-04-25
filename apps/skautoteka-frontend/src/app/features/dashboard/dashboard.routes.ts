@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
-import { DashboardComponent, DashboardUserComponent } from './components';
+import { DashboardComponent } from './components';
+import { TasksComponent } from '../tasks';
 
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -8,7 +9,7 @@ export const DASHBOARD_ROUTES: Routes = [
     children: [
       {
         path: 'tasks',
-        component: DashboardUserComponent,
+        component: TasksComponent,
       },
     ],
   },
