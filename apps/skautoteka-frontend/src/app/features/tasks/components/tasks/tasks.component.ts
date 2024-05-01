@@ -5,6 +5,8 @@ import {
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { SidenavMenuComponent } from '@skautoteka-frontend/ui';
+import { TasksContentComponent } from '../tasks-content/tasks-content.component';
+import { TasksSideContentComponent } from '../tasks-side-content/tasks-side-content.component';
 
 @Component({
   standalone: true,
@@ -14,7 +16,11 @@ import { SidenavMenuComponent } from '@skautoteka-frontend/ui';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [SidenavMenuComponent],
+  imports: [
+    SidenavMenuComponent,
+    TasksContentComponent,
+    TasksSideContentComponent,
+  ],
 })
 export class TasksComponent {
   constructor(classBinder: ClassBinder) {

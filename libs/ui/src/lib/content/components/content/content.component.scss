@@ -4,8 +4,6 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  animation-name: fade-in;
-  animation-duration: 0.5s;
 
   grid-template-areas:
           "header sidecontent"
@@ -23,6 +21,9 @@
   }
 
   &__header {
+    animation-name: fade-in;
+    animation-duration: 0.5s;
+
     grid-area: header;
     display: flex;
     height: 8rem;
