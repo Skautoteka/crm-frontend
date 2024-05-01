@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  Input,
   ViewEncapsulation,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
@@ -15,6 +16,9 @@ import { ClassBinder } from '@skautoteka-frontend/common';
   providers: [ClassBinder],
 })
 export class SidenavMenuComponent {
+  @Input() header = '';
+  @Input() subHeader = '';
+
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-ui-content');
   }

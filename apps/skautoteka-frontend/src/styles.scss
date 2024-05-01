@@ -10,6 +10,7 @@
   --primary-white: #f5f5f5;
 
   // BASIC COLORS
+  --basic-4: #4E4E4E;
   --basic-5: #818181;
   --basic-8: #CCCCCC;
   --basic-10: #cbcbcb;
@@ -60,4 +61,16 @@ ul {
 img {
   max-width: 100%;
   height: auto;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(0.25rem);
+  }
+
+  100% {
+    opacity: 100%;
+    transform: translateY(0);
+  }
 }

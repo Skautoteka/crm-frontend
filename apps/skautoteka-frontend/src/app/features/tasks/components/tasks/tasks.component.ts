@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { TasksHeaderComponent } from '../tasks-header/tasks-header.component';
+import { SidenavMenuComponent } from '@skautoteka-frontend/ui';
 
 @Component({
   standalone: true,
@@ -14,7 +14,7 @@ import { TasksHeaderComponent } from '../tasks-header/tasks-header.component';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TasksHeaderComponent],
+  imports: [SidenavMenuComponent],
 })
 export class TasksComponent {
   constructor(classBinder: ClassBinder) {
