@@ -4,7 +4,12 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { TabComponent, TabsComponent } from '@skautoteka-frontend/ui';
+import {
+  ListCardComponent,
+  TabComponent,
+  TabsComponent,
+} from '@skautoteka-frontend/ui';
+import { NgForOf } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -14,10 +19,14 @@ import { TabComponent, TabsComponent } from '@skautoteka-frontend/ui';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TabsComponent, TabComponent],
+  imports: [TabsComponent, TabComponent, ListCardComponent, NgForOf],
 })
 export class TasksContentComponent {
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-tasks-content');
+  }
+
+  public handleTabChange(id: string | null): void {
+    console.log(id);
   }
 }

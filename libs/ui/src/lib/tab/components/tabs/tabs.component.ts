@@ -6,7 +6,9 @@ import {
   ContentChildren,
   DestroyRef,
   ElementRef,
+  EventEmitter,
   inject,
+  Output,
   QueryList,
   Renderer2,
   ViewChild,
@@ -27,6 +29,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsComponent implements AfterViewInit, AfterContentInit {
+  @Output() tabChange = new EventEmitter<string | null>();
+
   @ContentChildren(TabComponent) private tabs!: QueryList<TabComponent>;
   @ViewChild('slider') slider!: ElementRef;
 
@@ -41,17 +45,20 @@ export class TabsComponent implements AfterViewInit, AfterContentInit {
   }
 
   ngAfterViewInit(): void {
-    this.updateSlider();
+    this.handleTabChange();
   }
 
   ngAfterContentInit(): void {
     this.tabsService.setActiveTab(this.tabs.first.id);
   }
 
-  private updateSlider(): void {
+  private handleTabChange(): void {
     this.tabsService.activeId$
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((id) => this.moveSlider(id));
+      .subscribe((id) => {
+        this.tabChange.emit(id);
+        this.moveSlider(id);
+      });
   }
 
   private moveSlider(id: string | null): void {

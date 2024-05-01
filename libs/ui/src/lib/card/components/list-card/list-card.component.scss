@@ -1,0 +1,18 @@
+.skt-ui-list-card {
+  width: 100%;
+  min-height: 5rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: background-color .3s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:hover {
+    background-color: var(--primary-7);
+  }
+
+  &__actions {
+    padding: 0 1rem;
+  }
+}

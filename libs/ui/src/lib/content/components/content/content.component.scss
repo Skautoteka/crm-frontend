@@ -1,7 +1,6 @@
 .skt-ui-content {
   position: relative;
   display: grid;
-  flex-direction: column;
   height: 100%;
   width: 100%;
 
@@ -10,7 +9,7 @@
           "content sidecontent";
   grid-template-rows: 8rem 1fr;
   grid-template-columns: 2fr 1fr;
-  gap: 3rem;
+  gap: 2.5rem;
 
   @media (max-width: 850px) {
     grid-template-areas:
@@ -55,6 +54,8 @@
 
   &__content {
     grid-area: content;
+    min-height: 0;
+    height: 100%;
   }
 
   &__side-content {

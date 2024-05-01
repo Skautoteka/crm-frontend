@@ -1,5 +1,9 @@
-<skt-ui-tabs>
+<skt-ui-tabs (tabChange)="handleTabChange($event)">
   <skt-ui-tab id="assigned">Przypisane</skt-ui-tab>
   <skt-ui-tab id="finished">Ukończone</skt-ui-tab>
   <skt-ui-tab id="unassigned">Wolne</skt-ui-tab>
 </skt-ui-tabs>
+
+<div class="skt-tasks-content__tasks">
+  <skt-ui-list-card *ngFor="let item of [1, 2, 3, 4, 5, 6]"></skt-ui-list-card>
+</div>
