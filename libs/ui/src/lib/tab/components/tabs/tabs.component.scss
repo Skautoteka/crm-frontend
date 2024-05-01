@@ -1,1 +1,21 @@
-.skt-ui-tabs {}
+.skt-ui-tabs {
+  position: relative;
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid var(--basic-8);
+
+  &__elements {
+    display: flex;
+    color: var(--basic-5);
+    font-size: 0.9375rem;
+    gap: 2rem;
+    font-weight: 400;
+
+    button {
+      all: unset;
+      cursor: pointer;
+      height: 4rem;
+      padding: 0 0.75rem;
+    }
+  }
+}

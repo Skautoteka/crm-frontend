@@ -4,20 +4,18 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { TabsComponent } from '@skautoteka-frontend/ui';
 
 @Component({
   standalone: true,
-  selector: 'skt-tasks-content',
-  styleUrl: './tasks-content.component.scss',
-  templateUrl: 'tasks-content.component.html',
+  selector: 'skt-ui-tab',
+  styleUrl: './tab.component.scss',
+  templateUrl: 'tab.component.html',
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TabsComponent],
 })
-export class TasksContentComponent {
+export class TabComponent {
   constructor(classBinder: ClassBinder) {
-    classBinder.bind('skt-tasks-content');
+    classBinder.bind('skt-ui-tab');
   }
 }
