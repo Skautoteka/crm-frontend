@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { TabsComponent } from '@skautoteka-frontend/ui';
+import { TabComponent, TabsComponent } from '@skautoteka-frontend/ui';
 
 @Component({
   standalone: true,
@@ -14,7 +14,7 @@ import { TabsComponent } from '@skautoteka-frontend/ui';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TabsComponent],
+  imports: [TabsComponent, TabComponent],
 })
 export class TasksContentComponent {
   constructor(classBinder: ClassBinder) {
