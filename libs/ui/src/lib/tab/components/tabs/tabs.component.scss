@@ -6,16 +6,9 @@
 
   &__elements {
     display: flex;
-    color: var(--basic-5);
+    color: var(--basic-7);
     font-size: 0.9375rem;
     gap: 2rem;
     font-weight: 400;
-
-    button {
-      all: unset;
-      cursor: pointer;
-      height: 4rem;
-      padding: 0 0.75rem;
-    }
   }
 }

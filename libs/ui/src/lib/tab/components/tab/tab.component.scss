@@ -1,1 +1,20 @@
-.skt-ui-tab {}
+.skt-ui-tab {
+  &__button {
+    all: unset;
+    cursor: pointer;
+    padding: 0 0.75rem;
+    display: block;
+    width: 100%;
+    height: 4rem;
+    font-weight: 500;
+    transition: color .3s;
+
+    &:hover:not(.skt-ui-tab__button--active) {
+      color: var(--basic-5);
+    }
+
+    &--active {
+      color: var(--primary);
+    }
+  }
+}
