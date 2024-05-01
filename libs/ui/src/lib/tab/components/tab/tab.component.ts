@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   Host,
   Input,
   ViewEncapsulation,
@@ -25,9 +26,14 @@ export class TabComponent {
 
   constructor(
     @Host() private tabsService: TabsService,
+    private elementRef: ElementRef,
     classBinder: ClassBinder
   ) {
     classBinder.bind('skt-ui-tab');
+  }
+
+  get nativeElement(): HTMLElement {
+    return this.elementRef.nativeElement;
   }
 
   get isActive$(): Observable<boolean> {
