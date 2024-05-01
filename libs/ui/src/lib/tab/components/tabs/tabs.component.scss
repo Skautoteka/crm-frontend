@@ -16,7 +16,8 @@
   &__slider {
     position: absolute;
     bottom: 0;
-    width: 100%;
+    width: 0;
+    opacity: 0;
     height: 0.25rem;
     background-color: var(--primary-3);
     border-top-right-radius: 0.25rem;

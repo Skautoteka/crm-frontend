@@ -1,4 +1,5 @@
 import {
+  AfterContentInit,
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
@@ -25,7 +26,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TabsComponent implements AfterViewInit {
+export class TabsComponent implements AfterViewInit, AfterContentInit {
   @ContentChildren(TabComponent) private tabs!: QueryList<TabComponent>;
   @ViewChild('slider') slider!: ElementRef;
 
@@ -43,20 +44,26 @@ export class TabsComponent implements AfterViewInit {
     this.updateSlider();
   }
 
+  ngAfterContentInit(): void {
+    this.tabsService.setActiveTab(this.tabs.first.id);
+  }
+
   private updateSlider(): void {
     this.tabsService.activeId$
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((id) => {
-        if (!id) {
-          this.hideSlider();
-          return;
-        }
+      .subscribe((id) => this.moveSlider(id));
+  }
 
-        const activeTab = this.findTabById(id);
-        if (activeTab) {
-          this.updateSliderPosition(activeTab);
-        }
-      });
+  private moveSlider(id: string | null): void {
+    if (!id) {
+      this.hideSlider();
+      return;
+    }
+
+    const activeTab = this.findTabById(id);
+    if (activeTab) {
+      this.updateSliderPosition(activeTab);
+    }
   }
 
   private findTabById(id: string): TabComponent | null {
@@ -66,7 +73,6 @@ export class TabsComponent implements AfterViewInit {
   private updateSliderPosition(tab: TabComponent): void {
     const sliderEl = this.slider.nativeElement;
     const tabEl = tab.nativeElement;
-
     const { width } = tabEl.getBoundingClientRect();
 
     this.renderer.setStyle(sliderEl, 'opacity', '1');
