@@ -9,7 +9,7 @@ import {
   TabComponent,
   TabsComponent,
 } from '@skautoteka-frontend/ui';
-import { NgForOf } from '@angular/common';
+
 
 @Component({
   standalone: true,
@@ -19,7 +19,7 @@ import { NgForOf } from '@angular/common';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TabsComponent, TabComponent, ListCardComponent, NgForOf],
+  imports: [TabsComponent, TabComponent, ListCardComponent],
 })
 export class TasksContentComponent {
   constructor(classBinder: ClassBinder) {

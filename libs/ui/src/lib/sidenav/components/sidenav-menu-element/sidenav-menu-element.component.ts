@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { SidenavElement } from '../../interfaces';
-import { NgIf } from '@angular/common';
+
 import { IconComponent } from '../../../icon';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, map, Observable } from 'rxjs';
@@ -20,7 +20,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  imports: [NgIf, IconComponent],
+  imports: [IconComponent],
   providers: [ClassBinder],
 })
 export class SidenavMenuElementComponent {

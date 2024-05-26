@@ -5,5 +5,7 @@
 </skt-ui-tabs>
 
 <div class="skt-tasks-content__tasks">
-  <skt-ui-list-card *ngFor="let item of [1, 2, 3, 4, 5, 6]"></skt-ui-list-card>
+  @for (item of [1, 2, 3, 4, 5, 6]; track item) {
+    <skt-ui-list-card></skt-ui-list-card>
+  }
 </div>

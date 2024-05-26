@@ -6,7 +6,7 @@ import {
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { DashboardUserActionsComponent } from '../dashboard-user-actions/dashboard-user-actions.component';
 import { DeviceService } from '../../../../../../../../libs/common/src/lib/services/device.service';
-import {AsyncPipe, NgIf, NgOptimizedImage} from '@angular/common';
+import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -16,7 +16,7 @@ import {AsyncPipe, NgIf, NgOptimizedImage} from '@angular/common';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [DashboardUserActionsComponent, NgIf, AsyncPipe, NgOptimizedImage],
+  imports: [DashboardUserActionsComponent, AsyncPipe, NgOptimizedImage],
 })
 export class DashboardUserComponent {
   public userName = 'John Smith';
