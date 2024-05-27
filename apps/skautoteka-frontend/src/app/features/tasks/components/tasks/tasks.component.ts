@@ -4,9 +4,14 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { SidenavMenuComponent } from '@skautoteka-frontend/ui';
+import {
+  SideContentHeaderComponent,
+  SideContentComponent,
+  SidenavMenuComponent,
+} from '@skautoteka-frontend/ui';
 import { TasksContentComponent } from '../tasks-content/tasks-content.component';
 import { TasksSideContentComponent } from '../tasks-side-content/tasks-side-content.component';
+import { ButtonComponent } from '../../../../../../../../libs/ui/src/lib/button';
 
 @Component({
   standalone: true,
@@ -20,6 +25,9 @@ import { TasksSideContentComponent } from '../tasks-side-content/tasks-side-cont
     SidenavMenuComponent,
     TasksContentComponent,
     TasksSideContentComponent,
+    SideContentHeaderComponent,
+    SideContentComponent,
+    ButtonComponent,
   ],
 })
 export class TasksComponent {

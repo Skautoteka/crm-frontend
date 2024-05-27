@@ -1,5 +1,13 @@
 <skt-ui-content header="Zadania" subHeader="Przeglądaj swoje zadania i zarządzaj nimi">
-  <div header-actions>some header actions</div>
+  <div class="skt-tasks__actions" header-actions>
+    <skt-ui-button>
+      Dodaj nowe zadanie
+    </skt-ui-button>
+  </div>
   <skt-tasks-content content></skt-tasks-content>
-  <skt-tasks-side-content side-content></skt-tasks-side-content>
+
+  <skt-ui-side-content>
+    <skt-ui-side-content-header></skt-ui-side-content-header>
+    <skt-tasks-side-content></skt-tasks-side-content>
+  </skt-ui-side-content>
 </skt-ui-content>
