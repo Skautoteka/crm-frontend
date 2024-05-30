@@ -10,10 +10,10 @@ import {
   SidenavMenuComponent,
   SideContentheaderActionsComponent,
   ButtonComponent,
-  ActionsConfig
+  ActionsConfig,
+  SideContentSectionComponent
 } from '@skautoteka-frontend/ui';
 import { TasksContentComponent } from '../tasks-content/tasks-content.component';
-import { TasksSideContentComponent } from '../tasks-side-content/tasks-side-content.component';
 
 @Component({
   standalone: true,
@@ -26,10 +26,10 @@ import { TasksSideContentComponent } from '../tasks-side-content/tasks-side-cont
   imports: [
     SidenavMenuComponent,
     TasksContentComponent,
-    TasksSideContentComponent,
     SideContentHeaderComponent,
     SideContentheaderActionsComponent,
     SideContentComponent,
+    SideContentSectionComponent,
     ButtonComponent,
   ],
 })
