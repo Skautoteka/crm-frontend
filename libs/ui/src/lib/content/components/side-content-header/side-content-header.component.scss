@@ -1,1 +1,9 @@
-.skt-ui-side-content-header {}
+.skt-ui-side-content-header {
+  display: flex;
+  font-size: 0.875rem;
+
+  &__header {
+    color: var(--primary-1);
+    font-weight: 500;
+  }
+}

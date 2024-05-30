@@ -31,7 +31,13 @@ import { ButtonComponent } from '../../../../../../../../libs/ui/src/lib/button'
   ],
 })
 export class TasksComponent {
+public title = 'Dupa'
+
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-tasks');
+
+    setTimeout(() => {
+      this.title = 'Uuuu'
+    }, 500)
   }
 }
