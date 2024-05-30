@@ -8,10 +8,11 @@ import {
   SideContentHeaderComponent,
   SideContentComponent,
   SidenavMenuComponent,
+  SideContentheaderActionsComponent,
+  ButtonComponent
 } from '@skautoteka-frontend/ui';
 import { TasksContentComponent } from '../tasks-content/tasks-content.component';
 import { TasksSideContentComponent } from '../tasks-side-content/tasks-side-content.component';
-import { ButtonComponent } from '../../../../../../../../libs/ui/src/lib/button';
 
 @Component({
   standalone: true,
@@ -26,18 +27,13 @@ import { ButtonComponent } from '../../../../../../../../libs/ui/src/lib/button'
     TasksContentComponent,
     TasksSideContentComponent,
     SideContentHeaderComponent,
+    SideContentheaderActionsComponent,
     SideContentComponent,
     ButtonComponent,
   ],
 })
 export class TasksComponent {
-public title = 'Dupa'
-
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-tasks');
-
-    setTimeout(() => {
-      this.title = 'Uuuu'
-    }, 500)
   }
 }
