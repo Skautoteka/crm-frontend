@@ -9,7 +9,8 @@ import {
   SideContentComponent,
   SidenavMenuComponent,
   SideContentheaderActionsComponent,
-  ButtonComponent
+  ButtonComponent,
+  ActionsConfig
 } from '@skautoteka-frontend/ui';
 import { TasksContentComponent } from '../tasks-content/tasks-content.component';
 import { TasksSideContentComponent } from '../tasks-side-content/tasks-side-content.component';
@@ -33,6 +34,8 @@ import { TasksSideContentComponent } from '../tasks-side-content/tasks-side-cont
   ],
 })
 export class TasksComponent {
+  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE' }]
+
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-tasks');
   }

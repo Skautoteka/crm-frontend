@@ -5,8 +5,9 @@ import {
   input,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
+import { SimpleButtonComponent } from '../../../button';
 
-interface ActionsConfig {
+export interface ActionsConfig {
   type: 'DELETE' | 'EDIT'
 }
 
@@ -18,9 +19,10 @@ interface ActionsConfig {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [ClassBinder],
+  imports: [SimpleButtonComponent]
 })
 export class SideContentheaderActionsComponent {
-  public type = input<ActionsConfig[]>([]);
+  public config = input<ActionsConfig[]>([]);
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-ui-side-content-header-actions');
