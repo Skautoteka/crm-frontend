@@ -2,5 +2,7 @@
   @if(iconName()) {
     <skt-ui-icon class="skt-ui-simple-button__icon" [iconName]="iconName()"></skt-ui-icon>
   }
-  <ng-content></ng-content>
+  <div class="skt-ui-simple-button__text">
+    <ng-content></ng-content>
+  </div>
 </button>

@@ -8,7 +8,8 @@ import { ClassBinder } from '@skautoteka-frontend/common';
 import { SimpleButtonComponent } from '../../../button';
 
 export interface ActionsConfig {
-  type: 'DELETE' | 'EDIT'
+  type: 'DELETE' | 'EDIT',
+  text: string;
 }
 
 @Component({

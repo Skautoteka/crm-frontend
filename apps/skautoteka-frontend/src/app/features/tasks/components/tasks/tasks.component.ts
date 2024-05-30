@@ -34,7 +34,7 @@ import { TasksSideContentComponent } from '../tasks-side-content/tasks-side-cont
   ],
 })
 export class TasksComponent {
-  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE' }]
+  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń raport' }]
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-tasks');
