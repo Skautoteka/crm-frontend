@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
-  input,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 
@@ -16,8 +15,6 @@ import { ClassBinder } from '@skautoteka-frontend/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LabelComponent {
-  public label = input<string>('');
-
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-ui-label');
   }

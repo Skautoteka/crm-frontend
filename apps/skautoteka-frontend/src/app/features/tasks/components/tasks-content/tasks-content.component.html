@@ -6,6 +6,23 @@
 
 <div class="skt-tasks-content__tasks">
   @for (item of [1, 2, 3, 4, 5, 6]; track item) {
-    <skt-ui-list-card></skt-ui-list-card>
+    <skt-ui-list-card>
+      <div class="skt-tasks-content__tasks-card">
+        <skt-ui-label>
+          <div label>Mecz | Dojazdowe</div>
+          FCBarcelona vs Real Madryt
+        </skt-ui-label>
+
+        <skt-ui-label>
+          <div label>Data | Za 4 dni</div>
+          Niedziela, 4. stycznia
+        </skt-ui-label>
+
+        <skt-ui-label>
+          <div label>Godzina</div>
+          21:00
+        </skt-ui-label>
+      </div>
+    </skt-ui-list-card>
   }
 </div>

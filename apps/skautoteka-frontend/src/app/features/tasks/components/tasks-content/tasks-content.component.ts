@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import {
+  LabelComponent,
   ListCardComponent,
   TabComponent,
   TabsComponent,
@@ -19,7 +20,7 @@ import {
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TabsComponent, TabComponent, ListCardComponent],
+  imports: [TabsComponent, TabComponent, ListCardComponent, LabelComponent],
 })
 export class TasksContentComponent {
   constructor(classBinder: ClassBinder) {
