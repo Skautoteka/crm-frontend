@@ -17,6 +17,7 @@ import {
 import { TasksContentComponent } from '../tasks-content/tasks-content.component';
 import { TasksTeamsComponent } from '../tasks-teams/tasks-teams.component';
 import { TasksBasicInfoComponent } from '../tasks-basic-info/tasks-basic-info.component';
+import { TasksReportsComponent } from '../tasks-reports/tasks-reports.component';
 
 @Component({
   standalone: true,
@@ -36,7 +37,8 @@ import { TasksBasicInfoComponent } from '../tasks-basic-info/tasks-basic-info.co
     SideContentSectionHeaderComponent,
     TasksBasicInfoComponent,
     ButtonComponent,
-    TasksTeamsComponent
+    TasksTeamsComponent,
+    TasksReportsComponent
   ],
 })
 export class TasksComponent {
