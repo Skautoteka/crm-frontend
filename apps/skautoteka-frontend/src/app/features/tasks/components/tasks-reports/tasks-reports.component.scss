@@ -17,6 +17,13 @@
   };
 
   &__card-content {
+    opacity: 0.6;
+    transition: all .3s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+
     display: flex;
     gap: 1rem;
   }
