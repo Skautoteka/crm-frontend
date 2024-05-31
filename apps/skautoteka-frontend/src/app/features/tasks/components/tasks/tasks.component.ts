@@ -11,7 +11,8 @@ import {
   SideContentheaderActionsComponent,
   ButtonComponent,
   ActionsConfig,
-  SideContentSectionComponent
+  SideContentSectionComponent,
+  SideContentSectionHeaderComponent
 } from '@skautoteka-frontend/ui';
 import { TasksContentComponent } from '../tasks-content/tasks-content.component';
 import { TasksTeamsComponent } from '../tasks-teams/tasks-teams.component';
@@ -31,6 +32,7 @@ import { TasksTeamsComponent } from '../tasks-teams/tasks-teams.component';
     SideContentheaderActionsComponent,
     SideContentComponent,
     SideContentSectionComponent,
+    SideContentSectionHeaderComponent,
     ButtonComponent,
     TasksTeamsComponent
   ],
