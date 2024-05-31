@@ -12,10 +12,11 @@ import {
   ButtonComponent,
   ActionsConfig,
   SideContentSectionComponent,
-  SideContentSectionHeaderComponent
+  SideContentSectionHeaderComponent,
 } from '@skautoteka-frontend/ui';
 import { TasksContentComponent } from '../tasks-content/tasks-content.component';
 import { TasksTeamsComponent } from '../tasks-teams/tasks-teams.component';
+import { TasksBasicInfoComponent } from '../tasks-basic-info/tasks-basic-info.component';
 
 @Component({
   standalone: true,
@@ -33,6 +34,7 @@ import { TasksTeamsComponent } from '../tasks-teams/tasks-teams.component';
     SideContentComponent,
     SideContentSectionComponent,
     SideContentSectionHeaderComponent,
+    TasksBasicInfoComponent,
     ButtonComponent,
     TasksTeamsComponent
   ],

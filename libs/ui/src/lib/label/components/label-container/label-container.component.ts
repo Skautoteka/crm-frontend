@@ -1,24 +1,21 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ViewEncapsulation,
-  input,
+  ViewEncapsulation
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 
 @Component({
   standalone: true,
-  selector: 'skt-ui-label',
-  styleUrl: './label.component.scss',
-  templateUrl: 'label.component.html',
+  selector: 'skt-ui-label-container',
+  styleUrl: './label-container.component.scss',
+  templateUrl: 'label-container.component.html',
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LabelComponent {
-  public label = input<string>('');
-
+export class LabelContainerComponent {
   constructor(classBinder: ClassBinder) {
-    classBinder.bind('skt-ui-label');
+    classBinder.bind('skt-ui-label-container');
   }
 }
