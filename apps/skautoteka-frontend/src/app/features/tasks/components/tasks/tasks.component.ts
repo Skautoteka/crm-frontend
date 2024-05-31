@@ -18,13 +18,14 @@ import { TasksContentComponent } from '../tasks-content/tasks-content.component'
 import { TasksTeamsComponent } from '../tasks-teams/tasks-teams.component';
 import { TasksBasicInfoComponent } from '../tasks-basic-info/tasks-basic-info.component';
 import { TasksReportsComponent } from '../tasks-reports/tasks-reports.component';
+import { TasksService } from '../../services/tasks.service';
 
 @Component({
   standalone: true,
   selector: 'skt-tasks',
   styleUrl: './tasks.component.scss',
   templateUrl: 'tasks.component.html',
-  providers: [ClassBinder],
+  providers: [ClassBinder, TasksService],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [

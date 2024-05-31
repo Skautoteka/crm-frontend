@@ -5,16 +5,20 @@
 </skt-ui-tabs>
 
 <div class="skt-tasks-content__tasks">
-  @for (item of [1, 2, 3, 4, 5, 6]; track item) {
-    <skt-ui-list-card>
-      <div class="skt-tasks-content__tasks-card">
+  @for (item of tasksService.getAllTasks(); track item) {
+    <skt-ui-list-card class="skt-tasks-content__tasks-card" [isActive]="isActive(item.id)" (click)="handleTaskClick(item.id)">
+      <div class="skt-tasks-content__tasks-card-content" [class.skt-tasks-content__tasks-card-content--active]="isActive(item.id)">
         <skt-ui-label>
-          <div label>Mecz | Dojazdowe</div>
-          FCBarcelona vs Real Madryt
+          <div label>
+            <span class="skt-tasks-content__tasks-card-header">Mecz</span> | Dojazdowe
+          </div>
+          FC Barcelona vs Real Madryt
         </skt-ui-label>
 
         <skt-ui-label>
-          <div label>Data | Za 4 dni</div>
+          <div label>
+            <span class="skt-tasks-content__tasks-card-header">Data</span> | Za 4 dni
+          </div>
           Niedziela, 4. stycznia
         </skt-ui-label>
 

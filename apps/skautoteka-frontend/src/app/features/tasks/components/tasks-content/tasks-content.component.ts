@@ -10,6 +10,7 @@ import {
   TabComponent,
   TabsComponent,
 } from '@skautoteka-frontend/ui';
+import { TasksService } from '../../services';
 
 
 @Component({
@@ -23,11 +24,19 @@ import {
   imports: [TabsComponent, TabComponent, ListCardComponent, LabelComponent],
 })
 export class TasksContentComponent {
-  constructor(classBinder: ClassBinder) {
+  constructor(classBinder: ClassBinder, public tasksService: TasksService) {
     classBinder.bind('skt-tasks-content');
   }
 
   public handleTabChange(id: string | null): void {
     console.log(id);
+  }
+
+  public handleTaskClick(id: number): void {
+    this.tasksService.setActiveTask(id);
+  }
+
+  public isActive(id: number): boolean {
+    return id === this.tasksService.activeTask?.id;
   }
 }
