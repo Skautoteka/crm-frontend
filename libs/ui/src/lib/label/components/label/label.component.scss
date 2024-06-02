@@ -4,6 +4,11 @@
   gap: 0.5rem;
   min-width: 0;
   flex-shrink: 1;
+  width: 100%;
+
+  @media (min-width: 850px) {
+    flex-basis: content;
+  }
 
   &__label {
     color: var(--basic-5);

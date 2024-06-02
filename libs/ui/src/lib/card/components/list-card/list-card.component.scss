@@ -7,13 +7,10 @@
   justify-content: space-between;
   align-items: center;
   min-width: fit-content;
+  background: var(--primary-7);
 
   &__content {
     width: 100%;
-  }
-
-  &:hover {
-    background-color: var(--primary-7);
   }
 
   &--active {
