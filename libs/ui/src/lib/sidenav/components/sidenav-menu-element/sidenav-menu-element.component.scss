@@ -4,6 +4,30 @@
   color: var(--basic-5);
   transition: all 0.3s;
   cursor: pointer;
+  position: relative;
+
+  &--active {
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0.25rem;
+      height: 100%;
+      background-color: var(--primary-3);
+      border-top-right-radius: 0.25rem;
+      border-bottom-right-radius: 0.25rem;
+      animation-name: slide-in;
+      animation-duration: 0.5s;
+    }
+
+    background-color: rgba(#46615b, 0.1);
+    color: var(--basic-10);
+
+    .skt-ui-sidenav-menu-element__icon {
+      color: var(--primary-3);
+    }
+  }
 
   @media (max-width: 850px) {
     padding: 0.25rem 1.5rem;
@@ -23,5 +47,15 @@
   &__label {
     font-size: 0.8125rem;
     font-weight: 500;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
   }
 }

@@ -9,14 +9,14 @@ import { ClassBinder } from '@skautoteka-frontend/common';
 import { SidenavMenuComponent } from '../sidenav-menu/sidenav-menu.component';
 import { SidenavElement } from '../../interfaces';
 import { DeviceService } from '../../../../../../common/src/lib/services/device.service';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'skt-ui-sidenav',
   styleUrl: './sidenav.component.scss',
   templateUrl: './sidenav.component.html',
   standalone: true,
-  imports: [SidenavMenuComponent, NgIf, AsyncPipe],
+  imports: [SidenavMenuComponent, AsyncPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [ClassBinder],

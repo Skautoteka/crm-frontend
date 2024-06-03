@@ -2,17 +2,19 @@ import { Route } from '@angular/router';
 
 export const appRoutes: Route[] = [
   {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./features/dashboard/dashboard.routes').then(
+        (r) => r.DASHBOARD_ROUTES
+      ),
+  },
+  {
     path: '',
-    loadComponent: () =>
-      import(
-        './features/dashboard/components/dashboard/dashboard.component'
-      ).then((c) => c.DashboardComponent),
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
   },
   {
     path: '**',
-    loadComponent: () =>
-      import(
-        './features/dashboard/components/dashboard/dashboard.component'
-      ).then((c) => c.DashboardComponent),
+    redirectTo: 'dashboard',
   },
 ];

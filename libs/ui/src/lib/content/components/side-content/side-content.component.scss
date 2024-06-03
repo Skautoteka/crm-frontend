@@ -1,0 +1,10 @@
+.skt-ui-side-content {
+  &__sections {
+    margin-top: 3.4375rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4.5rem;
+    width: 100%;
+    height: 100%;
+  }
+}

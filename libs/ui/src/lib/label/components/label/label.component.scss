@@ -1,0 +1,24 @@
+.skt-ui-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+  flex-shrink: 1;
+  width: 100%;
+
+  @media (min-width: 850px) {
+    flex-basis: content;
+  }
+
+  &__label {
+    color: var(--basic-5);
+    font-size: 0.8125rem;
+  }
+
+  &__value {
+    font-size: 0.875rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
