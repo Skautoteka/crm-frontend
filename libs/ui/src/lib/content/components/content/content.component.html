@@ -14,10 +14,6 @@
 </div>
 
 <div class="skt-ui-content__side-content">
-  @if((device.isMobile$ | async) === true) {
-    <router-outlet></router-outlet>
-  } @else {
-    <ng-content select="skt-ui-side-content"></ng-content>
-  }
+  <router-outlet></router-outlet>
 </div>
 
