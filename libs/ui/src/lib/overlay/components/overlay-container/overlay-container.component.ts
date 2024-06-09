@@ -17,10 +17,10 @@ import { ClassBinder } from '@skautoteka-frontend/common';
 })
 export class OverlayContainerComponent {
   constructor(
-    classBinder: ClassBinder,
+    private _classBinder: ClassBinder,
     private _viewContainerRef: ViewContainerRef
   ) {
-    classBinder.bind('skt-ui-overlay-container');
+    _classBinder.bind('skt-ui-overlay-container');
   }
 
   /**
@@ -28,5 +28,17 @@ export class OverlayContainerComponent {
    */
   get viewRef(): ViewContainerRef {
     return this._viewContainerRef;
+  }
+
+  /**
+   * Toggles backdrop either to true/false.
+   *
+   * @param isVisible
+   */
+  public setBackdrop(isVisible: boolean): void {
+    this._classBinder.conditionalBind(
+      isVisible,
+      'skt-ui-overlay-container--backdrop'
+    );
   }
 }

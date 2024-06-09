@@ -30,6 +30,17 @@ export class OverlayService {
     return this._viewRef.createComponent(type);
   }
 
+  /**
+   * Toggles backdrop either to true/false.
+   *
+   * @param isVisible
+   */
+  public setBackdrop(isVisible: boolean): void {
+    if (this._containerRef) {
+      this._containerRef.instance.setBackdrop(isVisible);
+    }
+  }
+
   private _createContainer(ref: ViewContainerRef): void {
     this._containerRef = ref.createComponent(OverlayContainerComponent);
     this._viewRef = this._containerRef.instance.viewRef;
