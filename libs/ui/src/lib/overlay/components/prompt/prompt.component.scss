@@ -1,1 +1,58 @@
-.skt-ui-prompt {}
+.skt-ui-prompt {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 0.75rem;
+  padding: 2rem 2rem;
+  font-size: 0.875rem;
+  min-width: 30rem;
+  animation-name: show;
+  animation-duration: .3s;
+
+  @media (max-width: 850px) {
+    width: 80%;
+    min-width: 10rem;
+  }
+
+  &__message {
+    text-align: center;
+    font-weight: 500;
+    color: var(--basic-1);
+  }
+
+  &__auxiliary-message {
+    font-size: 0.8125rem;
+    text-align: center;
+    max-width: 20rem;
+    color: var(--basic-4);
+  }
+
+  &__actions {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-grow: 1;
+    gap: 0.5rem;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  &__confirm-action {
+    flex-grow: 1;
+  }
+}
+
+@keyframes show {
+  0% {
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

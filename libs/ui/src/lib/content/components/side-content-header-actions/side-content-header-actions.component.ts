@@ -31,12 +31,18 @@ export class SideContentheaderActionsComponent {
   }
 
   public onActionClick(): void {
-    this._dialog.createPrompt({
+    const ref = this._dialog.createPrompt({
       message: 'Czy na pewno chcesz usunąć raport?',
       auxiliaryMessage:
         'Usunięcie raportu skutkuje całkowitym usunięciem danych',
-      cancelMessage: 'Nie usuwaj',
-      confirmMessage: 'Tak, usuń',
+      confirmInfo: {
+        message: 'Tak, usuwam',
+        callback: () => ref.close(),
+      },
+      cancelInfo: {
+        message: 'Nie usuwaj',
+        callback: () => ref.close(),
+      },
     });
   }
 }

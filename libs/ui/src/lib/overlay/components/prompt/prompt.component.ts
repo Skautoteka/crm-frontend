@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { IPromptOptions } from '../../interface/idialog';
+import { ButtonComponent } from '../../../button';
 
 @Component({
   standalone: true,
@@ -15,11 +16,24 @@ import { IPromptOptions } from '../../interface/idialog';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ButtonComponent],
 })
 export class PromptComponent {
   @Input() options!: IPromptOptions;
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-ui-prompt');
+  }
+
+  public onConfirmClick(): void {
+    if (this.options.confirmInfo) {
+      this.options.confirmInfo.callback();
+    }
+  }
+
+  public onCancelClick(): void {
+    if (this.options.cancelInfo) {
+      this.options.cancelInfo.callback();
+    }
   }
 }
