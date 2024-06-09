@@ -1,0 +1,23 @@
+<table class="skt-ui-table">
+  <thead>
+    <tr>
+      <th *ngFor="let column of columns">
+        {{ column.label }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of data">
+      <td *ngFor="let column of columns">
+        <ng-container [ngSwitch]="column.type">
+          <span *ngSwitchCase="'string'">{{ row[column.key] }}</span>
+          <span *ngSwitchCase="'number'">{{ row[column.key] }}</span>
+          <span *ngSwitchCase="'date'">{{ row[column.key] | date }}</span>
+          <span *ngSwitchCase="'boolean'">{{ row[column.key] ? 'Yes' : 'No' }}</span> 
+          <img *ngSwitchCase="'img'" [src]="row[column.key]" [alt]="column.label" width="50">
+          <span *ngSwitchDefault>{{ row[column.key] }}</span> 
+        </ng-container>
+      </td>
+    </tr>
+  </tbody>
+</table>
