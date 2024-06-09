@@ -4,7 +4,11 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { ContentComponent, ButtonComponent } from '@skautoteka-frontend/ui';
+import {
+  ContentComponent,
+  ButtonComponent,
+  ModalService,
+} from '@skautoteka-frontend/ui';
 import { TasksContentComponent } from '../tasks-content/tasks-content.component';
 import { TasksService } from '../../services/tasks.service';
 
@@ -19,7 +23,11 @@ import { TasksService } from '../../services/tasks.service';
   imports: [ContentComponent, TasksContentComponent, ButtonComponent],
 })
 export class TasksComponent {
-  constructor(classBinder: ClassBinder) {
+  constructor(classBinder: ClassBinder, private _modal: ModalService) {
     classBinder.bind('skt-tasks');
+  }
+
+  public onAddNewClick(): void {
+    this._modal.createModal(ButtonComponent);
   }
 }

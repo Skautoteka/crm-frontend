@@ -1,0 +1,64 @@
+.skt-ui-modal-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50rem;
+  height: 10rem;
+  background-color: var(--primary-white);
+  border-radius: 0.5rem;
+  pointer-events: all;
+  padding: 1rem 2rem;
+
+  @media (min-width: 850px) {
+    animation: web-show;
+    animation-duration: .3s;
+    background-color: var(--primary-7);
+  }
+
+  &__close_header {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 850px) {
+    width: 100%;
+    height: calc(100% - 6rem);
+    top: 6rem;
+    left: 0;
+    transform: none;
+    border-radius: 0;
+    animation: mobile-show;
+    animation-duration: .3s;
+  }
+
+  &__container {
+
+  }
+
+  &__close {
+    cursor: pointer;
+  }
+}
+
+@keyframes web-show {
+  0% {
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes mobile-show {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
