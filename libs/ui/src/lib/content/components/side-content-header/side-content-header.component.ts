@@ -37,5 +37,6 @@ export class SideContentHeaderComponent {
 
   public onMobileBackClick(): void {
     this._content.showSideContent(false);
+    this.mobileBackClick.emit();
   }
 }
