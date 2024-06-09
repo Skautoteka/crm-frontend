@@ -1,9 +1,11 @@
-import { Injectable, ViewContainerRef } from '@angular/core';
+import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
 import { ComponentType } from '@angular/cdk/overlay';
+import { OverlayContainerComponent } from '../components/overlay-container/overlay-container.component';
 
 @Injectable({ providedIn: 'root' })
 export class OverlayService {
   private _viewRef: ViewContainerRef | null = null;
+  private _containerRef: ComponentRef<OverlayContainerComponent> | null = null;
 
   /**
    * Initializes ovelray view container ref to be able to show modals
@@ -12,7 +14,7 @@ export class OverlayService {
    * @param ref
    */
   public initializeContainer(ref: ViewContainerRef): void {
-    this._viewRef = ref;
+    this._createContainer(ref);
   }
 
   /**
@@ -20,11 +22,16 @@ export class OverlayService {
    *
    * @param type
    */
-  public createComponent(type: ComponentType<unknown>): void {
+  public createComponent<T>(type: ComponentType<T>): ComponentRef<T> {
     if (!this._viewRef) {
       throw new Error('No viewRef provided');
     }
 
-    this._viewRef.createComponent(type);
+    return this._viewRef.createComponent(type);
+  }
+
+  private _createContainer(ref: ViewContainerRef): void {
+    this._containerRef = ref.createComponent(OverlayContainerComponent);
+    this._viewRef = this._containerRef.instance.viewRef;
   }
 }
