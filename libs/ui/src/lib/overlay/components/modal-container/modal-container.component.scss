@@ -9,6 +9,8 @@
   border-radius: 0.5rem;
   pointer-events: all;
   padding: 1rem 2rem;
+  animation: web-show;
+  animation-duration: .3s;
 
   &__close_header {
     display: flex;
@@ -28,5 +30,19 @@
 
   &__container {
 
+  }
+  
+  &__close {
+    cursor: pointer;
+  }
+}
+
+@keyframes web-show {
+  0% {
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
   }
 }
