@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { SidenavMenuComponent, ButtonComponent } from '@skautoteka-frontend/ui';
+import { ContentComponent, ButtonComponent } from '@skautoteka-frontend/ui';
 import { TasksContentComponent } from '../tasks-content/tasks-content.component';
 import { TasksService } from '../../services/tasks.service';
 
@@ -16,7 +16,7 @@ import { TasksService } from '../../services/tasks.service';
   providers: [ClassBinder, TasksService],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [SidenavMenuComponent, TasksContentComponent, ButtonComponent],
+  imports: [ContentComponent, TasksContentComponent, ButtonComponent],
 })
 export class TasksComponent {
   constructor(classBinder: ClassBinder) {

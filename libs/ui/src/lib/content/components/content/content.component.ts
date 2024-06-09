@@ -1,14 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  inject,
   Input,
   ViewEncapsulation,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { DeviceService } from '../../../../../../common/src/lib/services/device.service';
 import { RouterOutlet } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
+import { ContentService } from '../../services';
 
 @Component({
   selector: 'skt-ui-content',
@@ -17,14 +16,12 @@ import { AsyncPipe } from '@angular/common';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [ClassBinder],
+  providers: [ClassBinder, ContentService],
   imports: [RouterOutlet, AsyncPipe],
 })
-export class SidenavMenuComponent {
+export class ContentComponent {
   @Input() header = '';
   @Input() subHeader = '';
-
-  public device = inject(DeviceService);
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-ui-content');
