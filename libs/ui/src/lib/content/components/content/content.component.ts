@@ -5,6 +5,11 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
+import { RouterOutlet } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
+import { ContentService } from '../../services';
+import { DeviceService } from '../../../../../../common/src/lib/services/device.service';
+import { IconComponent } from '../../../icon';
 
 @Component({
   selector: 'skt-ui-content',
@@ -13,13 +18,14 @@ import { ClassBinder } from '@skautoteka-frontend/common';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [ClassBinder],
+  providers: [ClassBinder, ContentService],
+  imports: [RouterOutlet, AsyncPipe, IconComponent],
 })
-export class SidenavMenuComponent {
+export class ContentComponent {
   @Input() header = '';
   @Input() subHeader = '';
 
-  constructor(classBinder: ClassBinder) {
+  constructor(classBinder: ClassBinder, public device: DeviceService) {
     classBinder.bind('skt-ui-content');
   }
 }

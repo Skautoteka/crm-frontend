@@ -11,6 +11,7 @@
   --primary-white: #f5f5f5;
 
   // BASIC COLORS
+  --basic-3: #353535;
   --basic-4: #4E4E4E;
   --basic-5: #818181;
   --basic-6: #9A9A9A;
@@ -37,6 +38,13 @@ html {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--primary-white);
   overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 *,

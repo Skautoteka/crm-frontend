@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  inject,
   Input,
   ViewEncapsulation,
 } from '@angular/core';
@@ -10,6 +11,8 @@ import { SidenavMenuComponent } from '../sidenav-menu/sidenav-menu.component';
 import { SidenavElement } from '../../interfaces';
 import { DeviceService } from '../../../../../../common/src/lib/services/device.service';
 import { AsyncPipe } from '@angular/common';
+import { SidenavService } from '../../services/sidenav.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'skt-ui-sidenav',
@@ -24,7 +27,8 @@ import { AsyncPipe } from '@angular/common';
 export class SidenavComponent {
   @Input({ required: true }) elements: SidenavElement[] = [];
 
-  private isVisible = true;
+  private _isVisible = false;
+  private _sidenav = inject(SidenavService);
 
   constructor(
     classBinder: ClassBinder,
@@ -32,14 +36,22 @@ export class SidenavComponent {
     private cdRef: ChangeDetectorRef
   ) {
     classBinder.bind('skt-ui-sidenav');
+    this._hideOnRouteChange();
   }
 
   get isMenuVisible(): boolean {
-    return this.isVisible;
+    return this._isVisible;
   }
 
   public toggleVisible(): void {
-    this.isVisible = !this.isVisible;
+    this._isVisible = !this._isVisible;
     this.cdRef.detectChanges();
+  }
+
+  private _hideOnRouteChange(): void {
+    this._sidenav.activeElement$.pipe(takeUntilDestroyed()).subscribe(() => {
+      this._isVisible = false;
+      this.cdRef.detectChanges();
+    });
   }
 }

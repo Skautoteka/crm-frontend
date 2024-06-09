@@ -1,0 +1,23 @@
+import { Routes } from '@angular/router';
+import { TasksSideContentComponent } from '../tasks/components/tasks-side-content/tasks-side-content.component';
+import { TasksSideEmptyComponent } from '../tasks';
+
+export const TASKS_ROUTES: Routes = [
+  {
+    path: 'details',
+    children: [
+      {
+        path: ':id',
+        component: TasksSideContentComponent,
+      },
+      {
+        path: '**',
+        redirectTo: '..',
+      },
+    ],
+  },
+  {
+    path: '**',
+    component: TasksSideEmptyComponent,
+  },
+];
