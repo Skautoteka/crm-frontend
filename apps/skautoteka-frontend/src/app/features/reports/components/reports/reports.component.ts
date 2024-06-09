@@ -15,6 +15,9 @@ import {
   SideContentSectionHeaderComponent,
 } from '@skautoteka-frontend/ui';
 import { ReportsService } from '../../services';
+import { ReportsContentComponent } from '../reports-content/reports-content.component';
+import { TableComponent } from '../../../../../../../../libs/ui/src/lib/table/index';
+import { TableColumn } from '../../../../../../../../libs/ui/src/lib/table';
 
 @Component({
   standalone: true,
@@ -32,6 +35,8 @@ import { ReportsService } from '../../services';
     SideContentSectionComponent,
     SideContentSectionHeaderComponent,
     ButtonComponent,
+    TableComponent,
+    ReportsContentComponent,
   ],
 })
 export class ReportsComponent {
