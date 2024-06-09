@@ -1,23 +1,16 @@
 import { Component, ViewContainerRef } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { DashboardComponent } from './features/dashboard';
-import { ModalService, OverlayService } from '@skautoteka-frontend/ui';
+import { OverlayService } from '@skautoteka-frontend/ui';
 
 @Component({
   standalone: true,
-  imports: [RouterModule, DashboardComponent],
+  imports: [RouterModule],
   selector: 'skt-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  constructor(
-    _viewContainerRef: ViewContainerRef,
-    _overlay: OverlayService,
-    _modal: ModalService
-  ) {
+  constructor(_viewContainerRef: ViewContainerRef, _overlay: OverlayService) {
     _overlay.initializeContainer(_viewContainerRef);
-
-    setTimeout(() => _modal.createModal(DashboardComponent), 2000);
   }
 }
