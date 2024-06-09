@@ -1,2 +1,2 @@
 export * from './modal/modal.component';
-export * from './dialog/dialog.component';
+export * from './prompt/prompt.component';

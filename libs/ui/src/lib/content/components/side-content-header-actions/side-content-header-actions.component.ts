@@ -1,14 +1,15 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ViewEncapsulation,
   input,
+  ViewEncapsulation,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { SimpleButtonComponent } from '../../../button';
+import { DialogService } from '../../../overlay';
 
 export interface ActionsConfig {
-  type: 'DELETE' | 'EDIT',
+  type: 'DELETE' | 'EDIT';
   text: string;
 }
 
@@ -20,12 +21,22 @@ export interface ActionsConfig {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [ClassBinder],
-  imports: [SimpleButtonComponent]
+  imports: [SimpleButtonComponent],
 })
 export class SideContentheaderActionsComponent {
   public config = input<ActionsConfig[]>([]);
 
-  constructor(classBinder: ClassBinder) {
+  constructor(classBinder: ClassBinder, private _dialog: DialogService) {
     classBinder.bind('skt-ui-side-content-header-actions');
+  }
+
+  public onActionClick(): void {
+    this._dialog.createPrompt({
+      message: 'Czy na pewno chcesz usunąć raport?',
+      auxiliaryMessage:
+        'Usunięcie raportu skutkuje całkowitym usunięciem danych',
+      cancelMessage: 'Nie usuwaj',
+      confirmMessage: 'Tak, usuń',
+    });
   }
 }
