@@ -6,8 +6,8 @@
 
 <div class="skt-tasks-content__tasks">
   @for (item of tasksService.getAllTasks(); track item.id) {
-    <skt-ui-list-card class="skt-tasks-content__tasks-card" [isActive]="isActive(item.id)" (click)="handleTaskClick(item.id)">
-      <div class="skt-tasks-content__tasks-card-content" [class.skt-tasks-content__tasks-card-content--active]="isActive(item.id)">
+    <skt-ui-list-card class="skt-tasks-content__tasks-card" [isActive]="(tasksService.activeTask$ | async)?.id === item.id" (click)="handleTaskClick(item.id)">
+      <div class="skt-tasks-content__tasks-card-content" [class.skt-tasks-content__tasks-card-content--active]="(tasksService.activeTask$ | async)?.id === item.id">
         <skt-ui-label>
           <div label>
             <span class="skt-tasks-content__tasks-card-header">Mecz</span> | Dojazdowe

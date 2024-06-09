@@ -1,10 +1,27 @@
 .skt-ui-side-content-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   font-size: 0.875rem;
 
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
   &__header {
+    color: var(--primary-1);
+    font-weight: 500;
+  }
+
+  &__mobile-back {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--basic-3);
+  }
+
+  &__mobile-title {
     color: var(--primary-1);
     font-weight: 500;
   }

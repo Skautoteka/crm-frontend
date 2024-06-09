@@ -46,8 +46,4 @@ export class TasksContentComponent {
   public handleTaskClick(id: number): void {
     this.tasksService.setActiveTask(id);
   }
-
-  public isActive(id: number): boolean {
-    return id === this.tasksService.activeTask?.id;
-  }
 }

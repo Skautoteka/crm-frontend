@@ -52,6 +52,10 @@ export class TasksSideContentComponent {
     this._showSideContent();
   }
 
+  public onMobileBackClick(): void {
+    this._tasks.setActiveTask(null);
+  }
+
   private _showSideContent() {
     this._tasks.activeTask$
       .pipe(takeUntilDestroyed())

@@ -40,7 +40,7 @@ export class TasksService {
    *
    * @param task
    */
-  public setActiveTask(id: number): void {
+  public setActiveTask(id: number | null): void {
     this._activeTask = this._allTasks.find((task) => task.id === id) || null;
     this._activeTask$.next(this._activeTask);
     this._router.navigate([
