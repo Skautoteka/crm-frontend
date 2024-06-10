@@ -3,12 +3,13 @@ import {
   Component,
   ViewEncapsulation,
   input,
+  Input,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { SimpleButtonComponent } from '../../../button';
 
 export interface ActionsConfig {
-  type: 'DELETE' | 'EDIT',
+  type: 'DELETE' | 'EDIT';
   text: string;
 }
 
@@ -20,9 +21,10 @@ export interface ActionsConfig {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [ClassBinder],
-  imports: [SimpleButtonComponent]
+  imports: [SimpleButtonComponent],
 })
 export class SideContentheaderActionsComponent {
+  @Input() text = '';
   public config = input<ActionsConfig[]>([]);
 
   constructor(classBinder: ClassBinder) {
