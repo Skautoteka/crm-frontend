@@ -15,7 +15,7 @@ import { IconComponent } from '../../../icon';
 export interface TableColumn {
   key: string;
   label: string;
-  type: 'string' | 'number' | 'date' | 'boolean' | 'img';
+  type: 'string' | 'player' | 'number' | 'date' | 'boolean' | 'img';
 }
 
 @Component({

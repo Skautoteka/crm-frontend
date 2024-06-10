@@ -64,6 +64,11 @@
     font-weight: 500;
   }
 
+  .player-cell {
+    display: flex;
+    flex-direction: column;
+  }
+
   .number-cell {
     text-align: right;
   }
@@ -93,8 +98,9 @@
   }
 
   .skt-ui-icon {
+    display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 0.6rem;
+    margin-top: 1rem;
   }
 }

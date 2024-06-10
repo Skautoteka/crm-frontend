@@ -11,7 +11,12 @@
       <tr *ngFor="let row of data">
         <td *ngFor="let column of columns">
           <ng-container [ngSwitch]="column.type">
+            <div *ngSwitchCase="'player'" class="player-cell">
+              <span  class="string-cell">{{ row[column.key] }}</span>
+              <span class="position-subcell">{{ row['position'] }}</span>
+            </div>
             <span *ngSwitchCase="'string'" class="string-cell">{{ row[column.key] }}</span>
+
             <span *ngSwitchCase="'number'" class="number-cell">{{ row[column.key] }}</span>
             <span *ngSwitchCase="'date'" class="date-cell">{{ row[column.key] | date: "mediumDate":"":"pl" }}</span>
             <span *ngSwitchCase="'boolean'" 
