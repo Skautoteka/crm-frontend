@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   forwardRef,
+  input,
   ViewEncapsulation,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
@@ -9,7 +10,6 @@ import {
   ControlValueAccessor,
   FormsModule,
   NG_VALUE_ACCESSOR,
-  ReactiveFormsModule,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, CommonModule],
   providers: [
     ClassBinder,
     {
@@ -31,7 +31,8 @@ import { CommonModule } from '@angular/common';
   ],
 })
 export class InputComponent implements ControlValueAccessor {
-  public placeholderText = 'asd';
+  public placeholderText = input<string>('');
+  public label = input<string | null>(null);
 
   private _value = '';
   private _isDisabled = false;
