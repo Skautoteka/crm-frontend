@@ -16,6 +16,7 @@ import {
   SideContentSectionEntityComponent,
   SideContentSectionRatingComponent,
 } from '@skautoteka-frontend/ui';
+import { ReportsBasicInfoComponent } from '../reports-basic-info/reports-basic-info.component';
 import { ReportsService } from '../../services';
 import { ReportsContentComponent } from '../reports-content/reports-content.component';
 import { TableComponent } from '../../../../../../../../libs/ui/src/lib/table/index';
@@ -40,6 +41,7 @@ import { TableComponent } from '../../../../../../../../libs/ui/src/lib/table/in
     ReportsContentComponent,
     SideContentSectionEntityComponent,
     SideContentSectionRatingComponent,
+    ReportsBasicInfoComponent,
   ],
 })
 export class ReportsComponent {
@@ -50,6 +52,10 @@ export class ReportsComponent {
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-reports');
   }
+
+  selectedDate = new Date('2024-01-31');
+  rating = 4.5;
+  finished = true;
 
   ratingData = [
     {
