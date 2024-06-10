@@ -13,6 +13,7 @@
         "jestConfig": "libs/ui/jest.config.ts"
       }
     },
+    "styles": ["libs/ui/src/lib/styles.scss"],
     "lint": {
       "executor": "@nx/eslint:lint"
     }
