@@ -1,0 +1,23 @@
+.skt-ui-input {
+
+  &__input {
+    all: unset;
+    border: 1px solid var(--primary-1);
+    border-radius: 0.5rem;
+    height: 2.125rem;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 0.75rem;
+    font-size: 0.8125rem;
+    color: var(--primary-black);
+    transition: all .125s;
+
+    &::placeholder {
+      color: var(--basic-6);
+    }
+
+    &:focus {
+      outline: 0.25rem solid rgba(#A3B0AD, 0.25);
+    }
+  }
+}
