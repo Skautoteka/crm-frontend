@@ -5,3 +5,4 @@ export * from './components/side-content-header-actions/side-content-header-acti
 export * from './components/side-content-section/side-content-section.component';
 export * from './components/side-content-section-header/side-content-section-header.component';
 export * from './components/side-content-section-entity/side-content-section-entity.component';
+export * from './components/side-content-section-rating/side-content-section-rating.component';

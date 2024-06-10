@@ -1,0 +1,41 @@
+.side-content-section-rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  .rating-wrapper {
+    width: 220px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 30px;
+  }
+
+  .name-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2px;
+    margin-left: 12px;
+  }
+
+  .name {
+    color: var(--basic-4);
+    font-size: 16px;
+    margin-bottom: -4px;
+  }
+
+  .rating-number {
+    font-size: 23px;
+    font-weight: 500;
+  }
+
+  img {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+  }
+}

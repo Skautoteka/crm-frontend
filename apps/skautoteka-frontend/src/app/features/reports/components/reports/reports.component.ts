@@ -14,6 +14,7 @@ import {
   SideContentSectionComponent,
   SideContentSectionHeaderComponent,
   SideContentSectionEntityComponent,
+  SideContentSectionRatingComponent,
 } from '@skautoteka-frontend/ui';
 import { ReportsService } from '../../services';
 import { ReportsContentComponent } from '../reports-content/reports-content.component';
@@ -38,6 +39,7 @@ import { TableComponent } from '../../../../../../../../libs/ui/src/lib/table/in
     TableComponent,
     ReportsContentComponent,
     SideContentSectionEntityComponent,
+    SideContentSectionRatingComponent,
   ],
 })
 export class ReportsComponent {
@@ -48,4 +50,22 @@ export class ReportsComponent {
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-reports');
   }
+
+  ratingData = [
+    {
+      imgSrc: 'assets/images/rating1.png',
+      name: 'Główkowanie',
+      number: '90',
+    },
+    {
+      imgSrc: 'assets/images/rating2.png',
+      name: 'Szybkość',
+      number: '24',
+    },
+    {
+      imgSrc: 'assets/images/rating1.png',
+      name: 'Przegląd pola',
+      number: '84',
+    },
+  ];
 }
