@@ -8,7 +8,7 @@
   width: 100%;
   border-collapse: collapse;
   font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   color: var(--primary-black);
   background-color: var(--primary-7);
 
@@ -84,6 +84,7 @@
     padding: 8px 16px;
     border-radius: 14px;
     text-align: center;
+    font-size: 14px;
   }
 
   .true-cell {
