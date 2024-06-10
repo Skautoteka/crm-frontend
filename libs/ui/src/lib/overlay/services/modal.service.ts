@@ -3,6 +3,7 @@ import { OverlayService } from '@skautoteka-frontend/ui';
 import { ComponentType } from '@angular/cdk/overlay';
 import { ModalContainerComponent } from '../components/modal-container/modal-container.component';
 import { take } from 'rxjs';
+import { IModalOptions } from '../interface/imodal';
 
 @Injectable({ providedIn: 'root' })
 export class ModalService {
@@ -13,12 +14,15 @@ export class ModalService {
    * Creates a modal that displays a component of a given type.
    *
    * @param type
+   * @param options
    */
   public createModal(
-    type: ComponentType<unknown>
+    type: ComponentType<unknown>,
+    options?: IModalOptions
   ): ComponentRef<ModalContainerComponent<unknown>> {
     const ref = this._overlay.createComponent(ModalContainerComponent);
     ref.setInput('componentType', type);
+    ref.setInput('options', options);
     this._handleModalClose(ref);
     this._refSet.add(ref);
 

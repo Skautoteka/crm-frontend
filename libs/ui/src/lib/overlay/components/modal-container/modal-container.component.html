@@ -1,6 +1,24 @@
 <div class="skt-ui-modal-container__container">
   <div class="skt-ui-modal-container__close_header">
-    <skt-ui-icon class="skt-ui-modal-container__close" iconName="close" (click)="onCloseClick()"></skt-ui-icon>
+
+    <div class="skt-ui-modal-container__header-container">
+      @if(options && options.header) {
+        <div class="skt-ui-modal-container__header">
+          {{ options.header }}
+        </div>
+      }
+
+      @if(options && options.subHeader) {
+        <div class="skt-ui-modal-container__sub-header">
+          {{ options.subHeader }}
+        </div>
+      }
+    </div>
+
+    <div class="skt-ui-modal-container__close" (click)="onCloseClick()">
+      <span class="skt-ui-modal-container__close--line"></span>
+      <span class="skt-ui-modal-container__close--line"></span>
+    </div>
   </div>
   <ng-container #mountPoint></ng-container>
 </div>

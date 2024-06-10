@@ -28,6 +28,10 @@ export class TasksComponent {
   }
 
   public onAddNewClick(): void {
-    this._modal.createModal(ButtonComponent);
+    this._modal.createModal(ButtonComponent, {
+      header: 'Dodaj zadanie',
+      subHeader:
+        'Wypełnij wszystkie wymagane informacje o zadaniu i zapisz zmiany',
+    });
   }
 }

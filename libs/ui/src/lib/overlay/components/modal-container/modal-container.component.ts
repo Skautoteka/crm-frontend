@@ -12,6 +12,7 @@ import {
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { ComponentType } from '@angular/cdk/overlay';
 import { IconComponent } from '../../../icon';
+import { IModalOptions } from '../../interface/imodal';
 
 @Component({
   standalone: true,
@@ -28,6 +29,8 @@ export class ModalContainerComponent<T> implements AfterViewInit {
   viewRef!: ViewContainerRef;
 
   @Input() componentType!: ComponentType<T>;
+  @Input() options: IModalOptions | null = null;
+
   @Output() closeClick = new EventEmitter<void>();
 
   constructor(classBinder: ClassBinder) {
