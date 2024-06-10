@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import 'css.gg/icons/icons.scss';
+
+:root {
+  --ggs: 0.85;
+
+  // ACCENT COLORS
+  --primary-black: #060606;
+  --primary-white: #f5f5f5;
+
+  // BASIC COLORS
+  --basic-4: #4E4E4E;
+  --basic-5: #818181;
+  --basic-6: #9A9A9A;
+  --basic-7: #B3B3B3;
+  --basic-8: #CCCCCC;
+  --basic-10: #cbcbcb;
+
+  // PRIMARY COLORS
+  --primary: #183932;
+  --primary-1: #2F4D47;
+  --primary-2: #46615b;
+  --primary-3: #5d7470;
+  --primary-4: #748884;
+  --primary-5: #A3B0AD;
+  --primary-6: #D1D7D6;
+  --primary-7: #E8EBEB;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--primary-white);
+  overflow: hidden;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: max-content;
+  height: auto;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(0.25rem);
+  }
+
+  100% {
+    opacity: 100%;
+    transform: translateY(0);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary-1);
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
