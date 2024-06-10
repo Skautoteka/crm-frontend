@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   forwardRef,
-  Input,
   input,
   ViewEncapsulation,
 } from '@angular/core';
@@ -12,14 +11,16 @@ import {
   FormsModule,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
+import { CommonModule, NgIf } from '@angular/common';
 
 @Component({
   selector: 'skt-ui-input',
   styleUrl: './input.component.scss',
-  templateUrl: 'input.component.html',
+  templateUrl: './input.component.html',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  imports: [FormsModule, CommonModule, NgIf],
   providers: [
     ClassBinder,
     {
@@ -28,13 +29,10 @@ import {
       useExisting: forwardRef(() => InputComponent),
     },
   ],
-  imports: [FormsModule],
 })
 export class InputComponent implements ControlValueAccessor {
-  @Input() label: string | null = 'null';
   public placeholderText = input<string>('');
-
-  public test = 'asdasdasd';
+  public label = input<string | null>(null);
 
   private _value = '';
   private _isDisabled = false;

@@ -1,3 +1,6 @@
-<input type="text" class="skt-ui-input__input" placeholder="{{ placeholderText() }}" />
-
-{{ test }}
+<div class="skt-ui-input__container">
+  @if(label()) {
+    <label>{{ label() }}</label>
+  }
+  <input type="text" class="skt-ui-input__input" placeholder="{{ placeholderText() }}" />
+</div>

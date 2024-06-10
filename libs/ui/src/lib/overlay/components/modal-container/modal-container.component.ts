@@ -38,7 +38,9 @@ export class ModalContainerComponent<T> implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.viewRef.createComponent(this.componentType);
+    this.viewRef
+      .createComponent(this.componentType)
+      .changeDetectorRef.detectChanges();
   }
 
   public onCloseClick(): void {

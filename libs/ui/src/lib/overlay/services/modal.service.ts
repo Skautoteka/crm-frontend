@@ -25,7 +25,8 @@ export class ModalService {
     ref.setInput('options', options);
     this._handleModalClose(ref);
     this._refSet.add(ref);
-    setTimeout(() => ref.changeDetectorRef.detectChanges());
+    ref.changeDetectorRef.detectChanges();
+    setTimeout(() => ref.changeDetectorRef.markForCheck(), 500);
 
     this._overlay.setBackdrop(true);
     return ref;
