@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { InputComponent } from '@skautoteka-frontend/ui';
+import { ButtonComponent, InputComponent } from '@skautoteka-frontend/ui';
 
 @Component({
   standalone: true,
@@ -12,7 +12,7 @@ import { InputComponent } from '@skautoteka-frontend/ui';
   styleUrl: './tasks-create.component.scss',
   templateUrl: 'tasks-create.component.html',
   providers: [ClassBinder],
-  imports: [InputComponent],
+  imports: [InputComponent, ButtonComponent],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

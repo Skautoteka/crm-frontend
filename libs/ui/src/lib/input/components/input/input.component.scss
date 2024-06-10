@@ -7,7 +7,7 @@
     all: unset;
     border: 1px solid var(--primary-1);
     border-radius: 0.5rem;
-    height: 2.125rem;
+    height: 2.5625rem;
     width: 100%;
     box-sizing: border-box;
     padding: 0 0.75rem;
@@ -21,6 +21,17 @@
 
     &:focus {
       outline: 0.25rem solid rgba(#A3B0AD, 0.25);
+    }
+  }
+
+  &__label {
+    display: block;
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.75rem;
+
+    &--required {
+      color: var(--warn);
     }
   }
 }
