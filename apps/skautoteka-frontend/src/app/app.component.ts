@@ -1,4 +1,9 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { OverlayService } from '@skautoteka-frontend/ui';
 
@@ -9,8 +14,13 @@ import { OverlayService } from '@skautoteka-frontend/ui';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  constructor(_viewContainerRef: ViewContainerRef, _overlay: OverlayService) {
-    _overlay.initializeContainer(_viewContainerRef);
+export class AppComponent implements AfterViewInit {
+  @ViewChild('overlayContainer', { read: ViewContainerRef })
+  container!: ViewContainerRef;
+
+  constructor(private _overlay: OverlayService) {}
+
+  ngAfterViewInit(): void {
+    this._overlay.initializeContainer(this.container);
   }
 }

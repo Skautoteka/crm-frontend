@@ -8,10 +8,10 @@ import {
   ContentComponent,
   ButtonComponent,
   ModalService,
-  InputComponent,
 } from '@skautoteka-frontend/ui';
 import { TasksContentComponent } from '../tasks-content/tasks-content.component';
 import { TasksService } from '../../services/tasks.service';
+import { TasksCreateComponent } from '../tasks-create/tasks-create.component';
 
 @Component({
   standalone: true,
@@ -29,7 +29,7 @@ export class TasksComponent {
   }
 
   public onAddNewClick(): void {
-    this._modal.createModal(InputComponent, {
+    this._modal.createModal(TasksCreateComponent, {
       header: 'Dodaj zadanie',
       subHeader:
         'Wypełnij wszystkie wymagane informacje o zadaniu i zapisz zmiany',
