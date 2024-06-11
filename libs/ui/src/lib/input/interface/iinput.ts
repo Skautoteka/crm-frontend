@@ -5,4 +5,7 @@ export interface ISingleInputConfig {
   placeholder: string;
   label: string;
   isRequired: boolean;
+  type: InputType;
 }
+
+type InputType = 'TEXT' | 'BOOL';

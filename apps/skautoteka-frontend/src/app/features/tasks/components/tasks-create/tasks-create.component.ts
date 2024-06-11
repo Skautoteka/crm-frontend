@@ -7,9 +7,9 @@ import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   ButtonComponent,
   InputComponent,
+  InputConfig,
   InputContainerComponent,
 } from '@skautoteka-frontend/ui';
-import { InputConfig } from '../../../../../../../../libs/ui/src/lib/input/interface/iinput';
 
 @Component({
   standalone: true,
@@ -22,26 +22,7 @@ import { InputConfig } from '../../../../../../../../libs/ui/src/lib/input/inter
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TasksCreateComponent {
-  public inputConfig: InputConfig = [
-    {
-      name: 'email',
-      label: 'Email',
-      isRequired: true,
-      placeholder: 'Wpisz swój email',
-    },
-    {
-      name: 'firstName',
-      label: 'Imię',
-      isRequired: false,
-      placeholder: 'Wpisz swoje imię',
-    },
-    {
-      name: 'firstName',
-      label: 'Imię',
-      isRequired: false,
-      placeholder: 'Wpisz swoje imię',
-    },
-  ];
+  public inputConfig: InputConfig = [];
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-tasks-create');
