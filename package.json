@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx run skautoteka-frontend:serve:development"
+    "start": "nx run skautoteka-frontend:serve:development",
+    "start:mobile": "nx run skautoteka-frontend:serve:development --host 192.168.1.12"
   },
   "private": true,
   "dependencies": {

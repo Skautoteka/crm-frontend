@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   HostListener,
+  inject,
   Input,
   ViewEncapsulation,
 } from '@angular/core';
@@ -12,6 +13,7 @@ import { IconComponent } from '../../../icon';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, map, Observable } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { SidenavService } from '../../services/sidenav.service';
 
 @Component({
   selector: 'skt-ui-sidenav-menu-element',
@@ -28,8 +30,10 @@ export class SidenavMenuElementComponent {
 
   @HostListener('click')
   onClick(): void {
-    this.router.navigate(['/', 'dashboard', this.element.route]);
+    this.sidenav.setActiveElement(this.element);
   }
+
+  public sidenav = inject(SidenavService);
 
   private get isActive$(): Observable<boolean> {
     return this.router.events.pipe(

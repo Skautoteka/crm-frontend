@@ -6,7 +6,7 @@
 
   @media (max-width: 850px) {
     grid-template-columns: 1fr;
-    grid-template-rows: 6rem 1fr;
+    grid-template-rows: 6rem auto;
   }
 
   &__mobile-hamburger {
@@ -80,8 +80,12 @@
     overflow: hidden;
 
     @media (max-width: 850px) {
+      position: absolute;
+      top: 6rem;
+      display: flex;
       flex-direction: row;
-      padding: 3rem 1.5rem 0 1.5rem;
+      height: calc(100% - 6rem);
+      width: 100%;
     }
   }
 }

@@ -13,12 +13,19 @@
   &__label {
     color: var(--basic-5);
     font-size: 0.8125rem;
+    min-width: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   &__value {
     font-size: 0.875rem;
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowrap;
+
+    @media (min-width: 850px) {
+      white-space: nowrap;
+    }
   }
 }
