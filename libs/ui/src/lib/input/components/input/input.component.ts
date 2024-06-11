@@ -31,7 +31,7 @@ import { CommonModule, NgIf } from '@angular/common';
   ],
 })
 export class InputComponent implements ControlValueAccessor {
-  public placeholderText = input<string>('');
+  public placeholder = input<string>('');
   public label = input<string | null>(null);
   public isRequired = input<boolean>(false);
 
