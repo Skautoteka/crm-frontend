@@ -2,8 +2,9 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  effect,
   EventEmitter,
-  Input,
+  input,
   Output,
   ViewChild,
   ViewContainerRef,
@@ -25,25 +26,27 @@ import { InputComponent } from '@skautoteka-frontend/ui';
   imports: [FormsModule, CommonModule, NgIf],
   providers: [ClassBinder],
 })
-export class InputContainerComponent implements AfterViewInit {
+export class InputContainerComponent {
   @ViewChild('inputContainer', { read: ViewContainerRef })
   inputContainer!: ViewContainerRef;
 
   @Output() formGroup = new EventEmitter<FormGroup>();
-  @Input({ required: true }) config!: InputConfig;
+  public config = input<InputConfig | null>(null);
 
   private _formGroup: FormGroup = new FormGroup({});
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-ui-input-container');
-  }
-
-  ngAfterViewInit(): void {
     this._buildInputs();
   }
 
   private _buildInputs(): void {
-    this.config.forEach((input) => this._buildInput(input));
+    effect(() => {
+      const config = this.config();
+      if (config) {
+        config.forEach((input) => this._buildInput(input));
+      }
+    });
   }
 
   private _buildInput(input: ISingleInputConfig): void {
