@@ -23,6 +23,7 @@ import { InputComponent } from '@skautoteka-frontend/ui';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   imports: [FormsModule, CommonModule, NgIf],
+  providers: [ClassBinder],
 })
 export class InputContainerComponent implements AfterViewInit {
   @ViewChild('inputContainer', { read: ViewContainerRef })
@@ -47,6 +48,15 @@ export class InputContainerComponent implements AfterViewInit {
 
   private _buildInput(input: ISingleInputConfig): void {
     this._formGroup.addControl(input.name, new FormControl());
-    this.inputContainer.createComponent(InputComponent);
+    this._createInputComponent(input);
+  }
+
+  private _createInputComponent(input: ISingleInputConfig): void {
+    const { isRequired, placeholder, label } = input;
+    const ref = this.inputContainer.createComponent(InputComponent);
+    ref.setInput('placeholder', placeholder);
+    ref.setInput('label', label);
+    ref.setInput('isRequired', isRequired);
+    ref.changeDetectorRef.detectChanges();
   }
 }

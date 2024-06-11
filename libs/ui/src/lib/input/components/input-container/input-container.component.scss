@@ -1,1 +1,12 @@
-.skt-ui-input-container {}
+.skt-ui-input-container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+
+  .skt-ui-input {
+    flex-basis: 33%;
+    flex-grow: 1;
+    min-width: 10rem;
+  }
+}
