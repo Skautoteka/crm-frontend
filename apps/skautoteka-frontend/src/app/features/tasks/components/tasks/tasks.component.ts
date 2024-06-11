@@ -10,7 +10,6 @@ import {
   ModalService,
 } from '@skautoteka-frontend/ui';
 import { TasksContentComponent } from '../tasks-content/tasks-content.component';
-import { TasksService } from '../../services/tasks.service';
 import { TasksCreateComponent } from '../tasks-create/tasks-create.component';
 
 @Component({
@@ -18,7 +17,7 @@ import { TasksCreateComponent } from '../tasks-create/tasks-create.component';
   selector: 'skt-tasks',
   styleUrl: './tasks.component.scss',
   templateUrl: 'tasks.component.html',
-  providers: [ClassBinder, TasksService],
+  providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ContentComponent, TasksContentComponent, ButtonComponent],

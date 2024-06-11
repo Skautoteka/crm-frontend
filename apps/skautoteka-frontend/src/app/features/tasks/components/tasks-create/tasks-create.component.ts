@@ -10,6 +10,7 @@ import {
   InputConfig,
   InputContainerComponent,
 } from '@skautoteka-frontend/ui';
+import { TasksService } from '../../services';
 
 @Component({
   standalone: true,
@@ -24,7 +25,15 @@ import {
 export class TasksCreateComponent {
   public inputConfig: InputConfig = [];
 
-  constructor(classBinder: ClassBinder) {
+  constructor(classBinder: ClassBinder, private _tasks: TasksService) {
     classBinder.bind('skt-tasks-create');
+    this._getFieldsConfig();
+  }
+
+  private _getFieldsConfig(): void {
+    this._tasks.getCreateFieldsConfig$().subscribe((config) => {
+      console.log(config);
+      this.inputConfig = config;
+    });
   }
 }
