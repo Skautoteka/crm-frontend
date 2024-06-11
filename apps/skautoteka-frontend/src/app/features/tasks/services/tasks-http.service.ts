@@ -11,6 +11,6 @@ export class TasksHttpService {
    * Gets create fields for tasks model.
    */
   public getCreateFieldsConfig$(): Observable<InputConfig> {
-    return this.http.get<InputConfig>('api/tasks/create-fields');
+    return this.http.get<InputConfig>('api/task/create-fields');
   }
 }
