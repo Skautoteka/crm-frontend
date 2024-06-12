@@ -1,28 +1,16 @@
-import { Injectable } from '@angular/core';
-import { Task } from '../interfaces/task';
-import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { Task } from "../interfaces/task";
 
 @Injectable()
 export class TasksService {
   private _allTasks: Task[] = [];
   private _activeTask: Task | null = null;
-  private _activeTask$ = new BehaviorSubject<Task | null>(null);
-
-  constructor(private _router: Router) {}
 
   /**
    * Returns an active task on the task view.
    */
   get activeTask(): Task | null {
     return this._activeTask;
-  }
-
-  /**
-   * Returns an active task as observable.
-   */
-  get activeTask$(): Observable<Task | null> {
-    return this._activeTask$;
   }
 
   /**
@@ -40,14 +28,7 @@ export class TasksService {
    *
    * @param task
    */
-  public setActiveTask(id: number | null): void {
-    this._activeTask = this._allTasks.find((task) => task.id === id) || null;
-    this._activeTask$.next(this._activeTask);
-    this._router.navigate([
-      'dashboard',
-      'tasks',
-      'details',
-      this._activeTask ? this._activeTask.id : '',
-    ]);
+  public setActiveTask(id: number): void {
+    this._activeTask = this._allTasks.find(task => task.id === id) || null;
   }
 }

@@ -5,11 +5,19 @@ import {
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import {
-  ContentComponent,
+  SideContentHeaderComponent,
+  SideContentComponent,
+  SidenavMenuComponent,
+  SideContentheaderActionsComponent,
   ButtonComponent,
-  ModalService,
+  ActionsConfig,
+  SideContentSectionComponent,
+  SideContentSectionHeaderComponent,
 } from '@skautoteka-frontend/ui';
 import { TasksContentComponent } from '../tasks-content/tasks-content.component';
+import { TasksTeamsComponent } from '../tasks-teams/tasks-teams.component';
+import { TasksBasicInfoComponent } from '../tasks-basic-info/tasks-basic-info.component';
+import { TasksReportsComponent } from '../tasks-reports/tasks-reports.component';
 import { TasksService } from '../../services/tasks.service';
 
 @Component({
@@ -20,14 +28,24 @@ import { TasksService } from '../../services/tasks.service';
   providers: [ClassBinder, TasksService],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ContentComponent, TasksContentComponent, ButtonComponent],
+  imports: [
+    SidenavMenuComponent,
+    TasksContentComponent,
+    SideContentHeaderComponent,
+    SideContentheaderActionsComponent,
+    SideContentComponent,
+    SideContentSectionComponent,
+    SideContentSectionHeaderComponent,
+    TasksBasicInfoComponent,
+    ButtonComponent,
+    TasksTeamsComponent,
+    TasksReportsComponent
+  ],
 })
 export class TasksComponent {
-  constructor(classBinder: ClassBinder, private _modal: ModalService) {
-    classBinder.bind('skt-tasks');
-  }
+  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń raport' }]
 
-  public onAddNewClick(): void {
-    this._modal.createModal(ButtonComponent);
+  constructor(classBinder: ClassBinder) {
+    classBinder.bind('skt-tasks');
   }
 }

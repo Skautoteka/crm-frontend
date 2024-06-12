@@ -11,8 +11,7 @@ import {
   TabsComponent,
 } from '@skautoteka-frontend/ui';
 import { TasksService } from '../../services';
-import { AsyncPipe } from '@angular/common';
-import { DeviceService } from '../../../../../../../../libs/common/src/lib/services/device.service';
+
 
 @Component({
   standalone: true,
@@ -22,20 +21,10 @@ import { DeviceService } from '../../../../../../../../libs/common/src/lib/servi
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    TabsComponent,
-    TabComponent,
-    ListCardComponent,
-    LabelComponent,
-    AsyncPipe,
-  ],
+  imports: [TabsComponent, TabComponent, ListCardComponent, LabelComponent],
 })
 export class TasksContentComponent {
-  constructor(
-    classBinder: ClassBinder,
-    public tasksService: TasksService,
-    public device: DeviceService
-  ) {
+  constructor(classBinder: ClassBinder, public tasksService: TasksService) {
     classBinder.bind('skt-tasks-content');
   }
 
@@ -45,5 +34,9 @@ export class TasksContentComponent {
 
   public handleTaskClick(id: number): void {
     this.tasksService.setActiveTask(id);
+  }
+
+  public isActive(id: number): boolean {
+    return id === this.tasksService.activeTask?.id;
   }
 }

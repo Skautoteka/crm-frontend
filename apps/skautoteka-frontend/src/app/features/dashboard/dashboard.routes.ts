@@ -11,8 +11,6 @@ export const DASHBOARD_ROUTES: Routes = [
       {
         path: 'tasks',
         component: TasksComponent,
-        loadChildren: () =>
-          import('./tasks.routes').then((r) => r.TASKS_ROUTES),
       },
       {
         path: 'reports',

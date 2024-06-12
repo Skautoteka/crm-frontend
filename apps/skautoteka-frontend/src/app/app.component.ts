@@ -1,16 +1,12 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { OverlayService } from '@skautoteka-frontend/ui';
+import { DashboardComponent } from './features/dashboard';
 
 @Component({
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, DashboardComponent],
   selector: 'skt-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  constructor(_viewContainerRef: ViewContainerRef, _overlay: OverlayService) {
-    _overlay.initializeContainer(_viewContainerRef);
-  }
-}
+export class AppComponent {}

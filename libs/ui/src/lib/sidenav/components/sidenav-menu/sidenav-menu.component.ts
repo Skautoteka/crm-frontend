@@ -9,6 +9,7 @@ import { SidenavElement } from '../../interfaces';
 
 import { SidenavMenuElementComponent } from '../sidenav-menu-element/sidenav-menu-element.component';
 import { IconComponent } from '../../../icon';
+import { DeviceService } from '../../../../../../common/src/lib/services/device.service';
 
 @Component({
   selector: 'skt-ui-sidenav-menu',
@@ -23,7 +24,7 @@ import { IconComponent } from '../../../icon';
 export class SidenavMenuComponent {
   @Input() elements: SidenavElement[] = [];
 
-  constructor(classBinder: ClassBinder) {
+  constructor(classBinder: ClassBinder, public device: DeviceService) {
     classBinder.bind('skt-ui-sidenav-menu');
   }
 }

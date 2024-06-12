@@ -1,7 +1,6 @@
 .skt-ui-button {
   &__button {
     all: unset;
-    display: flex;
     background-color: var(--primary-1);
     font-size: 0.8125rem;
     font-weight: 600;
@@ -10,9 +9,6 @@
     border-radius: 0.5rem;
     cursor: pointer;
     transition: all .3s;
-    box-sizing: border-box;
-    justify-content: center;
-    width: 100%;
 
     &:hover {
       background-color: var(--primary);

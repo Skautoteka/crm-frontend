@@ -5,9 +5,9 @@
 </skt-ui-tabs>
 
 <div class="skt-tasks-content__tasks">
-  @for (item of tasksService.getAllTasks(); track item.id) {
-    <skt-ui-list-card class="skt-tasks-content__tasks-card" [isActive]="(tasksService.activeTask$ | async)?.id === item.id" (click)="handleTaskClick(item.id)">
-      <div class="skt-tasks-content__tasks-card-content" [class.skt-tasks-content__tasks-card-content--active]="(tasksService.activeTask$ | async)?.id === item.id">
+  @for (item of tasksService.getAllTasks(); track item) {
+    <skt-ui-list-card class="skt-tasks-content__tasks-card" [isActive]="isActive(item.id)" (click)="handleTaskClick(item.id)">
+      <div class="skt-tasks-content__tasks-card-content" [class.skt-tasks-content__tasks-card-content--active]="isActive(item.id)">
         <skt-ui-label>
           <div label>
             <span class="skt-tasks-content__tasks-card-header">Mecz</span> | Dojazdowe
@@ -22,12 +22,10 @@
           Niedziela, 4. stycznia
         </skt-ui-label>
 
-        @if((device.isMobile$ | async) === false) {
-          <skt-ui-label>
-            <div label>Godzina</div>
-            21:00
-          </skt-ui-label>
-        }
+        <skt-ui-label>
+          <div label>Godzina</div>
+          21:00
+        </skt-ui-label>
       </div>
     </skt-ui-list-card>
   }
