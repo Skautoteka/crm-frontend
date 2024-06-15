@@ -1,0 +1,16 @@
+.skt-ui-overlay-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  transition: background-color .3s ease;
+
+  &--backdrop {
+    background-color: rgba(0, 0, 0, 0.25);
+    pointer-events: all;
+    backdrop-filter: blur(1.5px);
+  }
+}

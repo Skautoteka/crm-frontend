@@ -1,0 +1,12 @@
+<div class="skt-ui-input__container">
+  @if(label()) {
+    <label class="skt-ui-input__label">
+      {{ label() }}
+
+      @if(isRequired()) {
+       <span class="skt-ui-input__label--required">*</span>
+      }
+    </label>
+  }
+  <input type="text" class="skt-ui-input__input" placeholder="{{ placeholder() }}" />
+</div>

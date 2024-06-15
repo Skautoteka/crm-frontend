@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './features/dashboard';
 
@@ -9,4 +14,13 @@ import { DashboardComponent } from './features/dashboard';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {}
+export class AppComponent implements AfterViewInit {
+  @ViewChild('overlayContainer', { read: ViewContainerRef })
+  container!: ViewContainerRef;
+
+  constructor(private _overlay: OverlayService) {}
+
+  ngAfterViewInit(): void {
+    this._overlay.initializeContainer(this.container);
+  }
+}

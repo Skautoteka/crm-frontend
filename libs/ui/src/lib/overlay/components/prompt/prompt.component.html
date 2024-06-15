@@ -1,0 +1,21 @@
+<div class="skt-ui-prompt__message">
+  {{ options.message }}
+</div>
+
+<div class="skt-ui-prompt__auxiliary-message">
+  {{ options.auxiliaryMessage }}
+</div>
+
+<div class="skt-ui-prompt__actions">
+  @if(options.confirmInfo) {
+    <div class="skt-ui-prompt__confirm-action">
+      <skt-ui-button (click)="onConfirmClick()">{{ options.confirmInfo.message }}</skt-ui-button>
+    </div>
+  }
+
+  @if(options.cancelInfo) {
+    <div class="skt-ui-prompt__confirm-action">
+      <skt-ui-button type="SECONDARY" (click)="onCancelClick()">{{ options.cancelInfo.message }}</skt-ui-button>
+    </div>
+  }
+</div>

@@ -89,7 +89,23 @@
     background: var(--primary-7);
 
     @media (max-width: 850px) {
-      display: none;
+      position: absolute;
+      top: 100%;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.3s ease;
+      background-color: var(--primary-7);
+      overflow-y: auto;
+      padding: 1.5rem;
+      overflow-x: hidden;
+    }
+  }
+
+  &--visible {
+    @media (max-width: 850px) {
+      .skt-ui-content__side-content {
+        transform: translateY(-100%);
+      }
     }
   }
 }

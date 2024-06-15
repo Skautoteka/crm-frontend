@@ -1,10 +1,17 @@
-import { Injectable } from "@angular/core";
-import { Task } from "../interfaces/task";
+import { Injectable } from '@angular/core';
+import { Task } from '../interfaces/task';
+import { Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { InputConfig } from '@skautoteka-frontend/ui';
+import { TasksHttpService } from './tasks-http.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TasksService {
   private _allTasks: Task[] = [];
   private _activeTask: Task | null = null;
+  private _activeTask$ = new BehaviorSubject<Task | null>(null);
+
+  constructor(private _router: Router, private _taskHttp: TasksHttpService) {}
 
   /**
    * Returns an active task on the task view.
@@ -28,7 +35,21 @@ export class TasksService {
    *
    * @param task
    */
-  public setActiveTask(id: number): void {
-    this._activeTask = this._allTasks.find(task => task.id === id) || null;
+  public setActiveTask(id: number | null): void {
+    this._activeTask = this._allTasks.find((task) => task.id === id) || null;
+    this._activeTask$.next(this._activeTask);
+    this._router.navigate([
+      'dashboard',
+      'tasks',
+      'details',
+      this._activeTask ? this._activeTask.id : '',
+    ]);
+  }
+
+  /**
+   * Gets create fields for tasks model.
+   */
+  public getCreateFieldsConfig$(): Observable<InputConfig> {
+    return this._taskHttp.getCreateFieldsConfig$();
   }
 }
