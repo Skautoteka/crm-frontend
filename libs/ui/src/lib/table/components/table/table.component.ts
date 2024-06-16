@@ -29,6 +29,7 @@ export interface TableColumn {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableComponent {
+  @Input() onActionClick: any;
   @Input() data: any[] = [];
   @Input() columns: TableColumn[] = [];
   constructor(

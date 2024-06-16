@@ -39,12 +39,14 @@ export class ReportsContentComponent {
     console.log(id);
   }
 
-  public handleTaskClick(id: number): void {
+  public handleRaportClick(id: number): void {
+    console.log('Raport clicked with ID:', id);
     this.reportsService.setActiveReport(id);
   }
 
   tableData = [
     {
+      id: 1,
       imageUrl: 'assets/images/placeholder.png',
       name: 'Janusz Kowalczyk',
       position: 'Środkowy pomocnik',
@@ -53,6 +55,7 @@ export class ReportsContentComponent {
       data: new Date('2024-01-31'),
     },
     {
+      id: 2,
       imageUrl: 'assets/images/placeholder.png',
       name: 'Cristiano Ronaldo',
       position: 'Napastnik',
@@ -61,6 +64,7 @@ export class ReportsContentComponent {
       data: new Date('2024-02-28'),
     },
     {
+      id: 3,
       imageUrl: 'assets/images/placeholder.png',
       name: 'Janusz Janosz',
       position: 'Lewy pomocnik',
@@ -69,6 +73,7 @@ export class ReportsContentComponent {
       data: new Date('2024-03-15'),
     },
     {
+      id: 4,
       imageUrl: 'assets/images/placeholder.png',
       name: 'Leo Messi',
       position: 'Skrzydłowy',
@@ -77,6 +82,7 @@ export class ReportsContentComponent {
       data: new Date('2024-04-20'),
     },
     {
+      id: 5,
       imageUrl: 'assets/images/placeholder.png',
       name: 'Erling Haaland',
       position: 'Napastnik',
@@ -85,6 +91,7 @@ export class ReportsContentComponent {
       data: new Date('2024-05-01'),
     },
     {
+      id: 6,
       imageUrl: 'assets/images/placeholder.png',
       name: 'Erling Haaland',
       position: 'Środkowy pomocnik',
@@ -93,6 +100,7 @@ export class ReportsContentComponent {
       data: new Date('2024-05-01'),
     },
     {
+      id: 7,
       imageUrl: 'assets/images/placeholder.png',
       name: 'Erling Haaland',
       position: 'Bramkarz',
@@ -101,6 +109,7 @@ export class ReportsContentComponent {
       data: new Date('2024-05-01'),
     },
     {
+      id: 8,
       imageUrl: 'assets/images/placeholder.png',
       name: 'Erling Haaland',
       position: 'Lewy pomocnik',
@@ -109,6 +118,7 @@ export class ReportsContentComponent {
       data: new Date('2024-05-01'),
     },
     {
+      id: 9,
       imageUrl: 'assets/images/placeholder.png',
       name: 'Erling Haaland',
       position: 'Prawy pomocnik',
@@ -117,6 +127,7 @@ export class ReportsContentComponent {
       data: new Date('2024-05-01'),
     },
     {
+      id: 10,
       imageUrl: 'assets/images/placeholder.png',
       name: 'Erling Haaland',
       position: 'Środkowy pomocnik',
@@ -125,6 +136,7 @@ export class ReportsContentComponent {
       data: new Date('2024-05-01'),
     },
     {
+      id: 11,
       imageUrl: 'assets/images/placeholder.png',
       name: 'Erling Haaland',
       position: 'Środkowy obrońca',
@@ -133,6 +145,7 @@ export class ReportsContentComponent {
       data: new Date('2024-05-01'),
     },
     {
+      id: 12,
       imageUrl: 'assets/images/placeholder.png',
       name: 'Erling Haaland',
       position: 'Prawy obrońca',
@@ -141,6 +154,7 @@ export class ReportsContentComponent {
       data: new Date('2024-05-01'),
     },
     {
+      id: 13,
       imageUrl: 'assets/images/placeholder.png',
       name: 'Erling Haaland',
       position: 'Środkowy pomocnik',
@@ -149,6 +163,7 @@ export class ReportsContentComponent {
       data: new Date('2024-05-01'),
     },
     {
+      id: 14,
       imageUrl: 'assets/images/placeholder.png',
       name: 'Erling Haaland',
       position: 'LEwy obrońca',
@@ -157,6 +172,7 @@ export class ReportsContentComponent {
       data: new Date('2024-05-01'),
     },
     {
+      id: 15,
       imageUrl: 'assets/images/placeholder.png',
       name: 'Erling Haaland',
       position: 'Środkowy pomocnik',
@@ -165,6 +181,7 @@ export class ReportsContentComponent {
       data: new Date('2024-05-01'),
     },
     {
+      id: 16,
       imageUrl: 'assets/images/placeholder.png',
       name: 'Erling Haaland',
       position: 'Środkowy pomocnik',
@@ -173,6 +190,7 @@ export class ReportsContentComponent {
       data: new Date('2024-05-01'),
     },
     {
+      id: 17,
       imageUrl: 'assets/images/placeholder.png',
       name: 'Erling Haaland',
       position: 'Środkowy pomocnik',
@@ -181,6 +199,7 @@ export class ReportsContentComponent {
       data: new Date('2024-05-01'),
     },
     {
+      id: 18,
       imageUrl: 'assets/images/placeholder.png',
       name: 'Erling Haaland',
       position: 'Środkowy pomocnik',

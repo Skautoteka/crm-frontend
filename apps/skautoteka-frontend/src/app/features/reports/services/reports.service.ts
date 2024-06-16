@@ -48,7 +48,7 @@ export class ReportsService {
     this._activeReport$.next(this._activeReport);
     this._router.navigate([
       'dashboard',
-      'tasks',
+      'reports',
       'details',
       this._activeReport ? this._activeReport.id : '',
     ]);

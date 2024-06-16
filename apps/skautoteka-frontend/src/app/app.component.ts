@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { OverlayService } from '@skautoteka-frontend/ui';
+import '@angular/common/locales/global/pl';
 
 @Component({
   standalone: true,
