@@ -37,7 +37,7 @@ export class SidenavMenuElementComponent {
 
   private get isActive$(): Observable<boolean> {
     return this.router.events.pipe(
-      filter((event) => event instanceof NavigationEnd),
+      filter((event) => !!(event as any).url),
       map((event) => (event as NavigationEnd).url.includes(this.element.route))
     );
   }

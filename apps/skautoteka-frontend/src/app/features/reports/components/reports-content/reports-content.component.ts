@@ -40,7 +40,6 @@ export class ReportsContentComponent {
   }
 
   public handleRaportClick(id: number): void {
-    console.log('Raport clicked with ID:', id);
     this.reportsService.setActiveReport(id);
   }
 
