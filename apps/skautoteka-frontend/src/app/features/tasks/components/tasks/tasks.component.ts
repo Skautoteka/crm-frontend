@@ -11,6 +11,7 @@ import {
 } from '@skautoteka-frontend/ui';
 import { TasksContentComponent } from '../tasks-content/tasks-content.component';
 import { TasksCreateComponent } from '../tasks-create/tasks-create.component';
+import { TasksService } from '../../services';
 
 @Component({
   standalone: true,
@@ -23,8 +24,13 @@ import { TasksCreateComponent } from '../tasks-create/tasks-create.component';
   imports: [ContentComponent, TasksContentComponent, ButtonComponent],
 })
 export class TasksComponent {
-  constructor(classBinder: ClassBinder, private _modal: ModalService) {
+  constructor(
+    classBinder: ClassBinder,
+    private _modal: ModalService,
+    private _tasks: TasksService
+  ) {
     classBinder.bind('skt-tasks');
+    this._tasks.setActiveTask(null);
   }
 
   public onAddNewClick(): void {
