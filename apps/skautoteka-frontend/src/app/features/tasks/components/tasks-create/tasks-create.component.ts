@@ -10,6 +10,7 @@ import {
   InputComponent,
   InputConfig,
   InputContainerComponent,
+  ModalService,
 } from '@skautoteka-frontend/ui';
 import { TasksService } from '../../services';
 import { AsyncPipe } from '@angular/common';
@@ -32,11 +33,23 @@ import { AsyncPipe } from '@angular/common';
 export class TasksCreateComponent {
   public config = signal<InputConfig | null>(null);
 
-  constructor(classBinder: ClassBinder, private _tasks: TasksService) {
+  constructor(
+    classBinder: ClassBinder,
+    private _tasks: TasksService,
+    private _modal: ModalService
+  ) {
     classBinder.bind('skt-tasks-create');
 
     this._tasks
       .getCreateFieldsConfig$()
       .subscribe((config) => this.config.set(config));
+  }
+
+  public onSaveButtonClick(): void {
+    this._tasks.addTask({
+      id: Math.random() * 10000,
+    });
+
+    this._modal.closeAll();
   }
 }
