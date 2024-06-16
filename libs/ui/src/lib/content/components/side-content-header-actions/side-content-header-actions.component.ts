@@ -7,6 +7,7 @@ import {
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { SimpleButtonComponent } from '../../../button';
 import { DialogService } from '../../../overlay';
+import { TasksService } from '../../../../../../../apps/skautoteka-frontend/src/app/features/tasks/services/tasks.service';
 
 export interface ActionsConfig {
   type: 'DELETE' | 'EDIT';
@@ -26,7 +27,11 @@ export interface ActionsConfig {
 export class SideContentheaderActionsComponent {
   public config = input<ActionsConfig[]>([]);
 
-  constructor(classBinder: ClassBinder, private _dialog: DialogService) {
+  constructor(
+    classBinder: ClassBinder,
+    private _dialog: DialogService,
+    private _tasks: TasksService
+  ) {
     classBinder.bind('skt-ui-side-content-header-actions');
   }
 
@@ -37,7 +42,10 @@ export class SideContentheaderActionsComponent {
         'Usunięcie raportu skutkuje całkowitym usunięciem danych',
       confirmInfo: {
         message: 'Tak, usuwam',
-        callback: () => ref.close(),
+        callback: () => {
+          ref.close();
+          this._tasks.removeActiveTask();
+        },
       },
       cancelInfo: {
         message: 'Nie usuwaj',

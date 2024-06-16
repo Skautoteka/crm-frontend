@@ -11,6 +11,16 @@ export class ModalService {
   private _overlay = inject(OverlayService);
 
   /**
+   * Closes all modals.
+   */
+  public closeAll(): void {
+    this._refSet.forEach((ref) => {
+      ref.destroy();
+      this._overlay.setBackdrop(false);
+    });
+  }
+
+  /**
    * Creates a modal that displays a component of a given type.
    *
    * @param type
