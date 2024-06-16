@@ -1,0 +1,20 @@
+<div class="reports-basic-info">
+  <div class="basic-info-wrapper"></div>
+  <div class="basic-info-element">
+    <span class="info-name">Data utworzenia</span> 
+    <span class="info-data">{{ date | date: "mediumDate":"":"pl" }}</span>
+  </div>
+   <div class="basic-info-element">
+    <span class="info-name">Ocena ogólna</span> 
+    <span class="info-data">{{ rating }}</span>
+  </div>
+  <div class="basic-info-element">
+    <span class="info-name">Status raportu</span> 
+        <span
+        [class.true-cell]="finished" 
+        [class.false-cell]="!finished"
+        >{{  finished ? 'Ukończony' : 'W trakcie'}}</span>
+  </div>
+
+  </div>
+  

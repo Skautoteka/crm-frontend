@@ -1,0 +1,40 @@
+.skt-reports {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .skt-ui-side-content{
+    height: 90%;
+  }
+
+  .buttons-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%; 
+    .skt-ui-button__button{
+      width: 50%; 
+      font-size: 11px;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+  .white-button {
+    .skt-ui-button__button{
+      background-color: transparent;
+      color: #1B1B1B;
+      border: 1px solid #CCCCCC;
+    }
+  }
+
+  .skt-ui-side-content-section:last-of-type {
+    margin-top: auto;
+  }
+  
+}
