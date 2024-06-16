@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { InputConfig } from '@skautoteka-frontend/ui';
 import { Task } from '../interfaces/task';
 
@@ -29,8 +29,8 @@ export class TasksHttpService {
    *
    * @returns
    */
-  public addTask(): Observable<void> {
-    return this.http.post<void>('api/task', {});
+  public addTask(): Observable<any> {
+    return this.http.post<any>('api/task', {}).pipe(map((res) => res.added.id));
   }
 
   /**

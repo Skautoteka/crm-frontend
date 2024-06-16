@@ -45,9 +45,10 @@ export class TasksService {
    * Adds a new task.
    */
   public addTask(task: Task): void {
-    this._taskHttp.addTask();
-    this._allTasks = [...this._allTasks, task];
-    this._allTasks$.next(this._allTasks);
+    this._taskHttp.addTask().subscribe((id) => {
+      this._allTasks = [...this._allTasks, { ...task, id }];
+      this._allTasks$.next(this._allTasks);
+    });
   }
 
   /**
@@ -76,7 +77,7 @@ export class TasksService {
     }
 
     const id = this.activeTask.id;
-    this._taskHttp.removeTask(id);
+    this._taskHttp.removeTask(id).subscribe();
     this._allTasks = this._allTasks.filter((task) => task.id !== id);
     this._allTasks$.next(this._allTasks);
     this.setActiveTask(null);
