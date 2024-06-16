@@ -15,7 +15,10 @@ import {
   SideContentSectionHeaderComponent,
 } from '@skautoteka-frontend/ui';
 import { TasksContentComponent } from '../tasks-content/tasks-content.component';
-import { TasksCreateComponent } from '../tasks-create/tasks-create.component';
+import { TasksTeamsComponent } from '../tasks-teams/tasks-teams.component';
+import { TasksBasicInfoComponent } from '../tasks-basic-info/tasks-basic-info.component';
+import { TasksReportsComponent } from '../tasks-reports/tasks-reports.component';
+import { TasksService } from '../../services/tasks.service';
 
 @Component({
   standalone: true,
@@ -36,21 +39,23 @@ import { TasksCreateComponent } from '../tasks-create/tasks-create.component';
     TasksBasicInfoComponent,
     ButtonComponent,
     TasksTeamsComponent,
-    TasksReportsComponent
+    TasksReportsComponent,
   ],
 })
 export class TasksComponent {
-  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń raport' }]
+  public actionsConfig: ActionsConfig[] = [
+    { type: 'DELETE', text: 'Usuń raport' },
+  ];
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-tasks');
   }
 
   public onAddNewClick(): void {
-    this._modal.createModal(TasksCreateComponent, {
-      header: 'Dodaj zadanie',
-      subHeader:
-        'Wypełnij wszystkie wymagane informacje o zadaniu i zapisz zmiany',
-    });
+    // this._modal.createModal(TasksCreateComponent, {
+    //   header: 'Dodaj zadanie',
+    //   subHeader:
+    //     'Wypełnij wszystkie wymagane informacje o zadaniu i zapisz zmiany',
+    // });
   }
 }

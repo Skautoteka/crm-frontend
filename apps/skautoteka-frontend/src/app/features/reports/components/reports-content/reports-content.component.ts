@@ -9,10 +9,10 @@ import {
   ListCardComponent,
   TabComponent,
   TabsComponent,
+  TableComponent,
+  TableColumn,
 } from '@skautoteka-frontend/ui';
 import { ReportsService } from '../../services';
-import { TableComponent } from '../../../../../../../../libs/ui/src/lib/table/index';
-import { TableColumn } from '../../../../../../../../libs/ui/src/lib/table';
 
 @Component({
   standalone: true,

@@ -2,11 +2,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  Input,
   ViewEncapsulation,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { SimpleButtonComponent } from '../../../button';
-import { DialogService } from '../../../overlay';
+import { DialogService } from '../../../../../../ui/src/lib/overlay/services';
 
 export interface ActionsConfig {
   type: 'DELETE' | 'EDIT';

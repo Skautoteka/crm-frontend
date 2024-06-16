@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './features/dashboard';
+import { OverlayService } from '@skautoteka-frontend/ui';
 
 @Component({
   standalone: true,

@@ -1,5 +1,5 @@
 import { ComponentRef, inject, Injectable } from '@angular/core';
-import { OverlayService } from '@skautoteka-frontend/ui';
+import { OverlayService } from './overlay.service';
 import { ComponentType } from '@angular/cdk/overlay';
 import { ModalContainerComponent } from '../components/modal-container/modal-container.component';
 import { take } from 'rxjs';

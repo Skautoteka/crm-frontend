@@ -15,11 +15,11 @@ import {
   SideContentSectionHeaderComponent,
   SideContentSectionEntityComponent,
   SideContentSectionRatingComponent,
+  TableComponent,
 } from '@skautoteka-frontend/ui';
 import { ReportsBasicInfoComponent } from '../reports-basic-info/reports-basic-info.component';
 import { ReportsService } from '../../services';
 import { ReportsContentComponent } from '../reports-content/reports-content.component';
-import { TableComponent } from '../../../../../../../../libs/ui/src/lib/table/index';
 
 @Component({
   standalone: true,
