@@ -1,0 +1,29 @@
+.side-content-section-entity {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .name-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-left: 24px;
+  }
+
+  .name {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .subname {
+    color: var(--primary-3);
+    font-size: 14px;
+  }
+
+  img {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+  }
+}
