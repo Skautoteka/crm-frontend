@@ -35,10 +35,6 @@ export class ReportsContentComponent {
     classBinder.bind('skt-reports-content');
   }
 
-  public handleTabChange(id: string | null): void {
-    console.log(id);
-  }
-
   public handleRaportClick(id: number): void {
     this.reportsService.setActiveReport(id);
   }

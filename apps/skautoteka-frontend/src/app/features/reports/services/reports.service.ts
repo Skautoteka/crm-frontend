@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { InputConfig } from '@skautoteka-frontend/ui';
 import { ReportsHttpService } from './reports-http.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ReportsService {
   private _allReports: Report[] = [];
   private _activeReport: Report | null = null;
@@ -40,18 +40,22 @@ export class ReportsService {
   /**
    * Sets active task.
    *
-   * @param task
+   * @param id
    */
   public setActiveReport(id: number | null): void {
     this._activeReport =
-      this._allReports.find((task) => task.id === id) || null;
+      this._allReports.find((report) => report.id === id) || null;
     this._activeReport$.next(this._activeReport);
-    this._router.navigate([
-      'dashboard',
-      'reports',
-      'details',
-      this._activeReport ? this._activeReport.id : '',
-    ]);
+    if (this._activeReport) {
+      this._router.navigate([
+        'dashboard',
+        'reports',
+        'details',
+        this._activeReport.id || '',
+      ]);
+    } else {
+      this._router.navigate(['dashboard', 'reports']);
+    }
   }
 
   /**

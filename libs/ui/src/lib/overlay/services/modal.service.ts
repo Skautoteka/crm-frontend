@@ -36,8 +36,8 @@ export class ModalService {
     this._handleModalClose(ref);
     this._refSet.add(ref);
     ref.changeDetectorRef.detectChanges();
-    setTimeout(() => ref.changeDetectorRef.markForCheck(), 500);
 
+    console.log('setting backdrop');
     this._overlay.setBackdrop(true);
     return ref;
   }

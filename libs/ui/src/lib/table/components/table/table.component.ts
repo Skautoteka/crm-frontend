@@ -1,14 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
-  Host,
   Input,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { TableService } from '../../services/table.service';
 import { AsyncPipe } from '@angular/common';
 import { IconComponent } from '../../../icon';
 
@@ -32,15 +29,7 @@ export class TableComponent {
   @Input() onActionClick: any;
   @Input() data: any[] = [];
   @Input() columns: TableColumn[] = [];
-  constructor(
-    // @Host() private tableService: TableService,
-    private elementRef: ElementRef,
-    classBinder: ClassBinder
-  ) {
+  constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-ui-table');
-  }
-
-  get nativeElement(): HTMLElement {
-    return this.elementRef.nativeElement;
   }
 }
