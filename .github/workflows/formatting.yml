@@ -14,5 +14,6 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-      - run: npx eslint . --ext .js,.ts,.jsx,.tsx
-      - run: npx prettier --check .
+      - run: npm install -g prettier@2.8.3
+      - run: nx affected -t lint test build --parallel=3
+      - run: prettier --check .
