@@ -15,5 +15,5 @@ jobs:
           node-version: 20
       - run: npm ci
       - run: npm install -g prettier@2.8.3
-      - run: nx affected -t lint test build --parallel=3
+      - run: npx nx affected -t lint --parallel=3
       - run: prettier --check .
