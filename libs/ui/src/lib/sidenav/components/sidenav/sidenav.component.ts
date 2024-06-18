@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  inject,
-  Input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Input, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { SidenavMenuComponent } from '../sidenav-menu/sidenav-menu.component';
 import { SidenavElement } from '../../interfaces';
@@ -22,7 +15,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   imports: [SidenavMenuComponent, AsyncPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [ClassBinder],
+  providers: [ClassBinder]
 })
 export class SidenavComponent {
   @Input({ required: true }) elements: SidenavElement[] = [];
@@ -30,11 +23,7 @@ export class SidenavComponent {
   private _isVisible = false;
   private _sidenav = inject(SidenavService);
 
-  constructor(
-    classBinder: ClassBinder,
-    public device: DeviceService,
-    private cdRef: ChangeDetectorRef
-  ) {
+  constructor(classBinder: ClassBinder, public device: DeviceService, private cdRef: ChangeDetectorRef) {
     classBinder.bind('skt-ui-sidenav');
     this._hideOnRouteChange();
   }

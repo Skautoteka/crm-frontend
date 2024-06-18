@@ -1,17 +1,17 @@
 <div class="skt-ui-side-content-header__container">
   @if(device.isMobile$ | async) {
-    <div class="skt-ui-side-content-header__mobile-back" (click)="onMobileBackClick()">
-      <skt-ui-icon iconName="arrow-left"></skt-ui-icon>
-      Powrót
-    </div>
+  <div class="skt-ui-side-content-header__mobile-back" (click)="onMobileBackClick()">
+    <skt-ui-icon iconName="arrow-left"></skt-ui-icon>
+    Powrót
+  </div>
   } @else {
-    {{ title() }}
+  {{ title() }}
   }
   <ng-content select="skt-ui-side-content-header-actions"></ng-content>
 </div>
 
 @if(device.isMobile$ | async) {
-  <div class="skt-ui-side-content-header__mobile-title">
-    {{ title() }}
-  </div>
+<div class="skt-ui-side-content-header__mobile-title">
+  {{ title() }}
+</div>
 }

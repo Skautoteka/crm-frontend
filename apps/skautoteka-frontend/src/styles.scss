@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-@import 'css.gg/icons/icons.scss';
+@import "css.gg/icons/icons.scss";
 
 :root {
   --ggs: 0.85;
@@ -11,33 +11,33 @@
   --primary-white: #f5f5f5;
 
   // WARN COLORS
-  --warn: #EC5B5B;
+  --warn: #ec5b5b;
 
   // BASIC COLORS
-  --basic-1: #1B1B1B;
+  --basic-1: #1b1b1b;
   --basic-3: #353535;
-  --basic-4: #4E4E4E;
+  --basic-4: #4e4e4e;
   --basic-5: #818181;
-  --basic-6: #9A9A9A;
-  --basic-7: #B3B3B3;
-  --basic-8: #CCCCCC;
+  --basic-6: #9a9a9a;
+  --basic-7: #b3b3b3;
+  --basic-8: #cccccc;
   --basic-10: #cbcbcb;
 
   // PRIMARY COLORS
   --primary: #183932;
-  --primary-1: #2F4D47;
+  --primary-1: #2f4d47;
   --primary-2: #46615b;
   --primary-3: #5d7470;
   --primary-4: #748884;
-  --primary-5: #A3B0AD;
-  --primary-6: #D1D7D6;
-  --primary-7: #E8EBEB;
+  --primary-5: #a3b0ad;
+  --primary-6: #d1d7d6;
+  --primary-7: #e8ebeb;
 }
 
 html {
   box-sizing: border-box;
   font-size: 16px;
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--primary-white);

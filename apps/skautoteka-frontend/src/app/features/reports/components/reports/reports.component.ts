@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   SideContentHeaderComponent,
@@ -16,7 +12,7 @@ import {
   SideContentSectionRatingComponent,
   TableComponent,
   ContentComponent,
-  ModalService,
+  ModalService
 } from '@skautoteka-frontend/ui';
 import { ReportsBasicInfoComponent } from '../reports-basic-info/reports-basic-info.component';
 import { ReportsService } from '../../services';
@@ -43,13 +39,11 @@ import { ReportsCreateComponent } from '../reports-create/reports-create.compone
     ReportsContentComponent,
     SideContentSectionEntityComponent,
     SideContentSectionRatingComponent,
-    ReportsBasicInfoComponent,
-  ],
+    ReportsBasicInfoComponent
+  ]
 })
 export class ReportsComponent {
-  public actionsConfig: ActionsConfig[] = [
-    { type: 'DELETE', text: 'Usuń raport' },
-  ];
+  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń raport' }];
 
   constructor(classBinder: ClassBinder, private _modal: ModalService) {
     classBinder.bind('skt-reports');
@@ -58,8 +52,7 @@ export class ReportsComponent {
   public onAddNewClick(): void {
     this._modal.createModal(ReportsCreateComponent, {
       header: 'Dodaj zadanie',
-      subHeader:
-        'Wypełnij wszystkie wymagane informacje o zadaniu i zapisz zmiany',
+      subHeader: 'Wypełnij wszystkie wymagane informacje o zadaniu i zapisz zmiany'
     });
   }
 }

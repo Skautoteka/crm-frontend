@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-  effect,
-  input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation, effect, input } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { IconComponent } from '../../../icon';
 
@@ -16,7 +10,7 @@ import { IconComponent } from '../../../icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [ClassBinder],
-  imports: [IconComponent],
+  imports: [IconComponent]
 })
 export class ListCardComponent {
   public isActive = input<boolean>(false);
@@ -26,6 +20,6 @@ export class ListCardComponent {
 
     effect(() => {
       classBinder.conditionalBind(this.isActive(), 'skt-ui-list-card--active');
-    })
+    });
   }
 }

@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Output,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { SquareButtonComponent } from '@skautoteka-frontend/ui';
 
@@ -16,11 +10,12 @@ import { SquareButtonComponent } from '@skautoteka-frontend/ui';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [ClassBinder],
-  imports: [SquareButtonComponent],
+  imports: [SquareButtonComponent]
 })
 export class DashboardUserActionsComponent {
-  @Output() actionClicked: EventEmitter<'notifications' | 'user-profile'> =
-    new EventEmitter<'notifications' | 'user-profile'>();
+  @Output() actionClicked: EventEmitter<'notifications' | 'user-profile'> = new EventEmitter<
+    'notifications' | 'user-profile'
+  >();
 
   public onActionClicked(type: 'notifications' | 'user-profile'): void {
     this.actionClicked.emit(type);

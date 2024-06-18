@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { IPromptOptions } from '../../interface/idialog';
 import { ButtonComponent } from '../../../button';
@@ -16,7 +11,7 @@ import { ButtonComponent } from '../../../button';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonComponent],
+  imports: [ButtonComponent]
 })
 export class PromptComponent {
   @Input() options!: IPromptOptions;

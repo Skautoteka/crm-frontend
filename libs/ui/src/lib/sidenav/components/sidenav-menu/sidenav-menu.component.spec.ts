@@ -6,7 +6,7 @@ describe('SidenavMenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SidenavMenuComponent],
+      imports: [SidenavMenuComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(SidenavMenuComponent);

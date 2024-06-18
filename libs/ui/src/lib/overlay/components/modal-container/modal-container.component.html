@@ -1,17 +1,14 @@
 <div class="skt-ui-modal-container__container">
   <div class="skt-ui-modal-container__close_header">
-
     <div class="skt-ui-modal-container__header-container">
       @if(options && options.header) {
-        <div class="skt-ui-modal-container__header">
-          {{ options.header }}
-        </div>
-      }
-
-      @if(options && options.subHeader) {
-        <div class="skt-ui-modal-container__sub-header">
-          {{ options.subHeader }}
-        </div>
+      <div class="skt-ui-modal-container__header">
+        {{ options.header }}
+      </div>
+      } @if(options && options.subHeader) {
+      <div class="skt-ui-modal-container__sub-header">
+        {{ options.subHeader }}
+      </div>
       }
     </div>
 

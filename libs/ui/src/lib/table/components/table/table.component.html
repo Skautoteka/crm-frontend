@@ -12,23 +12,29 @@
         <td *ngFor="let column of columns">
           <ng-container [ngSwitch]="column.type">
             <div *ngSwitchCase="'player'" class="player-cell">
-              <span  class="string-cell">{{ row[column.key] }}</span>
+              <span class="string-cell">{{ row[column.key] }}</span>
               <span class="position-subcell">{{ row['position'] }}</span>
             </div>
             <span *ngSwitchCase="'string'" class="string-cell">{{ row[column.key] }}</span>
 
             <span *ngSwitchCase="'number'" class="number-cell">{{ row[column.key] }}</span>
-            <span *ngSwitchCase="'date'" class="date-cell">{{ row[column.key] | date: "mediumDate":"":"pl-PL" }}</span>
-            <span *ngSwitchCase="'boolean'" 
-                  [class.true-cell]="row[column.key]" 
-                  [class.false-cell]="!row[column.key]">
-                    {{ row[column.key] ? 'Ukończony' : 'W trakcie' }}
-            </span> 
-            <img *ngSwitchCase="'img'" [src]="row[column.key]" [alt]="column.label" style="width: 40px;" class="image-cell">
-            <span *ngSwitchDefault>{{ row[column.key] }}</span> 
-            </ng-container>
-            </td>
-          <skt-ui-icon iconName="more-vertical"></skt-ui-icon>
+            <span *ngSwitchCase="'date'" class="date-cell">{{
+              row[column.key] | date : 'mediumDate' : '' : 'pl-PL'
+            }}</span>
+            <span *ngSwitchCase="'boolean'" [class.true-cell]="row[column.key]" [class.false-cell]="!row[column.key]">
+              {{ row[column.key] ? 'Ukończony' : 'W trakcie' }}
+            </span>
+            <img
+              *ngSwitchCase="'img'"
+              [src]="row[column.key]"
+              [alt]="column.label"
+              style="width: 40px"
+              class="image-cell"
+            />
+            <span *ngSwitchDefault>{{ row[column.key] }}</span>
+          </ng-container>
+        </td>
+        <skt-ui-icon iconName="more-vertical"></skt-ui-icon>
       </tr>
     </tbody>
   </table>

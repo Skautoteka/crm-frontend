@@ -8,7 +8,7 @@ describe('SidenavComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SidenavComponent],
+      imports: [SidenavComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(SidenavComponent);

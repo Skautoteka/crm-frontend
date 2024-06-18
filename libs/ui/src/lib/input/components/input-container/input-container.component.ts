@@ -8,7 +8,7 @@ import {
   Output,
   ViewChild,
   ViewContainerRef,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { FormControl, FormGroup, FormsModule } from '@angular/forms';
@@ -24,7 +24,7 @@ import { InputComponent } from '@skautoteka-frontend/ui';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   imports: [FormsModule, CommonModule, NgIf],
-  providers: [ClassBinder],
+  providers: [ClassBinder]
 })
 export class InputContainerComponent {
   @ViewChild('inputContainer', { read: ViewContainerRef })
@@ -44,7 +44,7 @@ export class InputContainerComponent {
     effect(() => {
       const config = this.config();
       if (config) {
-        config.forEach((input) => this._buildInput(input));
+        config.forEach(input => this._buildInput(input));
       }
     });
   }

@@ -22,7 +22,7 @@ export class DialogService {
       close: () => {
         this._overlay.setBackdrop(false);
         ref.destroy();
-      },
+      }
     };
   }
 }

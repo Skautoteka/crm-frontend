@@ -5,7 +5,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 @Component({
   selector: 'common-test-component',
   providers: [ClassBinder],
-  standalone: true,
+  standalone: true
 })
 class TestComponent {
   constructor(classBinder: ClassBinder) {
@@ -19,7 +19,7 @@ describe('ClassBinder', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [TestComponent],
+      imports: [TestComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);

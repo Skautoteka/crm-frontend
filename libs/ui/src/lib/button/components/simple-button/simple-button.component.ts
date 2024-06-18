@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-  input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation, input } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { IconComponent } from '../../../icon';
 
@@ -15,7 +10,7 @@ import { IconComponent } from '../../../icon';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ClassBinder],
-  imports: [IconComponent],
+  imports: [IconComponent]
 })
 export class SimpleButtonComponent {
   public iconName = input<string>('');

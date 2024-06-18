@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ClassBinder, DeviceService } from '@skautoteka-frontend/common';
 import { DashboardUserActionsComponent } from '../dashboard-user-actions/dashboard-user-actions.component';
 import { AsyncPipe, NgOptimizedImage } from '@angular/common';
@@ -15,7 +11,7 @@ import { AsyncPipe, NgOptimizedImage } from '@angular/common';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [DashboardUserActionsComponent, AsyncPipe, NgOptimizedImage],
+  imports: [DashboardUserActionsComponent, AsyncPipe, NgOptimizedImage]
 })
 export class DashboardUserComponent {
   public userName = 'John Smith';

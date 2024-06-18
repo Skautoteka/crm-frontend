@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  Host,
-  Input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Host, Input, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { TabsService } from '../../services/tabs.service';
 import { AsyncPipe } from '@angular/common';
@@ -19,16 +12,12 @@ import { map, Observable } from 'rxjs';
   providers: [ClassBinder],
   imports: [AsyncPipe],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabComponent {
   @Input({ required: true }) id!: string;
 
-  constructor(
-    @Host() private tabsService: TabsService,
-    private elementRef: ElementRef,
-    classBinder: ClassBinder
-  ) {
+  constructor(@Host() private tabsService: TabsService, private elementRef: ElementRef, classBinder: ClassBinder) {
     classBinder.bind('skt-ui-tab');
   }
 
@@ -37,7 +26,7 @@ export class TabComponent {
   }
 
   get isActive$(): Observable<boolean> {
-    return this.tabsService.activeId$.pipe(map((id) => id === this.id));
+    return this.tabsService.activeId$.pipe(map(id => id === this.id));
   }
 
   public handleClick(): void {

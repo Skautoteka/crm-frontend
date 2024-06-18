@@ -1,17 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-  Input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation, Input } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { DatePipe } from '@angular/common';
-import {
-  LabelComponent,
-  ListCardComponent,
-  TabComponent,
-  TabsComponent,
-} from '@skautoteka-frontend/ui';
+import { LabelComponent, ListCardComponent, TabComponent, TabsComponent } from '@skautoteka-frontend/ui';
 
 @Component({
   standalone: true,
@@ -21,13 +11,7 @@ import {
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    TabsComponent,
-    TabComponent,
-    ListCardComponent,
-    LabelComponent,
-    DatePipe,
-  ],
+  imports: [TabsComponent, TabComponent, ListCardComponent, LabelComponent, DatePipe]
 })
 export class ReportsBasicInfoComponent {
   @Input() date: Date = new Date();

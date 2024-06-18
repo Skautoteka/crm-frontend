@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-  input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation, input } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 
 @Component({
@@ -13,7 +8,7 @@ import { ClassBinder } from '@skautoteka-frontend/common';
   templateUrl: 'side-content-section-header.component.html',
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SideContentSectionHeaderComponent {
   public title = input<string>('');

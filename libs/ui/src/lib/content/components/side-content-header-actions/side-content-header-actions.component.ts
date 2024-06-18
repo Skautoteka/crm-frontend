@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { SimpleButtonComponent } from '../../../button';
 import { DialogService } from '../../../overlay';
@@ -21,7 +16,7 @@ export interface ActionsConfig {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [ClassBinder],
-  imports: [SimpleButtonComponent],
+  imports: [SimpleButtonComponent]
 })
 export class SideContentheaderActionsComponent {
   public config = input<ActionsConfig[]>([]);
@@ -33,18 +28,17 @@ export class SideContentheaderActionsComponent {
   public onActionClick(): void {
     const ref = this._dialog.createPrompt({
       message: 'Czy na pewno chcesz usunąć raport?',
-      auxiliaryMessage:
-        'Usunięcie raportu skutkuje całkowitym usunięciem danych',
+      auxiliaryMessage: 'Usunięcie raportu skutkuje całkowitym usunięciem danych',
       confirmInfo: {
         message: 'Tak, usuwam',
         callback: () => {
           ref.close();
-        },
+        }
       },
       cancelInfo: {
         message: 'Nie usuwaj',
-        callback: () => ref.close(),
-      },
+        callback: () => ref.close()
+      }
     });
   }
 }

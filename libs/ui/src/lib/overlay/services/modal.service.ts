@@ -14,7 +14,7 @@ export class ModalService {
    * Closes all modals.
    */
   public closeAll(): void {
-    this._refSet.forEach((ref) => {
+    this._refSet.forEach(ref => {
       ref.destroy();
       this._overlay.setBackdrop(false);
     });
@@ -42,9 +42,7 @@ export class ModalService {
     return ref;
   }
 
-  private _handleModalClose(
-    ref: ComponentRef<ModalContainerComponent<unknown>>
-  ): void {
+  private _handleModalClose(ref: ComponentRef<ModalContainerComponent<unknown>>): void {
     ref.instance.closeClick.pipe(take(1)).subscribe(() => {
       ref.destroy();
       this._overlay.setBackdrop(false);

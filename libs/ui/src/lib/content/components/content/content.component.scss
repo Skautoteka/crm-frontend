@@ -5,8 +5,8 @@
   width: 100%;
 
   grid-template-areas:
-          "header sidecontent"
-          "content sidecontent";
+    "header sidecontent"
+    "content sidecontent";
   grid-template-rows: 8rem 1fr;
   grid-template-columns: 8fr 5fr;
   gap: 2.5rem;
@@ -14,8 +14,8 @@
   @media (max-width: 850px) {
     gap: 0;
     grid-template-areas:
-          "header"
-          "content";
+      "header"
+      "content";
     grid-template-rows: auto 1fr;
     grid-template-columns: 1fr;
     padding: 2rem 1.5rem;

@@ -16,10 +16,7 @@
         "polyfills": ["zone.js"],
         "tsConfig": "apps/skautoteka-frontend/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": [
-          "apps/skautoteka-frontend/src/favicon.ico",
-          "apps/skautoteka-frontend/src/assets"
-        ],
+        "assets": ["apps/skautoteka-frontend/src/favicon.ico", "apps/skautoteka-frontend/src/assets"],
         "styles": ["apps/skautoteka-frontend/src/styles.scss"],
         "scripts": []
       },

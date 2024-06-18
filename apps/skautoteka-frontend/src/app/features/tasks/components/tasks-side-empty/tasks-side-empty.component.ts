@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { IconComponent } from '@skautoteka-frontend/ui';
 
@@ -14,7 +10,7 @@ import { IconComponent } from '@skautoteka-frontend/ui';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [IconComponent],
+  imports: [IconComponent]
 })
 export class TasksSideEmptyComponent {
   constructor(classBinder: ClassBinder) {

@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostListener,
-  inject,
-  Input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, inject, Input, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { SidenavElement } from '../../interfaces';
 
@@ -23,7 +16,7 @@ import { SidenavService } from '../../services/sidenav.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   imports: [IconComponent],
-  providers: [ClassBinder],
+  providers: [ClassBinder]
 })
 export class SidenavMenuElementComponent {
   @Input({ required: true }) element!: SidenavElement;
@@ -37,8 +30,8 @@ export class SidenavMenuElementComponent {
 
   private get isActive$(): Observable<boolean> {
     return this.router.events.pipe(
-      filter((event) => !!(event as any).url),
-      map((event) => (event as NavigationEnd).url.includes(this.element.route))
+      filter(event => !!(event as any).url),
+      map(event => (event as NavigationEnd).url.includes(this.element.route))
     );
   }
 
@@ -48,11 +41,8 @@ export class SidenavMenuElementComponent {
   }
 
   private highlightActive(): void {
-    this.isActive$.pipe(takeUntilDestroyed()).subscribe((isActive) => {
-      this.classBinder.conditionalBind(
-        isActive,
-        'skt-ui-sidenav-menu-element--active'
-      );
+    this.isActive$.pipe(takeUntilDestroyed()).subscribe(isActive => {
+      this.classBinder.conditionalBind(isActive, 'skt-ui-sidenav-menu-element--active');
     });
   }
 }

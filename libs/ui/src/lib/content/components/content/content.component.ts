@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { RouterOutlet } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
@@ -19,7 +14,7 @@ import { IconComponent } from '../../../icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [ClassBinder, ContentService],
-  imports: [RouterOutlet, AsyncPipe, IconComponent],
+  imports: [RouterOutlet, AsyncPipe, IconComponent]
 })
 export class ContentComponent {
   @Input() header = '';
