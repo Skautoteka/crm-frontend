@@ -17,6 +17,14 @@ jobs:
           node-version: 20
       - run: npm ci
       - run: npm install -g prettier@2.8.3
-      - run: npx nx affected -t lint test build --parallel=3
-      - run: prettier --check "libs/*" --config ./.prettierrc
-      - run: prettier --check "apps/*" --config ./.prettierrc
+      - run: npx nx run skautoteka-frontend:lint
+      - run: npx nx run e2e:lint
+      - run: npx nx run common:lint
+      - run: npx nx run ui:lint
+      - run: npx nx run test-utils:lint
+
+      - name: Run Prettier Apps
+        run: npx prettier --check "apps/**/*.{js,ts,css}" --config ./.prettierrc
+
+      - name: Run Prettier Libs
+        run: npx prettier --check "libs/**/*.{js,ts,css}" --config ./.prettierrc
