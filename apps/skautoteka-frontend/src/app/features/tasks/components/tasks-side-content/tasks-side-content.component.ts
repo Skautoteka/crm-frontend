@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   ActionsConfig,
@@ -11,7 +7,7 @@ import {
   SideContentheaderActionsComponent,
   SideContentHeaderComponent,
   SideContentSectionComponent,
-  SideContentSectionHeaderComponent,
+  SideContentSectionHeaderComponent
 } from '@skautoteka-frontend/ui';
 import { TasksBasicInfoComponent } from '../tasks-basic-info/tasks-basic-info.component';
 import { TasksReportsComponent } from '../tasks-reports/tasks-reports.component';
@@ -35,19 +31,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     TasksReportsComponent,
     SideContentHeaderComponent,
     SideContentheaderActionsComponent,
-    TasksTeamsComponent,
-  ],
+    TasksTeamsComponent
+  ]
 })
 export class TasksSideContentComponent {
-  public actionsConfig: ActionsConfig[] = [
-    { type: 'DELETE', text: 'Usuń raport' },
-  ];
+  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń raport' }];
 
-  constructor(
-    classBinder: ClassBinder,
-    private _content: ContentService,
-    private _tasks: TasksService
-  ) {
+  constructor(classBinder: ClassBinder, private _content: ContentService, private _tasks: TasksService) {
     classBinder.bind('skt-tasks-content');
     this._showSideContent();
   }
@@ -57,8 +47,6 @@ export class TasksSideContentComponent {
   }
 
   private _showSideContent() {
-    this._tasks.activeTask$
-      .pipe(takeUntilDestroyed())
-      .subscribe((task) => this._content.showSideContent(!!task));
+    this._tasks.activeTask$.pipe(takeUntilDestroyed()).subscribe(task => this._content.showSideContent(!!task));
   }
 }

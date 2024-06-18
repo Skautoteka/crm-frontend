@@ -8,16 +8,16 @@ export const TASKS_ROUTES: Routes = [
     children: [
       {
         path: ':id',
-        component: TasksSideContentComponent,
+        component: TasksSideContentComponent
       },
       {
         path: '**',
-        redirectTo: '..',
-      },
-    ],
+        redirectTo: '..'
+      }
+    ]
   },
   {
     path: '**',
-    component: TasksSideEmptyComponent,
-  },
+    component: TasksSideEmptyComponent
+  }
 ];

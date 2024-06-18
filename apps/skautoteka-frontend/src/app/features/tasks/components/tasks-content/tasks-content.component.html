@@ -5,8 +5,7 @@
 </skt-ui-tabs>
 
 <div class="skt-tasks-content__tasks">
-  @if(tasksService.getAllTasks$() | async; as tasks) { @for (item of tasks;
-  track item.id) {
+  @if(tasksService.getAllTasks$() | async; as tasks) { @for (item of tasks; track item.id) {
   <skt-ui-list-card
     class="skt-tasks-content__tasks-card"
     [isActive]="(tasksService.activeTask$ | async)?.id === item.id"
@@ -14,23 +13,15 @@
   >
     <div
       class="skt-tasks-content__tasks-card-content"
-      [class.skt-tasks-content__tasks-card-content--active]="
-        (tasksService.activeTask$ | async)?.id === item.id
-      "
+      [class.skt-tasks-content__tasks-card-content--active]="(tasksService.activeTask$ | async)?.id === item.id"
     >
       <skt-ui-label>
-        <div label>
-          <span class="skt-tasks-content__tasks-card-header">Mecz</span> |
-          Dojazdowe
-        </div>
+        <div label><span class="skt-tasks-content__tasks-card-header">Mecz</span> | Dojazdowe</div>
         FC Barcelona vs Real Madryt
       </skt-ui-label>
 
       <skt-ui-label>
-        <div label>
-          <span class="skt-tasks-content__tasks-card-header">Data</span> | Za 4
-          dni
-        </div>
+        <div label><span class="skt-tasks-content__tasks-card-header">Data</span> | Za 4 dni</div>
         Niedziela, 4. stycznia
       </skt-ui-label>
 

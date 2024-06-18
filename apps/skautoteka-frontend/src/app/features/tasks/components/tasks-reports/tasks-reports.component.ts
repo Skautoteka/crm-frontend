@@ -1,11 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { LabelComponent, LabelContainerComponent, ListCardComponent } from '@skautoteka-frontend/ui';
-
 
 @Component({
   standalone: true,
@@ -15,7 +10,7 @@ import { LabelComponent, LabelContainerComponent, ListCardComponent } from '@ska
   providers: [ClassBinder],
   imports: [LabelComponent, LabelContainerComponent, ListCardComponent],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TasksReportsComponent {
   constructor(classBinder: ClassBinder) {

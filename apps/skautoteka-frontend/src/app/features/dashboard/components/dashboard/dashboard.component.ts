@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { SidenavComponent, SidenavElement } from '@skautoteka-frontend/ui';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { DashboardUserComponent } from '../dashboard-user/dashboard-user.component';
@@ -16,7 +12,7 @@ import { RouterModule } from '@angular/router';
   imports: [SidenavComponent, DashboardUserComponent, RouterModule],
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent {
   public elements: SidenavElement[] = [
@@ -26,7 +22,7 @@ export class DashboardComponent {
     { label: 'Zawodnicy', icon: 'user', route: 'players' },
     { label: 'Drużyny', icon: 'organisation', route: 'teams' },
     { label: 'Analiza', icon: 'chart', route: 'analysis' },
-    { label: 'Pomoc', icon: 'info', route: 'help' },
+    { label: 'Pomoc', icon: 'info', route: 'help' }
   ];
 
   constructor(classBinder: ClassBinder) {

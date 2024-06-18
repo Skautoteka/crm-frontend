@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent, NxWelcomeComponent, RouterTestingModule],
+      imports: [AppComponent, NxWelcomeComponent, RouterTestingModule]
     }).compileComponents();
   });
 
@@ -14,9 +14,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Welcome skautoteka-frontend'
-    );
+    expect(compiled.querySelector('h1')?.textContent).toContain('Welcome skautoteka-frontend');
   });
 
   it(`should have as title 'skautoteka-frontend'`, () => {

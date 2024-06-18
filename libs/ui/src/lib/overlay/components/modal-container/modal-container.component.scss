@@ -11,7 +11,7 @@
 
   @media (min-width: 850px) {
     animation: web-show;
-    animation-duration: .3s;
+    animation-duration: 0.3s;
     background-color: var(--primary-white);
   }
 
@@ -31,7 +31,7 @@
     transform: none;
     border-radius: 0;
     animation: mobile-show;
-    animation-duration: .3s;
+    animation-duration: 0.3s;
   }
 
   &__header-container {
@@ -71,7 +71,7 @@
 
       &:nth-child(2) {
         position: absolute;
-        transform: translateY(1rem)  rotate(-45deg);
+        transform: translateY(1rem) rotate(-45deg);
       }
     }
   }

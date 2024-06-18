@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 
 @Component({
@@ -12,7 +8,7 @@ import { ClassBinder } from '@skautoteka-frontend/common';
   templateUrl: 'tasks-teams.component.html',
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TasksTeamsComponent {
   constructor(classBinder: ClassBinder) {

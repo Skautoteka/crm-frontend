@@ -1,17 +1,19 @@
 <div class="skt-ui-sidenav__wrapper">
   @if ((device.isMobile$ | async) === true) {
-    <div (click)="toggleVisible()" class="skt-ui-sidenav__mobile-hamburger" [class.skt-ui-sidenav__mobile-hamburger--active]="isMenuVisible">
-      <span></span><span></span><span></span>
-    </div>
+  <div
+    (click)="toggleVisible()"
+    class="skt-ui-sidenav__mobile-hamburger"
+    [class.skt-ui-sidenav__mobile-hamburger--active]="isMenuVisible"
+  >
+    <span></span><span></span><span></span>
+  </div>
   }
 
   <div class="skt-ui-sidenav__top-section">
     <ng-content select="[top-section]"></ng-content>
   </div>
   @if ((device.isMobile$ | async) === false) {
-    <skt-ui-sidenav-menu
-      [elements]="elements"
-    ></skt-ui-sidenav-menu>
+  <skt-ui-sidenav-menu [elements]="elements"></skt-ui-sidenav-menu>
   }
 </div>
 
@@ -20,8 +22,7 @@
 </div>
 
 @if ((device.isMobile$ | async) === true) {
-  <div class="skt-ui-sidenav__mobile-menu" [class.skt-ui-sidenav__mobile-menu--hidden]="!isMenuVisible">
-    <skt-ui-sidenav-menu [elements]="elements"></skt-ui-sidenav-menu>
-  </div>
+<div class="skt-ui-sidenav__mobile-menu" [class.skt-ui-sidenav__mobile-menu--hidden]="!isMenuVisible">
+  <skt-ui-sidenav-menu [elements]="elements"></skt-ui-sidenav-menu>
+</div>
 }
-

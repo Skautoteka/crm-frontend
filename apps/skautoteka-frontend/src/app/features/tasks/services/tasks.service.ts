@@ -13,9 +13,7 @@ export class TasksService {
   private _activeTask$ = new BehaviorSubject<Task | null>(null);
 
   constructor(private _router: Router, private _taskHttp: TasksHttpService) {
-    this._taskHttp
-      .getAllTasks$()
-      .subscribe((tasks) => this._setAllTasks(tasks));
+    this._taskHttp.getAllTasks$().subscribe(tasks => this._setAllTasks(tasks));
   }
 
   /**
@@ -45,7 +43,7 @@ export class TasksService {
    * Adds a new task.
    */
   public addTask(task: Task): void {
-    this._taskHttp.postTask(task).subscribe((task) => {
+    this._taskHttp.postTask(task).subscribe(task => {
       this._allTasks = [...this._allTasks, { ...task }];
       this._allTasks$.next(this._allTasks);
     });
@@ -57,15 +55,10 @@ export class TasksService {
    * @param task
    */
   public setActiveTask(id: number | null): void {
-    this._activeTask = this._allTasks.find((task) => task.id === id) || null;
+    this._activeTask = this._allTasks.find(task => task.id === id) || null;
     this._activeTask$.next(this._activeTask);
     if (this.activeTask) {
-      this._router.navigate([
-        'dashboard',
-        'tasks',
-        'details',
-        this._activeTask?.id || '',
-      ]);
+      this._router.navigate(['dashboard', 'tasks', 'details', this._activeTask?.id || '']);
     } else {
       this._router.navigate(['dashboard', 'tasks']);
     }
@@ -78,7 +71,7 @@ export class TasksService {
 
     const id = this.activeTask.id;
     this._taskHttp.removeTask(id).subscribe();
-    this._allTasks = this._allTasks.filter((task) => task.id !== id);
+    this._allTasks = this._allTasks.filter(task => task.id !== id);
     this._allTasks$.next(this._allTasks);
     this.setActiveTask(null);
   }

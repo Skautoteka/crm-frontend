@@ -1,16 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  forwardRef,
-  input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, forwardRef, input, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import {
-  ControlValueAccessor,
-  FormsModule,
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
 
 @Component({
@@ -26,9 +16,9 @@ import { CommonModule, NgIf } from '@angular/common';
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: forwardRef(() => InputComponent),
-    },
-  ],
+      useExisting: forwardRef(() => InputComponent)
+    }
+  ]
 })
 export class InputComponent implements ControlValueAccessor {
   public placeholder = input<string>('');

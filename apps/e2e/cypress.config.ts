@@ -8,10 +8,10 @@ export default defineConfig({
       cypressDir: 'src',
       webServerCommands: {
         default: 'nx run skautoteka-frontend:serve:development',
-        production: 'nx run skautoteka-frontend:serve:production',
+        production: 'nx run skautoteka-frontend:serve:production'
       },
-      ciWebServerCommand: 'nx run skautoteka-frontend:serve-static',
+      ciWebServerCommand: 'nx run skautoteka-frontend:serve-static'
     }),
-    baseUrl: 'http://localhost:4200',
-  },
+    baseUrl: 'http://localhost:4200'
+  }
 });

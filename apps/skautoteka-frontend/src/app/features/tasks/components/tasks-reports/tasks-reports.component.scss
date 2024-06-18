@@ -12,12 +12,12 @@
     width: 3rem;
     height: 3rem;
     border-radius: 0.5rem;
-    background-color: var(--primary-6)
-  };
+    background-color: var(--primary-6);
+  }
 
   &__card-content {
     opacity: 0.6;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 
     &:hover {
       opacity: 1;
@@ -40,7 +40,6 @@
   }
 
   &__card-info-name {
-
   }
 
   &__card-info-position {

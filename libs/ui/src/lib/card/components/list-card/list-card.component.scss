@@ -2,7 +2,7 @@
   width: 100%;
   border-radius: 1rem;
   cursor: pointer;
-  transition: background-color .3s;
+  transition: background-color 0.3s;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,7 +14,7 @@
   }
 
   &--active {
-    transition: background-color .3s;
+    transition: background-color 0.3s;
     background-color: black;
 
     .skt-ui-icon__wrapper {

@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-  Input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation, Input } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 
 @Component({
@@ -13,7 +8,7 @@ import { ClassBinder } from '@skautoteka-frontend/common';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [ClassBinder],
+  providers: [ClassBinder]
 })
 export class SideContentSectionEntityComponent {
   @Input() imgSrc = '';

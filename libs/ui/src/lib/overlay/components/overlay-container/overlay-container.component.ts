@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewContainerRef,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 
 @Component({
@@ -13,13 +8,10 @@ import { ClassBinder } from '@skautoteka-frontend/common';
   templateUrl: 'overlay-container.component.html',
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OverlayContainerComponent {
-  constructor(
-    private _classBinder: ClassBinder,
-    private _viewContainerRef: ViewContainerRef
-  ) {
+  constructor(private _classBinder: ClassBinder, private _viewContainerRef: ViewContainerRef) {
     _classBinder.bind('skt-ui-overlay-container');
   }
 
@@ -36,9 +28,6 @@ export class OverlayContainerComponent {
    * @param isVisible
    */
   public setBackdrop(isVisible: boolean): void {
-    this._classBinder.conditionalBind(
-      isVisible,
-      'skt-ui-overlay-container--backdrop'
-    );
+    this._classBinder.conditionalBind(isVisible, 'skt-ui-overlay-container--backdrop');
   }
 }

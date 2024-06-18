@@ -7,7 +7,7 @@ import {
   Output,
   ViewChild,
   ViewContainerRef,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { ComponentType } from '@angular/cdk/overlay';
@@ -22,7 +22,7 @@ import { IModalOptions } from '../../interface/imodal';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [IconComponent],
+  imports: [IconComponent]
 })
 export class ModalContainerComponent<T> implements AfterViewInit {
   @ViewChild('mountPoint', { read: ViewContainerRef })
@@ -38,9 +38,7 @@ export class ModalContainerComponent<T> implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.viewRef
-      .createComponent(this.componentType)
-      .changeDetectorRef.detectChanges();
+    this.viewRef.createComponent(this.componentType).changeDetectorRef.detectChanges();
   }
 
   public onCloseClick(): void {

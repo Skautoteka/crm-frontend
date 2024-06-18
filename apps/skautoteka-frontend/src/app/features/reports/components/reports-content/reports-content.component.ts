@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   LabelComponent,
@@ -10,7 +6,7 @@ import {
   TabComponent,
   TabsComponent,
   TableComponent,
-  TableColumn,
+  TableColumn
 } from '@skautoteka-frontend/ui';
 import { ReportsService } from '../../services';
 
@@ -22,13 +18,7 @@ import { ReportsService } from '../../services';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    TabsComponent,
-    TabComponent,
-    ListCardComponent,
-    LabelComponent,
-    TableComponent,
-  ],
+  imports: [TabsComponent, TabComponent, ListCardComponent, LabelComponent, TableComponent]
 })
 export class ReportsContentComponent {
   constructor(classBinder: ClassBinder, public reportsService: ReportsService) {
@@ -47,7 +37,7 @@ export class ReportsContentComponent {
       position: 'Środkowy pomocnik',
       finished: true,
       rating: 4.5,
-      data: new Date('2024-01-31'),
+      data: new Date('2024-01-31')
     },
     {
       id: 2,
@@ -56,7 +46,7 @@ export class ReportsContentComponent {
       position: 'Napastnik',
       finished: false,
       rating: null,
-      data: new Date('2024-02-28'),
+      data: new Date('2024-02-28')
     },
     {
       id: 3,
@@ -65,7 +55,7 @@ export class ReportsContentComponent {
       position: 'Lewy pomocnik',
       finished: true,
       rating: 4.2,
-      data: new Date('2024-03-15'),
+      data: new Date('2024-03-15')
     },
     {
       id: 4,
@@ -74,7 +64,7 @@ export class ReportsContentComponent {
       position: 'Skrzydłowy',
       finished: true,
       rating: 4.9,
-      data: new Date('2024-04-20'),
+      data: new Date('2024-04-20')
     },
     {
       id: 5,
@@ -83,7 +73,7 @@ export class ReportsContentComponent {
       position: 'Napastnik',
       finished: false,
       rating: null,
-      data: new Date('2024-05-01'),
+      data: new Date('2024-05-01')
     },
     {
       id: 6,
@@ -92,7 +82,7 @@ export class ReportsContentComponent {
       position: 'Środkowy pomocnik',
       finished: false,
       rating: null,
-      data: new Date('2024-05-01'),
+      data: new Date('2024-05-01')
     },
     {
       id: 7,
@@ -101,7 +91,7 @@ export class ReportsContentComponent {
       position: 'Bramkarz',
       finished: false,
       rating: null,
-      data: new Date('2024-05-01'),
+      data: new Date('2024-05-01')
     },
     {
       id: 8,
@@ -110,7 +100,7 @@ export class ReportsContentComponent {
       position: 'Lewy pomocnik',
       finished: false,
       rating: null,
-      data: new Date('2024-05-01'),
+      data: new Date('2024-05-01')
     },
     {
       id: 9,
@@ -119,7 +109,7 @@ export class ReportsContentComponent {
       position: 'Prawy pomocnik',
       finished: false,
       rating: null,
-      data: new Date('2024-05-01'),
+      data: new Date('2024-05-01')
     },
     {
       id: 10,
@@ -128,7 +118,7 @@ export class ReportsContentComponent {
       position: 'Środkowy pomocnik',
       finished: false,
       rating: null,
-      data: new Date('2024-05-01'),
+      data: new Date('2024-05-01')
     },
     {
       id: 11,
@@ -137,7 +127,7 @@ export class ReportsContentComponent {
       position: 'Środkowy obrońca',
       finished: false,
       rating: null,
-      data: new Date('2024-05-01'),
+      data: new Date('2024-05-01')
     },
     {
       id: 12,
@@ -146,7 +136,7 @@ export class ReportsContentComponent {
       position: 'Prawy obrońca',
       finished: false,
       rating: null,
-      data: new Date('2024-05-01'),
+      data: new Date('2024-05-01')
     },
     {
       id: 13,
@@ -155,7 +145,7 @@ export class ReportsContentComponent {
       position: 'Środkowy pomocnik',
       finished: false,
       rating: null,
-      data: new Date('2024-05-01'),
+      data: new Date('2024-05-01')
     },
     {
       id: 14,
@@ -164,7 +154,7 @@ export class ReportsContentComponent {
       position: 'LEwy obrońca',
       finished: false,
       rating: null,
-      data: new Date('2024-05-01'),
+      data: new Date('2024-05-01')
     },
     {
       id: 15,
@@ -173,7 +163,7 @@ export class ReportsContentComponent {
       position: 'Środkowy pomocnik',
       finished: false,
       rating: null,
-      data: new Date('2024-05-01'),
+      data: new Date('2024-05-01')
     },
     {
       id: 16,
@@ -182,7 +172,7 @@ export class ReportsContentComponent {
       position: 'Środkowy pomocnik',
       finished: false,
       rating: null,
-      data: new Date('2024-05-01'),
+      data: new Date('2024-05-01')
     },
     {
       id: 17,
@@ -191,7 +181,7 @@ export class ReportsContentComponent {
       position: 'Środkowy pomocnik',
       finished: false,
       rating: null,
-      data: new Date('2024-05-01'),
+      data: new Date('2024-05-01')
     },
     {
       id: 18,
@@ -200,8 +190,8 @@ export class ReportsContentComponent {
       position: 'Środkowy pomocnik',
       finished: false,
       rating: null,
-      data: new Date('2024-05-01'),
-    },
+      data: new Date('2024-05-01')
+    }
   ];
 
   tableColumns: TableColumn[] = [
@@ -209,6 +199,6 @@ export class ReportsContentComponent {
     { key: 'name', label: 'Nazwa raportu', type: 'player' },
     { key: 'finished', label: 'Status raportu', type: 'boolean' },
     { key: 'rating', label: 'Ogólna ocena', type: 'number' },
-    { key: 'data', label: 'Data utworzenia', type: 'date' },
+    { key: 'data', label: 'Data utworzenia', type: 'date' }
   ];
 }

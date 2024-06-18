@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { SidenavElement } from '../../interfaces';
 
@@ -18,7 +13,7 @@ import { IconComponent } from '../../../icon';
   imports: [SidenavMenuElementComponent, IconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [ClassBinder],
+  providers: [ClassBinder]
 })
 export class SidenavMenuComponent {
   @Input() elements: SidenavElement[] = [];

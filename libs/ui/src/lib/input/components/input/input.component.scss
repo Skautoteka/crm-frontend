@@ -13,14 +13,14 @@
     padding: 0 0.75rem;
     font-size: 0.8125rem;
     color: var(--primary-black);
-    transition: all .125s;
+    transition: all 0.125s;
 
     &::placeholder {
       color: var(--basic-6);
     }
 
     &:focus {
-      outline: 0.25rem solid rgba(#A3B0AD, 0.25);
+      outline: 0.25rem solid rgba(#a3b0ad, 0.25);
     }
   }
 

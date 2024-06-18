@@ -4,7 +4,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   flex-wrap: wrap;
-  gap:20px;
+  gap: 20px;
 
   .basic-info-wrapper {
     width: 100%;
@@ -32,7 +32,8 @@
     margin-top: 5px;
   }
 
-  .true-cell, .false-cell{
+  .true-cell,
+  .false-cell {
     display: block;
     padding: 8px 16px;
     border-radius: 14px;
@@ -42,12 +43,12 @@
   }
 
   .true-cell {
-    background-color: #D1D6E1;
-    color: #536B9A;
+    background-color: #d1d6e1;
+    color: #536b9a;
   }
 
   .false-cell {
-    background-color: #DECFCF;
-    color: #8B3F3F;
+    background-color: #decfcf;
+    color: #8b3f3f;
   }
 }

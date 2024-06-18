@@ -11,19 +11,17 @@ export const DASHBOARD_ROUTES: Routes = [
       {
         path: 'tasks',
         component: TasksComponent,
-        loadChildren: () =>
-          import('./tasks.routes').then((r) => r.TASKS_ROUTES),
+        loadChildren: () => import('./tasks.routes').then(r => r.TASKS_ROUTES)
       },
       {
         path: 'reports',
         component: ReportsComponent,
-        loadChildren: () =>
-          import('./reports.routes').then((r) => r.REPORTS_ROUTES),
-      },
-    ],
+        loadChildren: () => import('./reports.routes').then(r => r.REPORTS_ROUTES)
+      }
+    ]
   },
   {
     path: '**',
-    redirectTo: '',
-  },
+    redirectTo: ''
+  }
 ];

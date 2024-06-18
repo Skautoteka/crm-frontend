@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-  input,
-  Output,
-  EventEmitter,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation, input, Output, EventEmitter } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { AsyncPipe } from '@angular/common';
 import { IconComponent } from '../../../icon';
@@ -20,18 +13,14 @@ import { ContentService } from '../../services';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [ClassBinder],
-  imports: [AsyncPipe, IconComponent],
+  imports: [AsyncPipe, IconComponent]
 })
 export class SideContentHeaderComponent {
   @Output() mobileBackClick = new EventEmitter<void>();
 
   public title = input<string>('');
 
-  constructor(
-    classBinder: ClassBinder,
-    public device: DeviceService,
-    private _content: ContentService
-  ) {
+  constructor(classBinder: ClassBinder, public device: DeviceService, private _content: ContentService) {
     classBinder.bind('skt-ui-side-content-header');
   }
 

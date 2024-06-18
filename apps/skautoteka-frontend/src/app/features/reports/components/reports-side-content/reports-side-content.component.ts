@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   ActionsConfig,
@@ -13,7 +9,7 @@ import {
   SideContentSectionComponent,
   SideContentSectionHeaderComponent,
   SideContentSectionEntityComponent,
-  SideContentSectionRatingComponent,
+  SideContentSectionRatingComponent
 } from '@skautoteka-frontend/ui';
 import { ReportsBasicInfoComponent } from '../reports-basic-info/reports-basic-info.component';
 import { ReportsService } from '../../services';
@@ -35,19 +31,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     SideContentHeaderComponent,
     SideContentheaderActionsComponent,
     SideContentSectionEntityComponent,
-    SideContentSectionRatingComponent,
-  ],
+    SideContentSectionRatingComponent
+  ]
 })
 export class ReportsSideContentComponent {
-  public actionsConfig: ActionsConfig[] = [
-    { type: 'DELETE', text: 'Usuń raport' },
-  ];
+  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń raport' }];
 
-  constructor(
-    classBinder: ClassBinder,
-    private _content: ContentService,
-    private _reports: ReportsService
-  ) {
+  constructor(classBinder: ClassBinder, private _content: ContentService, private _reports: ReportsService) {
     classBinder.bind('skt-reports-content');
     this._showSideContent();
   }
@@ -57,9 +47,7 @@ export class ReportsSideContentComponent {
   }
 
   private _showSideContent() {
-    this._reports.activeReport$
-      .pipe(takeUntilDestroyed())
-      .subscribe((report) => this._content.showSideContent(!!report));
+    this._reports.activeReport$.pipe(takeUntilDestroyed()).subscribe(report => this._content.showSideContent(!!report));
   }
 
   selectedDate = new Date('2024-01-31');
@@ -70,17 +58,17 @@ export class ReportsSideContentComponent {
     {
       imgSrc: 'assets/images/rating1.png',
       name: 'Główkowanie',
-      number: '90',
+      number: '90'
     },
     {
       imgSrc: 'assets/images/rating2.png',
       name: 'Szybkość',
-      number: '24',
+      number: '24'
     },
     {
       imgSrc: 'assets/images/rating1.png',
       name: 'Przegląd pola',
-      number: '84',
-    },
+      number: '84'
+    }
   ];
 }

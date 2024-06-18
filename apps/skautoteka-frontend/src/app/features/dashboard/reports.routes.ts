@@ -8,16 +8,16 @@ export const REPORTS_ROUTES: Routes = [
     children: [
       {
         path: ':id',
-        component: ReportsSideContentComponent,
+        component: ReportsSideContentComponent
       },
       {
         path: '**',
-        redirectTo: '..',
-      },
-    ],
+        redirectTo: '..'
+      }
+    ]
   },
   {
     path: '**',
-    component: ReportsSideEmptyComponent,
-  },
+    component: ReportsSideEmptyComponent
+  }
 ];

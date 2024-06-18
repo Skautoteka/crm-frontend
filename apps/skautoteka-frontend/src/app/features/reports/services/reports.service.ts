@@ -43,16 +43,10 @@ export class ReportsService {
    * @param id
    */
   public setActiveReport(id: number | null): void {
-    this._activeReport =
-      this._allReports.find((report) => report.id === id) || null;
+    this._activeReport = this._allReports.find(report => report.id === id) || null;
     this._activeReport$.next(this._activeReport);
     if (this._activeReport) {
-      this._router.navigate([
-        'dashboard',
-        'reports',
-        'details',
-        this._activeReport.id || '',
-      ]);
+      this._router.navigate(['dashboard', 'reports', 'details', this._activeReport.id || '']);
     } else {
       this._router.navigate(['dashboard', 'reports']);
     }

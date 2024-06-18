@@ -12,7 +12,7 @@ import {
   QueryList,
   Renderer2,
   ViewChild,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { TabsService } from '../../services/tabs.service';
@@ -26,7 +26,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   templateUrl: 'tabs.component.html',
   providers: [ClassBinder, TabsService],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabsComponent implements AfterViewInit, AfterContentInit {
   @Output() tabChange = new EventEmitter<string | null>();
@@ -36,11 +36,7 @@ export class TabsComponent implements AfterViewInit, AfterContentInit {
 
   private destroyRef = inject(DestroyRef);
 
-  constructor(
-    classBinder: ClassBinder,
-    public tabsService: TabsService,
-    private renderer: Renderer2
-  ) {
+  constructor(classBinder: ClassBinder, public tabsService: TabsService, private renderer: Renderer2) {
     classBinder.bind('skt-ui-tabs');
   }
 
@@ -53,12 +49,10 @@ export class TabsComponent implements AfterViewInit, AfterContentInit {
   }
 
   private handleTabChange(): void {
-    this.tabsService.activeId$
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((id) => {
-        this.tabChange.emit(id);
-        this.moveSlider(id);
-      });
+    this.tabsService.activeId$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(id => {
+      this.tabChange.emit(id);
+      this.moveSlider(id);
+    });
   }
 
   private moveSlider(id: string | null): void {
@@ -74,7 +68,7 @@ export class TabsComponent implements AfterViewInit, AfterContentInit {
   }
 
   private findTabById(id: string): TabComponent | null {
-    return this.tabs.find((tab) => tab.id === id) || null;
+    return this.tabs.find(tab => tab.id === id) || null;
   }
 
   private updateSliderPosition(tab: TabComponent): void {

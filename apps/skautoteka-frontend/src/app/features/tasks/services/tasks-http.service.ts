@@ -30,9 +30,7 @@ export class TasksHttpService {
    * @returns
    */
   public postTask(task: Task): Observable<Task> {
-    return this.http
-      .post<{ added: Task }>('api/task', { ...task })
-      .pipe(map((res) => res.added));
+    return this.http.post<{ added: Task }>('api/task', { ...task }).pipe(map(res => res.added));
   }
 
   /**
