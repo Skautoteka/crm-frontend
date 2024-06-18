@@ -1,9 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
+  input,
   ViewEncapsulation,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
+import { ButtonType } from '../../interface';
 
 @Component({
   standalone: true,
@@ -15,7 +18,19 @@ import { ClassBinder } from '@skautoteka-frontend/common';
   providers: [ClassBinder],
 })
 export class ButtonComponent {
-  constructor(classBinder: ClassBinder) {
-    classBinder.bind('skt-ui-button');
+  public type = input<ButtonType>('SIMPLE');
+
+  constructor(private _classBinder: ClassBinder) {
+    _classBinder.bind('skt-ui-button');
+    this._handleButtonType();
+  }
+
+  private _handleButtonType(): void {
+    effect(() => {
+      this._classBinder.conditionalBind(
+        this.type() === 'SECONDARY',
+        'skt-ui-button--secondary'
+      );
+    });
   }
 }
