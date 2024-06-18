@@ -15,7 +15,7 @@ import { ContentService } from '../../services';
   imports: [AsyncPipe, IconComponent]
 })
 export class SideContentHeaderComponent {
-  @Output() mobileBackClick = new EventEmitter<void>()
+  @Output() mobileBackClick = new EventEmitter<void>();
 
   public title = input<string>('');
 
