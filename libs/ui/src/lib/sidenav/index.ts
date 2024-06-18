@@ -1,1 +1,2 @@
-export * from './components/sidenav/sidenav.component';
+export * from './components';
+export * from './interfaces';

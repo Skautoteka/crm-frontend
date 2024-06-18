@@ -3,9 +3,8 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { ClassBinder } from '@skautoteka-frontend/common';
+import { ClassBinder, DeviceService } from '@skautoteka-frontend/common';
 import { DashboardUserActionsComponent } from '../dashboard-user-actions/dashboard-user-actions.component';
-import { DeviceService } from '../../../../../../../../libs/common/src/lib/services/device.service';
 import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 
 @Component({

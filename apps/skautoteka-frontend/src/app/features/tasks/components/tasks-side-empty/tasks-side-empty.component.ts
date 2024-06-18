@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { IconComponent } from '../../../../../../../../libs/ui/src/lib/icon';
+import { IconComponent } from '@skautoteka-frontend/ui';
 
 @Component({
   standalone: true,

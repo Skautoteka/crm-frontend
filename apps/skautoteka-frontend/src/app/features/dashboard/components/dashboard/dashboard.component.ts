@@ -3,11 +3,10 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { SidenavComponent } from '@skautoteka-frontend/ui';
+import { SidenavComponent, SidenavElement } from '@skautoteka-frontend/ui';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { DashboardUserComponent } from '../dashboard-user/dashboard-user.component';
 import { RouterModule } from '@angular/router';
-import { SidenavElement } from '../../../../../../../../libs/ui/src/lib/sidenav/interfaces';
 
 @Component({
   standalone: true,
