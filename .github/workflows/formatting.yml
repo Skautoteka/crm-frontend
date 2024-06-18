@@ -20,7 +20,7 @@ jobs:
       - run: npx nx run skautoteka-frontend:lint
       - run: npx nx run e2e:lint
       - run: npx nx run common:lint
-      - run: npx nx run ui:lint
+      - run: npx nx run skt-ui:lint
       - run: npx nx run test-utils:lint
 
       - name: Run Prettier Apps
