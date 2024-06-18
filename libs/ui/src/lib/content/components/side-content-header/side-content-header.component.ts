@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation, input, Output, EventEmitter } from '@angular/core';
-import { ClassBinder } from '@skautoteka-frontend/common';
+import { ClassBinder, DeviceService } from '@skautoteka-frontend/common';
 import { AsyncPipe } from '@angular/common';
 import { IconComponent } from '../../../icon';
-import { DeviceService } from '../../../../../../common/src/lib/services/device.service';
 import { ContentService } from '../../services';
 
 @Component({

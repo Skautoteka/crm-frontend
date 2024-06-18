@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Input, ViewEncapsulation } from '@angular/core';
-import { ClassBinder } from '@skautoteka-frontend/common';
+import { ClassBinder, DeviceService } from '@skautoteka-frontend/common';
 import { SidenavMenuComponent } from '../sidenav-menu/sidenav-menu.component';
 import { SidenavElement } from '../../interfaces';
-import { DeviceService } from '../../../../../../common/src/lib/services/device.service';
 import { AsyncPipe } from '@angular/common';
 import { SidenavService } from '../../services/sidenav.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';

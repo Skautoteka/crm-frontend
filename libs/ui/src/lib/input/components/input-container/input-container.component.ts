@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   effect,
@@ -13,8 +12,8 @@ import {
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
-import { InputConfig, ISingleInputConfig } from '../../interface/iinput';
-import { InputComponent } from '@skautoteka-frontend/ui';
+import { InputConfig, ISingleInputConfig } from '../../interface';
+import { InputComponent } from '../../components';
 
 @Component({
   selector: 'skt-ui-input-container',
