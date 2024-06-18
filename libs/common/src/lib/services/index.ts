@@ -1,1 +1,2 @@
-export { ClassBinder } from './class-binder.service';
+export * from './device.service';
+export * from './class-binder.service';

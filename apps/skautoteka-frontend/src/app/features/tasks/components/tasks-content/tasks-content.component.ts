@@ -3,7 +3,7 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { ClassBinder } from '@skautoteka-frontend/common';
+import { ClassBinder, DeviceService } from '@skautoteka-frontend/common';
 import {
   LabelComponent,
   ListCardComponent,
@@ -12,7 +12,6 @@ import {
 } from '@skautoteka-frontend/ui';
 import { TasksService } from '../../services';
 import { AsyncPipe } from '@angular/common';
-import { DeviceService } from '../../../../../../../../libs/common/src/lib/services/device.service';
 
 @Component({
   standalone: true,

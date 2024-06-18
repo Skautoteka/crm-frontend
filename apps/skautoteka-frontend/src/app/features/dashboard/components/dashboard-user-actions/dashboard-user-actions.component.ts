@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { SquareButtonComponent } from '../../../../../../../../libs/ui/src/lib/button';
+import { SquareButtonComponent } from '@skautoteka-frontend/ui';
 
 @Component({
   standalone: true,
