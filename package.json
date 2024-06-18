@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "start": "nx run skautoteka-frontend:serve:development --proxy-config proxy.conf.json",
-    "start:mobile": "nx run skautoteka-frontend:serve:development --host 192.168.1.12 --proxy-config proxy.conf.json"
+    "start:mobile": "nx run skautoteka-frontend:serve:development --host 192.168.1.12 --proxy-config proxy.conf.json",
+    "lint": "nx run skautoteka-frontend:lint"
   },
   "private": true,
   "dependencies": {
@@ -35,7 +36,7 @@
     "@angular/language-service": "18.0.0",
     "@nx/cypress": "19.1.0",
     "@nx/eslint": "19.1.0",
-    "@nx/eslint-plugin": "19.1.0",
+    "@nx/eslint-plugin": "^19.1.0",
     "@nx/jest": "19.1.0",
     "@nx/js": "19.1.0",
     "@nx/web": "19.1.0",
