@@ -7,7 +7,6 @@ import {
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { SimpleButtonComponent } from '../../../button';
 import { DialogService } from '../../../overlay';
-import { TasksService } from '../../../../../../../apps/skautoteka-frontend/src/app/features/tasks/services/tasks.service';
 
 export interface ActionsConfig {
   type: 'DELETE' | 'EDIT';
@@ -27,11 +26,7 @@ export interface ActionsConfig {
 export class SideContentheaderActionsComponent {
   public config = input<ActionsConfig[]>([]);
 
-  constructor(
-    classBinder: ClassBinder,
-    private _dialog: DialogService,
-    private _tasks: TasksService
-  ) {
+  constructor(classBinder: ClassBinder, private _dialog: DialogService) {
     classBinder.bind('skt-ui-side-content-header-actions');
   }
 
@@ -44,7 +39,6 @@ export class SideContentheaderActionsComponent {
         message: 'Tak, usuwam',
         callback: () => {
           ref.close();
-          this._tasks.removeActiveTask();
         },
       },
       cancelInfo: {
