@@ -1,0 +1,8 @@
+.skt-teams-content {
+  display: flex;
+  height: 100%;
+
+  @media (min-width: 850px) {
+    padding: 0 4rem 0 0;
+  }
+}

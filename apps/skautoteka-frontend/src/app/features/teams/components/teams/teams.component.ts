@@ -7,11 +7,10 @@ import {
   ButtonComponent,
   SideContentSectionComponent,
   SideContentSectionHeaderComponent,
-  TableComponent,
   ContentComponent,
   ModalService
 } from '@skautoteka-frontend/ui';
-import { TasksContentComponent } from '../../../tasks/components/tasks-content/tasks-content.component';
+import { TeamsContentComponent } from '../teams-content/teams-content.component';
 
 @Component({
   standalone: true,
@@ -29,8 +28,7 @@ import { TasksContentComponent } from '../../../tasks/components/tasks-content/t
     SideContentSectionComponent,
     SideContentSectionHeaderComponent,
     ButtonComponent,
-    TableComponent,
-    TasksContentComponent
+    TeamsContentComponent
   ]
 })
 export class TeamsComponent {
