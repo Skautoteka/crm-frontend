@@ -6,6 +6,10 @@
   height: 100%;
   min-height: 0;
 
+  @media (min-width: 850px) {
+    padding: 0 4rem;
+  }
+
   &__tasks {
     min-height: 0;
     height: 100%;
