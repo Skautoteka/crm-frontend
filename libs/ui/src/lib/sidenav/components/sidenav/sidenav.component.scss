@@ -86,6 +86,12 @@
       flex-direction: row;
       height: calc(100% - 6rem);
       width: 100%;
+
+      &:nth-child(2) {
+        display: block;
+        height: 100%;
+        width: 100%;
+      }
     }
   }
 }
