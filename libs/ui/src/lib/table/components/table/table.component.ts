@@ -3,6 +3,7 @@ import { ClassBinder } from '@skautoteka-frontend/common';
 import { AsyncPipe } from '@angular/common';
 import { IconComponent } from '../../../icon';
 import { TableSource } from '../../interfaces/itable';
+import { HeaderRowsPipe } from '../../pipes';
 
 export interface TableColumn {
   key: string;
@@ -16,7 +17,7 @@ export interface TableColumn {
   styleUrl: './table.component.scss',
   templateUrl: 'table.component.html',
   providers: [ClassBinder],
-  imports: [AsyncPipe, IconComponent],
+  imports: [AsyncPipe, IconComponent, HeaderRowsPipe],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

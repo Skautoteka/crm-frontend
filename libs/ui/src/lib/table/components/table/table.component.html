@@ -1,7 +1,12 @@
 <table class="skt-ui-table__table">
   <thead class="skt-ui-table__table-header">
-
+    <tr class="skt-ui-table__table-header-row">
+      @for (header of tableSource() | headerRows; track header) {
+        <th class="skt-ui-table__table-header-cell">{{ header }}</th>
+      }
+    </tr>
   </thead>
 
-
+  <tbody>
+  </tbody>
 </table>
