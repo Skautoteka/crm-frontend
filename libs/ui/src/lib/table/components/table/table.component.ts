@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { AsyncPipe } from '@angular/common';
 import { IconComponent } from '../../../icon';
+import { TableSource } from '../../interfaces/itable';
 
 export interface TableColumn {
   key: string;
@@ -16,14 +16,13 @@ export interface TableColumn {
   styleUrl: './table.component.scss',
   templateUrl: 'table.component.html',
   providers: [ClassBinder],
-  imports: [AsyncPipe, DatePipe, IconComponent],
+  imports: [AsyncPipe, IconComponent],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TableComponent {
-  @Input() onActionClick: any;
-  @Input() data: any[] = [];
-  @Input() columns: TableColumn[] = [];
+  public tableSource = input<TableSource<unknown>>([]);
+
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-ui-table');
   }
