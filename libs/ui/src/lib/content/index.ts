@@ -6,4 +6,5 @@ export * from './components/side-content-section/side-content-section.component'
 export * from './components/side-content-section-header/side-content-section-header.component';
 export * from './components/side-content-section-entity/side-content-section-entity.component';
 export * from './components/side-content-section-rating/side-content-section-rating.component';
+export * from './components/side-content-empty/side-content-empty.component';
 export * from './services';

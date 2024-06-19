@@ -1,19 +1,19 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { IconComponent } from '@skautoteka-frontend/ui';
+import { IconComponent } from '../../../icon/components';
 
 @Component({
   standalone: true,
-  selector: 'skt-tasks-side-empty',
-  styleUrl: 'tasks-side-empty.component.scss',
-  templateUrl: 'tasks-side-empty.component.html',
+  selector: 'skt-ui-side-content-empty',
+  styleUrl: 'side-content-empty.component.scss',
+  templateUrl: 'side-content-empty.component.html',
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [IconComponent]
 })
-export class TasksSideEmptyComponent {
+export class SideContentEmptyComponent {
   constructor(classBinder: ClassBinder) {
-    classBinder.bind('skt-side-empty');
+    classBinder.bind('skt-ui-side-content-empty');
   }
 }

@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { DashboardComponent } from './components';
 import { TasksComponent } from '../tasks';
 import { ReportsComponent } from '../reports';
+import { TeamsComponent } from '../teams';
 
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -17,6 +18,11 @@ export const DASHBOARD_ROUTES: Routes = [
         path: 'reports',
         component: ReportsComponent,
         loadChildren: () => import('./reports.routes').then(r => r.REPORTS_ROUTES)
+      },
+      {
+        path: 'teams',
+        component: TeamsComponent,
+        loadChildren: () => import('./teams.routes').then(r => r.TEAMS_ROUTES)
       }
     ]
   },

@@ -1,14 +1,14 @@
 import { Routes } from '@angular/router';
-import { TasksSideContentComponent } from '../tasks/components/tasks-side-content/tasks-side-content.component';
 import { SideContentEmptyComponent } from '@skautoteka-frontend/ui';
+import { TeamsSideContentComponent } from '../teams';
 
-export const TASKS_ROUTES: Routes = [
+export const TEAMS_ROUTES: Routes = [
   {
     path: 'details',
     children: [
       {
         path: ':id',
-        component: TasksSideContentComponent
+        component: TeamsSideContentComponent
       },
       {
         path: '**',
