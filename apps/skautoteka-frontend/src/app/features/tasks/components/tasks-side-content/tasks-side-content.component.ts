@@ -38,7 +38,7 @@ export class TasksSideContentComponent {
   public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń raport' }];
 
   constructor(classBinder: ClassBinder, private _content: ContentService, private _tasks: TasksService) {
-    classBinder.bind('skt-tasks-content');
+    classBinder.bind('skt-tasks-side-content');
     this._showSideContent();
   }
 
