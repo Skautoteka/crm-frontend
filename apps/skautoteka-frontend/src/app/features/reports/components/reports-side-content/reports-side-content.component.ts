@@ -7,9 +7,7 @@ import {
   SideContentheaderActionsComponent,
   SideContentHeaderComponent,
   SideContentSectionComponent,
-  SideContentSectionHeaderComponent,
-  SideContentSectionEntityComponent,
-  SideContentSectionRatingComponent
+  SideContentSectionHeaderComponent
 } from '@skautoteka-frontend/ui';
 import { ReportsBasicInfoComponent } from '../reports-basic-info/reports-basic-info.component';
 import { ReportsService } from '../../services';
@@ -29,9 +27,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     SideContentSectionComponent,
     ReportsBasicInfoComponent,
     SideContentHeaderComponent,
-    SideContentheaderActionsComponent,
-    SideContentSectionEntityComponent,
-    SideContentSectionRatingComponent
+    SideContentheaderActionsComponent
   ]
 })
 export class ReportsSideContentComponent {
@@ -53,22 +49,4 @@ export class ReportsSideContentComponent {
   selectedDate = new Date('2024-01-31');
   rating = 4.5;
   finished = true;
-
-  ratingData = [
-    {
-      imgSrc: 'assets/images/rating1.png',
-      name: 'Główkowanie',
-      number: '90'
-    },
-    {
-      imgSrc: 'assets/images/rating2.png',
-      name: 'Szybkość',
-      number: '24'
-    },
-    {
-      imgSrc: 'assets/images/rating1.png',
-      name: 'Przegląd pola',
-      number: '84'
-    }
-  ];
 }

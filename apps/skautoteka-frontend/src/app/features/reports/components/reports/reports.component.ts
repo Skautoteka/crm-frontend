@@ -8,8 +8,6 @@ import {
   ActionsConfig,
   SideContentSectionComponent,
   SideContentSectionHeaderComponent,
-  SideContentSectionEntityComponent,
-  SideContentSectionRatingComponent,
   TableComponent,
   ContentComponent,
   ModalService
@@ -37,8 +35,6 @@ import { ReportsCreateComponent } from '../reports-create/reports-create.compone
     ButtonComponent,
     TableComponent,
     ReportsContentComponent,
-    SideContentSectionEntityComponent,
-    SideContentSectionRatingComponent,
     ReportsBasicInfoComponent
   ]
 })

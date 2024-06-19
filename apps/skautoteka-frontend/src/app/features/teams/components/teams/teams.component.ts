@@ -7,8 +7,6 @@ import {
   ButtonComponent,
   SideContentSectionComponent,
   SideContentSectionHeaderComponent,
-  SideContentSectionEntityComponent,
-  SideContentSectionRatingComponent,
   TableComponent,
   ContentComponent,
   ModalService
@@ -32,8 +30,6 @@ import { TasksContentComponent } from '../../../tasks/components/tasks-content/t
     SideContentSectionHeaderComponent,
     ButtonComponent,
     TableComponent,
-    SideContentSectionEntityComponent,
-    SideContentSectionRatingComponent,
     TasksContentComponent
   ]
 })
