@@ -20,6 +20,13 @@ import { ReportsService } from '../../services';
   imports: [TabsComponent, TabComponent, ListCardComponent, LabelComponent, TableComponent]
 })
 export class ReportsContentComponent {
+  public tableDef = [
+    { name: 'Nazwa', width: '10%' },
+    { name: 'Liga', width: '20%' },
+    { name: 'Kraj', width: '30%' },
+    { name: 'Miasto', width: '40%' }
+  ]
+
   constructor(classBinder: ClassBinder, public reportsService: ReportsService) {
     classBinder.bind('skt-reports-content');
   }

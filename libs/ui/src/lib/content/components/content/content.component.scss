@@ -72,10 +72,9 @@
     }
 
     &--secondary {
-      white-space: nowrap;
+      white-space: normal;
       font-size: 1rem;
       color: var(--basic-4);
-      text-wrap: wrap;
     }
   }
 

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, input, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { AsyncPipe } from '@angular/common';
 import { IconComponent } from '../../../icon';
@@ -20,11 +20,19 @@ export interface TableColumn {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TableComponent {
+export class TableComponent implements AfterViewInit {
+  @ViewChild('tableHeader', { read: ElementRef }) tableHeader!: ElementRef;
+
   public tableSource = input<TableSource<unknown>>([]);
   public tableDef = input<TableDefinition>([]);
 
-  constructor(classBinder: ClassBinder) {
+  constructor(classBinder: ClassBinder, private _renderer: Renderer2) {
     classBinder.bind('skt-ui-table');
+  }
+
+  ngAfterViewInit(): void {
+    const columnDef = this.tableDef().reduce((prev, curr) => prev + ' ' + curr.width, '');
+    this._renderer.setStyle(this.tableHeader.nativeElement, 'grid-template-columns', columnDef);
+    console.log(columnDef, this.tableHeader)
   }
 }
