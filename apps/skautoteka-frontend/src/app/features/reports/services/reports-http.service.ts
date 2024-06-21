@@ -13,4 +13,13 @@ export class ReportsHttpService {
   public getCreateFieldsConfig$(): Observable<InputConfig> {
     return this.http.get<InputConfig>('api/report/create-fields');
   }
+
+    /**
+   * Retrieves all reports from the database.
+   *
+   * @returns
+   */
+    public getAllTasks$(): Observable<Report[]> {
+      return this.http.get<Report[]>('api/task/all');
+    }
 }
