@@ -2,8 +2,7 @@ import { ChangeDetectionStrategy, Component, input, ViewEncapsulation } from '@a
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { AsyncPipe } from '@angular/common';
 import { IconComponent } from '../../../icon';
-import { TableSource } from '../../interfaces/itable';
-import { HeaderRowsPipe } from '../../pipes';
+import { TableDefinition, TableSource } from '../../interfaces/itable';
 
 export interface TableColumn {
   key: string;
@@ -17,12 +16,13 @@ export interface TableColumn {
   styleUrl: './table.component.scss',
   templateUrl: 'table.component.html',
   providers: [ClassBinder],
-  imports: [AsyncPipe, IconComponent, HeaderRowsPipe],
+  imports: [AsyncPipe, IconComponent],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TableComponent {
   public tableSource = input<TableSource<unknown>>([]);
+  public tableDef = input<TableDefinition>([]);
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-ui-table');
