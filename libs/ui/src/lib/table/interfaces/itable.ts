@@ -9,4 +9,5 @@ export type TableDefinition = TableDefinitionEntry[];
 export interface TableDefinitionEntry {
   name: string;
   width: string;
+  hidden?: boolean;
 }

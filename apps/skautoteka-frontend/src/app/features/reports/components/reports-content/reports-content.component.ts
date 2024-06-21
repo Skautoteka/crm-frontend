@@ -21,10 +21,11 @@ import { ReportsService } from '../../services';
 })
 export class ReportsContentComponent {
   public tableDef = [
+    { name: 'Zdjecie', width: '20%', hidden: true },
     { name: 'Nazwa', width: '10%' },
     { name: 'Liga', width: '20%' },
     { name: 'Kraj', width: '30%' },
-    { name: 'Miasto', width: '40%' }
+    { name: 'Miasto', width: '20%' }
   ]
 
   constructor(classBinder: ClassBinder, public reportsService: ReportsService) {
