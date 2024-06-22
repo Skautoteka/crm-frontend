@@ -10,7 +10,7 @@ import { CommonModule, NgIf } from '@angular/common';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  imports: [FormsModule, CommonModule, NgIf],
+  imports: [FormsModule, FormsModule, CommonModule, NgIf],
   providers: [
     ClassBinder,
     {
@@ -25,14 +25,19 @@ export class InputComponent implements ControlValueAccessor {
   public label = input<string | null>(null);
   public isRequired = input<boolean>(false);
 
-  private _value = '';
+  protected _value = '';
   private _isDisabled = false;
 
-  private _onChange!: () => void;
+  private _onChange!: (value: string) => void;
   private _onTouched!: () => void;
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-ui-input');
+  }
+
+  onInputChange(value: string): void {
+    this._value = value;
+    this._onChange(this._value);
   }
 
   writeValue(value: string): void {

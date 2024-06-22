@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, effect, input, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import {
-  AbstractControl,
-  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -10,7 +8,7 @@ import {
   ReactiveFormsModule
 } from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
-import { InputConfig, ISingleInputConfig } from '../../interface';
+import { InputConfig } from '../../interface';
 import { InputComponent } from '../input/input.component';
 
 @Component({
@@ -25,39 +23,21 @@ import { InputComponent } from '../input/input.component';
 })
 export class InputContainerComponent {
   public config = input<InputConfig | null>(null);
-  public formGroup!: FormGroup;
+  public formGroup: FormGroup | null = null;
 
   constructor(classBinder: ClassBinder, private _fb: FormBuilder, private _cdRef: ChangeDetectorRef) {
     classBinder.bind('skt-ui-input-container');
     this._buildInputs();
   }
 
-  get inputsArr(): FormArray {
-    return this.formGroup.controls['inputs'] as FormArray;
-  }
-
-  public getInputName(input: AbstractControl): string {
-    debugger;
-    console.log(input, 'tutej');
-    return '';
-  }
-
   private _buildInputs(): void {
-    this.formGroup = this._fb.group({
-      inputs: this._fb.array([])
-    });
-
     effect(() => {
       const config = this.config();
       if (config) {
-        config.forEach(input => this._buildInput(input));
+        const controls = config.reduce((prev, curr) => ({ ...prev, [curr.name]: new FormControl() }), {})
+        this.formGroup = this._fb.group(controls);
+        this._cdRef.detectChanges();
       }
     });
-  }
-
-  private _buildInput(input: ISingleInputConfig): void {
-    this.formGroup.addControl(input.name, new FormControl());
-    this.inputsArr.push(new FormControl());
-    this._cdRef.detectChanges();
   }
 }

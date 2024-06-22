@@ -1,7 +1,7 @@
-<ng-container [formGroup]="formGroup">
-  <ng-container formArrayName="inputs">
-    @for (input of inputsArr.controls; track input;) {
-      <skt-ui-input></skt-ui-input>
+@if(formGroup) {
+  <ng-container [formGroup]="formGroup">
+    @for (input of config(); track input.name) {
+      <skt-ui-input [formControlName]="input.name" [isRequired]="input.isRequired" [label]="input.label" [placeholder]="input.placeholder"></skt-ui-input>
     }
   </ng-container>
-</ng-container>
+}

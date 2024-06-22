@@ -8,5 +8,5 @@
     }
   </label>
   }
-  <input type="text" class="skt-ui-input__input" placeholder="{{ placeholder() }}" />
+  <input (ngModelChange)="onInputChange($event)" [ngModel]="_value" type="text" class="skt-ui-input__input" placeholder="{{ placeholder() }}" />
 </div>
