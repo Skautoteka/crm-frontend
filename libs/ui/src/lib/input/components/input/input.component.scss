@@ -22,6 +22,17 @@
     &:focus {
       outline: 0.25rem solid rgba(#a3b0ad, 0.25);
     }
+
+    &--invalid {
+      border: 1px solid var(--warn);
+      &::placeholder {
+        color: var(--warn);
+      }
+
+      &:focus {
+        outline: 0.25rem solid rgba(#ec5b5b, 0.25);
+      }
+    }
   }
 
   &__label {

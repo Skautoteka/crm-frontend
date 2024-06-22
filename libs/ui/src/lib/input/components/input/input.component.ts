@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, forwardRef, input, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, forwardRef, inject, Injector, input, signal, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'skt-ui-input',
@@ -20,22 +21,34 @@ import { CommonModule, NgIf } from '@angular/common';
     }
   ]
 })
-export class InputComponent implements ControlValueAccessor {
+export class InputComponent implements ControlValueAccessor, AfterViewInit {
   public placeholder = input<string>('');
   public label = input<string | null>(null);
   public isRequired = input<boolean>(false);
+  public invalid = signal<boolean>(false);
 
   protected _value = '';
+  private _control!: NgControl;
   private _isDisabled = false;
+  private _destroyRef = inject(DestroyRef)
 
   private _onChange!: (value: string) => void;
   private _onTouched!: () => void;
 
-  constructor(classBinder: ClassBinder) {
+  constructor(classBinder: ClassBinder, private _injector: Injector) {
     classBinder.bind('skt-ui-input');
   }
 
-  onInputChange(value: string): void {
+  ngAfterViewInit(): void {
+    this._control = this._injector.get(NgControl);
+    this._updateValidUi();
+  }
+
+  public onBlur(): void {
+    this.invalid.set(!this._control.valid);
+  }
+
+  public onInputChange(value: string): void {
     this._value = value;
     this._onChange(this._value);
   }
@@ -54,5 +67,21 @@ export class InputComponent implements ControlValueAccessor {
 
   registerOnTouched(fn: () => void): void {
     this._onTouched = fn;
+  }
+
+  private _updateValidUi(): void {
+    if(!this._control.statusChanges) {
+      return;
+    }
+
+    this._control.statusChanges.pipe(takeUntilDestroyed(this._destroyRef)).subscribe(event => {
+      if(event === 'VALID') {
+        this.invalid.set(false);
+      }
+
+      if(event === 'INVALID') {
+        this.invalid.set(true);
+      }
+    })
   }
 }

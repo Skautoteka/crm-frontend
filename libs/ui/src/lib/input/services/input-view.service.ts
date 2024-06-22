@@ -17,6 +17,10 @@ export class InputViewService<K> {
     return this.group.value;
   }
 
+  get isValid(): boolean {
+    return this._formGroup?.valid || false;
+  }
+
   public setFormGroup(group: FormGroup): void {
     this._formGroup = group;
   }

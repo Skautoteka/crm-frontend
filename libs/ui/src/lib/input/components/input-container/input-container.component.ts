@@ -36,7 +36,7 @@ export class InputContainerComponent<K> {
     effect(() => {
       const config = this.config();
       if (config) {
-        const controls = config.reduce((prev, curr) => ({ ...prev, [curr.name]: new FormControl(null, curr.isRequired ? [Validators.required] : []) }), {})
+        const controls = config.reduce((prev, curr) => ({ ...prev, [curr.name]: new FormControl(null, { validators: curr.isRequired ? [Validators.required] : [] }) }), {})
         this.formGroup = this._fb.group(controls);
         this._cdRef.detectChanges();
         this._inputView.setFormGroup(this.formGroup);

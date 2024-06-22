@@ -4,7 +4,7 @@ import { TableComponent, TableRowCellComponent, TableRowComponent } from '@skaut
 import { TeamsService } from '../../services/teams.service';
 import { AsyncPipe } from '@angular/common';
 import { Team } from '../../interfaces/team';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { TableSource } from '@skautoteka-frontend/ui';
 
 @Component({
@@ -26,7 +26,7 @@ export class TeamsContentComponent {
   ];
 
   get tableSource$(): Observable<TableSource<Team>> {
-    return this._teamsService.allTeams$.pipe(tap(x => console.log(x)));
+    return this._teamsService.allTeams$;
   }
 
   constructor(classBinder: ClassBinder, private _teamsService: TeamsService) {

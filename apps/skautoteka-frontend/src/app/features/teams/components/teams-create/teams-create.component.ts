@@ -25,13 +25,12 @@ import { Team } from '../../interfaces/team';
 export class TeamsCreateComponent {
   public config = signal<InputConfig | null>(null);
 
-  constructor(classBinder: ClassBinder, private _teams: TeamsService, private _modal: ModalService, private _inputView: InputViewService<Team>) {
+  constructor(classBinder: ClassBinder, private _teams: TeamsService, private _modal: ModalService, public inputView: InputViewService<Team>) {
     classBinder.bind('skt-tasks-create');
-
     this._teams.getCreateFieldsConfig$().subscribe(config => this.config.set(config));
   }
 
   public onSaveButtonClick(): void {
-    this._teams.addTeam$(this._inputView.value).subscribe(() => this._modal.closeAll());
+    this._teams.addTeam$(this.inputView.value).subscribe(() => this._modal.closeAll());
   }
 }
