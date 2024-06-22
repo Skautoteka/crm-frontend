@@ -11,6 +11,7 @@ import {
 } from '@skautoteka-frontend/ui';
 import { TeamsService } from '../../services/teams.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TeamTitleComponent } from '../team-title/team-title.component';
 
 @Component({
   standalone: true,
@@ -25,7 +26,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     SideContentSectionHeaderComponent,
     SideContentSectionComponent,
     SideContentHeaderComponent,
-    SideContentheaderActionsComponent
+    SideContentheaderActionsComponent,
+    TeamTitleComponent
   ]
 })
 export class TeamsSideContentComponent {
