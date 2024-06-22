@@ -15,10 +15,11 @@ import { TeamsService } from '../../services/teams.service';
 })
 export class TeamsContentComponent {
   public tableDef = [
+    { name: 'Zdjecie', width: '10%', hidden: true },
     { name: 'Nazwa', width: '10%' },
     { name: 'Liga', width: '20%' },
     { name: 'Kraj', width: '30%' },
-    { name: 'Miasto', width: '40%' }
+    { name: 'Miasto', width: '30%' }
   ]
 
   constructor(classBinder: ClassBinder, private _teamsService: TeamsService) {
