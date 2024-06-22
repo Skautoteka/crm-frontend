@@ -12,6 +12,7 @@ import {
 import { TeamsService } from '../../services/teams.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TeamTitleComponent } from '../team-title/team-title.component';
+import { TeamsBasicInfoComponent } from '../teams-basic-info/teams-basic-info.component';
 
 @Component({
   standalone: true,
@@ -27,7 +28,8 @@ import { TeamTitleComponent } from '../team-title/team-title.component';
     SideContentSectionComponent,
     SideContentHeaderComponent,
     SideContentheaderActionsComponent,
-    TeamTitleComponent
+    TeamTitleComponent,
+    TeamsBasicInfoComponent
   ]
 })
 export class TeamsSideContentComponent {
