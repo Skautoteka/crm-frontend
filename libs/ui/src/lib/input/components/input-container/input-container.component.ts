@@ -10,6 +10,7 @@ import {
 import { CommonModule, NgIf } from '@angular/common';
 import { InputConfig } from '../../interface';
 import { InputComponent } from '../input/input.component';
+import { InputViewService } from '../../services';
 
 @Component({
   selector: 'skt-ui-input-container',
@@ -25,7 +26,7 @@ export class InputContainerComponent {
   public config = input<InputConfig | null>(null);
   public formGroup: FormGroup | null = null;
 
-  constructor(classBinder: ClassBinder, private _fb: FormBuilder, private _cdRef: ChangeDetectorRef) {
+  constructor(classBinder: ClassBinder, private _fb: FormBuilder, private _cdRef: ChangeDetectorRef, private _inputView: InputViewService) {
     classBinder.bind('skt-ui-input-container');
     this._buildInputs();
   }
@@ -37,6 +38,7 @@ export class InputContainerComponent {
         const controls = config.reduce((prev, curr) => ({ ...prev, [curr.name]: new FormControl() }), {})
         this.formGroup = this._fb.group(controls);
         this._cdRef.detectChanges();
+        this._inputView.setFormGroup(this.formGroup);
       }
     });
   }

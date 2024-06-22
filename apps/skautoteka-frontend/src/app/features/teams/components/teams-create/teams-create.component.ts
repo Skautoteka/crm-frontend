@@ -5,6 +5,7 @@ import {
   InputComponent,
   InputConfig,
   InputContainerComponent,
+  InputViewService,
   ModalService
 } from '@skautoteka-frontend/ui';
 import { AsyncPipe } from '@angular/common';
@@ -15,7 +16,7 @@ import { TeamsService } from '../../services/teams.service';
   selector: 'skt-teams-create',
   styleUrl: './teams-create.component.scss',
   templateUrl: 'teams-create.component.html',
-  providers: [ClassBinder],
+  providers: [ClassBinder, InputViewService],
   imports: [InputComponent, ButtonComponent, InputContainerComponent, AsyncPipe],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -23,7 +24,7 @@ import { TeamsService } from '../../services/teams.service';
 export class TeamsCreateComponent {
   public config = signal<InputConfig | null>(null);
 
-  constructor(classBinder: ClassBinder, private _teams: TeamsService, private _modal: ModalService) {
+  constructor(classBinder: ClassBinder, private _teams: TeamsService, private _modal: ModalService, private _inputView: InputViewService) {
     classBinder.bind('skt-tasks-create');
 
     this._teams.getCreateFieldsConfig$().subscribe(config => this.config.set(config));
@@ -31,6 +32,7 @@ export class TeamsCreateComponent {
 
   public onSaveButtonClick(): void {
     this._teams.addTeam({ id: '', city: '', country: '', name: '' });
+    console.log(this._inputView.group.value)
     this._modal.closeAll();
   }
 }
