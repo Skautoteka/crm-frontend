@@ -26,4 +26,8 @@ export class TeamsContentComponent {
 
     this._teamsService.fetchAllTeams();
   }
+
+  public onRowClicked(id: number): void {
+    console.log(id);
+  }
 }

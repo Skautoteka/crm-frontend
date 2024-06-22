@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Renderer2, ViewChild, ViewEncapsulation, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Output, Renderer2, ViewChild, ViewEncapsulation, input } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { AsyncPipe } from '@angular/common';
 import { TableDefinition } from '../../interfaces/itable';
@@ -15,6 +15,7 @@ import { TableDefinition } from '../../interfaces/itable';
 })
 export class TableRowComponent {
   @ViewChild('tableRow', { read: ElementRef }) tableRow!: ElementRef;
+  @Output() rowClicked = new EventEmitter<void>();
 
   public tableDef = input<TableDefinition>([]);
 
@@ -25,5 +26,9 @@ export class TableRowComponent {
   public setTableDef(definition: TableDefinition): void {
     const columnDef = definition.reduce((prev, curr) => prev + ' ' + curr.width, '');
     this._renderer.setStyle(this.tableRow.nativeElement, 'grid-template-columns', columnDef);
+  }
+
+  public onRowClick(): void {
+    this.rowClicked.emit();
   }
 }
