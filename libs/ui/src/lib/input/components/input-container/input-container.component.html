@@ -1,1 +1,7 @@
-<ng-container #inputContainer></ng-container>
+<ng-container [formGroup]="formGroup">
+  <ng-container formArrayName="inputs">
+    @for (input of inputsArr.controls; track input;) {
+      <skt-ui-input></skt-ui-input>
+    }
+  </ng-container>
+</ng-container>

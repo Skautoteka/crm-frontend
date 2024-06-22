@@ -25,6 +25,7 @@
     font-size: 0.875rem;
     color: var(--primary-1);
     border-bottom: 1px solid var(--primary-6);
+    padding: 0 0.75rem;
   }
 
   &__table-header-cell {
@@ -40,10 +41,16 @@
   }
 
   &__table-body {
+    padding: 0.5rem 0.75rem;
     display: flex;
-    height: 100%;
+    height: calc(100% - 4rem);
     width: 100%;
     flex-direction: column;
     overflow-y: auto;
+    scrollbar-gutter: stable both-edges;
+
+    @media (max-width: 850px) {
+      padding: 0;
+    }
   }
 }

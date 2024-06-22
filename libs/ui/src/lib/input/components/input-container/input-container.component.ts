@@ -1,19 +1,17 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  effect,
-  EventEmitter,
-  input,
-  Output,
-  ViewChild,
-  ViewContainerRef,
-  ViewEncapsulation
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, effect, input, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { FormControl, FormGroup, FormsModule } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule
+} from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
 import { InputConfig, ISingleInputConfig } from '../../interface';
-import { InputComponent } from '../../components';
+import { InputComponent } from '../input/input.component';
 
 @Component({
   selector: 'skt-ui-input-container',
@@ -22,24 +20,33 @@ import { InputComponent } from '../../components';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  imports: [FormsModule, CommonModule, NgIf],
+  imports: [FormsModule, CommonModule, NgIf, ReactiveFormsModule, InputComponent],
   providers: [ClassBinder]
 })
 export class InputContainerComponent {
-  @ViewChild('inputContainer', { read: ViewContainerRef })
-  inputContainer!: ViewContainerRef;
-
-  @Output() formGroup = new EventEmitter<FormGroup>();
   public config = input<InputConfig | null>(null);
+  public formGroup!: FormGroup;
 
-  private _formGroup: FormGroup = new FormGroup({});
-
-  constructor(classBinder: ClassBinder) {
+  constructor(classBinder: ClassBinder, private _fb: FormBuilder, private _cdRef: ChangeDetectorRef) {
     classBinder.bind('skt-ui-input-container');
     this._buildInputs();
   }
 
+  get inputsArr(): FormArray {
+    return this.formGroup.controls['inputs'] as FormArray;
+  }
+
+  public getInputName(input: AbstractControl): string {
+    debugger;
+    console.log(input, 'tutej');
+    return '';
+  }
+
   private _buildInputs(): void {
+    this.formGroup = this._fb.group({
+      inputs: this._fb.array([])
+    });
+
     effect(() => {
       const config = this.config();
       if (config) {
@@ -49,16 +56,8 @@ export class InputContainerComponent {
   }
 
   private _buildInput(input: ISingleInputConfig): void {
-    this._formGroup.addControl(input.name, new FormControl());
-    this._createInputComponent(input);
-  }
-
-  private _createInputComponent(input: ISingleInputConfig): void {
-    const { isRequired, placeholder, label } = input;
-    const ref = this.inputContainer.createComponent(InputComponent);
-    ref.setInput('placeholder', placeholder);
-    ref.setInput('label', label);
-    ref.setInput('isRequired', isRequired);
-    ref.changeDetectorRef.detectChanges();
+    this.formGroup.addControl(input.name, new FormControl());
+    this.inputsArr.push(new FormControl());
+    this._cdRef.detectChanges();
   }
 }

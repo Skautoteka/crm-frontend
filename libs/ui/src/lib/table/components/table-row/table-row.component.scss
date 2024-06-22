@@ -1,7 +1,8 @@
 .skt-ui-table-row {
   display: block;
-  padding: 0.5rem 0;
+  padding: 1.5rem 0;
   transition: background-color .3s ease;
+  border-radius: 0.5rem;
 
   &:hover {
     background-color: var(--primary-6);

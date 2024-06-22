@@ -1,10 +1,10 @@
-<skt-ui-table [tableSource]="[]" [tableDef]="tableDef">
-  @for (item of [1, 2, 3, 4, 5, 6, 7]; track $index) {
-    <skt-ui-table-row (rowClicked)="onRowClicked(item)">
-      <skt-ui-table-row-cell>Some name</skt-ui-table-row-cell>
-      <skt-ui-table-row-cell>Some other thing</skt-ui-table-row-cell>
-      <skt-ui-table-row-cell>Hmm</skt-ui-table-row-cell>
-      <skt-ui-table-row-cell>Toruń</skt-ui-table-row-cell>
+<skt-ui-table [tableDef]="tableDef">
+  @for (item of tableSource$ | async; track item.id) {
+    <skt-ui-table-row (rowClicked)="onRowClicked(item.id)">
+      <skt-ui-table-row-cell></skt-ui-table-row-cell>
+      <skt-ui-table-row-cell>{{ item.name }}</skt-ui-table-row-cell>
+      <skt-ui-table-row-cell>{{ item.city }}</skt-ui-table-row-cell>
+      <skt-ui-table-row-cell>{{ item.country }}</skt-ui-table-row-cell>
     </skt-ui-table-row>
   }
 </skt-ui-table>

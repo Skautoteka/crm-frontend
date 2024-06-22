@@ -11,6 +11,7 @@ import {
   ModalService
 } from '@skautoteka-frontend/ui';
 import { TeamsContentComponent } from '../teams-content/teams-content.component';
+import { TeamsCreateComponent } from '../teams-create/teams-create.component';
 
 @Component({
   standalone: true,
@@ -39,9 +40,9 @@ export class TeamsComponent {
   }
 
   public onAddNewClick(): void {
-    // this._modal.createModal(ReportsCreateComponent, {
-    //   header: 'Dodaj zadanie',
-    //   subHeader: 'Wypełnij wszystkie wymagane informacje o zadaniu i zapisz zmiany'
-    // });
+    this._modal.createModal(TeamsCreateComponent, {
+      header: 'Dodaj drużynę',
+      subHeader: 'Wypełnij wszystkie wymagane informacje aby dodać drużynę do systemu'
+    });
   }
 }

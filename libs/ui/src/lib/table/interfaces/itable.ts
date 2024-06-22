@@ -1,7 +1,7 @@
 export type TableSource<T> = ITableSourceEntity<T>[];
 
 export type ITableSourceEntity<T> = {
-  id: number;
+  id: string;
 } & T;
 
 export type TableDefinition = TableDefinitionEntry[];
