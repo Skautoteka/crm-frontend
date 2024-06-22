@@ -26,15 +26,15 @@ export class TeamsContentComponent {
   ];
 
   get tableSource$(): Observable<TableSource<Team>> {
-    return this._teamsService.allTeams$;
+    return this._teams.allTeams$;
   }
 
-  constructor(classBinder: ClassBinder, private _teamsService: TeamsService) {
+  constructor(classBinder: ClassBinder, private _teams: TeamsService) {
     classBinder.bind('skt-teams-content');
-    this._teamsService.fetchAllTeams();
+    this._teams.fetchAllTeams();
   }
 
   public onRowClicked(id: string): void {
-    console.log(id);
+    this._teams.setActiveTeam(id);
   }
 }

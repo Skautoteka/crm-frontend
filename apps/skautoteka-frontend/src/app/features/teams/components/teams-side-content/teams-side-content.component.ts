@@ -9,6 +9,8 @@ import {
   SideContentSectionComponent,
   SideContentSectionHeaderComponent
 } from '@skautoteka-frontend/ui';
+import { TeamsService } from '../../services/teams.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   standalone: true,
@@ -29,12 +31,15 @@ import {
 export class TeamsSideContentComponent {
   public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń drużynę' }];
 
-  constructor(classBinder: ClassBinder, private _content: ContentService) {
+  constructor(classBinder: ClassBinder, private _content: ContentService, private _teams: TeamsService) {
     classBinder.bind('skt-teams-side-content');
     this._showSideContent();
   }
 
   public onMobileBackClick(): void {}
 
-  private _showSideContent() {}
+  private _showSideContent() {
+    this._teams.activeTeam$.pipe(takeUntilDestroyed()).subscribe(task => this._content.showSideContent(!!task));
+
+  }
 }

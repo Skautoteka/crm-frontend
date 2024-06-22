@@ -3,16 +3,23 @@ import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { Team } from '../interfaces/team';
 import { TeamsHttpService } from './teams-http.service';
 import { InputConfig } from '@skautoteka-frontend/ui';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class TeamsService {
   private _allTeams: Team[] = [];
   private _allTeams$ = new BehaviorSubject<Team[]>(this._allTeams);
+  private _activeTeam: Team | null = null;
+  private _activeTeam$ = new BehaviorSubject<Team | null>(null);
 
-  constructor(private _teamHttp: TeamsHttpService) {}
+  constructor(private _teamHttp: TeamsHttpService, private _router: Router) {}
 
   get allTeams$(): Observable<Team[]> {
     return this._allTeams$;
+  }
+
+  get activeTeam$(): Observable<Team | null> {
+    return this._activeTeam$;
   }
 
   /**
@@ -40,6 +47,21 @@ export class TeamsService {
     return this._teamHttp.addTeam$(team).pipe(map(({ added }) => added), tap(team =>
       this._setTeams([...this._allTeams, team])
     ))
+  }
+
+  /**
+   * Sets active team.
+   *
+   * @param id
+   */
+  public setActiveTeam(id: string | null): void {
+    this._activeTeam = this._allTeams.find(team => team.id === id) || null;
+    this._activeTeam$.next(this._activeTeam);
+    if(this._activeTeam) {
+      this._router.navigate(['dashboard', 'teams', 'details', this._activeTeam.id])
+    } else {
+      this._router.navigate(['dashboard', 'teams']);
+    }
   }
 
   private _setTeams(teams: Team[]): void {

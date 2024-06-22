@@ -58,7 +58,7 @@ export class TasksService {
     this._activeTask = this._allTasks.find(task => task.id === id) || null;
     this._activeTask$.next(this._activeTask);
     if (this.activeTask) {
-      this._router.navigate(['dashboard', 'tasks', 'details', this._activeTask?.id || '']);
+      this._router.navigate(['dashboard', 'tasks', 'details', this.activeTask.id || '']);
     } else {
       this._router.navigate(['dashboard', 'tasks']);
     }
