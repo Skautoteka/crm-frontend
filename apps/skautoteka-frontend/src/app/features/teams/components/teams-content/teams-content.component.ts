@@ -5,7 +5,7 @@ import { TeamsService } from '../../services/teams.service';
 import { AsyncPipe } from '@angular/common';
 import { Team } from '../../interfaces/team';
 import { Observable, tap } from 'rxjs';
-import { TableSource } from '../../../../../../../../libs/ui/src/lib/table/interfaces/itable';
+import { TableSource } from '@skautoteka-frontend/ui';
 
 @Component({
   standalone: true,

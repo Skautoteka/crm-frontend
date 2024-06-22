@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Team } from '../interfaces/team';
 import { InputConfig } from '@skautoteka-frontend/ui';
+import { IModelResponse } from '@skautoteka-frontend/common';
 
 @Injectable({ providedIn: 'root' })
 export class TeamsHttpService {
@@ -29,7 +30,7 @@ export class TeamsHttpService {
    *
    * @param team
    */
-  public addTeam$(team: Team): Observable<void> {
-    return this.http.post<void>('api/team', { ...team });
+  public addTeam$(team: Team): Observable<IModelResponse<Team>> {
+    return this.http.post<IModelResponse<Team>>('api/team', { ...team });
   }
 }

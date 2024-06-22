@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 
 @Injectable()
-export class InputViewService {
+export class InputViewService<K> {
   private _formGroup: FormGroup | null = null;
 
   get group(): FormGroup {
@@ -11,6 +11,10 @@ export class InputViewService {
     }
 
     return this._formGroup;
+  }
+
+  get value(): K {
+    return this.group.value;
   }
 
   public setFormGroup(group: FormGroup): void {

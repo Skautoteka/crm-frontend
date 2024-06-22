@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { Team } from '../interfaces/team';
 import { TeamsHttpService } from './teams-http.service';
 import { InputConfig } from '@skautoteka-frontend/ui';
@@ -36,8 +36,10 @@ export class TeamsService {
    *
    * @param team
    */
-  public addTeam(team: Team): void {
-    this._teamHttp.addTeam$(team).subscribe(x => console.log(x));
+  public addTeam$(team: Team): Observable<Team> {
+    return this._teamHttp.addTeam$(team).pipe(map(({ added }) => added), tap(team =>
+      this._setTeams([...this._allTeams, team])
+    ))
   }
 
   private _setTeams(teams: Team[]): void {

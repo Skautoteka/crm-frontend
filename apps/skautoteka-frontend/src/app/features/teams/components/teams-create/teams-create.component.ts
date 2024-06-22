@@ -10,6 +10,7 @@ import {
 } from '@skautoteka-frontend/ui';
 import { AsyncPipe } from '@angular/common';
 import { TeamsService } from '../../services/teams.service';
+import { Team } from '../../interfaces/team';
 
 @Component({
   standalone: true,
@@ -24,15 +25,13 @@ import { TeamsService } from '../../services/teams.service';
 export class TeamsCreateComponent {
   public config = signal<InputConfig | null>(null);
 
-  constructor(classBinder: ClassBinder, private _teams: TeamsService, private _modal: ModalService, private _inputView: InputViewService) {
+  constructor(classBinder: ClassBinder, private _teams: TeamsService, private _modal: ModalService, private _inputView: InputViewService<Team>) {
     classBinder.bind('skt-tasks-create');
 
     this._teams.getCreateFieldsConfig$().subscribe(config => this.config.set(config));
   }
 
   public onSaveButtonClick(): void {
-    this._teams.addTeam({ id: '', city: '', country: '', name: '' });
-    console.log(this._inputView.group.value)
-    this._modal.closeAll();
+    this._teams.addTeam$(this._inputView.value).subscribe(() => this._modal.closeAll());
   }
 }
