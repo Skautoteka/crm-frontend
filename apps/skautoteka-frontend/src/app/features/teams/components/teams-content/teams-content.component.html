@@ -1,1 +1,9 @@
-<skt-ui-table [tableSource]="[]" [tableDef]="tableDef"></skt-ui-table>
+<skt-ui-table [tableSource]="[]" [tableDef]="tableDef">
+  @for (item of [1, 2, 3]; track $index) {
+    <skt-ui-table-row>
+      <skt-ui-table-row-cell></skt-ui-table-row-cell>
+      <skt-ui-table-row-cell></skt-ui-table-row-cell>
+      <skt-ui-table-row-cell></skt-ui-table-row-cell>
+    </skt-ui-table-row>
+  }
+</skt-ui-table>

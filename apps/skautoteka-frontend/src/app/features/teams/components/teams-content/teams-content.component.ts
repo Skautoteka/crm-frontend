@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { TableComponent } from '@skautoteka-frontend/ui';
+import { TableComponent, TableRowCellComponent, TableRowComponent } from '@skautoteka-frontend/ui';
 import { TeamsService } from '../../services/teams.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { TeamsService } from '../../services/teams.service';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TableComponent]
+  imports: [TableComponent, TableRowComponent, TableRowCellComponent]
 })
 export class TeamsContentComponent {
   public tableDef = [

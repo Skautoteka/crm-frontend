@@ -1,14 +1,9 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, input, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewChecked, ChangeDetectionStrategy, Component, ContentChildren, ElementRef, input, QueryList, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { AsyncPipe } from '@angular/common';
 import { IconComponent } from '../../../icon';
 import { TableDefinition, TableSource } from '../../interfaces/itable';
-
-export interface TableColumn {
-  key: string;
-  label: string;
-  type: 'string' | 'player' | 'number' | 'date' | 'boolean' | 'img';
-}
+import { TableRowComponent } from '../table-row/table-row.component';
 
 @Component({
   standalone: true,
@@ -20,8 +15,9 @@ export interface TableColumn {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TableComponent implements AfterViewInit {
+export class TableComponent implements AfterViewChecked {
   @ViewChild('tableHeader', { read: ElementRef }) tableHeader!: ElementRef;
+  @ContentChildren(TableRowComponent) tableRows!: QueryList<TableRowComponent>;
 
   public tableSource = input<TableSource<unknown>>([]);
   public tableDef = input<TableDefinition>([]);
@@ -30,9 +26,14 @@ export class TableComponent implements AfterViewInit {
     classBinder.bind('skt-ui-table');
   }
 
-  ngAfterViewInit(): void {
+    ngAfterViewChecked(): void {
     const columnDef = this.tableDef().reduce((prev, curr) => prev + ' ' + curr.width, '');
     this._renderer.setStyle(this.tableHeader.nativeElement, 'grid-template-columns', columnDef);
-    console.log(columnDef, this.tableHeader)
+
+    this._setRowsTableDefinition();
+  }
+
+  private _setRowsTableDefinition(): void {
+    this.tableRows.forEach(row => row.setTableDef(this.tableDef()))
   }
 }

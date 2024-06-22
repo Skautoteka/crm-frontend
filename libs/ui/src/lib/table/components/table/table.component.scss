@@ -27,8 +27,22 @@
   }
 
   &__table-header-cell {
+    display: flex;
+    align-items: center;
+    height: 100%;
     width: 100%;
     font-weight: 500;
     min-width: 0;
+    text-align: start;
+    padding-left: 1.75rem;
+    overflow: hidden;
+  }
+
+  &__table-body {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+
   }
 }
