@@ -1,10 +1,12 @@
 <skt-ui-label-container>
   <skt-ui-label>
-    <span label>Miasto</span>
-    {{ 'eg' }}
+    <span label>Data utworzenia</span>
+    {{ createdDate$ | async | date }}
   </skt-ui-label>
   <skt-ui-label>
-    <span label>Kraj</span>
-    {{ 'eg' }}
+    <span label>Status</span>
+    @if(status$ | async; as status) {
+      <skt-ui-tag [text]="status | statusText" [type]="status === 'in_progress' ? 'simple' : 'success'"></skt-ui-tag>
+    }
   </skt-ui-label>
 </skt-ui-label-container>

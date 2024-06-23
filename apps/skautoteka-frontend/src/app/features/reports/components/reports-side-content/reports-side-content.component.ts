@@ -13,6 +13,7 @@ import { ReportsBasicInfoComponent } from '../reports-basic-info/reports-basic-i
 import { ReportsService } from '../../services';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ReportsTitleComponent } from '../reports-title/reports-title.component';
+import { ReportsRatingComponent } from '../reports-rating/reports-rating.component';
 
 @Component({
   standalone: true,
@@ -29,7 +30,8 @@ import { ReportsTitleComponent } from '../reports-title/reports-title.component'
     ReportsBasicInfoComponent,
     SideContentHeaderComponent,
     SideContentheaderActionsComponent,
-    ReportsTitleComponent
+    ReportsTitleComponent,
+    ReportsRatingComponent
   ]
 })
 export class ReportsSideContentComponent {

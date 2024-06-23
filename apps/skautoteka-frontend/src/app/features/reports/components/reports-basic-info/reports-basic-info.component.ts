@@ -6,8 +6,13 @@ import {
   LabelContainerComponent,
   ListCardComponent,
   TabComponent,
-  TabsComponent
+  TabsComponent,
+  TagComponent
 } from '@skautoteka-frontend/ui';
+import { map, Observable } from 'rxjs';
+import { Report } from '../../interfaces/report';
+import { ReportsService } from '../../services';
+import { StatusTextPipe } from '../../pipes';
 
 @Component({
   standalone: true,
@@ -24,11 +29,21 @@ import {
     LabelComponent,
     DatePipe,
     AsyncPipe,
-    LabelContainerComponent
+    LabelContainerComponent,
+    TagComponent,
+    StatusTextPipe
   ]
 })
 export class ReportsBasicInfoComponent {
-  constructor(classBinder: ClassBinder) {
+  constructor(classBinder: ClassBinder, private _report: ReportsService) {
     classBinder.bind('skt-reports-basic-info');
+  }
+
+  get createdDate$(): Observable<string> {
+    return this._report.activeReport$.pipe(map(report => report?.createdAt || ''));
+  }
+
+  get status$(): Observable<string> {
+    return this._report.activeReport$.pipe(map(report => report?.status || ''));
   }
 }

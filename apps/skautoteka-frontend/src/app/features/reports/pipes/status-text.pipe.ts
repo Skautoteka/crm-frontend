@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: true
 })
 export class StatusTextPipe implements PipeTransform {
-  transform(status: string): string {
+  transform(status: string | null): string {
     switch (status) {
       case 'finished':
         return 'Ukończony';
