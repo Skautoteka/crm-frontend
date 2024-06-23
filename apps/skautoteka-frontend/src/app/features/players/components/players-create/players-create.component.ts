@@ -9,6 +9,7 @@ import {
   ModalService
 } from '@skautoteka-frontend/ui';
 import { PlayersService } from '../../services';
+import { Player } from '../../interfaces';
 
 @Component({
   standalone: true,
@@ -27,12 +28,13 @@ export class PlayersCreateComponent {
     classBinder: ClassBinder,
     private _players: PlayersService,
     private _modal: ModalService,
-    public inputView: InputViewService<Report>
+    public inputView: InputViewService<Player>
   ) {
     classBinder.bind('skt-players-create');
+    this._players.getCreateFieldsConfig$().subscribe(config => this.config.set(config));
   }
 
   public onSaveButtonClick(): void {
-    this._players;
+    this._players.addPlayer$(this.inputView.value).subscribe(() => this._modal.closeAll());
   }
 }

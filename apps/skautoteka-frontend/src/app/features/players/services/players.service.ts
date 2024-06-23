@@ -3,6 +3,7 @@ import { PlayersHttpService } from './players-http.service';
 import { Router } from '@angular/router';
 import { Player } from '../interfaces';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { InputConfig } from '@skautoteka-frontend/ui';
 
 @Injectable({ providedIn: 'root' })
 export class PlayersService {
@@ -19,6 +20,13 @@ export class PlayersService {
 
   get activePlayer$(): Observable<Player | null> {
     return this._activePlayer$;
+  }
+
+  /**
+   * Gets create fields for players model.
+   */
+  public getCreateFieldsConfig$(): Observable<InputConfig> {
+    return this._playersHttp.getCreateFieldsConfig$();
   }
 
   /**

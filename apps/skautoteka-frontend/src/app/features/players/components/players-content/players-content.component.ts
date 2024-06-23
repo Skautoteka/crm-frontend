@@ -4,6 +4,7 @@ import { PlayersService } from '../../services';
 import { TableComponent, TableRowComponent, TableRowCellComponent } from '@skautoteka-frontend/ui';
 import { Observable, of } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { Player } from '../../interfaces';
 
 @Component({
   standalone: true,
@@ -20,15 +21,16 @@ export class PlayersContentComponent {
     { name: 'Zdjecie', width: '4rem', hidden: true },
     { name: 'Imię i nazwisko', width: 'auto' },
     { name: 'Wiek', width: '20%' },
-    { name: 'Drużyna', width: '30%' },
+    { name: 'Drużyna', width: '30%' }
   ];
 
-  get tableSource$(): Observable<[]> {
-    return of([]);
+  get tableSource$(): Observable<Player[]> {
+    return this._players.allPlayers$;
   }
 
   constructor(classBinder: ClassBinder, private _players: PlayersService) {
     classBinder.bind('skt-players-content');
+    this._players.fetchAllPlayers();
   }
 
   public onRowClicked(id: string): void {
