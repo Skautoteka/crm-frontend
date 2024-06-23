@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { ReportsSideContentComponent } from '../reports';
-import { ReportsSideEmptyComponent } from '../reports';
+import { SideContentEmptyComponent } from '@skautoteka-frontend/ui';
 
 export const REPORTS_ROUTES: Routes = [
   {
@@ -18,6 +18,6 @@ export const REPORTS_ROUTES: Routes = [
   },
   {
     path: '**',
-    component: ReportsSideEmptyComponent
+    component: SideContentEmptyComponent
   }
 ];
