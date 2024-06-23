@@ -33,7 +33,7 @@ import { TeamsBasicInfoComponent } from '../teams-basic-info/teams-basic-info.co
   ]
 })
 export class TeamsSideContentComponent {
-  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń drużynę' }];
+  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń drużynę', callback: () => this._deleteTeam() }];
 
   constructor(classBinder: ClassBinder, private _content: ContentService, private _teams: TeamsService) {
     classBinder.bind('skt-teams-side-content');
@@ -44,6 +44,13 @@ export class TeamsSideContentComponent {
 
   private _showSideContent() {
     this._teams.activeTeam$.pipe(takeUntilDestroyed()).subscribe(task => this._content.showSideContent(!!task));
+  }
 
+  private _deleteTeam(): void {
+    if(!this._teams.activeTeam) {
+      return;
+    }
+
+    this._teams.deleteTeam(this._teams.activeTeam.id);
   }
 }

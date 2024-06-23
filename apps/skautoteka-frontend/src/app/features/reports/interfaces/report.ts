@@ -1,3 +1,3 @@
 export interface Report {
-  id: number;
+  id: string;
 }

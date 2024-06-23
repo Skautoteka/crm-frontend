@@ -20,6 +20,16 @@ export class ReportsHttpService {
    * @returns
    */
     public getAllTasks$(): Observable<Report[]> {
-      return this.http.get<Report[]>('api/task/all');
+      return this.http.get<Report[]>('api/report/all');
+    }
+
+    /**
+     * Removes task from database.
+     *
+     * @param id
+     * @returns
+     */
+    public removeTask$(id: string): Observable<void> {
+      return this.http.delete<void>('api/report/' + id);
     }
 }

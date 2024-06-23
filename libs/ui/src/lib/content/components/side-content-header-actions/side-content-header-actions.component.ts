@@ -6,6 +6,7 @@ import { DialogService } from '../../../overlay';
 export interface ActionsConfig {
   type: 'DELETE' | 'EDIT';
   text: string;
+  callback: () => void;
 }
 
 @Component({
@@ -32,6 +33,7 @@ export class SideContentheaderActionsComponent {
       confirmInfo: {
         message: 'Tak, usuwam',
         callback: () => {
+          this.config()[0].callback();
           ref.close();
         }
       },

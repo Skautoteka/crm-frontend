@@ -31,7 +31,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   ]
 })
 export class ReportsSideContentComponent {
-  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń raport' }];
+  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń raport', callback: () => { console.log('') } }];
 
   constructor(classBinder: ClassBinder, private _content: ContentService, private _reports: ReportsService) {
     classBinder.bind('skt-reports-content');

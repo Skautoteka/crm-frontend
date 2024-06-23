@@ -22,6 +22,10 @@ export class TeamsService {
     return this._activeTeam$;
   }
 
+  get activeTeam(): Team | null {
+    return this._activeTeam;
+  }
+
   /**
    * Retrieves all reports from backend.
    *
@@ -50,6 +54,15 @@ export class TeamsService {
   }
 
   /**
+   * Removes the team from the database.
+   *
+   * @param id
+   */
+  public deleteTeam(id: string): void {
+    this._teamHttp.deleteTeam$(id).subscribe(() => this._deleteTeam(id));
+  }
+
+  /**
    * Sets active team.
    *
    * @param id
@@ -62,6 +75,12 @@ export class TeamsService {
     } else {
       this._router.navigate(['dashboard', 'teams']);
     }
+  }
+
+  private _deleteTeam(id: string): void {
+    this._allTeams = this._allTeams.filter(team => team.id !== id);
+    this._allTeams$.next(this._allTeams);
+    this.setActiveTeam(null);
   }
 
   private _setTeams(teams: Team[]): void {

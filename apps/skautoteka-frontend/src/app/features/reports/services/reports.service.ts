@@ -33,7 +33,7 @@ export class ReportsService {
    * @returns
    */
   public getAllReports(): Report[] {
-    this._allReports = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
+    this._allReports = [{ id: '1' }, { id: '2' }, { id: '3' }, { id: '4' }];
     return this._allReports;
   }
 
@@ -42,7 +42,7 @@ export class ReportsService {
    *
    * @param id
    */
-  public setActiveReport(id: number | null): void {
+  public setActiveReport(id: string | null): void {
     this._activeReport = this._allReports.find(report => report.id === id) || null;
     this._activeReport$.next(this._activeReport);
     if (this._activeReport) {
@@ -57,5 +57,9 @@ export class ReportsService {
    */
   public getCreateFieldsConfig$(): Observable<InputConfig> {
     return this._taskHttp.getCreateFieldsConfig$();
+  }
+
+  private _deleteTask(id: string): void {
+    this._allReports = this._allReports.filter(report => report.id !== id);
   }
 }

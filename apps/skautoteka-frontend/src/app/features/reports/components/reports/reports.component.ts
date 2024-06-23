@@ -5,7 +5,6 @@ import {
   SideContentComponent,
   SideContentheaderActionsComponent,
   ButtonComponent,
-  ActionsConfig,
   SideContentSectionComponent,
   SideContentSectionHeaderComponent,
   TableComponent,
@@ -39,8 +38,6 @@ import { ReportsCreateComponent } from '../reports-create/reports-create.compone
   ]
 })
 export class ReportsComponent {
-  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń raport' }];
-
   constructor(classBinder: ClassBinder, private _modal: ModalService) {
     classBinder.bind('skt-reports');
   }

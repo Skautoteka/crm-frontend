@@ -33,4 +33,14 @@ export class TeamsHttpService {
   public addTeam$(team: Team): Observable<IModelResponse<Team>> {
     return this.http.post<IModelResponse<Team>>('api/team', { ...team });
   }
+
+  /**
+   * Removes a team from the database.
+   *
+   * @param id
+   * @returns
+   */
+  public deleteTeam$(id: string): Observable<void> {
+    return this.http.delete<void>('api/team/' + id);
+  }
 }
