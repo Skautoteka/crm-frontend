@@ -5,10 +5,12 @@ import {
   InputComponent,
   InputConfig,
   InputContainerComponent,
-  InputViewService
+  InputViewService,
+  ModalService
 } from '@skautoteka-frontend/ui';
 import { ReportsService } from '../../services';
 import { AsyncPipe } from '@angular/common';
+import { Report } from '../../interfaces/report';
 
 @Component({
   standalone: true,
@@ -23,9 +25,17 @@ import { AsyncPipe } from '@angular/common';
 export class ReportsCreateComponent {
   public config = signal<InputConfig | null>(null);
 
-  constructor(classBinder: ClassBinder, private _tasks: ReportsService) {
+  constructor(
+    classBinder: ClassBinder,
+    private _report: ReportsService,
+    private _modal: ModalService,
+    public inputView: InputViewService<Report>
+  ) {
     classBinder.bind('skt-reports-create');
+    this._report.getCreateFieldsConfig$().subscribe(config => this.config.set(config));
+  }
 
-    this._tasks.getCreateFieldsConfig$().subscribe(config => this.config.set(config));
+  public onSaveButtonClick(): void {
+    this._report.addReport$(this.inputView.value).subscribe(() => this._modal.closeAll());
   }
 }

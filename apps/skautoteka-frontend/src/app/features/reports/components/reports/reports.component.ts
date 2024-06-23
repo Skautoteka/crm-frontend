@@ -44,8 +44,8 @@ export class ReportsComponent {
 
   public onAddNewClick(): void {
     this._modal.createModal(ReportsCreateComponent, {
-      header: 'Dodaj zadanie',
-      subHeader: 'Wypełnij wszystkie wymagane informacje o zadaniu i zapisz zmiany'
+      header: 'Dodaj raport',
+      subHeader: 'Wypełnij wszystkie wymagane informacje aby dodać raport'
     });
   }
 }

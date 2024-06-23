@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { InputConfig } from '@skautoteka-frontend/ui';
 import { Report } from '../interfaces/report';
+import { Team } from '../../teams/interfaces/team';
+import { IModelResponse } from '@skautoteka-frontend/common';
 
 @Injectable({ providedIn: 'root' })
 export class ReportsHttpService {
@@ -32,5 +34,14 @@ export class ReportsHttpService {
    */
   public removeReport$(id: string): Observable<void> {
     return this.http.delete<void>('api/report/' + id);
+  }
+
+  /**
+   * Post http request that adds a new report.
+   *
+   * @param report
+   */
+  public addReport$(report: Report): Observable<IModelResponse<Report>> {
+    return this.http.post<IModelResponse<Report>>('api/report', { ...report });
   }
 }

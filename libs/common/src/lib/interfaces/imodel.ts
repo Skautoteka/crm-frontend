@@ -1,13 +1,14 @@
 export interface IModelResponse<T> {
   success: boolean;
-  added: T & IGenericModelResponse;
+  added: T & IGenericModel;
 }
 
-interface IGenericModelResponse {
+export interface IGenericModel {
+  id: string;
   createdAt: string;
   updatedAt: string;
 }
 
-export interface IGenericDeleteResponse {
+export interface IGenericDelete {
   success: boolean;
 }

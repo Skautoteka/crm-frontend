@@ -37,10 +37,9 @@ import { Report } from '../../interfaces/report';
 export class ReportsContentComponent {
   public tableDef = [
     { name: 'Zdjecie', width: '4rem', hidden: true },
-    { name: 'Nazwa', width: 'auto%' },
+    { name: 'Nazwa', width: 'auto' },
     { name: 'Status', width: '20%' },
-    { name: 'Ocena', width: '10%' },
-    { name: 'Data utworzenia', width: '20%' }
+    { name: 'Data utworzenia', width: '30%' }
   ];
 
   constructor(classBinder: ClassBinder, public _reports: ReportsService) {

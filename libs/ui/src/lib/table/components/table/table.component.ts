@@ -38,7 +38,6 @@ export class TableComponent implements AfterViewChecked {
   ngAfterViewChecked(): void {
     const columnDef = this.tableDef().reduce((prev, curr) => prev + ' ' + curr.width, '');
     this._renderer.setStyle(this.tableHeader.nativeElement, 'grid-template-columns', columnDef);
-
     this._setRowsTableDefinition();
   }
 

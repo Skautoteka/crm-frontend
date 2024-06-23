@@ -21,7 +21,5 @@ export class DashboardUserComponent {
     classBinder.bind('skt-dashboard-user');
   }
 
-  public onActionClicked(type: 'notifications' | 'user-profile'): void {
-    console.log(type);
-  }
+  public onActionClicked(type: 'notifications' | 'user-profile'): void {}
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Report } from '../interfaces/report';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { InputConfig } from '@skautoteka-frontend/ui';
 import { ReportsHttpService } from './reports-http.service';
 
@@ -64,6 +64,18 @@ export class ReportsService {
    */
   public getCreateFieldsConfig$(): Observable<InputConfig> {
     return this._reportsHttp.getCreateFieldsConfig$();
+  }
+
+  /**
+   * Adds a new report to the database.
+   *
+   * @param report
+   */
+  public addReport$(report: Report): Observable<Report> {
+    return this._reportsHttp.addReport$(report).pipe(
+      map(({ added }) => added),
+      tap(report => this._setReports([...this._allReports, report]))
+    );
   }
 
   private _deleteTask(id: string): void {
