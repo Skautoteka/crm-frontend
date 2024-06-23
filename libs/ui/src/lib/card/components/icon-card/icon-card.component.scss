@@ -1,3 +1,19 @@
 .skt-ui-icon-card {
   display: flex;
+  width: max-content;
+  height: max-content;
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+
+  &--warn {
+    background-color: var(--warn-light);
+  }
+
+  &--success {
+    background-color: var(--primary-6);
+  }
+
+  &--simple {
+    background-color: var(--blue-light);
+  }
 }
