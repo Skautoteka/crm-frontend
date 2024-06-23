@@ -8,12 +8,14 @@ import {
   TableComponent,
   TableRowCellComponent,
   TableSource,
-  TableRowComponent
+  TableRowComponent,
+  TagComponent
 } from '@skautoteka-frontend/ui';
 import { ReportsService } from '../../services';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { Report } from '../../interfaces/report';
+import { StatusTextPipe } from '../../pipes';
 
 @Component({
   standalone: true,
@@ -31,15 +33,18 @@ import { Report } from '../../interfaces/report';
     TableComponent,
     AsyncPipe,
     TableRowCellComponent,
-    TableRowComponent
+    TableRowComponent,
+    TagComponent,
+    DatePipe,
+    StatusTextPipe
   ]
 })
 export class ReportsContentComponent {
   public tableDef = [
     { name: 'Zdjecie', width: '4rem', hidden: true },
     { name: 'Nazwa', width: 'auto' },
-    { name: 'Status', width: '20%' },
-    { name: 'Data utworzenia', width: '30%' }
+    { name: 'Status', width: '7.5rem' },
+    { name: 'Data utworzenia', width: '25%' }
   ];
 
   constructor(classBinder: ClassBinder, public _reports: ReportsService) {

@@ -15,7 +15,7 @@ import { TagType } from '../../interface';
 })
 export class TagComponent {
   public text = input<string>('');
-  public type = input<TagType>(TagType.SIMPLE);
+  public type = input<TagType>('simple');
 
   constructor(private _classBinder: ClassBinder) {
     this._classBinder.bind('skt-ui-tag');
@@ -25,7 +25,7 @@ export class TagComponent {
   private _setTypeClass(): void {
     effect(() => {
       const type = this.type();
-      this._classBinder.bind('stk-ui-tag--' + type);
+      this._classBinder.bind('skt-ui-tag--' + type);
     });
   }
 }

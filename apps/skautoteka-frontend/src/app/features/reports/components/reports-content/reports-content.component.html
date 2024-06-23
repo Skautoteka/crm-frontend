@@ -5,7 +5,10 @@
         <div class="skt-reports-content__reports-logo"></div>
       </skt-ui-table-row-cell>
       <skt-ui-table-row-cell>{{ item.name }}</skt-ui-table-row-cell>
-      <skt-ui-table-row-cell>{{ item.createdAt }}</skt-ui-table-row-cell>
+      <skt-ui-table-row-cell>
+        <skt-ui-tag [text]="item.status | statusText" type="success"></skt-ui-tag>
+      </skt-ui-table-row-cell>
+      <skt-ui-table-row-cell>{{ item.createdAt | date }}</skt-ui-table-row-cell>
     </skt-ui-table-row>
   }
 </skt-ui-table>

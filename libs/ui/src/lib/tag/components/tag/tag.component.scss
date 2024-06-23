@@ -2,16 +2,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
 
-  &--warn {}
+  &--warn {
+    background: var(--warn-light);
+    color: var(--warn);
+  }
 
-  &--success {}
+  &--success {
+    background: var(--primary-6);
+    color: var(--primary-3)
+  }
 
   &--simple {
-
+    background: var(--blue-light);
+    color: var(--blue-dark)
   }
 
   &__text {
-
+    font-size: 0.75rem;
   }
 }
