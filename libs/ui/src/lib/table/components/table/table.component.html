@@ -1,41 +1,17 @@
-<div class="skt-ui-table-wrapper">
-  <table class="skt-ui-table">
-    <thead>
-      <tr>
-        <th *ngFor="let column of columns">
-          {{ column.label }}
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let row of data" (click)="onActionClick(row['id'])">
-        <td *ngFor="let column of columns">
-          <ng-container [ngSwitch]="column.type">
-            <div *ngSwitchCase="'player'" class="player-cell">
-              <span class="string-cell">{{ row[column.key] }}</span>
-              <span class="position-subcell">{{ row['position'] }}</span>
-            </div>
-            <span *ngSwitchCase="'string'" class="string-cell">{{ row[column.key] }}</span>
+<table class="skt-ui-table__table">
+  <thead class="skt-ui-table__table-header">
+    <tr #tableHeader class="skt-ui-table__table-header-row">
+      @for (definition of tableDef(); track definition.name) {
+      <th class="skt-ui-table__table-header-cell">
+        @if(!definition.hidden) {
+        {{ definition.name }}
+        }
+      </th>
+      }
+    </tr>
+  </thead>
 
-            <span *ngSwitchCase="'number'" class="number-cell">{{ row[column.key] }}</span>
-            <span *ngSwitchCase="'date'" class="date-cell">{{
-              row[column.key] | date : 'mediumDate' : '' : 'pl-PL'
-            }}</span>
-            <span *ngSwitchCase="'boolean'" [class.true-cell]="row[column.key]" [class.false-cell]="!row[column.key]">
-              {{ row[column.key] ? 'Ukończony' : 'W trakcie' }}
-            </span>
-            <img
-              *ngSwitchCase="'img'"
-              [src]="row[column.key]"
-              [alt]="column.label"
-              style="width: 40px"
-              class="image-cell"
-            />
-            <span *ngSwitchDefault>{{ row[column.key] }}</span>
-          </ng-container>
-        </td>
-        <skt-ui-icon iconName="more-vertical"></skt-ui-icon>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <tbody class="skt-ui-table__table-body">
+    <ng-content select="skt-ui-table-row"></ng-content>
+  </tbody>
+</table>

@@ -5,11 +5,8 @@ import {
   SideContentComponent,
   SideContentheaderActionsComponent,
   ButtonComponent,
-  ActionsConfig,
   SideContentSectionComponent,
   SideContentSectionHeaderComponent,
-  SideContentSectionEntityComponent,
-  SideContentSectionRatingComponent,
   TableComponent,
   ContentComponent,
   ModalService
@@ -37,22 +34,18 @@ import { ReportsCreateComponent } from '../reports-create/reports-create.compone
     ButtonComponent,
     TableComponent,
     ReportsContentComponent,
-    SideContentSectionEntityComponent,
-    SideContentSectionRatingComponent,
     ReportsBasicInfoComponent
   ]
 })
 export class ReportsComponent {
-  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń raport' }];
-
   constructor(classBinder: ClassBinder, private _modal: ModalService) {
     classBinder.bind('skt-reports');
   }
 
   public onAddNewClick(): void {
     this._modal.createModal(ReportsCreateComponent, {
-      header: 'Dodaj zadanie',
-      subHeader: 'Wypełnij wszystkie wymagane informacje o zadaniu i zapisz zmiany'
+      header: 'Dodaj raport',
+      subHeader: 'Wypełnij wszystkie wymagane informacje aby dodać raport'
     });
   }
 }

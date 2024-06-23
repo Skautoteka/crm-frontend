@@ -15,6 +15,11 @@
     width: 100%;
     white-space: nowrap;
 
+    &--disabled {
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
     &:hover {
       background-color: var(--primary);
       outline: 0.25rem solid rgba(#a3b0ad, 0.25);

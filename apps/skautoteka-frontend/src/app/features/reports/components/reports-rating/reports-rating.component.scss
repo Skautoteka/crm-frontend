@@ -1,0 +1,19 @@
+.skt-reports-rating {
+  &__rating-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+
+  &__rating-title {
+    font-size: 0.875rem;
+    color: var(--basic-4);
+  }
+
+  &__rating-value {
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+}

@@ -1,0 +1,29 @@
+.skt-ui-icon-card {
+  display: flex;
+  width: max-content;
+  height: max-content;
+  gap: 1rem;
+
+  &__icon-wrapper {
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+  }
+
+  &--warn {
+    .skt-ui-icon-card__icon-wrapper {
+      background-color: var(--warn-light);
+    }
+  }
+
+  &--success {
+    .skt-ui-icon-card__icon-wrapper {
+      background-color: var(--primary-6);
+    }
+  }
+
+  &--simple {
+    .skt-ui-icon-card__icon-wrapper {
+      background-color: var(--blue-light);
+    }
+  }
+}

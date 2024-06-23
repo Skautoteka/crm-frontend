@@ -37,7 +37,6 @@ export class ModalService {
     this._refSet.add(ref);
     ref.changeDetectorRef.detectChanges();
 
-    console.log('setting backdrop');
     this._overlay.setBackdrop(true);
     return ref;
   }

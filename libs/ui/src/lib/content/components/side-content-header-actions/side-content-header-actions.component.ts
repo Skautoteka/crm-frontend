@@ -6,6 +6,7 @@ import { DialogService } from '../../../overlay';
 export interface ActionsConfig {
   type: 'DELETE' | 'EDIT';
   text: string;
+  callback: () => void;
 }
 
 @Component({
@@ -27,11 +28,12 @@ export class SideContentheaderActionsComponent {
 
   public onActionClick(): void {
     const ref = this._dialog.createPrompt({
-      message: 'Czy na pewno chcesz usunąć raport?',
-      auxiliaryMessage: 'Usunięcie raportu skutkuje całkowitym usunięciem danych',
+      message: 'Czy na pewno chcesz usunąć rekord?',
+      auxiliaryMessage: 'Usunięcie skutkuje całkowitym usunięciem danych',
       confirmInfo: {
         message: 'Tak, usuwam',
         callback: () => {
+          this.config()[0].callback();
           ref.close();
         }
       },

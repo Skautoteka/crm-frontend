@@ -1,1 +1,2 @@
-export * from './components/table/table.component';
+export * from './components';
+export * from './interfaces';

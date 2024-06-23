@@ -13,6 +13,7 @@ import { ButtonType } from '../../interface';
 })
 export class ButtonComponent {
   public type = input<ButtonType>('SIMPLE');
+  public disabled = input<boolean>(false);
 
   constructor(private _classBinder: ClassBinder) {
     _classBinder.bind('skt-ui-button');

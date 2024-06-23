@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { TasksSideContentComponent } from '../tasks/components/tasks-side-content/tasks-side-content.component';
-import { TasksSideEmptyComponent } from '../tasks';
+import { SideContentEmptyComponent } from '@skautoteka-frontend/ui';
 
 export const TASKS_ROUTES: Routes = [
   {
@@ -18,6 +18,6 @@ export const TASKS_ROUTES: Routes = [
   },
   {
     path: '**',
-    component: TasksSideEmptyComponent
+    component: SideContentEmptyComponent
   }
 ];

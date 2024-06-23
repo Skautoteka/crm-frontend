@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Report } from '../interfaces/report';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { InputConfig } from '@skautoteka-frontend/ui';
 import { ReportsHttpService } from './reports-http.service';
 
 @Injectable({ providedIn: 'root' })
 export class ReportsService {
   private _allReports: Report[] = [];
+  private _allReports$ = new BehaviorSubject<Report[]>([]);
   private _activeReport: Report | null = null;
   private _activeReport$ = new BehaviorSubject<Report | null>(null);
 
-  constructor(private _router: Router, private _taskHttp: ReportsHttpService) {}
+  constructor(private _router: Router, private _reportsHttp: ReportsHttpService) {}
 
   /**
    * Returns an active report on the report view.
@@ -28,13 +29,19 @@ export class ReportsService {
   }
 
   /**
-   * Retrieves all reports from backend.
+   * Returns all reports currently in store.
+   */
+  get allReports$(): Observable<Report[]> {
+    return this._allReports$;
+  }
+
+  /**
+   * Retrieves all reports from backend and sets it inside a store.
    *
    * @returns
    */
-  public getAllReports(): Report[] {
-    this._allReports = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
-    return this._allReports;
+  public fetchAllReports(): void {
+    this._reportsHttp.getAllReports$().subscribe(teams => this._setReports(teams));
   }
 
   /**
@@ -42,7 +49,7 @@ export class ReportsService {
    *
    * @param id
    */
-  public setActiveReport(id: number | null): void {
+  public setActiveReport(id: string | null): void {
     this._activeReport = this._allReports.find(report => report.id === id) || null;
     this._activeReport$.next(this._activeReport);
     if (this._activeReport) {
@@ -56,6 +63,27 @@ export class ReportsService {
    * Gets create fields for tasks model.
    */
   public getCreateFieldsConfig$(): Observable<InputConfig> {
-    return this._taskHttp.getCreateFieldsConfig$();
+    return this._reportsHttp.getCreateFieldsConfig$();
+  }
+
+  /**
+   * Adds a new report to the database.
+   *
+   * @param report
+   */
+  public addReport$(report: Report): Observable<Report> {
+    return this._reportsHttp.addReport$(report).pipe(
+      map(({ added }) => added),
+      tap(report => this._setReports([...this._allReports, report]))
+    );
+  }
+
+  private _deleteTask(id: string): void {
+    this._allReports = this._allReports.filter(report => report.id !== id);
+  }
+
+  private _setReports(reports: Report[]): void {
+    this._allReports = reports;
+    this._allReports$.next(this._allReports);
   }
 }

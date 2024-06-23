@@ -1,4 +1,14 @@
-import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  ElementRef,
+  input,
+  Input,
+  Renderer2,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { NgClass } from '@angular/common';
 
@@ -13,9 +23,17 @@ import { NgClass } from '@angular/common';
   providers: [ClassBinder]
 })
 export class IconComponent {
-  @Input({ required: true }) iconName = '';
+  @ViewChild('iconWrapper', { read: ElementRef }) iconWrapper!: ElementRef;
 
-  constructor(classBinder: ClassBinder) {
+  @Input({ required: true }) iconName = '';
+  public iconColor = input<string>('');
+
+  constructor(classBinder: ClassBinder, private _renderer: Renderer2) {
     classBinder.bind('skt-ui-icon');
+
+    effect(() => {
+      const color = this.iconColor();
+      this._renderer.setStyle(this.iconWrapper.nativeElement, 'color', color);
+    });
   }
 }

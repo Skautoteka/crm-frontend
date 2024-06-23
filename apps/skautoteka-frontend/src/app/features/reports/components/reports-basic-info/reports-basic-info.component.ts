@@ -1,7 +1,17 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { DatePipe } from '@angular/common';
-import { LabelComponent, ListCardComponent, TabComponent, TabsComponent } from '@skautoteka-frontend/ui';
+import { AsyncPipe, DatePipe } from '@angular/common';
+import {
+  LabelComponent,
+  LabelContainerComponent,
+  ListCardComponent,
+  TabComponent,
+  TabsComponent,
+  TagComponent
+} from '@skautoteka-frontend/ui';
+import { map, Observable } from 'rxjs';
+import { ReportsService } from '../../services';
+import { StatusTextPipe } from '../../pipes';
 
 @Component({
   standalone: true,
@@ -11,13 +21,28 @@ import { LabelComponent, ListCardComponent, TabComponent, TabsComponent } from '
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TabsComponent, TabComponent, ListCardComponent, LabelComponent, DatePipe]
+  imports: [
+    TabsComponent,
+    TabComponent,
+    ListCardComponent,
+    LabelComponent,
+    DatePipe,
+    AsyncPipe,
+    LabelContainerComponent,
+    TagComponent,
+    StatusTextPipe
+  ]
 })
 export class ReportsBasicInfoComponent {
-  @Input() date: Date = new Date();
-  @Input() rating = 0;
-  @Input() finished = false;
-  constructor(classBinder: ClassBinder) {
+  constructor(classBinder: ClassBinder, private _report: ReportsService) {
     classBinder.bind('skt-reports-basic-info');
+  }
+
+  get createdDate$(): Observable<string> {
+    return this._report.activeReport$.pipe(map(report => report?.createdAt || ''));
+  }
+
+  get status$(): Observable<string> {
+    return this._report.activeReport$.pipe(map(report => report?.status || ''));
   }
 }

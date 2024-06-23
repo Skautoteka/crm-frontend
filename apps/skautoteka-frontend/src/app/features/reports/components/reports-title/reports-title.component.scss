@@ -1,0 +1,30 @@
+.skt-report-title {
+  display: flex;
+  gap: 1.5rem;
+
+  &__logo {
+    display: block;
+    width: 4rem;
+    min-width: 4rem;
+    height: 4rem;
+    background-color: var(--primary-6);
+    border-radius: 0.5rem;
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+
+  &__report-name {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  &__report-position {
+    color: var(--primary-3);
+    font-size: 0.875rem;
+  }
+}
