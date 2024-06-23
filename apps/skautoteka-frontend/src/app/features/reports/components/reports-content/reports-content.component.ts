@@ -55,4 +55,8 @@ export class ReportsContentComponent {
   get tableSource$(): Observable<TableSource<Report>> {
     return this._reports.allReports$;
   }
+
+  public onRowClicked(id: string): void {
+    this._reports.setActiveReport(id);
+  }
 }

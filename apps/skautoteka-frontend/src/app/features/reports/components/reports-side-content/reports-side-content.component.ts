@@ -31,7 +31,15 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   ]
 })
 export class ReportsSideContentComponent {
-  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń raport', callback: () => { console.log('') } }];
+  public actionsConfig: ActionsConfig[] = [
+    {
+      type: 'DELETE',
+      text: 'Usuń raport',
+      callback: () => {
+        console.log('');
+      }
+    }
+  ];
 
   constructor(classBinder: ClassBinder, private _content: ContentService, private _reports: ReportsService) {
     classBinder.bind('skt-reports-content');
@@ -45,8 +53,4 @@ export class ReportsSideContentComponent {
   private _showSideContent() {
     this._reports.activeReport$.pipe(takeUntilDestroyed()).subscribe(report => this._content.showSideContent(!!report));
   }
-
-  selectedDate = new Date('2024-01-31');
-  rating = 4.5;
-  finished = true;
 }

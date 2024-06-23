@@ -14,9 +14,6 @@ import { LabelComponent, ListCardComponent, TabComponent, TabsComponent } from '
   imports: [TabsComponent, TabComponent, ListCardComponent, LabelComponent, DatePipe]
 })
 export class ReportsBasicInfoComponent {
-  @Input() date: Date = new Date();
-  @Input() rating = 0;
-  @Input() finished = false;
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-reports-basic-info');
   }
