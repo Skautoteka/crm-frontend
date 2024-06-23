@@ -3,4 +3,5 @@ export interface Team {
   name: string;
   country: string | null;
   city: string | null;
+  league: string | null;
 }

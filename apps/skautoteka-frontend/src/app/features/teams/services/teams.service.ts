@@ -48,9 +48,10 @@ export class TeamsService {
    * @param team
    */
   public addTeam$(team: Team): Observable<Team> {
-    return this._teamHttp.addTeam$(team).pipe(map(({ added }) => added), tap(team =>
-      this._setTeams([...this._allTeams, team])
-    ))
+    return this._teamHttp.addTeam$(team).pipe(
+      map(({ added }) => added),
+      tap(team => this._setTeams([...this._allTeams, team]))
+    );
   }
 
   /**
@@ -70,8 +71,8 @@ export class TeamsService {
   public setActiveTeam(id: string | null): void {
     this._activeTeam = this._allTeams.find(team => team.id === id) || null;
     this._activeTeam$.next(this._activeTeam);
-    if(this._activeTeam) {
-      this._router.navigate(['dashboard', 'teams', 'details', this._activeTeam.id])
+    if (this._activeTeam) {
+      this._router.navigate(['dashboard', 'teams', 'details', this._activeTeam.id]);
     } else {
       this._router.navigate(['dashboard', 'teams']);
     }

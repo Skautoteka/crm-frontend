@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Team } from '../interfaces/team';
 import { InputConfig } from '@skautoteka-frontend/ui';
-import { IModelResponse } from '@skautoteka-frontend/common';
+import { IGenericDeleteResponse, IModelResponse } from '@skautoteka-frontend/common';
 
 @Injectable({ providedIn: 'root' })
 export class TeamsHttpService {
@@ -40,7 +40,7 @@ export class TeamsHttpService {
    * @param id
    * @returns
    */
-  public deleteTeam$(id: string): Observable<void> {
-    return this.http.delete<void>('api/team/' + id);
+  public deleteTeam$(id: string): Observable<IGenericDeleteResponse> {
+    return this.http.delete<IGenericDeleteResponse>('api/team/' + id);
   }
 }

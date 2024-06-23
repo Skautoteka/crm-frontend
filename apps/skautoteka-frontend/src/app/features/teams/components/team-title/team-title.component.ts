@@ -20,6 +20,10 @@ export class TeamTitleComponent {
   }
 
   get teamName$(): Observable<string> {
-    return this._team.activeTeam$.pipe(map(team => team?.name || ''))
+    return this._team.activeTeam$.pipe(map(team => team?.name || ''));
+  }
+
+  get teamLeague$(): Observable<string> {
+    return this._team.activeTeam$.pipe(map(team => team?.league || ''));
   }
 }

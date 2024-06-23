@@ -1,6 +1,12 @@
 import { ChangeDetectionStrategy, Component, signal, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { ButtonComponent, InputComponent, InputConfig, InputContainerComponent } from '@skautoteka-frontend/ui';
+import {
+  ButtonComponent,
+  InputComponent,
+  InputConfig,
+  InputContainerComponent,
+  InputViewService
+} from '@skautoteka-frontend/ui';
 import { ReportsService } from '../../services';
 import { AsyncPipe } from '@angular/common';
 
@@ -9,7 +15,7 @@ import { AsyncPipe } from '@angular/common';
   selector: 'skt-reports-create',
   styleUrl: './reports-create.component.scss',
   templateUrl: 'reports-create.component.html',
-  providers: [ClassBinder],
+  providers: [ClassBinder, InputViewService],
   imports: [InputComponent, ButtonComponent, InputContainerComponent, AsyncPipe],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

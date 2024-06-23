@@ -26,7 +26,7 @@ export class ReportsContentComponent {
     { name: 'Liga', width: '20%' },
     { name: 'Kraj', width: '30%' },
     { name: 'Miasto', width: '20%' }
-  ]
+  ];
 
   constructor(classBinder: ClassBinder, public reportsService: ReportsService) {
     classBinder.bind('skt-reports-content');

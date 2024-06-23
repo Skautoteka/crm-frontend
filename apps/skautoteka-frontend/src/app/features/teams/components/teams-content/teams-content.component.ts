@@ -19,9 +19,9 @@ import { TableSource } from '@skautoteka-frontend/ui';
 })
 export class TeamsContentComponent {
   public tableDef = [
-    { name: 'Zdjecie', width: '15%', hidden: true },
-    { name: 'Nazwa', width: '35%' },
-    { name: 'Kraj', width: '20%' },
+    { name: 'Zdjecie', width: '4rem', hidden: true },
+    { name: 'Nazwa', width: 'auto' },
+    { name: 'Kraj', width: '25%' },
     { name: 'Miasto', width: '30%' }
   ];
 
