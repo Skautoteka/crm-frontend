@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { InputConfig } from '@skautoteka-frontend/ui';
 import { Report } from '../interfaces/report';
-import { Team } from '../../teams/interfaces/team';
 import { IModelResponse } from '@skautoteka-frontend/common';
 
 @Injectable({ providedIn: 'root' })

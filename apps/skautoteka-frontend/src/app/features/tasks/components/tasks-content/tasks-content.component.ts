@@ -19,7 +19,9 @@ export class TasksContentComponent {
     classBinder.bind('skt-tasks-content');
   }
 
-  public handleTabChange(id: string | null): void {}
+  public handleTabChange(id: string | null): void {
+    console.log(id);
+  }
 
   public handleTaskClick(id: number): void {
     this.tasksService.setActiveTask(id);

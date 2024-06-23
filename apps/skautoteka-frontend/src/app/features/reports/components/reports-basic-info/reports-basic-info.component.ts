@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import {
@@ -10,7 +10,6 @@ import {
   TagComponent
 } from '@skautoteka-frontend/ui';
 import { map, Observable } from 'rxjs';
-import { Report } from '../../interfaces/report';
 import { ReportsService } from '../../services';
 import { StatusTextPipe } from '../../pipes';
 

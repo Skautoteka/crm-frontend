@@ -42,7 +42,9 @@ export class TeamsSideContentComponent {
     this._showSideContent();
   }
 
-  public onMobileBackClick(): void {}
+  public onMobileBackClick(): void {
+    console.log('back click');
+  }
 
   private _showSideContent() {
     this._teams.activeTeam$.pipe(takeUntilDestroyed()).subscribe(task => this._content.showSideContent(!!task));
