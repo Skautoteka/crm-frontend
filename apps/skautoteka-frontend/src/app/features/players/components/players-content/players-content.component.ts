@@ -18,9 +18,9 @@ import { AsyncPipe } from '@angular/common';
 export class PlayersContentComponent {
   public tableDef = [
     { name: 'Zdjecie', width: '4rem', hidden: true },
-    { name: 'Nazwa', width: 'auto' },
-    { name: 'Kraj', width: '25%' },
-    { name: 'Miasto', width: '30%' }
+    { name: 'Imię i nazwisko', width: 'auto' },
+    { name: 'Wiek', width: '20%' },
+    { name: 'Drużyna', width: '30%' },
   ];
 
   get tableSource$(): Observable<[]> {
