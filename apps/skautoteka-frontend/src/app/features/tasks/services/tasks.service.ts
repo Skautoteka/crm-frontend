@@ -43,7 +43,7 @@ export class TasksService {
    * Adds a new task.
    */
   public addTask(task: Task): void {
-    this._taskHttp.postTask(task).subscribe(task => {
+    this._taskHttp.postTask$(task).subscribe(task => {
       this._allTasks = [...this._allTasks, { ...task }];
       this._allTasks$.next(this._allTasks);
     });

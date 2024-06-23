@@ -32,5 +32,7 @@ export class PlayersCreateComponent {
     classBinder.bind('skt-players-create');
   }
 
-  public onSaveButtonClick(): void {}
+  public onSaveButtonClick(): void {
+    this._players;
+  }
 }
