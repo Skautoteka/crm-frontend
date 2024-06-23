@@ -1,1 +1,9 @@
-<skt-ui-table [tableDef]="tableDef"></skt-ui-table>
+<skt-ui-table [tableDef]="tableDef">
+  @for (item of tableSource$ | async; track item.id) {
+    <skt-ui-table-row>
+      <skt-ui-table-row-cell>
+        <div class="skt-reports-content__reports-logo"></div>
+      </skt-ui-table-row-cell>
+    </skt-ui-table-row>
+  }
+</skt-ui-table>

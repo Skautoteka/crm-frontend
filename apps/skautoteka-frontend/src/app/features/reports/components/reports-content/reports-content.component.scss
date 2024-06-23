@@ -49,4 +49,12 @@
   &__reports-card-header {
     color: var(--primary-4);
   }
+
+  &__reports-logo {
+    width: 2.5rem;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    background: var(--primary-5);
+  }
 }
