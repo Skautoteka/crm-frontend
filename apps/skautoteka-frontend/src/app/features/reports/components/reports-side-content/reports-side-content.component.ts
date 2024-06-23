@@ -46,7 +46,7 @@ export class ReportsSideContentComponent {
   ];
 
   constructor(classBinder: ClassBinder, private _content: ContentService, private _reports: ReportsService) {
-    classBinder.bind('skt-reports-content');
+    classBinder.bind('skt-reports-side-content');
     this._showSideContent();
   }
 

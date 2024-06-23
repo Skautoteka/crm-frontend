@@ -2,18 +2,28 @@
   display: flex;
   width: max-content;
   height: max-content;
-  border-radius: 0.5rem;
-  padding: 0.25rem;
+  gap: 1rem;
+
+  &__icon-wrapper {
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+  }
 
   &--warn {
-    background-color: var(--warn-light);
+    .skt-ui-icon-card__icon-wrapper {
+      background-color: var(--warn-light);
+    }
   }
 
   &--success {
-    background-color: var(--primary-6);
+    .skt-ui-icon-card__icon-wrapper {
+      background-color: var(--primary-6);
+    }
   }
 
   &--simple {
-    background-color: var(--blue-light);
+    .skt-ui-icon-card__icon-wrapper {
+      background-color: var(--blue-light);
+    }
   }
 }
