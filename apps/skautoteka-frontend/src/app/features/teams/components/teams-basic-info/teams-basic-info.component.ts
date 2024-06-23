@@ -21,10 +21,10 @@ export class TeamsBasicInfoComponent {
   }
 
   get city$(): Observable<string> {
-    return this._teams.activeTeam$.pipe(map(team => team?.city || ''))
+    return this._teams.activeTeam$.pipe(map(team => team?.city || ''));
   }
 
   get country$(): Observable<string> {
-    return this._teams.activeTeam$.pipe(map(team => team?.country || ''))
+    return this._teams.activeTeam$.pipe(map(team => team?.country || ''));
   }
 }

@@ -1,12 +1,12 @@
 <skt-ui-table [tableDef]="tableDef">
   @for (item of tableSource$ | async; track item.id) {
-    <skt-ui-table-row (rowClicked)="onRowClicked(item.id)">
-      <skt-ui-table-row-cell>
-        <div class="skt-teams-content__team-logo"></div>
-      </skt-ui-table-row-cell>
-      <skt-ui-table-row-cell>{{ item.name }}</skt-ui-table-row-cell>
-      <skt-ui-table-row-cell>{{ item.city }}</skt-ui-table-row-cell>
-      <skt-ui-table-row-cell>{{ item.country }}</skt-ui-table-row-cell>
-    </skt-ui-table-row>
+  <skt-ui-table-row (rowClicked)="onRowClicked(item.id)">
+    <skt-ui-table-row-cell>
+      <div class="skt-teams-content__team-logo"></div>
+    </skt-ui-table-row-cell>
+    <skt-ui-table-row-cell>{{ item.name }}</skt-ui-table-row-cell>
+    <skt-ui-table-row-cell>{{ item.city }}</skt-ui-table-row-cell>
+    <skt-ui-table-row-cell>{{ item.country }}</skt-ui-table-row-cell>
+  </skt-ui-table-row>
   }
 </skt-ui-table>

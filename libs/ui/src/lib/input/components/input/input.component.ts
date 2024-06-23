@@ -1,4 +1,15 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, forwardRef, inject, Injector, input, signal, ViewEncapsulation } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  forwardRef,
+  inject,
+  Injector,
+  input,
+  signal,
+  ViewEncapsulation
+} from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
@@ -30,7 +41,7 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   protected _value = '';
   private _control!: NgControl;
   private _isDisabled = false;
-  private _destroyRef = inject(DestroyRef)
+  private _destroyRef = inject(DestroyRef);
 
   private _onChange!: (value: string) => void;
   private _onTouched!: () => void;
@@ -70,18 +81,18 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   }
 
   private _updateValidUi(): void {
-    if(!this._control.statusChanges) {
+    if (!this._control.statusChanges) {
       return;
     }
 
     this._control.statusChanges.pipe(takeUntilDestroyed(this._destroyRef)).subscribe(event => {
-      if(event === 'VALID') {
+      if (event === 'VALID') {
         this.invalid.set(false);
       }
 
-      if(event === 'INVALID') {
+      if (event === 'INVALID') {
         this.invalid.set(true);
       }
-    })
+    });
   }
 }

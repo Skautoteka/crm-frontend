@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Injectable()
 export class InputViewService<K> {
   private _formGroup: FormGroup | null = null;
 
   get group(): FormGroup {
-    if(!this._formGroup) {
+    if (!this._formGroup) {
       throw new Error('Form group was not set!');
     }
 

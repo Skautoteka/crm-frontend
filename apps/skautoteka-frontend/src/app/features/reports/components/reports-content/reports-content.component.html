@@ -1,14 +1,17 @@
 <skt-ui-table [tableDef]="tableDef">
   @for (item of tableSource$ | async; track item.id) {
-    <skt-ui-table-row (rowClicked)="onRowClicked(item.id)">
-      <skt-ui-table-row-cell>
-        <div class="skt-reports-content__reports-logo"></div>
-      </skt-ui-table-row-cell>
-      <skt-ui-table-row-cell>{{ item.name }}</skt-ui-table-row-cell>
-      <skt-ui-table-row-cell>
-        <skt-ui-tag [text]="item.status | statusText" [type]="item.status === 'in_progress' ? 'simple' : 'success'"></skt-ui-tag>
-      </skt-ui-table-row-cell>
-      <skt-ui-table-row-cell>{{ item.createdAt | date }}</skt-ui-table-row-cell>
-    </skt-ui-table-row>
+  <skt-ui-table-row (rowClicked)="onRowClicked(item.id)">
+    <skt-ui-table-row-cell>
+      <div class="skt-reports-content__reports-logo"></div>
+    </skt-ui-table-row-cell>
+    <skt-ui-table-row-cell>{{ item.name }}</skt-ui-table-row-cell>
+    <skt-ui-table-row-cell>
+      <skt-ui-tag
+        [text]="item.status | statusText"
+        [type]="item.status === 'in_progress' ? 'simple' : 'success'"
+      ></skt-ui-tag>
+    </skt-ui-table-row-cell>
+    <skt-ui-table-row-cell>{{ item.createdAt | date }}</skt-ui-table-row-cell>
+  </skt-ui-table-row>
   }
 </skt-ui-table>

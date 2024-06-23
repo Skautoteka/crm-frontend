@@ -25,7 +25,12 @@ import { Task } from 'zone.js/lib/zone-impl';
 export class TasksCreateComponent {
   public config = signal<InputConfig | null>(null);
 
-  constructor(classBinder: ClassBinder, public inputView: InputViewService<Task>, private _tasks: TasksService, private _modal: ModalService) {
+  constructor(
+    classBinder: ClassBinder,
+    public inputView: InputViewService<Task>,
+    private _tasks: TasksService,
+    private _modal: ModalService
+  ) {
     classBinder.bind('skt-tasks-create');
 
     this._tasks.getCreateFieldsConfig$().subscribe(config => this.config.set(config));
