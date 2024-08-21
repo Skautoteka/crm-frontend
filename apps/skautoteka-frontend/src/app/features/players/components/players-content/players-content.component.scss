@@ -1,0 +1,20 @@
+.skt-players-content {
+  display: flex;
+  height: 100%;
+
+  @media (min-width: 850px) {
+    padding: 0 2rem 0 0;
+  }
+
+  @media (max-width: 850px) {
+    margin-top: 2rem;
+  }
+
+  &__team-logo {
+    width: 2.5rem;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    background: var(--primary-6);
+  }
+}

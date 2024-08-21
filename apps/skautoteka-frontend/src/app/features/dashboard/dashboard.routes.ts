@@ -3,6 +3,7 @@ import { DashboardComponent } from './components';
 import { TasksComponent } from '../tasks';
 import { ReportsComponent } from '../reports';
 import { TeamsComponent } from '../teams';
+import { PlayersComponent } from '../players';
 
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -23,6 +24,11 @@ export const DASHBOARD_ROUTES: Routes = [
         path: 'teams',
         component: TeamsComponent,
         loadChildren: () => import('./teams.routes').then(r => r.TEAMS_ROUTES)
+      },
+      {
+        path: 'players',
+        component: PlayersComponent,
+        loadChildren: () => import('./players.routes').then(r => r.PLAYERS_ROUTES)
       }
     ]
   },
