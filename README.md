@@ -1,6 +1,6 @@
 # SKAUTOTEKA - FRONTEND
 
-## STARTING LOCAL SERVER LOCALLY
+## STARTING LOCAL SERVER
 - npm install
-- nx serve skautoteka-frontend
+- npm start
 
