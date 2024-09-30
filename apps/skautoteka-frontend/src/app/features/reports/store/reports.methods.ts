@@ -50,7 +50,8 @@ export const withReportsMethods = () => {
       tap(() => patchState(store, { isLoading: true })),
       switchMap(id => httpService.removeReport$(id).pipe(tapResponse({
         next: () => patchState(store, { reports: _filterReport(id) }),
-        error: () => null
+        error: () => null,
+        finalize: () => setActiveReport(null)
       })))
     ))
 

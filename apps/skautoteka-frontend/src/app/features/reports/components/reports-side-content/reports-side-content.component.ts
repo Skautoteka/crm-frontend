@@ -39,9 +39,7 @@ export class ReportsSideContentComponent {
     {
       type: 'DELETE',
       text: 'Usuń raport',
-      callback: () => {
-        console.log('');
-      }
+      callback: () => this._deleteReport()
     }
   ];
 
@@ -61,5 +59,15 @@ export class ReportsSideContentComponent {
         this._content.showSideContent(!!activeReport);
       }
     })
+  }
+
+  private _deleteReport(): void {
+    const activeReport = this.reportsStore.activeReport();
+
+    if(!activeReport) {
+      return;
+    }
+
+    this.reportsStore.removeReport(activeReport.id);
   }
 }

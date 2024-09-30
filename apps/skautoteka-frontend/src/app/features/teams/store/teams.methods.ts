@@ -49,11 +49,10 @@ export const withTeamsMethods = () => {
        * Removes team by id from the store.
        */
       const removeTeam = rxMethod<string>(pipe(
-        tap(() => patchState(store, { isLoading: true })),
         switchMap((id) => httpService.deleteTeam$(id).pipe(tapResponse({
           next: () => patchState(store, { teams: _filterTeam(id)  }),
           error: () => null,
-          finalize: () => patchState(store, { isLoading: false })
+          finalize: () => setActiveTeam(null)
         })))
       ))
 

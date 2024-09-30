@@ -50,7 +50,8 @@ export const withPlayersMethods = () => {
       tap(() => patchState(store, { isLoading: true })),
       switchMap(id => httpService.deletePlayer$(id).pipe(tapResponse({
         next: () => patchState(store, { players: _filterPlayer(id) }),
-        error: () => null
+        error: () => null,
+        finalize: () => setActivePlayer(null)
       })))
     ))
 
@@ -83,7 +84,6 @@ export const withPlayersMethods = () => {
     const setActivePlayer = (id: string | null) => {
       const activePlayer = _findPlayer(id);
 
-      console.log(activePlayer)
       if (activePlayer) {
         router.navigate(['dashboard', 'players', 'details', activePlayer.id]);
       } else {
