@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { InputConfig } from '@skautoteka-frontend/ui';
 import { Task } from '../interfaces/task';
+import { IModelResponse } from '@skautoteka-frontend/common';
 
 @Injectable({ providedIn: 'root' })
 export class TasksHttpService {
@@ -29,8 +30,8 @@ export class TasksHttpService {
    *
    * @returns
    */
-  public postTask$(task: Task): Observable<Task> {
-    return this.http.post<{ added: Task }>('api/task', task).pipe(map(res => res.added));
+  public addTask$(task: Task): Observable<IModelResponse<Task>> {
+    return this.http.post<IModelResponse<Task>>('api/task', task);
   }
 
   /**
@@ -39,7 +40,7 @@ export class TasksHttpService {
    * @param id
    * @returns
    */
-  public removeTask(id: number): Observable<void> {
+  public removeTask$(id: string): Observable<void> {
     return this.http.delete<void>('api/task/' + id.toString());
   }
 }
