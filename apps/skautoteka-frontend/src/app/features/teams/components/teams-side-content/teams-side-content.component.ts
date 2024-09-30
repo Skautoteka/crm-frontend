@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   ActionsConfig,
@@ -9,10 +9,9 @@ import {
   SideContentSectionComponent,
   SideContentSectionHeaderComponent
 } from '@skautoteka-frontend/ui';
-import { TeamsService } from '../../services/teams.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TeamTitleComponent } from '../team-title/team-title.component';
 import { TeamsBasicInfoComponent } from '../teams-basic-info/teams-basic-info.component';
+import { TeamsStore } from '../../store/teams.store';
 
 @Component({
   standalone: true,
@@ -33,11 +32,13 @@ import { TeamsBasicInfoComponent } from '../teams-basic-info/teams-basic-info.co
   ]
 })
 export class TeamsSideContentComponent {
+  public teamsStore = inject(TeamsStore);
+
   public actionsConfig: ActionsConfig[] = [
     { type: 'DELETE', text: 'Usuń drużynę', callback: () => this._deleteTeam() }
   ];
 
-  constructor(classBinder: ClassBinder, private _content: ContentService, private _teams: TeamsService) {
+  constructor(classBinder: ClassBinder, private _content: ContentService) {
     classBinder.bind('skt-teams-side-content');
     this._showSideContent();
   }
@@ -47,14 +48,19 @@ export class TeamsSideContentComponent {
   }
 
   private _showSideContent() {
-    this._teams.activeTeam$.pipe(takeUntilDestroyed()).subscribe(task => this._content.showSideContent(!!task));
+    effect(() => {
+      const activeTeam = this.teamsStore.activeTeam();
+      this._content.showSideContent(!!activeTeam)
+    })
   }
 
   private _deleteTeam(): void {
-    if (!this._teams.activeTeam) {
+    const activeTeam = this.teamsStore.activeTeam();
+
+    if (!activeTeam) {
       return;
     }
 
-    this._teams.deleteTeam(this._teams.activeTeam.id);
+    this.teamsStore.removeTeam(activeTeam.id);
   }
 }

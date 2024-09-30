@@ -6,12 +6,16 @@ import { pipe, switchMap, tap } from "rxjs";
 import { TeamsHttpService } from "../services/teams-http.service";
 import { Team } from "../interfaces/team";
 import { TeamStoreState } from "./teams.store";
+import { Router } from "@angular/router";
+import { ModalService } from "@skautoteka-frontend/ui";
 
 export const withTeamsMethods = () => {
   return signalStoreFeature(
     { state: type<TeamStoreState>() },
     withMethods((store) => {
       const httpService = inject(TeamsHttpService);
+      const router = inject(Router);
+      const modal = inject(ModalService);
 
       /**
        * Gets all the teams from the database.
@@ -34,6 +38,14 @@ export const withTeamsMethods = () => {
       const _filterTeam = (id: string): Team[] => store.teams().filter(team => team.id !== id);
 
       /**
+       * A private method that is used to find a team.
+       *
+       * @param id
+       * @returns
+       */
+      const _findTeam = (id: string | null): Team | null => store.teams().find(team => team.id === id) || null;
+
+      /**
        * Removes team by id from the store.
        */
       const removeTeam = rxMethod<string>(pipe(
@@ -45,9 +57,49 @@ export const withTeamsMethods = () => {
         })))
       ))
 
+      /**
+       * Adds a team to the store and to the database.
+       */
+      const addTeam = rxMethod<Team>(pipe(
+        switchMap(team => httpService.addTeam$(team).pipe(tapResponse({
+          next: () => patchState(store, { teams: [...store.teams(), team]  }),
+          error: () => null,
+          finalize: () => modal.closeAll()
+        })))
+      ))
+
+      /**
+       * Fetches create fields for teams.
+       */
+      const fetchFields = rxMethod<void>(pipe(
+        switchMap(() => httpService.getCreateFieldsConfig$().pipe(tapResponse({
+          next: (createFields) => patchState(store, { createFields }),
+          error: () => null
+        })))
+      ))
+
+      /**
+       * Sets active team.
+       *
+       * @param id
+       */
+      const setActiveTeam = (id: string | null) => {
+        const activeTeam = _findTeam(id);
+        if (activeTeam) {
+          router.navigate(['dashboard', 'teams', 'details', activeTeam.id]);
+        } else {
+          router.navigate(['dashboard', 'teams']);
+        }
+
+        patchState(store, { activeTeam });
+      }
+
       return {
         getTeams,
-        removeTeam
+        removeTeam,
+        fetchFields,
+        addTeam,
+        setActiveTeam
       }
     })
   )

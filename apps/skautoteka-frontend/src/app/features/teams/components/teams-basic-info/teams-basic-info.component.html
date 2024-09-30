@@ -1,10 +1,12 @@
-<skt-ui-label-container>
-  <skt-ui-label>
-    <span label>Miasto</span>
-    {{ city$ | async }}
-  </skt-ui-label>
-  <skt-ui-label>
-    <span label>Kraj</span>
-    {{ country$ | async }}
-  </skt-ui-label>
-</skt-ui-label-container>
+@if(teamsStore.activeTeam(); as team) {
+  <skt-ui-label-container>
+    <skt-ui-label>
+      <span label>Miasto</span>
+      {{ team.city  }}
+    </skt-ui-label>
+    <skt-ui-label>
+      <span label>Kraj</span>
+      {{ team.country }}
+    </skt-ui-label>
+  </skt-ui-label-container>
+}

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   SideContentHeaderComponent,
@@ -12,7 +12,7 @@ import {
 } from '@skautoteka-frontend/ui';
 import { TeamsContentComponent } from '../teams-content/teams-content.component';
 import { TeamsCreateComponent } from '../teams-create/teams-create.component';
-import { TeamsService } from '../../services/teams.service';
+import { TeamsStore } from '../../store/teams.store';
 
 @Component({
   standalone: true,
@@ -34,11 +34,12 @@ import { TeamsService } from '../../services/teams.service';
   ]
 })
 export class TeamsComponent {
+  public teamsStore = inject(TeamsStore)
   // public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń raport' }];
 
-  constructor(classBinder: ClassBinder, private _modal: ModalService, private _teams: TeamsService) {
+  constructor(classBinder: ClassBinder, private _modal: ModalService) {
     classBinder.bind('skt-teams');
-    this._teams.setActiveTeam(null);
+    this.teamsStore.setActiveTeam(null);
   }
 
   public onAddNewClick(): void {
