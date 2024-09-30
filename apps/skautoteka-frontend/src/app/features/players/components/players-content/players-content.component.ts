@@ -1,10 +1,7 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { PlayersService } from '../../services';
 import { TableComponent, TableRowComponent, TableRowCellComponent } from '@skautoteka-frontend/ui';
-import { Observable, of } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
-import { Player } from '../../interfaces';
+import { PlayersStore } from '../../store/players.store';
 
 @Component({
   standalone: true,
@@ -14,9 +11,11 @@ import { Player } from '../../interfaces';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TableComponent, TableRowComponent, TableRowCellComponent, AsyncPipe]
+  imports: [TableComponent, TableRowComponent, TableRowCellComponent]
 })
 export class PlayersContentComponent {
+  public playersStore = inject(PlayersStore);
+
   public tableDef = [
     { name: 'Zdjecie', width: '4rem', hidden: true },
     { name: 'Imię i nazwisko', width: 'auto' },
@@ -24,16 +23,12 @@ export class PlayersContentComponent {
     { name: 'Drużyna', width: '30%' }
   ];
 
-  get tableSource$(): Observable<Player[]> {
-    return this._players.allPlayers$;
-  }
-
-  constructor(classBinder: ClassBinder, private _players: PlayersService) {
+  constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-players-content');
-    this._players.fetchAllPlayers();
+    this.playersStore.getPlayers();
   }
 
   public onRowClicked(id: string): void {
-    console.log(id);
+    this.playersStore.setActivePlayer(id);
   }
 }

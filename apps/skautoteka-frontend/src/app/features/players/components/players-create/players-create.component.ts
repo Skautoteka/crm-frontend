@@ -1,15 +1,14 @@
-import { ChangeDetectionStrategy, Component, signal, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   ButtonComponent,
   InputComponent,
-  InputConfig,
   InputContainerComponent,
   InputViewService,
   ModalService
 } from '@skautoteka-frontend/ui';
-import { PlayersService } from '../../services';
 import { Player } from '../../interfaces';
+import { PlayersStore } from '../../store/players.store';
 
 @Component({
   standalone: true,
@@ -22,19 +21,18 @@ import { Player } from '../../interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PlayersCreateComponent {
-  public config = signal<InputConfig | null>(null);
+  public playersStore = inject(PlayersStore)
 
   constructor(
     classBinder: ClassBinder,
-    private _players: PlayersService,
     private _modal: ModalService,
     public inputView: InputViewService<Player>
   ) {
     classBinder.bind('skt-players-create');
-    this._players.getCreateFieldsConfig$().subscribe(config => this.config.set(config));
+    this.playersStore.fetchFields();
   }
 
   public onSaveButtonClick(): void {
-    this._players.addPlayer$(this.inputView.value).subscribe(() => this._modal.closeAll());
+    this.playersStore.addPlayer(this.inputView.value)
   }
 }

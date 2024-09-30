@@ -66,6 +66,16 @@ export const withPlayersMethods = () => {
     ))
 
     /**
+     * Fetches the create fields from backend and saves it to the store.
+     */
+    const fetchFields = rxMethod<void>(pipe(
+      switchMap(() => httpService.getCreateFieldsConfig$().pipe(tapResponse({
+        next: (createFields) => patchState(store, { createFields }),
+        error: () => null
+      })))
+    ));
+
+    /**
      * Sets active player.
      *
      * @param id
@@ -83,6 +93,7 @@ export const withPlayersMethods = () => {
       getPlayers,
       removeTeam,
       addPlayer,
+      fetchFields,
       setActivePlayer
     }
   }))
