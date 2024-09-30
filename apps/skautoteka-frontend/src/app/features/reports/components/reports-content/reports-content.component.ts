@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   LabelComponent,
@@ -7,15 +7,12 @@ import {
   TabsComponent,
   TableComponent,
   TableRowCellComponent,
-  TableSource,
   TableRowComponent,
   TagComponent
 } from '@skautoteka-frontend/ui';
-import { ReportsService } from '../../services';
-import { AsyncPipe, DatePipe } from '@angular/common';
-import { Observable } from 'rxjs';
-import { Report } from '../../interfaces/report';
+import { DatePipe } from '@angular/common';
 import { StatusTextPipe } from '../../pipes';
+import { ReportsStore } from '../../store/reports.store';
 
 @Component({
   standalone: true,
@@ -31,7 +28,6 @@ import { StatusTextPipe } from '../../pipes';
     ListCardComponent,
     LabelComponent,
     TableComponent,
-    AsyncPipe,
     TableRowCellComponent,
     TableRowComponent,
     TagComponent,
@@ -40,6 +36,7 @@ import { StatusTextPipe } from '../../pipes';
   ]
 })
 export class ReportsContentComponent {
+  public reportsStore = inject(ReportsStore);
   public tableDef = [
     { name: 'Zdjecie', width: '4rem', hidden: true },
     { name: 'Nazwa', width: 'auto' },
@@ -47,16 +44,12 @@ export class ReportsContentComponent {
     { name: 'Data utworzenia', width: '25%' }
   ];
 
-  constructor(classBinder: ClassBinder, public _reports: ReportsService) {
+  constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-reports-content');
-    this._reports.fetchAllReports();
-  }
-
-  get tableSource$(): Observable<TableSource<Report>> {
-    return this._reports.allReports$;
+    this.reportsStore.getReports()
   }
 
   public onRowClicked(id: string): void {
-    this._reports.setActiveReport(id);
+    this.reportsStore.setActiveReport(id);
   }
 }

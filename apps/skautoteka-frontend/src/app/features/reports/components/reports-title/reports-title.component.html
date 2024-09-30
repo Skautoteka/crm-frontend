@@ -1,5 +1,7 @@
-<div class="skt-report-title__logo"></div>
-<div class="skt-report-title__title">
-  <div class="skt-report-title__report-name">{{ reportName$ | async }}</div>
-  <div class="skt-report-title__report-position">{{ reportPosition$ | async }}</div>
-</div>
+@if(reportsStore.activeReport(); as report) {
+  <div class="skt-report-title__logo"></div>
+  <div class="skt-report-title__title">
+    <div class="skt-report-title__report-name">{{ report.name }}</div>
+    <div class="skt-report-title__report-position">{{ report.id }}</div>
+  </div>
+}

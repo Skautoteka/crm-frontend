@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   ActionsConfig,
@@ -10,10 +10,9 @@ import {
   SideContentSectionHeaderComponent
 } from '@skautoteka-frontend/ui';
 import { ReportsBasicInfoComponent } from '../reports-basic-info/reports-basic-info.component';
-import { ReportsService } from '../../services';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ReportsTitleComponent } from '../reports-title/reports-title.component';
 import { ReportsRatingComponent } from '../reports-rating/reports-rating.component';
+import { ReportsStore } from '../../store/reports.store';
 
 @Component({
   standalone: true,
@@ -35,6 +34,7 @@ import { ReportsRatingComponent } from '../reports-rating/reports-rating.compone
   ]
 })
 export class ReportsSideContentComponent {
+  public reportsStore = inject(ReportsStore);
   public actionsConfig: ActionsConfig[] = [
     {
       type: 'DELETE',
@@ -45,16 +45,21 @@ export class ReportsSideContentComponent {
     }
   ];
 
-  constructor(classBinder: ClassBinder, private _content: ContentService, private _reports: ReportsService) {
+  constructor(classBinder: ClassBinder, private _content: ContentService) {
     classBinder.bind('skt-reports-side-content');
     this._showSideContent();
   }
 
   public onMobileBackClick(): void {
-    this._reports.setActiveReport(null);
+    this.reportsStore.setActiveReport(null);
   }
 
   private _showSideContent() {
-    this._reports.activeReport$.pipe(takeUntilDestroyed()).subscribe(report => this._content.showSideContent(!!report));
+    effect(() => {
+      const activeReport = this.reportsStore.activeReport();
+      if(activeReport) {
+        this._content.showSideContent(!!activeReport);
+      }
+    })
   }
 }

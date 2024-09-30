@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import {
@@ -9,9 +9,8 @@ import {
   TabsComponent,
   TagComponent
 } from '@skautoteka-frontend/ui';
-import { map, Observable } from 'rxjs';
-import { ReportsService } from '../../services';
 import { StatusTextPipe } from '../../pipes';
+import { ReportsStore } from '../../store/reports.store';
 
 @Component({
   standalone: true,
@@ -34,15 +33,9 @@ import { StatusTextPipe } from '../../pipes';
   ]
 })
 export class ReportsBasicInfoComponent {
-  constructor(classBinder: ClassBinder, private _report: ReportsService) {
+  public reportsStore = inject(ReportsStore)
+
+  constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-reports-basic-info');
-  }
-
-  get createdDate$(): Observable<string> {
-    return this._report.activeReport$.pipe(map(report => report?.createdAt || ''));
-  }
-
-  get status$(): Observable<string> {
-    return this._report.activeReport$.pipe(map(report => report?.status || ''));
   }
 }

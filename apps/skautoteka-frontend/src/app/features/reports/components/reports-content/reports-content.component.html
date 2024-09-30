@@ -1,5 +1,5 @@
 <skt-ui-table [tableDef]="tableDef">
-  @for (item of tableSource$ | async; track item.id) {
+  @for (item of reportsStore.reports(); track item.id) {
   <skt-ui-table-row (rowClicked)="onRowClicked(item.id)">
     <skt-ui-table-row-cell>
       <div class="skt-reports-content__reports-logo"></div>
