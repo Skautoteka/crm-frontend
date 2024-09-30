@@ -35,7 +35,7 @@ import { TasksStore } from '../../store/tasks.store';
 })
 export class TasksSideContentComponent {
   public tasksStore = inject(TasksStore);
-  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń raport', callback: () => console.log('') }];
+  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń raport', callback: () => this._deleteTask() }];
 
   constructor(classBinder: ClassBinder, private _content: ContentService) {
     classBinder.bind('skt-tasks-side-content');
@@ -51,5 +51,15 @@ export class TasksSideContentComponent {
       const activeTask = this.tasksStore.activeTask();
       this._content.showSideContent(!!activeTask)
     })
+  }
+
+  private _deleteTask(): void {
+    const activeTask = this.tasksStore.activeTask()
+
+    if (!activeTask) {
+      return;
+    }
+
+    this.tasksStore.removeTask(activeTask.id);
   }
 }

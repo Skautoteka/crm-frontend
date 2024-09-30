@@ -19,6 +19,7 @@ export class TasksContentComponent {
 
   constructor(classBinder: ClassBinder, public device: DeviceService) {
     classBinder.bind('skt-tasks-content');
+    this.tasksStore.getTasks();
   }
 
   public handleTabChange(id: string | null): void {
