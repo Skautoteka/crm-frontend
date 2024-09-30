@@ -29,7 +29,7 @@ import { PlayersStore } from '../../store/players.store';
 })
 export class PlayersSideContentComponent {
   public playersStore = inject(PlayersStore);
-  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń zawodnika', callback: () => console.log('') }];
+  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń zawodnika', callback: () => this._deletePlayer() }];
 
   constructor(classBinder: ClassBinder, private _content: ContentService) {
     classBinder.bind('skt-tasks-side-content');
@@ -45,5 +45,15 @@ export class PlayersSideContentComponent {
     effect(() => {
       this._content.showSideContent(!!activePlayer)
     })
+  }
+
+  private _deletePlayer(): void {
+    const activeTeam = this.playersStore.activePlayer();
+
+    if (!activeTeam) {
+      return;
+    }
+
+    this.playersStore.removePlayer(activeTeam.id);
   }
 }

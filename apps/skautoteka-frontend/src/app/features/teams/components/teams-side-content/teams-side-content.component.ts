@@ -44,7 +44,7 @@ export class TeamsSideContentComponent {
   }
 
   public onMobileBackClick(): void {
-    console.log('back click');
+    this.teamsStore.setActiveTeam(null)
   }
 
   private _showSideContent() {

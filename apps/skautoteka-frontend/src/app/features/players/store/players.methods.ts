@@ -46,7 +46,7 @@ export const withPlayersMethods = () => {
     /**
      * Removes team from the database and from the store.
      */
-    const removeTeam = rxMethod<string>(pipe(
+    const removePlayer = rxMethod<string>(pipe(
       tap(() => patchState(store, { isLoading: true })),
       switchMap(id => httpService.deletePlayer$(id).pipe(tapResponse({
         next: () => patchState(store, { players: _filterPlayer(id) }),
@@ -82,16 +82,20 @@ export const withPlayersMethods = () => {
      */
     const setActivePlayer = (id: string | null) => {
       const activePlayer = _findPlayer(id);
+
+      console.log(activePlayer)
       if (activePlayer) {
         router.navigate(['dashboard', 'players', 'details', activePlayer.id]);
       } else {
         router.navigate(['dashboard', 'players']);
       }
+
+      patchState(store, { activePlayer });
     }
 
     return {
       getPlayers,
-      removeTeam,
+      removePlayer,
       addPlayer,
       fetchFields,
       setActivePlayer
