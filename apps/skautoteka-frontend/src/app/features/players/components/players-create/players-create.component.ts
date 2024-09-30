@@ -5,7 +5,6 @@ import {
   InputComponent,
   InputContainerComponent,
   InputViewService,
-  ModalService
 } from '@skautoteka-frontend/ui';
 import { Player } from '../../interfaces';
 import { PlayersStore } from '../../store/players.store';
@@ -25,7 +24,6 @@ export class PlayersCreateComponent {
 
   constructor(
     classBinder: ClassBinder,
-    private _modal: ModalService,
     public inputView: InputViewService<Player>
   ) {
     classBinder.bind('skt-players-create');

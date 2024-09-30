@@ -17,7 +17,7 @@ const initialState: TasksStoreState = {
   createFields: null
 }
 
-export const PlayersStore = signalStore(
+export const TasksStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
   withTasksMethods()

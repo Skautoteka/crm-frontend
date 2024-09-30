@@ -1,16 +1,14 @@
-import { ChangeDetectionStrategy, Component, signal, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   ButtonComponent,
   InputComponent,
-  InputConfig,
   InputContainerComponent,
   InputViewService,
-  ModalService
 } from '@skautoteka-frontend/ui';
-import { TasksService } from '../../services';
 import { AsyncPipe } from '@angular/common';
-import { Task } from 'zone.js/lib/zone-impl';
+import { TasksStore } from '../../store/tasks.store';
+import { Task } from '../../interfaces';
 
 @Component({
   standalone: true,
@@ -23,24 +21,17 @@ import { Task } from 'zone.js/lib/zone-impl';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TasksCreateComponent {
-  public config = signal<InputConfig | null>(null);
+  public tasksStore = inject(TasksStore);
 
   constructor(
     classBinder: ClassBinder,
     public inputView: InputViewService<Task>,
-    private _tasks: TasksService,
-    private _modal: ModalService
   ) {
     classBinder.bind('skt-tasks-create');
-
-    this._tasks.getCreateFieldsConfig$().subscribe(config => this.config.set(config));
+    this.tasksStore.fetchFields();
   }
 
   public onSaveButtonClick(): void {
-    this._tasks.addTask({
-      id: Math.random() * 10000
-    });
-
-    this._modal.closeAll();
+    this.tasksStore.addTask(this.inputView.value);
   }
 }
