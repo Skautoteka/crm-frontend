@@ -2,7 +2,7 @@ import { signalStore, withState } from "@ngrx/signals"
 import { Team } from "../interfaces/team"
 import { withTeamsMethods } from "./teams.methods"
 
-type TeamStoreState = {
+export type TeamStoreState = {
   teams: Team[]
   isLoading: boolean;
 }
@@ -13,6 +13,7 @@ const initialState: TeamStoreState = {
 }
 
 export const TeamsStore = signalStore(
+  { providedIn: 'root' },
   withState(initialState),
   withTeamsMethods()
 )
