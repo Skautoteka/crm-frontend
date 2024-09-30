@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   ActionsConfig,
@@ -12,8 +12,7 @@ import {
 import { TasksBasicInfoComponent } from '../tasks-basic-info/tasks-basic-info.component';
 import { TasksReportsComponent } from '../tasks-reports/tasks-reports.component';
 import { TasksTeamsComponent } from '../tasks-teams/tasks-teams.component';
-import { TasksService } from '../../services';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TasksStore } from '../../store/tasks.store';
 
 @Component({
   standalone: true,
@@ -35,18 +34,32 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   ]
 })
 export class TasksSideContentComponent {
-  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń raport', callback: () => console.log('') }];
+  public tasksStore = inject(TasksStore);
+  public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń raport', callback: () => this._deleteTask() }];
 
-  constructor(classBinder: ClassBinder, private _content: ContentService, private _tasks: TasksService) {
+  constructor(classBinder: ClassBinder, private _content: ContentService) {
     classBinder.bind('skt-tasks-side-content');
     this._showSideContent();
   }
 
   public onMobileBackClick(): void {
-    this._tasks.setActiveTask(null);
+    this.tasksStore.setActiveTask(null)
   }
 
   private _showSideContent() {
-    this._tasks.activeTask$.pipe(takeUntilDestroyed()).subscribe(task => this._content.showSideContent(!!task));
+    effect(() => {
+      const activeTask = this.tasksStore.activeTask();
+      this._content.showSideContent(!!activeTask)
+    })
+  }
+
+  private _deleteTask(): void {
+    const activeTask = this.tasksStore.activeTask()
+
+    if (!activeTask) {
+      return;
+    }
+
+    this.tasksStore.removeTask(activeTask.id);
   }
 }

@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { TeamsService } from '../../services/teams.service';
-import { Observable, map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { TeamsStore } from '../../store/teams.store';
 
 @Component({
   standalone: true,
@@ -15,15 +14,9 @@ import { AsyncPipe } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TeamTitleComponent {
-  constructor(classBinder: ClassBinder, private _team: TeamsService) {
+  public teamsStore = inject(TeamsStore);
+
+  constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-team-title');
-  }
-
-  get teamName$(): Observable<string> {
-    return this._team.activeTeam$.pipe(map(team => team?.name || ''));
-  }
-
-  get teamLeague$(): Observable<string> {
-    return this._team.activeTeam$.pipe(map(team => team?.league || ''));
   }
 }

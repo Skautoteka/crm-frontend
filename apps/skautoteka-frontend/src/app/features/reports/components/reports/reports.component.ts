@@ -12,7 +12,6 @@ import {
   ModalService
 } from '@skautoteka-frontend/ui';
 import { ReportsBasicInfoComponent } from '../reports-basic-info/reports-basic-info.component';
-import { ReportsService } from '../../services';
 import { ReportsContentComponent } from '../reports-content/reports-content.component';
 import { ReportsCreateComponent } from '../reports-create/reports-create.component';
 
@@ -21,7 +20,7 @@ import { ReportsCreateComponent } from '../reports-create/reports-create.compone
   selector: 'skt-reports',
   styleUrl: './reports.component.scss',
   templateUrl: 'reports.component.html',
-  providers: [ClassBinder, ReportsService],
+  providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [

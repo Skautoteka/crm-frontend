@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder, DeviceService } from '@skautoteka-frontend/common';
 import { LabelComponent, ListCardComponent, TabComponent, TabsComponent } from '@skautoteka-frontend/ui';
-import { TasksService } from '../../services';
 import { AsyncPipe } from '@angular/common';
+import { TasksStore } from '../../store/tasks.store';
 
 @Component({
   standalone: true,
@@ -15,15 +15,18 @@ import { AsyncPipe } from '@angular/common';
   imports: [TabsComponent, TabComponent, ListCardComponent, LabelComponent, AsyncPipe]
 })
 export class TasksContentComponent {
-  constructor(classBinder: ClassBinder, public tasksService: TasksService, public device: DeviceService) {
+  public tasksStore = inject(TasksStore)
+
+  constructor(classBinder: ClassBinder, public device: DeviceService) {
     classBinder.bind('skt-tasks-content');
+    this.tasksStore.getTasks();
   }
 
   public handleTabChange(id: string | null): void {
     console.log(id);
   }
 
-  public handleTaskClick(id: number): void {
-    this.tasksService.setActiveTask(id);
+  public handleTaskClick(id: string): void {
+    this.tasksStore.setActiveTask(id);
   }
 }

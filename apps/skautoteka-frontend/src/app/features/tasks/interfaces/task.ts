@@ -1,3 +1,5 @@
-export interface Task {
-  id: number;
-}
+import { IGenericModel } from '@skautoteka-frontend/common';
+
+export type Task = {
+  id: string;
+} & IGenericModel

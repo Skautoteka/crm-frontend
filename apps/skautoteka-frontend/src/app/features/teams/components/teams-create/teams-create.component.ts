@@ -1,16 +1,15 @@
-import { ChangeDetectionStrategy, Component, signal, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   ButtonComponent,
   InputComponent,
-  InputConfig,
   InputContainerComponent,
   InputViewService,
   ModalService
 } from '@skautoteka-frontend/ui';
 import { AsyncPipe } from '@angular/common';
-import { TeamsService } from '../../services/teams.service';
 import { Team } from '../../interfaces/team';
+import { TeamsStore } from '../../store/teams.store';
 
 @Component({
   standalone: true,
@@ -23,19 +22,18 @@ import { Team } from '../../interfaces/team';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TeamsCreateComponent {
-  public config = signal<InputConfig | null>(null);
+  public teamsStore = inject(TeamsStore);
 
   constructor(
     classBinder: ClassBinder,
-    private _teams: TeamsService,
     private _modal: ModalService,
     public inputView: InputViewService<Team>
   ) {
     classBinder.bind('skt-tasks-create');
-    this._teams.getCreateFieldsConfig$().subscribe(config => this.config.set(config));
+    this.teamsStore.fetchFields();
   }
 
   public onSaveButtonClick(): void {
-    this._teams.addTeam$(this.inputView.value).subscribe(() => this._modal.closeAll());
+    this.teamsStore.addTeam(this.inputView.value);
   }
 }

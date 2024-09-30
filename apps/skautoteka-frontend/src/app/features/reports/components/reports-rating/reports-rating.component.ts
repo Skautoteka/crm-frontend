@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { AsyncPipe } from '@angular/common';
-import { ReportsService } from '../../services';
 import { IconCardComponent } from '@skautoteka-frontend/ui';
 
 @Component({
@@ -15,7 +14,7 @@ import { IconCardComponent } from '@skautoteka-frontend/ui';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ReportsRatingComponent {
-  constructor(classBinder: ClassBinder, private _report: ReportsService) {
+  constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-reports-rating');
   }
 }

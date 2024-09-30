@@ -1,16 +1,14 @@
-import { ChangeDetectionStrategy, Component, signal, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   ButtonComponent,
   InputComponent,
-  InputConfig,
   InputContainerComponent,
   InputViewService,
-  ModalService
 } from '@skautoteka-frontend/ui';
-import { ReportsService } from '../../services';
 import { AsyncPipe } from '@angular/common';
 import { Report } from '../../interfaces/report';
+import { ReportsStore } from '../../store/reports.store';
 
 @Component({
   standalone: true,
@@ -23,19 +21,17 @@ import { Report } from '../../interfaces/report';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ReportsCreateComponent {
-  public config = signal<InputConfig | null>(null);
+  public reportsStore = inject(ReportsStore)
 
   constructor(
     classBinder: ClassBinder,
-    private _report: ReportsService,
-    private _modal: ModalService,
     public inputView: InputViewService<Report>
   ) {
     classBinder.bind('skt-reports-create');
-    this._report.getCreateFieldsConfig$().subscribe(config => this.config.set(config));
+    this.reportsStore.fetchFields();
   }
 
   public onSaveButtonClick(): void {
-    this._report.addReport$(this.inputView.value).subscribe(() => this._modal.closeAll());
+    this.reportsStore.addReport(this.inputView.value);
   }
 }

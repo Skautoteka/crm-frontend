@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { TasksSideContentComponent } from '../tasks/components/tasks-side-content/tasks-side-content.component';
 import { SideContentEmptyComponent } from '@skautoteka-frontend/ui';
+import { PlayersSideContentComponent } from '../players/components/players-side-content/players-side-content.component';
 
 export const PLAYERS_ROUTES: Routes = [
   {
@@ -8,7 +8,7 @@ export const PLAYERS_ROUTES: Routes = [
     children: [
       {
         path: ':id',
-        component: TasksSideContentComponent
+        component: PlayersSideContentComponent
       },
       {
         path: '**',

@@ -1,11 +1,7 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { TableComponent, TableRowCellComponent, TableRowComponent } from '@skautoteka-frontend/ui';
-import { TeamsService } from '../../services/teams.service';
-import { AsyncPipe } from '@angular/common';
-import { Team } from '../../interfaces/team';
-import { Observable } from 'rxjs';
-import { TableSource } from '@skautoteka-frontend/ui';
+import { TeamsStore } from '../../store/teams.store';
 
 @Component({
   standalone: true,
@@ -15,9 +11,11 @@ import { TableSource } from '@skautoteka-frontend/ui';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TableComponent, TableRowComponent, TableRowCellComponent, AsyncPipe]
+  imports: [TableComponent, TableRowComponent, TableRowCellComponent]
 })
 export class TeamsContentComponent {
+  public teamsStore = inject(TeamsStore);
+
   public tableDef = [
     { name: 'Zdjecie', width: '4rem', hidden: true },
     { name: 'Nazwa', width: 'auto' },
@@ -25,16 +23,12 @@ export class TeamsContentComponent {
     { name: 'Miasto', width: '30%' }
   ];
 
-  get tableSource$(): Observable<TableSource<Team>> {
-    return this._teams.allTeams$;
-  }
-
-  constructor(classBinder: ClassBinder, private _teams: TeamsService) {
+  constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-teams-content');
-    this._teams.fetchAllTeams();
+    this.teamsStore.getTeams();
   }
 
   public onRowClicked(id: string): void {
-    this._teams.setActiveTeam(id);
+    this.teamsStore.setActiveTeam(id);
   }
 }
