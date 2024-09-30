@@ -83,9 +83,9 @@ export const withPlayersMethods = () => {
     const setActivePlayer = (id: string | null) => {
       const activePlayer = _findPlayer(id);
       if (activePlayer) {
-        router.navigate(['dashboard', 'player', 'details', activePlayer.id]);
+        router.navigate(['dashboard', 'players', 'details', activePlayer.id]);
       } else {
-        router.navigate(['dashboard', 'player']);
+        router.navigate(['dashboard', 'players']);
       }
     }
 
