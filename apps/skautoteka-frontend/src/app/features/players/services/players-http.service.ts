@@ -27,7 +27,7 @@ export class PlayersHttpService {
    *
    * @param player
    */
-  public postPlayer$(player: Player): Observable<IModelResponse<Player>> {
+  public addPlayer$(player: Player): Observable<IModelResponse<Player>> {
     return this.http.post<IModelResponse<Player>>('api/player', { ...player });
   }
 

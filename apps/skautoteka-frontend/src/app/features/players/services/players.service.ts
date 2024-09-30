@@ -42,7 +42,7 @@ export class PlayersService {
    * @param player
    */
   public addPlayer$(player: Player): Observable<Player> {
-    return this._playersHttp.postPlayer$(player).pipe(
+    return this._playersHttp.addPlayer$(player).pipe(
       map(({ added }) => added),
       tap(player => this._setPlayers([...this._allPlayers, player]))
     );

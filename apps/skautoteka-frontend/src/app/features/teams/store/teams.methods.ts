@@ -62,7 +62,7 @@ export const withTeamsMethods = () => {
        */
       const addTeam = rxMethod<Team>(pipe(
         switchMap(team => httpService.addTeam$(team).pipe(tapResponse({
-          next: () => patchState(store, { teams: [...store.teams(), team]  }),
+          next: (res) => patchState(store, { teams: [...store.teams(), res.added]  }),
           error: () => null,
           finalize: () => modal.closeAll()
         })))
