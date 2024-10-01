@@ -1,5 +1,5 @@
 import { inject, Injectable } from "@angular/core";
-import { LoginPayload, Tokens } from "../interfaces/iauth";
+import { LoginPayload, Tokens, User } from "../interfaces/iauth";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 
@@ -18,7 +18,16 @@ export class AuthHttpService {
   }
 
   /**
+   * Returns current logged in user from the database.
+   */
+  public getUser$(): Observable<User> {
+    return this._http.get<User>('api/auth/get-user');
+  }
+
+  /**
    * A http request that is used to log out the user.
    */
-  public logout$(): any {}
+  public logout$(): Observable<void> {
+    return this._http.get<void>('api/auth/logout');
+  }
 }

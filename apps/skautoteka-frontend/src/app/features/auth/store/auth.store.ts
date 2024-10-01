@@ -3,13 +3,13 @@ import { User } from "../interfaces/iauth"
 import { withAuthMethods } from "./auth.methods";
 
 export type AuthStoreState = {
-  user: User | null;
+  user: User | null,
   isLoading: boolean;
 }
 
 const initialState: AuthStoreState = {
   user: null,
-  isLoading: false
+  isLoading: false,
 }
 
 export const AuthStore = signalStore(
