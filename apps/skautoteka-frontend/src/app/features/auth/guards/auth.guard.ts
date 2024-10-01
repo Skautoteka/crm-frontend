@@ -12,8 +12,7 @@ export const AuthGuard: CanActivateFn = (
   if(authStore.user()) {
     return true;
   } else {
-    console.log(route);
-    authStore.getUser();
+    authStore.refreshUser(state);
     return NEVER;
   }
 }

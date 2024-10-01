@@ -4,9 +4,9 @@ import { AuthStoreState } from "./auth.store"
 import { inject } from "@angular/core"
 import { AuthHttpService } from "../services/auth-http.service"
 import { LoginPayload } from '../interfaces/iauth';
-import { pipe, switchMap, tap } from 'rxjs';
+import { delay, pipe, switchMap, tap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
-import { Router } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 
 export const withAuthMethods = () => {
   return signalStoreFeature({ state: type<AuthStoreState>() }, withMethods(store => {
@@ -38,6 +38,18 @@ export const withAuthMethods = () => {
     const getUser = rxMethod<void>(pipe(
       switchMap(() => httpService.getUser$().pipe(tapResponse({
         next: (user) => patchState(store, { user }),
+        error: () => null
+      })))
+    ))
+
+    const refreshUser = rxMethod<RouterStateSnapshot>(pipe(
+      delay(10000),
+      switchMap((route) => httpService.getUser$().pipe(tapResponse({
+        next: (user) => {
+          patchState(store, { user });
+          console.log(route.url)
+          router.navigateByUrl(route.url)
+        },
         error: () => router.navigate(['/', 'auth'])
       })))
     ))
@@ -45,7 +57,8 @@ export const withAuthMethods = () => {
     return {
       login,
       logout,
-      getUser
+      getUser,
+      refreshUser
     }
   }))
 }
