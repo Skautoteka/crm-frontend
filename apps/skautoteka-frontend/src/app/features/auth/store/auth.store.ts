@@ -1,5 +1,6 @@
 import { signalStore, withState } from "@ngrx/signals";
 import { User } from "../interfaces/iauth"
+import { withAuthMethods } from "./auth.methods";
 
 export type AuthStoreState = {
   user: User | null;
@@ -13,5 +14,6 @@ const initialState: AuthStoreState = {
 
 export const AuthStore = signalStore(
   { providedIn: 'root' },
-  withState(initialState)
+  withState(initialState),
+  withAuthMethods()
 )
