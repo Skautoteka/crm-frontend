@@ -9,7 +9,9 @@
   height: 100%;
   width: 100%;
   gap: 2rem;
-  max-width: 25rem;
+  max-width: 35rem;
+  min-width: 28rem;
+  padding: 0 5rem;
 
   &__header {
     display: flex;
