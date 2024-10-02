@@ -1,10 +1,8 @@
-import { InputPasswordComponent } from './../../../../../../../../libs/ui/src/lib/input/components/input-password/input-password.component';
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from "@angular/core";
 import { ClassBinder } from "@skautoteka-frontend/common";
 import { AuthStore } from "../../store/auth.store";
-import { InputComponent } from "@skautoteka-frontend/ui";
+import { ButtonComponent, InputComponent, InputPasswordComponent } from "@skautoteka-frontend/ui";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { ButtonComponent } from "../../../../../../../../libs/ui/src/lib/button/components/button/button.component";
 
 @Component({
   standalone: true,
@@ -43,6 +41,6 @@ export class LoginComponent {
       return;
     }
 
-    this.authStore.login({ email, password })
+    this.authStore.login({ email, password });
   }
 }
