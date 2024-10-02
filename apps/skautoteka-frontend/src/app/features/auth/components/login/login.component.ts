@@ -1,8 +1,10 @@
+import { InputPasswordComponent } from './../../../../../../../../libs/ui/src/lib/input/components/input-password/input-password.component';
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from "@angular/core";
 import { ClassBinder } from "@skautoteka-frontend/common";
 import { AuthStore } from "../../store/auth.store";
 import { InputComponent } from "@skautoteka-frontend/ui";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
+import { ButtonComponent } from "../../../../../../../../libs/ui/src/lib/button/components/button/button.component";
 
 @Component({
   standalone: true,
@@ -12,7 +14,12 @@ import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ClassBinder],
-  imports: [InputComponent, ReactiveFormsModule]
+  imports: [
+    InputComponent,
+    InputPasswordComponent,
+    ReactiveFormsModule,
+    ButtonComponent
+  ]
 })
 export class LoginComponent {
   private _classBinder = inject(ClassBinder);
@@ -21,7 +28,7 @@ export class LoginComponent {
   public authStore = inject(AuthStore);
 
   public loginGroup = this._formBuilder.group({
-    email: this._formBuilder.control('', { validators: [Validators.required] }),
+    email: this._formBuilder.control('', { validators: [Validators.required, Validators.email] }),
     password: this._formBuilder.control('', { validators: [Validators.required] })
   })
 
