@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { SidenavComponent, SidenavElement } from '@skautoteka-frontend/ui';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { DashboardUserComponent } from '../dashboard-user/dashboard-user.component';
 import { RouterModule } from '@angular/router';
+import { AuthStore } from '../../../auth/store/auth.store';
 
 @Component({
   standalone: true,
@@ -25,7 +26,13 @@ export class DashboardComponent {
     { label: 'Pomoc', icon: 'info', route: 'help' }
   ];
 
+  public authStore = inject(AuthStore);
+
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-dashboard');
+  }
+
+  public onLogoutClicked(): void {
+    this.authStore.logout();
   }
 }

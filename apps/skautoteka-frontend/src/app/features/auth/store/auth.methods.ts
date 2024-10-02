@@ -4,9 +4,9 @@ import { AuthStoreState } from "./auth.store"
 import { inject } from "@angular/core"
 import { AuthHttpService } from "../services/auth-http.service"
 import { LoginPayload } from '../interfaces/iauth';
-import { delay, pipe, switchMap, tap } from 'rxjs';
+import { pipe, switchMap, tap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
-import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+import { Router, RouterStateSnapshot } from '@angular/router';
 
 export const withAuthMethods = () => {
   return signalStoreFeature({ state: type<AuthStoreState>() }, withMethods(store => {
@@ -28,13 +28,22 @@ export const withAuthMethods = () => {
       })))
     ))
 
+    /**
+     *
+     */
     const logout = rxMethod<void>(pipe(
       switchMap(() => httpService.logout$().pipe(tapResponse({
-        next: () => patchState(store, { user: null }),
+        next: () => {
+          patchState(store, { user: null });
+          router.navigate(['/', 'auth'])
+        },
         error: () => null
       })))
     ))
 
+    /**
+     *
+     */
     const getUser = rxMethod<void>(pipe(
       switchMap(() => httpService.getUser$().pipe(tapResponse({
         next: (user) => patchState(store, { user }),
@@ -42,12 +51,13 @@ export const withAuthMethods = () => {
       })))
     ))
 
+    /**
+     *
+     */
     const refreshUser = rxMethod<RouterStateSnapshot>(pipe(
-      delay(10000),
       switchMap((route) => httpService.getUser$().pipe(tapResponse({
         next: (user) => {
           patchState(store, { user });
-          console.log(route.url)
           router.navigateByUrl(route.url)
         },
         error: () => router.navigate(['/', 'auth'])

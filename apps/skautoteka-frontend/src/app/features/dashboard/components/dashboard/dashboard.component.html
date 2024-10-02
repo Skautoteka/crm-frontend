@@ -1,4 +1,4 @@
-<skt-ui-sidenav [elements]="elements">
+<skt-ui-sidenav (logoutClicked)="onLogoutClicked()" [elements]="elements">
   <router-outlet content></router-outlet>
   <skt-dashboard-user top-section></skt-dashboard-user>
 </skt-ui-sidenav>

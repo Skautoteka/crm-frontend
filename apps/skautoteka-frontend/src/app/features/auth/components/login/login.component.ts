@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from "@angular/core";
 import { ClassBinder } from "@skautoteka-frontend/common";
+import { AuthStore } from "../../store/auth.store";
 
 @Component({
   standalone: true,
@@ -11,9 +12,12 @@ import { ClassBinder } from "@skautoteka-frontend/common";
   providers: [ClassBinder],
 })
 export class LoginComponent {
+  public authStore = inject(AuthStore);
+
   private _classBinder = inject(ClassBinder);
 
   constructor() {
-    this._classBinder.bind('skt-login')
+    this._classBinder.bind('skt-login');
+    this.authStore.login({ email: 'dkowalski.1997@gmail.com', password: 't4jn3h4slo' })
   }
 }
