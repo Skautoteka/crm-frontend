@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
 import { ClassBinder } from "@skautoteka-frontend/common";
 
 @Component({
@@ -7,6 +7,7 @@ import { ClassBinder } from "@skautoteka-frontend/common";
   templateUrl: 'loader.component.html',
   styleUrl: 'loader.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   imports: [],
   providers: [ClassBinder]
 })

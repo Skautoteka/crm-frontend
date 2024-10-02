@@ -31,7 +31,7 @@ export const withAuthMethods = () => {
           error: () => null,
           finalize: () => {
             patchState(store, { isLoading: false })
-            loader.hideLoader('login')
+            //loader.hideLoader('login')
           }
       })))
     ))
