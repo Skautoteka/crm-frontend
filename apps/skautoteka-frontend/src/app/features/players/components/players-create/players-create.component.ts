@@ -5,6 +5,7 @@ import {
   InputComponent,
   InputContainerComponent,
   InputViewService,
+  LoaderComponent,
 } from '@skautoteka-frontend/ui';
 import { Player } from '../../interfaces';
 import { PlayersStore } from '../../store/players.store';
@@ -15,7 +16,7 @@ import { PlayersStore } from '../../store/players.store';
   styleUrl: './players-create.component.scss',
   templateUrl: 'players-create.component.html',
   providers: [ClassBinder, InputViewService],
-  imports: [InputComponent, ButtonComponent, InputContainerComponent],
+  imports: [InputComponent, ButtonComponent, InputContainerComponent, LoaderComponent],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

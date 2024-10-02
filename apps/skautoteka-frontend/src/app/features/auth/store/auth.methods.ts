@@ -24,7 +24,7 @@ export const withAuthMethods = () => {
         patchState(store, { isLoading: true });
         loader.showLoader('login');
       }),
-      delay(250),
+      delay(25000),
       switchMap(payload => httpService.login$(payload).pipe(
         switchMap(() => httpService.getUser$()),
         tapResponse({
