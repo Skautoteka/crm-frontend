@@ -29,7 +29,12 @@ export const DASHBOARD_ROUTES: Routes = [
         path: 'players',
         component: PlayersComponent,
         loadChildren: () => import('./players.routes').then(r => r.PLAYERS_ROUTES)
-      }
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'tasks'
+      },
     ]
   },
   {

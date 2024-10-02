@@ -67,12 +67,16 @@ export const withAuthMethods = () => {
      *
      */
     const refreshUser = rxMethod<RouterStateSnapshot>(pipe(
+      tap(() => {
+        loader.showLoader('refreshUser')
+      }),
       switchMap((route) => httpService.getUser$().pipe(tapResponse({
         next: (user) => {
           patchState(store, { user });
           router.navigateByUrl(route.url)
         },
-        error: () => router.navigate(['/', 'auth'])
+        error: () => router.navigate(['/', 'auth']),
+        finalize: () => loader.hideLoader('refreshUser')
       })))
     ))
 
