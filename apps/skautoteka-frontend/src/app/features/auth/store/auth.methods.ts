@@ -4,7 +4,7 @@ import { AuthStoreState } from "./auth.store"
 import { inject } from "@angular/core"
 import { AuthHttpService } from "../services/auth-http.service"
 import { LoginPayload } from '../interfaces/iauth';
-import { pipe, switchMap, tap } from 'rxjs';
+import { delay, pipe, switchMap, tap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
 import { Router, RouterStateSnapshot } from '@angular/router';
 import { LoaderService } from '@skautoteka-frontend/ui';
@@ -24,14 +24,18 @@ export const withAuthMethods = () => {
         patchState(store, { isLoading: true });
         loader.showLoader('login');
       }),
+      delay(250),
       switchMap(payload => httpService.login$(payload).pipe(
         switchMap(() => httpService.getUser$()),
         tapResponse({
-          next: (user) => patchState(store, { user }),
+          next: (user) => {
+            patchState(store, { user });
+            router.navigate(['/', 'dashboard'])
+          },
           error: () => null,
           finalize: () => {
             patchState(store, { isLoading: false })
-            //loader.hideLoader('login')
+            loader.hideLoader('login')
           }
       })))
     ))
