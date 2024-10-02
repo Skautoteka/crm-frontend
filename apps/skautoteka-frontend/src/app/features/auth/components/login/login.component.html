@@ -12,5 +12,5 @@
   ></skt-ui-input>
   <skt-ui-input-password formControlName="password" />
 
-  <skt-ui-button class="skt-login__button" (click)="onLogin()">Zaloguj się</skt-ui-button>
+  <skt-ui-button [disabled]="!loginGroup.valid" class="skt-login__button" (click)="onLogin()">Zaloguj się</skt-ui-button>
 </div>
