@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, output, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { SidenavElement } from '../../interfaces';
 
@@ -18,7 +18,13 @@ import { IconComponent } from '../../../icon';
 export class SidenavMenuComponent {
   @Input() elements: SidenavElement[] = [];
 
+  public logoutClicked = output<void>()
+
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-ui-sidenav-menu');
+  }
+
+  public onLogoutClick(): void {
+    this.logoutClicked.emit();
   }
 }

@@ -62,6 +62,10 @@ html {
   box-sizing: inherit;
 }
 
+body {
+  height: 100vh;
+}
+
 body,
 h1,
 h2,
@@ -75,6 +79,7 @@ ul {
   margin: 0;
   padding: 0;
   font-weight: normal;
+  width: 100%;
 }
 
 ol,

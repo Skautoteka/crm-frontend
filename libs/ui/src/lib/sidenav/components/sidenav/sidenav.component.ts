@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Input, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Input, output, ViewEncapsulation } from '@angular/core';
 import { ClassBinder, DeviceService } from '@skautoteka-frontend/common';
 import { SidenavMenuComponent } from '../sidenav-menu/sidenav-menu.component';
 import { SidenavElement } from '../../interfaces';
@@ -19,6 +19,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class SidenavComponent {
   @Input({ required: true }) elements: SidenavElement[] = [];
 
+  public logoutClicked = output<void>();
+
   private _isVisible = false;
   private _sidenav = inject(SidenavService);
 
@@ -34,6 +36,10 @@ export class SidenavComponent {
   public toggleVisible(): void {
     this._isVisible = !this._isVisible;
     this.cdRef.detectChanges();
+  }
+
+  public onLogoutClicked(): void {
+    this.logoutClicked.emit();
   }
 
   private _hideOnRouteChange(): void {

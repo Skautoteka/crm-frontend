@@ -1,0 +1,16 @@
+<div class="skt-login__header">
+  <span class="skt-login__header-message">Zaloguj się</span>
+  <span class="skt-login__header-submessage">Wypelnij formularz ponizej aby zaczac korzystac z platformy</span>
+</div>
+
+<div class="skt-login__form" [formGroup]="loginGroup">
+  <skt-ui-input
+    formControlName="email"
+    [isRequired]="true"
+    label="Email"
+    placeholder="Enter your email"
+  ></skt-ui-input>
+  <skt-ui-input-password formControlName="password" />
+
+  <skt-ui-button [disabled]="!loginGroup.valid" class="skt-login__button" (click)="onLogin()">Zaloguj się</skt-ui-button>
+</div>
