@@ -1,6 +1,7 @@
-import { signalStore, withState } from "@ngrx/signals";
+import { signalStore, withComputed, withState } from "@ngrx/signals";
 import { User } from "../interfaces/iauth"
 import { withAuthMethods } from "./auth.methods";
+import { computed } from "@angular/core";
 
 export type AuthStoreState = {
   user: User | null,
@@ -15,5 +16,21 @@ const initialState: AuthStoreState = {
 export const AuthStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
-  withAuthMethods()
+  withAuthMethods(),
+  withComputed(store => {
+    return {
+      firstName: computed(() => {
+        const user = store.user();
+        return user ? user.firstName : null;
+      }),
+      lastName: computed(() => {
+        const user = store.user();
+        return user ? user.lastName : null;
+      }),
+      roleName: computed(() => {
+        const user = store.user();
+        return user ? user.role.name : null;
+      })
+    }
+  })
 )
