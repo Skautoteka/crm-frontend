@@ -41,30 +41,26 @@ export const withAuthMethods = () => {
     ))
 
     /**
-     *
+     * The method that is used to log out from the store and the method should
+     * clear the cookies.
      */
     const logout = rxMethod<void>(pipe(
+      tap(() => {
+        loader.showLoader('logout')
+      }),
       switchMap(() => httpService.logout$().pipe(tapResponse({
         next: () => {
           patchState(store, { user: null });
           router.navigate(['/', 'auth'])
         },
-        error: () => null
+        error: () => null,
+        finalize: () => loader.hideLoader('logout')
       })))
     ))
 
     /**
-     *
-     */
-    const getUser = rxMethod<void>(pipe(
-      switchMap(() => httpService.getUser$().pipe(tapResponse({
-        next: (user) => patchState(store, { user }),
-        error: () => null
-      })))
-    ))
-
-    /**
-     *
+     * Refreshes the user when a client tries to go into a guarded route.
+     * If the user is authenticated, they get redirected to a path.
      */
     const refreshUser = rxMethod<RouterStateSnapshot>(pipe(
       tap(() => {
@@ -83,7 +79,6 @@ export const withAuthMethods = () => {
     return {
       login,
       logout,
-      getUser,
       refreshUser
     }
   }))

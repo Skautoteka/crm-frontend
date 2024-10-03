@@ -1,5 +1,12 @@
 export type User = {
   email: string;
+  firstName: string;
+  lastName: string;
+  role: Role;
+}
+
+export type Role = {
+  name: string;
 }
 
 export interface LoginPayload {

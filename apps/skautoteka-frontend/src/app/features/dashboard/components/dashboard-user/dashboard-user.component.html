@@ -3,8 +3,8 @@
 </div>
 
 <div class="skt-dashboard-user__info">
-  <span class="skt-dashboard-user__info-name">{{ userName }}</span>
-  <span class="skt-dashboard-user__info-role">{{ userRole }}</span>
+  <span class="skt-dashboard-user__info-name">{{ authStore.firstName() + ' ' + authStore.lastName() }}</span>
+  <span class="skt-dashboard-user__info-role">{{ authStore.roleName() | titlecase }}</span>
 </div>
 
 @if ((device.isMobile$ | async) === false) {
