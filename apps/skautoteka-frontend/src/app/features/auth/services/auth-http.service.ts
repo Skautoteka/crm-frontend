@@ -30,4 +30,13 @@ export class AuthHttpService {
   public logout$(): Observable<void> {
     return this._http.get<void>('api/auth/logout');
   }
+
+  /**
+   * A http call that is used to authenticate the user.
+   *
+   * @returns
+   */
+  public refresh$(): Observable<void> {
+    return this._http.get<void>('api/auth/refresh-token');
+  }
 }
