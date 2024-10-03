@@ -30,7 +30,6 @@ export const withAuthMethods = () => {
         tapResponse({
           next: (user) => {
             patchState(store, { user });
-            console.log(user);
             router.navigate(['/', 'dashboard'])
           },
           error: () => null,
