@@ -1,0 +1,20 @@
+<div class="skt-ui-input__container">
+  @if(label()) {
+  <label class="skt-ui-input__label">
+    {{ label() }}
+
+    @if(isRequired()) {
+    <span class="skt-ui-input__label--required">*</span>
+    }
+  </label>
+  }
+  <input
+    (ngModelChange)="onInputChange($event)"
+    [ngModel]="_value"
+    (blur)="onBlur()"
+    type="text"
+    class="skt-ui-input__input"
+    [class.skt-ui-input__input--invalid]="invalid()"
+    placeholder="{{ placeholder() }}"
+  />
+</div>

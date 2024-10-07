@@ -1,12 +1,25 @@
 @if(formGroup) {
 <ng-container [formGroup]="formGroup">
   @for (input of config(); track input.name) {
-  <skt-ui-input
-    [formControlName]="input.name"
-    [isRequired]="input.isRequired"
-    [label]="input.label"
-    [placeholder]="input.placeholder"
-  ></skt-ui-input>
+    @switch (input.type) {
+      @case ('TEXT') {
+        <skt-ui-input
+          [formControlName]="input.name"
+          [isRequired]="input.isRequired"
+          [label]="input.label"
+          [placeholder]="input.placeholder"
+        />
+      }
+
+      @case ('DATE') {
+        <skt-ui-input-date
+          [formControlName]="input.name"
+          [isRequired]="input.isRequired"
+          [label]="input.label"
+          [placeholder]="input.placeholder"
+        />
+      }
+    }
   }
 </ng-container>
 }

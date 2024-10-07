@@ -8,4 +8,4 @@ export interface ISingleInputConfig {
   type: InputType;
 }
 
-type InputType = 'TEXT' | 'BOOL';
+type InputType = 'TEXT' | 'BOOL' | 'DATE';

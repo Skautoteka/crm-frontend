@@ -5,6 +5,7 @@ import { CommonModule, NgIf } from '@angular/common';
 import { InputConfig } from '../../interface';
 import { InputComponent } from '../input/input.component';
 import { InputViewService } from '../../services';
+import { InputDateComponent } from '../input-date/input-date.component';
 
 @Component({
   selector: 'skt-ui-input-container',
@@ -13,7 +14,7 @@ import { InputViewService } from '../../services';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  imports: [FormsModule, CommonModule, NgIf, ReactiveFormsModule, InputComponent],
+  imports: [FormsModule, CommonModule, NgIf, ReactiveFormsModule, InputComponent, InputDateComponent],
   providers: [ClassBinder]
 })
 export class InputContainerComponent<K> {
