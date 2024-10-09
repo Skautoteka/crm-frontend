@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { SquareButtonComponent } from '@skautoteka-frontend/ui';
+import { SquareButtonComponent, ModalService } from '@skautoteka-frontend/ui';
+import { DashboardUserProfileComponent } from '../dashboard-user-profile/dashboard-user-profile.component';
 
 @Component({
   standalone: true,
@@ -17,11 +18,17 @@ export class DashboardUserActionsComponent {
     'notifications' | 'user-profile'
   >();
 
-  public onActionClicked(type: 'notifications' | 'user-profile'): void {
-    this.actionClicked.emit(type);
+  constructor(classBinder: ClassBinder, private _modal: ModalService) {
+    classBinder.bind('skt-dashboard-user-actions');
   }
 
-  constructor(classBinder: ClassBinder) {
-    classBinder.bind('skt-dashboard-user-actions');
+  public onActionClicked(type: 'notifications' | 'user-profile'): void {
+    if (type === 'user-profile') {
+      this._modal.createModal(DashboardUserProfileComponent, {
+        header: 'Profil skauta',
+        subHeader: 'Wypełnij wszystkie wymagane informacje o zadaniu i zapisz zmiany'
+      });
+    }
+    this.actionClicked.emit(type);
   }
 }
