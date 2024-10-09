@@ -27,7 +27,7 @@ import { AsyncPipe } from '@angular/common';
     AsyncPipe
   ],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class DashboardUserProfileComponent {
   constructor(classBinder: ClassBinder) {
