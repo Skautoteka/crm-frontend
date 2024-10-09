@@ -6,6 +6,12 @@ export interface ISingleInputConfig {
   label: string;
   isRequired: boolean;
   type: InputType;
+  options?: ISelectOption[]
 }
 
-type InputType = 'TEXT' | 'BOOL' | 'DATE';
+export interface ISelectOption {
+  value: string;
+  label: string;
+}
+
+type InputType = 'TEXT' | 'BOOL' | 'DATE' | 'SELECT';

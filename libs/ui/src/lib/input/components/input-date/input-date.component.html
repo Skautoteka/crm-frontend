@@ -1,10 +1,10 @@
-<div class="skt-ui-input__container">
+<div class="skt-ui-input-date__container">
   @if(label()) {
-  <label class="skt-ui-input__label">
+  <label class="skt-ui-input-date__label">
     {{ label() }}
 
     @if(isRequired()) {
-    <span class="skt-ui-input__label--required">*</span>
+    <span class="skt-ui-input-date__label--required">*</span>
     }
   </label>
   }
@@ -12,9 +12,29 @@
     (ngModelChange)="onInputChange($event)"
     [ngModel]="_value"
     (blur)="onBlur()"
+    (click)="onClick()"
     type="text"
-    class="skt-ui-input__input"
+    class="skt-ui-input-date__input"
     [class.skt-ui-input__input--invalid]="invalid()"
     placeholder="{{ placeholder() }}"
+    cdkOverlayOrigin
+    #trigger="cdkOverlayOrigin"
   />
 </div>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isDateOpen()"
+  (overlayOutsideClick)="onOutsideClick()"
+>
+<div class="skt-ui-input-date__modal">
+  <div class="skt-ui-input-date__modal-header">
+    <skt-ui-icon iconName="chevron-left" (click)="onChevronClick('back')" />
+    <span>{{ currentDate().getFullYear() + ' ' + currentMonth() }}</span>
+    <skt-ui-icon iconName="chevron-right" (click)="onChevronClick('forward')" />
+  </div>
+  <div class="skt-ui-input-date__modal-calendar">
+  </div>
+</div>
+</ng-template>

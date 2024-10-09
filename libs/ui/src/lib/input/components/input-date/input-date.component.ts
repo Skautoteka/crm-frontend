@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  computed,
   DestroyRef,
   forwardRef,
   inject,
@@ -14,6 +15,8 @@ import { ClassBinder } from '@skautoteka-frontend/common';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { IconComponent } from '../../../icon';
 
 @Component({
   selector: 'skt-ui-input-date',
@@ -22,7 +25,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  imports: [FormsModule, FormsModule, CommonModule, NgIf],
+  imports: [FormsModule, FormsModule, CommonModule, NgIf, OverlayModule, IconComponent],
   providers: [
     ClassBinder,
     {
@@ -37,6 +40,29 @@ export class InputDateComponent implements ControlValueAccessor, AfterViewInit {
   public label = input<string | null>(null);
   public isRequired = input<boolean>(false);
   public invalid = signal<boolean>(false);
+
+  public isDateOpen = signal<boolean>(false);
+  public currentDate = signal<Date>(new Date());
+
+  public currentMonth = computed(() => {
+    const currentDate = this.currentDate();
+    const month = [
+      "Styczeń",
+      "Luty",
+      "Marzec",
+      "Kwiecień",
+      "Maj",
+      "Czerwiec",
+      "Lipiec",
+      "Sierpień",
+      "Wrzesień",
+      "Październik",
+      "Listopad",
+      "Grudzień"
+    ];
+
+    return month[currentDate.getMonth()]
+  })
 
   protected _value = '';
   private _control!: NgControl;
@@ -53,6 +79,18 @@ export class InputDateComponent implements ControlValueAccessor, AfterViewInit {
   ngAfterViewInit(): void {
     this._control = this._injector.get(NgControl);
     this._updateValidUi();
+  }
+
+  public onChevronClick(type: 'forward' | 'back'): void {
+    this.currentDate.update(date => new Date(date.setMonth(date.getMonth() + (type === 'forward' ? 1 : -1))))
+  }
+
+  public onClick(): void {
+    this.isDateOpen.set(true)
+  }
+
+  public onOutsideClick(): void {
+    this.isDateOpen.set(false)
   }
 
   public onBlur(): void {
