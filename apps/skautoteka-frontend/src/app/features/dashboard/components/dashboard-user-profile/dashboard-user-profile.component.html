@@ -25,7 +25,7 @@
     <skt-ui-label-container>
       <skt-ui-label [valueClass]="'big'">
         <span label>Wiek</span>
-        {{ authStore?.dateOfBirth() +" lat" }}
+        {{ calculateAge(authStore.dateOfBirth()) }} lat
       </skt-ui-label>
     </skt-ui-label-container>
   </div>

@@ -33,4 +33,13 @@ export class DashboardUserProfileComponent {
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-dashboard-user-profile');
   }
+
+  public calculateAge(dateOfBirth: Date | null): number | null {
+    if (!dateOfBirth) return null;
+
+    const today = new Date();
+    const age = today.getFullYear() - dateOfBirth.getFullYear();
+
+    return age;
+  }
 }
