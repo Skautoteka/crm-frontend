@@ -19,6 +19,14 @@
           [placeholder]="input.placeholder"
         />
       }
+
+      @case ('BOOL') {
+        BOOL
+      }
+
+      @case ('SELECT') {
+        SELECT
+      }
     }
   }
 </ng-container>
