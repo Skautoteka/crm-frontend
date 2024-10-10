@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation, inject } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   IconCardComponent,
@@ -9,7 +9,7 @@ import {
   InputContainerComponent,
   InputViewService
 } from '@skautoteka-frontend/ui';
-import { AsyncPipe } from '@angular/common';
+import { AuthStore } from '../../../auth/store/auth.store';
 
 @Component({
   standalone: true,
@@ -23,13 +23,13 @@ import { AsyncPipe } from '@angular/common';
     LabelContainerComponent,
     InputComponent,
     ButtonComponent,
-    InputContainerComponent,
-    AsyncPipe
+    InputContainerComponent
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardUserProfileComponent {
+  public authStore = inject(AuthStore);
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-dashboard-user-profile');
   }

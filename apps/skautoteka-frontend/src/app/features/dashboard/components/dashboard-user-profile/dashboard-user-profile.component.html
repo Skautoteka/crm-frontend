@@ -10,14 +10,14 @@
       <skt-ui-label-container>
         <skt-ui-label [valueClass]="'big'">
           <span label>Imię</span>
-          {{ "John" }}
+          {{ authStore.firstName() }}
         </skt-ui-label>
       </skt-ui-label-container>
       
       <skt-ui-label-container>
         <skt-ui-label [valueClass]="'big'">
           <span label>Nazwisko</span>
-          {{ "Smith" }}
+          {{ authStore.lastName() }}
         </skt-ui-label>
       </skt-ui-label-container>
     </div>
@@ -25,7 +25,7 @@
     <skt-ui-label-container>
       <skt-ui-label [valueClass]="'big'">
         <span label>Wiek</span>
-        {{ "29 lat" }}
+        {{ authStore?.dateOfBirth() +" lat" }}
       </skt-ui-label>
     </skt-ui-label-container>
   </div>
@@ -42,7 +42,7 @@
       <skt-ui-label-container>
         <skt-ui-label [valueClass]="'big'">
           <span label>Email</span>
-          {{ "johnsmith@gmail.com" }}
+          {{ authStore.email() }}
         </skt-ui-label>
       </skt-ui-label-container>
     </div>
@@ -50,7 +50,7 @@
     <skt-ui-label-container>
       <skt-ui-label [valueClass]="'big'">
         <span label>Telefon</span>
-        {{ "+48 502 211 242" }}
+        {{ authStore.phoneNumber() }}
       </skt-ui-label>
     </skt-ui-label-container>
   </div>
