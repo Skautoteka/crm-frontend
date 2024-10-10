@@ -26,7 +26,7 @@ export class DashboardUserActionsComponent {
     if (type === 'user-profile') {
       this._modal.createModal(DashboardUserProfileComponent, {
         header: 'Profil skauta',
-        subHeader: 'Wypełnij wszystkie wymagane informacje o zadaniu i zapisz zmiany'
+        subHeader: ''
       });
     }
     this.actionClicked.emit(type);
