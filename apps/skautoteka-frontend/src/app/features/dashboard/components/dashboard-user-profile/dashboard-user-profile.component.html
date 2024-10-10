@@ -1,24 +1,26 @@
 <div class="section-wrapper">
   <div class="information-section personal">
-    <skt-ui-label-container>
+    <skt-ui-label-container style="margin-bottom: 1rem;">
       <skt-ui-label>
         <span label>Informacje personalne</span>
       </skt-ui-label>
     </skt-ui-label-container>
 
-    <skt-ui-label-container>
-      <skt-ui-label>
-        <span label>Imię</span>
-        {{ "John" }}
-      </skt-ui-label>
-    </skt-ui-label-container>
-
-    <skt-ui-label-container>
-      <skt-ui-label>
-        <span label>Nazwisko</span>
-        {{ "Smith" }}
-      </skt-ui-label>
-    </skt-ui-label-container>
+    <div class="info-row">
+      <skt-ui-label-container>
+        <skt-ui-label>
+          <span label>Imię</span>
+          {{ "John" }}
+        </skt-ui-label>
+      </skt-ui-label-container>
+      
+      <skt-ui-label-container>
+        <skt-ui-label>
+          <span label>Nazwisko</span>
+          {{ "Smith" }}
+        </skt-ui-label>
+      </skt-ui-label-container>
+    </div>
     
     <skt-ui-label-container>
       <skt-ui-label>
@@ -34,12 +36,17 @@
         <span label>Informacje kontaktowe</span>
       </skt-ui-label>
     </skt-ui-label-container>
-    <skt-ui-label-container>
-      <skt-ui-label>
-        <span label>Email</span>
-        {{ "johnsmith@gmail.com" }}
-      </skt-ui-label>
-    </skt-ui-label-container>
+
+    <div class="info-row">
+
+      <skt-ui-label-container>
+        <skt-ui-label>
+          <span label>Email</span>
+          {{ "johnsmith@gmail.com" }}
+        </skt-ui-label>
+      </skt-ui-label-container>
+    </div>
+    
     <skt-ui-label-container>
       <skt-ui-label>
         <span label>Telefon</span>
@@ -55,13 +62,13 @@
   </skt-ui-label>
 </skt-ui-label-container>
 <div class="section-wrapper">
-    <skt-ui-icon-card iconName="play-list-search">
-      <div class="skt-reports-rating__rating-wrapper">
+    <skt-ui-icon-card iconName="play-list-check" type="success">
+      <div class="skt-reports-rating__rating-success">
         <span class="skt-reports-rating__rating-title">{{ 'Ukończone' }}</span>
         <span class="skt-reports-rating__rating-value">{{ '24' }}</span>
       </div>
     </skt-ui-icon-card>
-    <skt-ui-icon-card iconName="play-list-search">
+    <skt-ui-icon-card iconName="play-list-remove" type="warn">
       <div class="skt-reports-rating__rating-wrapper">
         <span class="skt-reports-rating__rating-title">{{ 'Nieukończone' }}</span>
         <span class="skt-reports-rating__rating-value">{{ '12' }}</span>
