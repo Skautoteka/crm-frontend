@@ -3,20 +3,17 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  DestroyRef,
   forwardRef,
-  inject,
   Injector,
-  input,
   signal,
   ViewEncapsulation
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { IconComponent } from '../../../icon';
+import { InputComponent } from '../input/input.component';
 
 @Component({
   selector: 'skt-ui-input-date',
@@ -35,50 +32,50 @@ import { IconComponent } from '../../../icon';
     }
   ]
 })
-export class InputDateComponent implements ControlValueAccessor, AfterViewInit {
-  public placeholder = input<string>('');
-  public label = input<string | null>(null);
-  public isRequired = input<boolean>(false);
-  public invalid = signal<boolean>(false);
-
+export class InputDateComponent extends InputComponent implements ControlValueAccessor, AfterViewInit {
   public isDateOpen = signal<boolean>(false);
   public currentDate = signal<Date>(new Date());
 
   public currentMonth = computed(() => {
     const currentDate = this.currentDate();
-    const month = [
-      "Styczeń",
-      "Luty",
-      "Marzec",
-      "Kwiecień",
-      "Maj",
-      "Czerwiec",
-      "Lipiec",
-      "Sierpień",
-      "Wrzesień",
-      "Październik",
-      "Listopad",
-      "Grudzień"
-    ];
-
-    return month[currentDate.getMonth()]
+    return this._months[currentDate.getMonth()]
   })
 
-  protected _value = '';
-  private _control!: NgControl;
-  private _isDisabled = false;
-  private _destroyRef = inject(DestroyRef);
+  public chosenDate = signal<string>('');
 
-  private _onChange!: (value: string) => void;
-  private _onTouched!: () => void;
+  public currentDays = computed(() => {
+    const currentDate = this.currentDate();
+    const days = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+    return new Array(days);
+  })
 
-  constructor(classBinder: ClassBinder, private _injector: Injector) {
+  public prefixDays = computed(() => {
+    const currentDate = this.currentDate();
+    return new Array(this._getOffsetDays(currentDate))
+  })
+
+  public days = [
+    'Pon', 'Wt', 'Sr', 'Czw', 'Pią', 'Sob', 'Nie'
+  ];
+
+  private _months = [
+    "Styczeń",
+    "Luty",
+    "Marzec",
+    "Kwiecień",
+    "Maj",
+    "Czerwiec",
+    "Lipiec",
+    "Sierpień",
+    "Wrzesień",
+    "Październik",
+    "Listopad",
+    "Grudzień"
+  ]
+
+  constructor(classBinder: ClassBinder, _injector: Injector) {
+    super(classBinder, _injector)
     classBinder.bind('skt-ui-input-date');
-  }
-
-  ngAfterViewInit(): void {
-    this._control = this._injector.get(NgControl);
-    this._updateValidUi();
   }
 
   public onChevronClick(type: 'forward' | 'back'): void {
@@ -90,47 +87,17 @@ export class InputDateComponent implements ControlValueAccessor, AfterViewInit {
   }
 
   public onOutsideClick(): void {
-    this.isDateOpen.set(false)
+    this.isDateOpen.set(false);
   }
 
-  public onBlur(): void {
-    this.invalid.set(!this._control.valid);
+  public onDayClick(day: number): void {
+    this.isDateOpen.set(false);
+    const currentDate = this.currentDate()
+    this.chosenDate.set(new Date(currentDate.getFullYear(), currentDate.getMonth(), day + 1).toLocaleDateString())
   }
 
-  public onInputChange(value: string): void {
-    this._value = value;
-    this._onChange(this._value);
-  }
-
-  writeValue(value: string): void {
-    this._value = value;
-  }
-
-  registerOnChange(fn: () => void): void {
-    this._onChange = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this._isDisabled = isDisabled;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this._onTouched = fn;
-  }
-
-  private _updateValidUi(): void {
-    if (!this._control.statusChanges) {
-      return;
-    }
-
-    this._control.statusChanges.pipe(takeUntilDestroyed(this._destroyRef)).subscribe(event => {
-      if (event === 'VALID') {
-        this.invalid.set(false);
-      }
-
-      if (event === 'INVALID') {
-        this.invalid.set(true);
-      }
-    });
+  private _getOffsetDays(date: Date): number {
+    const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    return firstDay.getDay() - 1;
   }
 }
