@@ -73,9 +73,15 @@ export class InputDateComponent extends InputComponent implements ControlValueAc
     "Grudzień"
   ]
 
+  private _onDateChange!: (value: string) => void;
+
   constructor(classBinder: ClassBinder, _injector: Injector) {
     super(classBinder, _injector)
     classBinder.bind('skt-ui-input-date');
+  }
+
+  override registerOnChange(fn: () => void): void {
+    this._onDateChange = fn;
   }
 
   public onChevronClick(type: 'forward' | 'back'): void {
@@ -93,7 +99,10 @@ export class InputDateComponent extends InputComponent implements ControlValueAc
   public onDayClick(day: number): void {
     this.isDateOpen.set(false);
     const currentDate = this.currentDate()
-    this.chosenDate.set(new Date(currentDate.getFullYear(), currentDate.getMonth(), day + 1).toLocaleDateString())
+
+    const value = new Date(currentDate.getFullYear(), currentDate.getMonth(), day + 1).toLocaleDateString();
+    this.chosenDate.set(value);
+    this._onDateChange(value)
   }
 
   private _getOffsetDays(date: Date): number {

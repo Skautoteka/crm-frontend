@@ -50,7 +50,9 @@ export class InputSelectComponent extends InputComponent implements ControlValue
 
   public onOptionClick(option: ISelectOption): void {
     this.activeOption.set(option);
-    this.dropdownVisible.set(false)
+    this._onChange(option.value)
+
+    this.dropdownVisible.set(false);
   }
 
   public onOutsideClick(): void {

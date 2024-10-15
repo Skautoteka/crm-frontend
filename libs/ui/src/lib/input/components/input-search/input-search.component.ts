@@ -72,6 +72,7 @@ export class InputSearchComponent extends InputComponent implements ControlValue
     this.dropdownVisible.set(false);
 
     this.activeOption.set(option);
+    this._onChange(option.value);
     this._input().nativeElement.value = option.label;
   }
 

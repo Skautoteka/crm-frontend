@@ -29,7 +29,7 @@ export class InputCheckboxComponent implements ControlValueAccessor {
 
   private _classBinder = inject(ClassBinder);
 
-  private _onChange!: (value: string) => void;
+  private _onChange!: (value: boolean) => void;
   private _onTouched!: () => void;
 
   constructor() {
@@ -38,6 +38,7 @@ export class InputCheckboxComponent implements ControlValueAccessor {
 
   public onCheckboxClick(): void {
     this.value.update(v => !v);
+    this._onChange(this.value())
   }
 
   writeValue(value: boolean): void {
