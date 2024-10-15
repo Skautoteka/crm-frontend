@@ -2,11 +2,13 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   forwardRef,
   inject,
   Injector,
   input,
   signal,
+  viewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
@@ -49,6 +51,7 @@ export class InputSearchComponent extends InputComponent implements ControlValue
   public activeOption = signal<ISelectOption | null>(null);
 
   private _http = inject(HttpClient);
+  private _input = viewChild.required('input', { read: ElementRef })
 
   constructor(classBinder: ClassBinder, _injector: Injector) {
     super(classBinder, _injector)
@@ -64,13 +67,19 @@ export class InputSearchComponent extends InputComponent implements ControlValue
     this.dropdownVisible.set(true);
   }
 
-  public onOptionClick(option: any): void {
-    console.log(option)
-    this.dropdownVisible.set(false)
+  public onOptionClick(option: ISelectOption): void {
+    this.dropdownVisible.set(false);
+
+    this.activeOption.set(option);
+    this._input().nativeElement.value = option.label;
   }
 
   public onOutsideClick(): void {
     this.dropdownVisible.set(false);
+
+    if(!this.activeOption()) {
+      this.query.setValue('', { emitEvent: false })
+    }
   }
 
   private _updateSearchQuery(query: string | null): void {
@@ -78,6 +87,10 @@ export class InputSearchComponent extends InputComponent implements ControlValue
 
     if(!query || !searchType) {
       return;
+    }
+
+    if(query !== this.activeOption()?.label) {
+      this.activeOption.set(null);
     }
 
     this._http.get<{ id: string, name: string }[]>(`api/${searchType}/search?search=${query}`).subscribe(results =>
