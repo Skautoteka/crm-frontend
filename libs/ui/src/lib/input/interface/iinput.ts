@@ -7,6 +7,7 @@ export interface ISingleInputConfig {
   isRequired: boolean;
   type: InputType;
   options?: ISelectOption[]
+  searchType?: string;
 }
 
 export interface ISelectOption {
@@ -14,4 +15,4 @@ export interface ISelectOption {
   label: string;
 }
 
-type InputType = 'TEXT' | 'BOOL' | 'DATE' | 'SELECT';
+type InputType = 'TEXT' | 'BOOL' | 'DATE' | 'SELECT' | 'SEARCH' | 'NUMBER';

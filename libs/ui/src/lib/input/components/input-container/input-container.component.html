@@ -37,6 +37,16 @@
           [options]="input.options || []"
          />
       }
+
+      @case ('SEARCH') {
+        <skt-ui-input-search
+          [formControlName]="input.name"
+          [isRequired]="input.isRequired"
+          [label]="input.label"
+          [placeholder]="input.placeholder"
+          [searchType]="input.searchType || null"
+         />
+      }
     }
   }
 </ng-container>

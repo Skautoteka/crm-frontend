@@ -8,6 +8,7 @@ import { InputViewService } from '../../services';
 import { InputDateComponent } from '../input-date/input-date.component';
 import { InputCheckboxComponent } from '../input-checkbox/input-checkbox.component';
 import { InputSelectComponent } from '../input-select/input-select.component';
+import { InputSearchComponent } from "../input-search/input-search.component";
 
 @Component({
   selector: 'skt-ui-input-container',
@@ -16,7 +17,7 @@ import { InputSelectComponent } from '../input-select/input-select.component';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  imports: [FormsModule, CommonModule, NgIf, ReactiveFormsModule, InputComponent, InputDateComponent, InputCheckboxComponent, InputSelectComponent],
+  imports: [FormsModule, CommonModule, NgIf, ReactiveFormsModule, InputComponent, InputDateComponent, InputCheckboxComponent, InputSelectComponent, InputSearchComponent],
   providers: [ClassBinder]
 })
 export class InputContainerComponent<K> {
