@@ -11,6 +11,15 @@
         />
       }
 
+      @case ('NUMBER') {
+        <skt-ui-input-number
+          [formControlName]="input.name"
+          [isRequired]="input.isRequired"
+          [label]="input.label"
+          [placeholder]="input.placeholder"
+        />
+      }
+
       @case ('DATE') {
         <skt-ui-input-date
           [formControlName]="input.name"
