@@ -1,0 +1,32 @@
+<div class="skt-ui-input-select__container">
+  @if(label()) {
+  <label class="skt-ui-input-select__label">
+    {{ label() }}
+
+    @if(isRequired()) {
+    <span class="skt-ui-input-select__label--required">*</span>
+    }
+  </label>
+  }
+  <input
+    (blur)="onBlur()"
+    (click)="onClick()"
+    type="text"
+    class="skt-ui-input-select__input"
+    [class.skt-ui-input__input--invalid]="invalid()"
+    placeholder="{{ placeholder() }}"
+    cdkOverlayOrigin
+    #trigger="cdkOverlayOrigin"
+    readonly
+  />
+</div>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="dropdownVisible()"
+  (overlayOutsideClick)="onOutsideClick()"
+>
+hmm
+</ng-template>
+
