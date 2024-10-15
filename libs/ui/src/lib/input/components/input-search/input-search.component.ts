@@ -80,7 +80,10 @@ export class InputSearchComponent extends InputComponent implements ControlValue
 
     if(!this.activeOption()) {
       this.query.setValue('', { emitEvent: false })
+    } else {
+      this._input().nativeElement.value = this.activeOption()?.label
     }
+
   }
 
   public onCloseClick(): void {
@@ -93,10 +96,6 @@ export class InputSearchComponent extends InputComponent implements ControlValue
 
     if(!query || !searchType) {
       return;
-    }
-
-    if(query !== this.activeOption()?.label) {
-      this.activeOption.set(null);
     }
 
     this._http.get<{ id: string, name: string }[]>(`api/${searchType}/search?search=${query}`).subscribe(results =>
