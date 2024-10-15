@@ -11,8 +11,12 @@
 
   &__icon {
     position: absolute;
-    right: 2rem;
+    right: 0;
     cursor: pointer;
+  }
+
+  &__container {
+    position: relative;
   }
 
   &__spinner {
