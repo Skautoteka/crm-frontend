@@ -21,11 +21,21 @@
       }
 
       @case ('BOOL') {
-        BOOL
+        <skt-ui-input-checkbox
+          [formControlName]="input.name"
+          [isRequired]="input.isRequired"
+          [label]="input.label"
+        />
       }
 
       @case ('SELECT') {
-        SELECT
+        <skt-ui-input-select
+          [formControlName]="input.name"
+          [isRequired]="input.isRequired"
+          [label]="input.label"
+          [placeholder]="input.placeholder"
+          [options]="input.options || []"
+         />
       }
     }
   }
