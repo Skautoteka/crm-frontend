@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
-import { ClassBinder } from "@skautoteka-frontend/common";
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ClassBinder } from '@skautoteka-frontend/common';
 
 @Component({
   standalone: true,

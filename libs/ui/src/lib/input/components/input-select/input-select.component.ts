@@ -40,7 +40,7 @@ export class InputSelectComponent extends InputComponent implements ControlValue
   public activeOption = signal<ISelectOption | null>(null);
 
   constructor(classBinder: ClassBinder, _injector: Injector) {
-    super(classBinder, _injector)
+    super(classBinder, _injector);
     classBinder.bind('skt-ui-input-select');
   }
 
@@ -50,7 +50,9 @@ export class InputSelectComponent extends InputComponent implements ControlValue
 
   public onOptionClick(option: ISelectOption): void {
     this.activeOption.set(option);
-    this.dropdownVisible.set(false)
+    this._onChange(option.value);
+
+    this.dropdownVisible.set(false);
   }
 
   public onOutsideClick(): void {

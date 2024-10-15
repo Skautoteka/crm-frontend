@@ -1,6 +1,6 @@
 @if(playersStore.createFields()) {
-  <skt-ui-input-container [config]="playersStore.createFields()"></skt-ui-input-container>
-  <skt-ui-button [disabled]="!inputView.isValid" (click)="onSaveButtonClick()">Zapisz zawodnika</skt-ui-button>
+<skt-ui-input-container [config]="playersStore.createFields()"></skt-ui-input-container>
+<skt-ui-button [disabled]="!inputView.isValid" (click)="onSaveButtonClick()">Zapisz zawodnika</skt-ui-button>
 } @else {
-  <skt-ui-loader />
+<skt-ui-loader />
 }

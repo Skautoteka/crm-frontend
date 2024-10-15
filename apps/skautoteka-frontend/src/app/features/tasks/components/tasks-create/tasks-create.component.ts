@@ -1,11 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import {
-  ButtonComponent,
-  InputComponent,
-  InputContainerComponent,
-  InputViewService,
-} from '@skautoteka-frontend/ui';
+import { ButtonComponent, InputComponent, InputContainerComponent, InputViewService } from '@skautoteka-frontend/ui';
 import { AsyncPipe } from '@angular/common';
 import { TasksStore } from '../../store/tasks.store';
 import { Task } from '../../interfaces';
@@ -23,10 +18,7 @@ import { Task } from '../../interfaces';
 export class TasksCreateComponent {
   public tasksStore = inject(TasksStore);
 
-  constructor(
-    classBinder: ClassBinder,
-    public inputView: InputViewService<Task>,
-  ) {
+  constructor(classBinder: ClassBinder, public inputView: InputViewService<Task>) {
     classBinder.bind('skt-tasks-create');
     this.tasksStore.fetchFields();
   }

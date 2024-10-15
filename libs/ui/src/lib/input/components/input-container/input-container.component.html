@@ -1,43 +1,44 @@
 @if(formGroup) {
 <ng-container [formGroup]="formGroup">
-  @for (input of config(); track input.name) {
-    @switch (input.type) {
-      @case ('TEXT') {
-        <skt-ui-input
-          [formControlName]="input.name"
-          [isRequired]="input.isRequired"
-          [label]="input.label"
-          [placeholder]="input.placeholder"
-        />
-      }
-
-      @case ('DATE') {
-        <skt-ui-input-date
-          [formControlName]="input.name"
-          [isRequired]="input.isRequired"
-          [label]="input.label"
-          [placeholder]="input.placeholder"
-        />
-      }
-
-      @case ('BOOL') {
-        <skt-ui-input-checkbox
-          [formControlName]="input.name"
-          [isRequired]="input.isRequired"
-          [label]="input.label"
-        />
-      }
-
-      @case ('SELECT') {
-        <skt-ui-input-select
-          [formControlName]="input.name"
-          [isRequired]="input.isRequired"
-          [label]="input.label"
-          [placeholder]="input.placeholder"
-          [options]="input.options || []"
-         />
-      }
-    }
-  }
+  @for (input of config(); track input.name) { @switch (input.type) { @case ('TEXT') {
+  <skt-ui-input
+    [formControlName]="input.name"
+    [isRequired]="input.isRequired"
+    [label]="input.label"
+    [placeholder]="input.placeholder"
+  />
+  } @case ('NUMBER') {
+  <skt-ui-input-number
+    [formControlName]="input.name"
+    [isRequired]="input.isRequired"
+    [label]="input.label"
+    [placeholder]="input.placeholder"
+  />
+  } @case ('DATE') {
+  <skt-ui-input-date
+    [formControlName]="input.name"
+    [isRequired]="input.isRequired"
+    [label]="input.label"
+    [placeholder]="input.placeholder"
+  />
+  } @case ('BOOL') {
+  <skt-ui-input-checkbox [formControlName]="input.name" [isRequired]="input.isRequired" [label]="input.label" />
+  } @case ('SELECT') {
+  <skt-ui-input-select
+    [formControlName]="input.name"
+    [isRequired]="input.isRequired"
+    [label]="input.label"
+    [placeholder]="input.placeholder"
+    [options]="input.options || []"
+  />
+  } @case ('SEARCH') {
+  <skt-ui-input-search
+    [formControlName]="input.name"
+    [isRequired]="input.isRequired"
+    [label]="input.label"
+    [placeholder]="input.placeholder"
+    [searchType]="input.searchType || null"
+  />
+  } } }
 </ng-container>
 }

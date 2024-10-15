@@ -38,8 +38,8 @@ export class InputDateComponent extends InputComponent implements ControlValueAc
 
   public currentMonth = computed(() => {
     const currentDate = this.currentDate();
-    return this._months[currentDate.getMonth()]
-  })
+    return this._months[currentDate.getMonth()];
+  });
 
   public chosenDate = signal<string>('');
 
@@ -47,43 +47,47 @@ export class InputDateComponent extends InputComponent implements ControlValueAc
     const currentDate = this.currentDate();
     const days = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
     return new Array(days);
-  })
+  });
 
   public prefixDays = computed(() => {
     const currentDate = this.currentDate();
-    return new Array(this._getOffsetDays(currentDate))
-  })
+    return new Array(this._getOffsetDays(currentDate));
+  });
 
-  public days = [
-    'Pon', 'Wt', 'Sr', 'Czw', 'Pią', 'Sob', 'Nie'
-  ];
+  public days = ['Pon', 'Wt', 'Sr', 'Czw', 'Pią', 'Sob', 'Nie'];
 
   private _months = [
-    "Styczeń",
-    "Luty",
-    "Marzec",
-    "Kwiecień",
-    "Maj",
-    "Czerwiec",
-    "Lipiec",
-    "Sierpień",
-    "Wrzesień",
-    "Październik",
-    "Listopad",
-    "Grudzień"
-  ]
+    'Styczeń',
+    'Luty',
+    'Marzec',
+    'Kwiecień',
+    'Maj',
+    'Czerwiec',
+    'Lipiec',
+    'Sierpień',
+    'Wrzesień',
+    'Październik',
+    'Listopad',
+    'Grudzień'
+  ];
+
+  private _onDateChange!: (value: string) => void;
 
   constructor(classBinder: ClassBinder, _injector: Injector) {
-    super(classBinder, _injector)
+    super(classBinder, _injector);
     classBinder.bind('skt-ui-input-date');
   }
 
+  override registerOnChange(fn: () => void): void {
+    this._onDateChange = fn;
+  }
+
   public onChevronClick(type: 'forward' | 'back'): void {
-    this.currentDate.update(date => new Date(date.setMonth(date.getMonth() + (type === 'forward' ? 1 : -1))))
+    this.currentDate.update(date => new Date(date.setMonth(date.getMonth() + (type === 'forward' ? 1 : -1))));
   }
 
   public onClick(): void {
-    this.isDateOpen.set(true)
+    this.isDateOpen.set(true);
   }
 
   public onOutsideClick(): void {
@@ -92,8 +96,11 @@ export class InputDateComponent extends InputComponent implements ControlValueAc
 
   public onDayClick(day: number): void {
     this.isDateOpen.set(false);
-    const currentDate = this.currentDate()
-    this.chosenDate.set(new Date(currentDate.getFullYear(), currentDate.getMonth(), day + 1).toLocaleDateString())
+    const currentDate = this.currentDate();
+
+    const value = new Date(currentDate.getFullYear(), currentDate.getMonth(), day + 1).toLocaleDateString();
+    this.chosenDate.set(value);
+    this._onDateChange(value);
   }
 
   private _getOffsetDays(date: Date): number {

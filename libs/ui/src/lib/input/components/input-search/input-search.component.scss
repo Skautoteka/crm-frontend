@@ -1,19 +1,43 @@
-.skt-ui-input-select {
+.skt-ui-input-search {
   display: block;
   width: 100%;
+
+  &__spinner-wrapper {
+    display: flex;
+    font-size: 0.75rem;
+    align-items: center;
+    opacity: 0.5;
+  }
 
   &__icon {
     position: absolute;
     right: 0;
-    transition: all 0.3s;
-
-    &--open {
-      transform: rotate(180deg);
-    }
+    cursor: pointer;
   }
 
   &__container {
     position: relative;
+  }
+
+  &__spinner {
+    margin: 0.5rem 0.5rem 0.5rem 1rem;
+    width: 16px;
+    padding: 4px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--primary-1);
+    --_m: conic-gradient(#0000 1%, #000), linear-gradient(#000 0 0) content-box;
+    -webkit-mask: var(--_m);
+    mask: var(--_m);
+    -webkit-mask-composite: source-out;
+    mask-composite: subtract;
+    animation: l3 1s infinite linear;
+  }
+
+  &__prompt {
+    font-size: 0.75rem;
+    margin: 0.5rem 0.5rem;
+    opacity: 0.5;
   }
 
   &__input {
@@ -87,5 +111,11 @@
   &__option-label {
     margin-left: 0.75rem;
     font-size: 0.75rem;
+  }
+}
+
+@keyframes l3 {
+  to {
+    transform: rotate(1turn);
   }
 }

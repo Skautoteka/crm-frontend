@@ -33,7 +33,7 @@ import { ReportsStore } from '../../store/reports.store';
   ]
 })
 export class ReportsBasicInfoComponent {
-  public reportsStore = inject(ReportsStore)
+  public reportsStore = inject(ReportsStore);
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-reports-basic-info');

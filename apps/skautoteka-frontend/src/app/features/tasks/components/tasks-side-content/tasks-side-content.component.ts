@@ -43,18 +43,18 @@ export class TasksSideContentComponent {
   }
 
   public onMobileBackClick(): void {
-    this.tasksStore.setActiveTask(null)
+    this.tasksStore.setActiveTask(null);
   }
 
   private _showSideContent() {
     effect(() => {
       const activeTask = this.tasksStore.activeTask();
-      this._content.showSideContent(!!activeTask)
-    })
+      this._content.showSideContent(!!activeTask);
+    });
   }
 
   private _deleteTask(): void {
-    const activeTask = this.tasksStore.activeTask()
+    const activeTask = this.tasksStore.activeTask();
 
     if (!activeTask) {
       return;

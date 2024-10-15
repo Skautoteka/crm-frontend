@@ -15,7 +15,7 @@ import { TasksStore } from '../../store/tasks.store';
   imports: [TabsComponent, TabComponent, ListCardComponent, LabelComponent, AsyncPipe]
 })
 export class TasksContentComponent {
-  public tasksStore = inject(TasksStore)
+  public tasksStore = inject(TasksStore);
 
   constructor(classBinder: ClassBinder, public device: DeviceService) {
     classBinder.bind('skt-tasks-content');
