@@ -20,6 +20,7 @@ import { ISelectOption } from '../../interface';
 import { debounceTime, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { HttpClient } from '@angular/common/http';
+import { IconComponent } from '../../../icon';
 
 @Component({
   selector: 'skt-ui-input-search',
@@ -28,7 +29,7 @@ import { HttpClient } from '@angular/common/http';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  imports: [ReactiveFormsModule, CommonModule, OverlayModule],
+  imports: [ReactiveFormsModule, CommonModule, OverlayModule, IconComponent],
   providers: [
     ClassBinder,
     {
@@ -80,6 +81,11 @@ export class InputSearchComponent extends InputComponent implements ControlValue
     if(!this.activeOption()) {
       this.query.setValue('', { emitEvent: false })
     }
+  }
+
+  public onCloseClick(): void {
+    this.activeOption.set(null);
+    this.query.setValue('', { emitEvent: false })
   }
 
   private _updateSearchQuery(query: string | null): void {

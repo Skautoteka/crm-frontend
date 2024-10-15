@@ -8,6 +8,11 @@
     }
   </label>
   }
+
+  @if(activeOption()) {
+    <skt-ui-icon (click)="onCloseClick()" class="skt-ui-input-search__icon" iconColor="var(--primary-4)" iconName="close" />
+  }
+
   <input
     (blur)="onBlur()"
     (click)="onClick()"
