@@ -28,11 +28,24 @@
   (overlayOutsideClick)="onOutsideClick()"
 >
   <div class="skt-ui-input-search__modal">
-    @for(option of options(); track option.value) {
-      <div (click)="onOptionClick(option)" class="skt-ui-input-search__option">
-        <span class="skt-ui-input-search__option-label">{{ option.label }}</span>
+    @if(query.value?.length === 0) {
+      <span class="skt-ui-input-search__prompt">Wpisz i wyszukaj rekord</span>
+    } @else if(queryLoading()) {
+      <div class="skt-ui-input-search__spinner-wrapper">
+        <div class="skt-ui-input-search__spinner"></div>
+        <span>Trwa ladowanie</span>
       </div>
+    }@else if(!options().length) {
+      <span class="skt-ui-input-search__prompt">Nie ma rekordow dla: "{{ query.value }}"</span>
     }
+   @else {
+      @for(option of options(); track option.value) {
+        <div (click)="onOptionClick(option)" class="skt-ui-input-search__option">
+          <span class="skt-ui-input-search__option-label">{{ option.label }}</span>
+        </div>
+      }
+    }
+
   </div>
 </ng-template>
 

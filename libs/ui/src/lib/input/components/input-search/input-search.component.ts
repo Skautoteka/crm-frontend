@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { InputComponent } from '../input/input.component';
 import { ISelectOption } from '../../interface';
-import { debounceTime } from 'rxjs';
+import { debounceTime, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { HttpClient } from '@angular/common/http';
 
@@ -42,6 +42,8 @@ export class InputSearchComponent extends InputComponent implements ControlValue
   public dropdownVisible = signal<boolean>(false);
 
   public query = new FormControl('');
+  public queryLoading = signal<boolean>(false);
+
   public options = signal<ISelectOption[]>([])
 
   public activeOption = signal<ISelectOption | null>(null);
@@ -52,7 +54,10 @@ export class InputSearchComponent extends InputComponent implements ControlValue
     super(classBinder, _injector)
     classBinder.bind('skt-ui-input-search');
 
-    this.query.valueChanges.pipe(debounceTime(500), takeUntilDestroyed()).subscribe(query => this._updateSearchQuery(query))
+    this.query.valueChanges.pipe(tap(() => {
+      this.options.set([]);
+      this.queryLoading.set(true);
+    }), debounceTime(500), takeUntilDestroyed()).subscribe(query => this._updateSearchQuery(query))
   }
 
   public onClick(): void {
@@ -75,6 +80,13 @@ export class InputSearchComponent extends InputComponent implements ControlValue
       return;
     }
 
-    this._http.get(`api/${searchType}/search?search=${query}`).subscribe(x => console.log(x))
+    this._http.get<{ id: string, name: string }[]>(`api/${searchType}/search?search=${query}`).subscribe(results =>
+      this._updateQueryResults(results)
+    )
+  }
+
+  private _updateQueryResults(results: { id: string, name: string }[]): void {
+    this.queryLoading.set(false);
+    this.options.set(results.map(result => ({ value: result.id, label: result.name })))
   }
 }
