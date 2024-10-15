@@ -29,28 +29,26 @@
   [cdkConnectedOverlayOpen]="isDateOpen()"
   (overlayOutsideClick)="onOutsideClick()"
 >
-<div class="skt-ui-input-date__modal">
-  <div class="skt-ui-input-date__modal-header">
-    <skt-ui-icon iconName="chevron-left" (click)="onChevronClick('back')" />
-    <span>{{ currentDate().getFullYear() + ' ' + currentMonth() }}</span>
-    <skt-ui-icon iconName="chevron-right" (click)="onChevronClick('forward')" />
-  </div>
-  <div class="skt-ui-input-date__modal-calendar">
-    <div class="skt-ui-input-date__days">
-      @for(day of days; track day) {
+  <div class="skt-ui-input-date__modal">
+    <div class="skt-ui-input-date__modal-header">
+      <skt-ui-icon iconName="chevron-left" (click)="onChevronClick('back')" />
+      <span>{{ currentDate().getFullYear() + ' ' + currentMonth() }}</span>
+      <skt-ui-icon iconName="chevron-right" (click)="onChevronClick('forward')" />
+    </div>
+    <div class="skt-ui-input-date__modal-calendar">
+      <div class="skt-ui-input-date__days">
+        @for(day of days; track day) {
         <span>{{ day }}</span>
-      }
-    </div>
+        }
+      </div>
 
-    <div class="skt-ui-input-date__cells">
-      @for(prefix of prefixDays(); track prefix) {
+      <div class="skt-ui-input-date__cells">
+        @for(prefix of prefixDays(); track prefix) {
         <div class="skt-ui-input-date__cell"></div>
-      }
-
-      @for(cell of currentDays(); track cell; let index = $index) {
+        } @for(cell of currentDays(); track cell; let index = $index) {
         <div (click)="onDayClick(index)" class="skt-ui-input-date__cell">{{ index + 1 }}</div>
-      }
+        }
+      </div>
     </div>
   </div>
-</div>
 </ng-template>

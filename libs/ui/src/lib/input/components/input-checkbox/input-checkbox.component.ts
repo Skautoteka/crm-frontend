@@ -1,7 +1,15 @@
-import { ChangeDetectionStrategy, Component, forwardRef, inject, input, signal, ViewEncapsulation } from "@angular/core";
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
-import { ClassBinder } from "@skautoteka-frontend/common";
-import { IconComponent } from "../../../icon";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  inject,
+  input,
+  signal,
+  ViewEncapsulation
+} from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ClassBinder } from '@skautoteka-frontend/common';
+import { IconComponent } from '../../../icon';
 
 @Component({
   standalone: true,
@@ -24,8 +32,8 @@ export class InputCheckboxComponent implements ControlValueAccessor {
   public value = signal<boolean>(false);
   public isDisabled = signal<boolean>(false);
 
-  public isRequired = input.required<boolean>()
-  public label = input.required<string>()
+  public isRequired = input.required<boolean>();
+  public label = input.required<string>();
 
   private _classBinder = inject(ClassBinder);
 
@@ -38,7 +46,7 @@ export class InputCheckboxComponent implements ControlValueAccessor {
 
   public onCheckboxClick(): void {
     this.value.update(v => !v);
-    this._onChange(this.value())
+    this._onChange(this.value());
   }
 
   writeValue(value: boolean): void {

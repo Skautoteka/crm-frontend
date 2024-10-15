@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Input, output, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  inject,
+  Input,
+  output,
+  ViewEncapsulation
+} from '@angular/core';
 import { ClassBinder, DeviceService } from '@skautoteka-frontend/common';
 import { SidenavMenuComponent } from '../sidenav-menu/sidenav-menu.component';
 import { SidenavElement } from '../../interfaces';

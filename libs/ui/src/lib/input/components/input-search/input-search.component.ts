@@ -47,21 +47,27 @@ export class InputSearchComponent extends InputComponent implements ControlValue
   public query = new FormControl('');
   public queryLoading = signal<boolean>(false);
 
-  public options = signal<ISelectOption[]>([])
+  public options = signal<ISelectOption[]>([]);
 
   public activeOption = signal<ISelectOption | null>(null);
 
   private _http = inject(HttpClient);
-  private _input = viewChild.required('input', { read: ElementRef })
+  private _input = viewChild.required('input', { read: ElementRef });
 
   constructor(classBinder: ClassBinder, _injector: Injector) {
-    super(classBinder, _injector)
+    super(classBinder, _injector);
     classBinder.bind('skt-ui-input-search');
 
-    this.query.valueChanges.pipe(tap(() => {
-      this.options.set([]);
-      this.queryLoading.set(true);
-    }), debounceTime(500), takeUntilDestroyed()).subscribe(query => this._updateSearchQuery(query))
+    this.query.valueChanges
+      .pipe(
+        tap(() => {
+          this.options.set([]);
+          this.queryLoading.set(true);
+        }),
+        debounceTime(500),
+        takeUntilDestroyed()
+      )
+      .subscribe(query => this._updateSearchQuery(query));
   }
 
   public onClick(): void {
@@ -79,33 +85,32 @@ export class InputSearchComponent extends InputComponent implements ControlValue
   public onOutsideClick(): void {
     this.dropdownVisible.set(false);
 
-    if(!this.activeOption()) {
-      this.query.setValue('', { emitEvent: false })
+    if (!this.activeOption()) {
+      this.query.setValue('', { emitEvent: false });
     } else {
-      this._input().nativeElement.value = this.activeOption()?.label
+      this._input().nativeElement.value = this.activeOption()?.label;
     }
-
   }
 
   public onCloseClick(): void {
     this.activeOption.set(null);
-    this.query.setValue('', { emitEvent: false })
+    this.query.setValue('', { emitEvent: false });
   }
 
   private _updateSearchQuery(query: string | null): void {
-    const searchType = this.searchType()
+    const searchType = this.searchType();
 
-    if(!query || !searchType) {
+    if (!query || !searchType) {
       return;
     }
 
-    this._http.get<{ id: string, name: string }[]>(`api/${searchType}/search?search=${query}`).subscribe(results =>
-      this._updateQueryResults(results)
-    )
+    this._http
+      .get<{ id: string; name: string }[]>(`api/${searchType}/search?search=${query}`)
+      .subscribe(results => this._updateQueryResults(results));
   }
 
-  private _updateQueryResults(results: { id: string, name: string }[]): void {
+  private _updateQueryResults(results: { id: string; name: string }[]): void {
     this.queryLoading.set(false);
-    this.options.set(results.map(result => ({ value: result.id, label: result.name })))
+    this.options.set(results.map(result => ({ value: result.id, label: result.name })));
   }
 }

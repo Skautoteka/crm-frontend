@@ -24,11 +24,7 @@ import { TeamsStore } from '../../store/teams.store';
 export class TeamsCreateComponent {
   public teamsStore = inject(TeamsStore);
 
-  constructor(
-    classBinder: ClassBinder,
-    private _modal: ModalService,
-    public inputView: InputViewService<Team>
-  ) {
+  constructor(classBinder: ClassBinder, private _modal: ModalService, public inputView: InputViewService<Team>) {
     classBinder.bind('skt-tasks-create');
     this.teamsStore.fetchFields();
   }

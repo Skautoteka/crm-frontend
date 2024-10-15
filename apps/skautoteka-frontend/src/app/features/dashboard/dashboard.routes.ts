@@ -34,7 +34,7 @@ export const DASHBOARD_ROUTES: Routes = [
         path: '',
         pathMatch: 'full',
         redirectTo: 'tasks'
-      },
+      }
     ]
   },
   {

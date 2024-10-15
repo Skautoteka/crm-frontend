@@ -22,13 +22,11 @@
     aspect-ratio: 1;
     border-radius: 50%;
     background: var(--primary-1);
-    --_m:
-      conic-gradient(#0000 1%,#000),
-      linear-gradient(#000 0 0) content-box;
+    --_m: conic-gradient(#0000 1%, #000), linear-gradient(#000 0 0) content-box;
     -webkit-mask: var(--_m);
-            mask: var(--_m);
+    mask: var(--_m);
     -webkit-mask-composite: source-out;
-            mask-composite: subtract;
+    mask-composite: subtract;
     animation: l3 1s infinite linear;
   }
 
@@ -84,7 +82,7 @@
   &__modal {
     display: flex;
     flex-direction: column;
-    background-color: #FAFAFA;
+    background-color: #fafafa;
     border: 1px solid var(--basic-8);
     min-width: 22.5rem;
     border-radius: 0.5rem;
@@ -103,7 +101,6 @@
 
     &:hover {
       background-color: var(--primary-7);
-
     }
   }
 
@@ -113,4 +110,8 @@
   }
 }
 
-@keyframes l3 {to{transform: rotate(1turn)}}
+@keyframes l3 {
+  to {
+    transform: rotate(1turn);
+  }
+}

@@ -6,7 +6,7 @@ export interface ISingleInputConfig {
   label: string;
   isRequired: boolean;
   type: InputType;
-  options?: ISelectOption[]
+  options?: ISelectOption[];
   searchType?: string;
 }
 

@@ -21,7 +21,7 @@ export class DashboardComponent {
     { label: 'Raporty', icon: 'file-document', route: 'reports' },
     { label: 'Zawodnicy', icon: 'user', route: 'players' },
     { label: 'Drużyny', icon: 'organisation', route: 'teams' },
-    { label: 'Analiza', icon: 'chart', route: 'analysis' },
+    { label: 'Analiza', icon: 'chart', route: 'analysis' }
   ];
 
   public authStore = inject(AuthStore);

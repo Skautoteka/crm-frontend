@@ -44,14 +44,14 @@ export class TeamsSideContentComponent {
   }
 
   public onMobileBackClick(): void {
-    this.teamsStore.setActiveTeam(null)
+    this.teamsStore.setActiveTeam(null);
   }
 
   private _showSideContent() {
     effect(() => {
       const activeTeam = this.teamsStore.activeTeam();
-      this._content.showSideContent(!!activeTeam)
-    })
+      this._content.showSideContent(!!activeTeam);
+    });
   }
 
   private _deleteTeam(): void {
