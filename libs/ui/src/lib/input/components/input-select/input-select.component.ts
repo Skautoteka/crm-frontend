@@ -4,6 +4,7 @@ import {
   Component,
   forwardRef,
   Injector,
+  input,
   signal,
   ViewEncapsulation
 } from '@angular/core';
@@ -13,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { IconComponent } from '../../../icon';
 import { InputComponent } from '../input/input.component';
+import { ISelectOption } from '../../interface';
 
 @Component({
   selector: 'skt-ui-input-select',
@@ -32,7 +34,10 @@ import { InputComponent } from '../input/input.component';
   ]
 })
 export class InputSelectComponent extends InputComponent implements ControlValueAccessor, AfterViewInit {
-  public dropdownVisible = signal<boolean>(false)
+  public dropdownVisible = signal<boolean>(false);
+  public options = input.required<ISelectOption[]>();
+
+  public activeOption = signal<ISelectOption | null>(null);
 
   constructor(classBinder: ClassBinder, _injector: Injector) {
     super(classBinder, _injector)
@@ -41,6 +46,11 @@ export class InputSelectComponent extends InputComponent implements ControlValue
 
   public onClick(): void {
     this.dropdownVisible.set(true);
+  }
+
+  public onOptionClick(option: ISelectOption): void {
+    this.activeOption.set(option);
+    this.dropdownVisible.set(false)
   }
 
   public onOutsideClick(): void {
