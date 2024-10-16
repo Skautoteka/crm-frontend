@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder, DeviceService } from '@skautoteka-frontend/common';
 import { LabelComponent, ListCardComponent, TabComponent, TabsComponent } from '@skautoteka-frontend/ui';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { TasksStore } from '../../store/tasks.store';
 
 @Component({
@@ -12,7 +12,7 @@ import { TasksStore } from '../../store/tasks.store';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TabsComponent, TabComponent, ListCardComponent, LabelComponent, AsyncPipe]
+  imports: [TabsComponent, DatePipe, TabComponent, ListCardComponent, LabelComponent, AsyncPipe]
 })
 export class TasksContentComponent {
   public tasksStore = inject(TasksStore);
