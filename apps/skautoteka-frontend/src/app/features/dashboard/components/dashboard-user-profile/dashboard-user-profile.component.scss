@@ -1,14 +1,25 @@
+.skt-dashboard-user-profile {
+  &__section-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
 
-.section-wrapper {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 20px;
-}
+  &__info-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
 
-.info-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 20px;
+  &__rating-wrapper {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.75rem;
+  }
+
+  &__rating-title {}
+
+  &__rating-value {}
 }
