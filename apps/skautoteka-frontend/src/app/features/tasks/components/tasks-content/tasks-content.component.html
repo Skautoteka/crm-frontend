@@ -28,7 +28,7 @@
       @if((device.isMobile$ | async) === false) {
       <skt-ui-label>
         <div label>Miejsce wydarzenia</div>
-        {{ task.location }}
+        {{ task.location || 'Brak informacji' }}
       </skt-ui-label>
       }
     </div>
