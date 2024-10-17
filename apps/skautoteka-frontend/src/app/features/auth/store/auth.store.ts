@@ -29,7 +29,19 @@ export const AuthStore = signalStore(
       }),
       roleName: computed(() => {
         const user = store.user();
-        return user ? user.role.name : null;
+        return user ? user?.role?.name : null;
+      }),
+      dateOfBirth: computed(() => {
+        const user = store.user();
+        return user ? user?.dateOfBirth : null;
+      }),
+      phoneNumber: computed(() => {
+        const user = store.user();
+        return user ? user?.phoneNumber : null;
+      }),
+      email: computed(() => {
+        const user = store.user();
+        return user ? user?.email : null;
       })
     };
   })

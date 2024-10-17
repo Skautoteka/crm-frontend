@@ -6,6 +6,10 @@
   flex-shrink: 1;
   width: 100%;
 
+  .big {
+    font-size: 1.125rem;
+  }
+
   @media (min-width: 850px) {
     flex-basis: content;
   }
