@@ -8,7 +8,7 @@ import '@angular/common/locales/global/pl';
   imports: [RouterModule],
   selector: 'skt-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements AfterViewInit {
   @ViewChild('overlayContainer', { read: ViewContainerRef })
