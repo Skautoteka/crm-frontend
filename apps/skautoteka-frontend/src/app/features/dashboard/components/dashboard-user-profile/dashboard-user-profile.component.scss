@@ -19,7 +19,13 @@
     font-size: 0.75rem;
   }
 
-  &__rating-title {}
+  &__rating-title {
+    font-size: 0.875rem;
+    color: var(--basic-4);
+  }
 
-  &__rating-value {}
+  &__rating-value {
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
 }
