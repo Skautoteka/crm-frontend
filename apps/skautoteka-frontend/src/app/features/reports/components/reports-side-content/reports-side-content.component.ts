@@ -13,6 +13,7 @@ import { ReportsBasicInfoComponent } from '../reports-basic-info/reports-basic-i
 import { ReportsTitleComponent } from '../reports-title/reports-title.component';
 import { ReportsRatingComponent } from '../reports-rating/reports-rating.component';
 import { ReportsStore } from '../../store/reports.store';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -43,9 +44,15 @@ export class ReportsSideContentComponent {
     }
   ];
 
+  private _router = inject(Router);
+
   constructor(classBinder: ClassBinder, private _content: ContentService) {
     classBinder.bind('skt-reports-side-content');
     this._showSideContent();
+
+    if(!this.reportsStore.activeReport()) {
+      this._router.navigate(['/', 'dashboard', 'reports'])
+    }
   }
 
   public onMobileBackClick(): void {

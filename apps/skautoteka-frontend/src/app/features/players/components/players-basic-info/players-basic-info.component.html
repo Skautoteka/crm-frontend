@@ -1,0 +1,17 @@
+@if(playersStore.activePlayer(); as player) {
+  <skt-ui-label-container>
+    <skt-ui-label>
+      <span label>Druzyna</span>
+      {{ player.team.name }}
+    </skt-ui-label>
+    <skt-ui-label>
+      <span label>Plec</span>
+      {{ player.sex === 'FEMALE' ? 'Kobieta' : 'Mezczyzna' }}
+    </skt-ui-label>
+    <skt-ui-label>
+      <span label>Wiek</span>
+      {{ player.age }}
+    </skt-ui-label>
+  </skt-ui-label-container>
+
+}
