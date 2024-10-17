@@ -2,11 +2,11 @@
 <skt-ui-label-container>
   <skt-ui-label>
     <span label>Miasto</span>
-    {{ team.city }}
+    {{ team.city || 'Brak informacji' }}
   </skt-ui-label>
   <skt-ui-label>
     <span label>Kraj</span>
-    {{ team.country }}
+    {{ team.country || 'Brak informacji' }}
   </skt-ui-label>
 </skt-ui-label-container>
 }
