@@ -5,6 +5,7 @@ export type Player = {
   id: string;
   firstName: string;
   lastName: string;
+  name: string;
   sex: IGender;
   age: string;
   team: Team;

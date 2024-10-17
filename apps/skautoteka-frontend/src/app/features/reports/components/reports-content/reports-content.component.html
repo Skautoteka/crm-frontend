@@ -8,7 +8,7 @@
     <skt-ui-table-row-cell>
       <skt-ui-tag
         [text]="item.status | statusText"
-        [type]="item.status === 'in_progress' ? 'simple' : 'success'"
+        [type]="item.status === 'IN_PROGRESS' ? 'simple' : 'success'"
       ></skt-ui-tag>
     </skt-ui-table-row-cell>
     <skt-ui-table-row-cell>{{ item.createdAt | date }}</skt-ui-table-row-cell>
