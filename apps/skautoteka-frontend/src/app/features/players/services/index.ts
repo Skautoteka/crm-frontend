@@ -1,1 +1,1 @@
-export * from './players-http.service'
+export * from './players-http.service';

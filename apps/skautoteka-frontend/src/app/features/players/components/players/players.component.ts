@@ -1,10 +1,6 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import {
-  ButtonComponent,
-  ContentComponent,
-  ModalService
-} from '@skautoteka-frontend/ui';
+import { ButtonComponent, ContentComponent, ModalService } from '@skautoteka-frontend/ui';
 import { PlayersContentComponent } from '../players-content/players-content.component';
 import { PlayersCreateComponent } from '../players-create/players-create.component';
 
@@ -16,11 +12,7 @@ import { PlayersCreateComponent } from '../players-create/players-create.compone
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    ContentComponent,
-    ButtonComponent,
-    PlayersContentComponent
-  ]
+  imports: [ContentComponent, ButtonComponent, PlayersContentComponent]
 })
 export class PlayersComponent {
   constructor(classBinder: ClassBinder, private _modal: ModalService) {

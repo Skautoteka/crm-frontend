@@ -43,7 +43,7 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   private _isDisabled = false;
   private _destroyRef = inject(DestroyRef);
 
-  private _onChange!: (value: string) => void;
+  protected _onChange!: (value: string) => void;
   private _onTouched!: () => void;
 
   constructor(classBinder: ClassBinder, private _injector: Injector) {

@@ -1,7 +1,7 @@
-import { inject } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivateFn, RouterStateSnapshot, UrlTree } from "@angular/router";
-import { NEVER, Observable } from "rxjs";
-import { AuthStore } from "../store/auth.store";
+import { inject } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivateFn, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { NEVER, Observable } from 'rxjs';
+import { AuthStore } from '../store/auth.store';
 
 export const DashboardGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -9,10 +9,10 @@ export const DashboardGuard: CanActivateFn = (
 ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree => {
   const authStore = inject(AuthStore);
 
-  if(authStore.user()) {
+  if (authStore.user()) {
     return true;
   } else {
     authStore.refreshUser(state);
     return NEVER;
   }
-}
+};

@@ -1,17 +1,17 @@
-import { signalStore, withComputed, withState } from "@ngrx/signals";
-import { User } from "../interfaces/iauth"
-import { withAuthMethods } from "./auth.methods";
-import { computed } from "@angular/core";
+import { signalStore, withComputed, withState } from '@ngrx/signals';
+import { User } from '../interfaces/iauth';
+import { withAuthMethods } from './auth.methods';
+import { computed } from '@angular/core';
 
 export type AuthStoreState = {
-  user: User | null,
+  user: User | null;
   isLoading: boolean;
-}
+};
 
 const initialState: AuthStoreState = {
   user: null,
-  isLoading: false,
-}
+  isLoading: false
+};
 
 export const AuthStore = signalStore(
   { providedIn: 'root' },
@@ -43,6 +43,6 @@ export const AuthStore = signalStore(
         const user = store.user();
         return user ? user?.email : null;
       })
-    }
+    };
   })
-)
+);
