@@ -13,6 +13,7 @@ import { TasksBasicInfoComponent } from '../tasks-basic-info/tasks-basic-info.co
 import { TasksReportsComponent } from '../tasks-reports/tasks-reports.component';
 import { TasksTeamsComponent } from '../tasks-teams/tasks-teams.component';
 import { TasksStore } from '../../store/tasks.store';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -37,9 +38,15 @@ export class TasksSideContentComponent {
   public tasksStore = inject(TasksStore);
   public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń raport', callback: () => this._deleteTask() }];
 
+  private _router = inject(Router);
+
   constructor(classBinder: ClassBinder, private _content: ContentService) {
     classBinder.bind('skt-tasks-side-content');
     this._showSideContent();
+
+    if(!this.tasksStore.activeTask()) {
+      this._router.navigate(['/', 'dashboard', 'tasks'])
+    }
   }
 
   public onMobileBackClick(): void {

@@ -24,6 +24,9 @@ export class TagComponent {
 
   private _setTypeClass(): void {
     effect(() => {
+      this._classBinder.unbind('skt-ui-tag--success');
+      this._classBinder.unbind('skt-ui-tag--simple');
+
       const type = this.type();
       this._classBinder.bind('skt-ui-tag--' + type);
     });

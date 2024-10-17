@@ -12,3 +12,8 @@ export interface IGenericModel {
 export interface IGenericDelete {
   success: boolean;
 }
+
+export enum IGender {
+  Male = 'MALE',
+  Female = 'FEMALE'
+}

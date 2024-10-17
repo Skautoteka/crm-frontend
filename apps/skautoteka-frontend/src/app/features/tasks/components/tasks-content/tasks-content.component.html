@@ -16,19 +16,19 @@
       [class.skt-tasks-content__tasks-card-content--active]="tasksStore.activeTask()?.id === task.id"
     >
       <skt-ui-label>
-        <div label><span class="skt-tasks-content__tasks-card-header">Mecz</span> | Dojazdowe</div>
-        FC Barcelona vs Real Madryt
+        <div label><span class="skt-tasks-content__tasks-card-header">Mecz</span> | {{ task.type ? 'Online' : 'Na miejscu' }}</div>
+        {{ task.hostTeam.name }} vs {{ task.guestTeam.name }}
       </skt-ui-label>
 
       <skt-ui-label>
         <div label><span class="skt-tasks-content__tasks-card-header">Data</span> | Za 4 dni</div>
-        Niedziela, 4. stycznia
+        {{ (task.startDate | date) || 'Brak daty' }}
       </skt-ui-label>
 
       @if((device.isMobile$ | async) === false) {
       <skt-ui-label>
-        <div label>Godzina</div>
-        21:00
+        <div label>Miejsce wydarzenia</div>
+        {{ task.location || 'Brak informacji' }}
       </skt-ui-label>
       }
     </div>

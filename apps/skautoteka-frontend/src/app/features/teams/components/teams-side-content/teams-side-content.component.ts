@@ -12,6 +12,7 @@ import {
 import { TeamTitleComponent } from '../team-title/team-title.component';
 import { TeamsBasicInfoComponent } from '../teams-basic-info/teams-basic-info.component';
 import { TeamsStore } from '../../store/teams.store';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -38,9 +39,15 @@ export class TeamsSideContentComponent {
     { type: 'DELETE', text: 'Usuń drużynę', callback: () => this._deleteTeam() }
   ];
 
+  private _router = inject(Router);
+
   constructor(classBinder: ClassBinder, private _content: ContentService) {
     classBinder.bind('skt-teams-side-content');
     this._showSideContent();
+
+    if(!this.teamsStore.activeTeam()) {
+      this._router.navigate(['/', 'dashboard', 'teams'])
+    }
   }
 
   public onMobileBackClick(): void {

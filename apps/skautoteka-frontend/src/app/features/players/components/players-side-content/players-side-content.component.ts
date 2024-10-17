@@ -10,6 +10,9 @@ import {
   SideContentSectionHeaderComponent
 } from '@skautoteka-frontend/ui';
 import { PlayersStore } from '../../store/players.store';
+import { Router } from '@angular/router';
+import { PlayersBasicInfoComponent } from '../players-basic-info/players-basic-info.component';
+import { PlayersNameComponent } from "../players-name/players-name.component";
 
 @Component({
   standalone: true,
@@ -24,18 +27,27 @@ import { PlayersStore } from '../../store/players.store';
     SideContentSectionHeaderComponent,
     SideContentSectionComponent,
     SideContentHeaderComponent,
-    SideContentheaderActionsComponent
-  ]
+    SideContentheaderActionsComponent,
+    PlayersBasicInfoComponent,
+    PlayersNameComponent
+]
 })
 export class PlayersSideContentComponent {
   public playersStore = inject(PlayersStore);
+
   public actionsConfig: ActionsConfig[] = [
     { type: 'DELETE', text: 'Usuń zawodnika', callback: () => this._deletePlayer() }
   ];
 
+  private _router = inject(Router);
+
   constructor(classBinder: ClassBinder, private _content: ContentService) {
     classBinder.bind('skt-tasks-side-content');
     this._showSideContent();
+
+    if(!this.playersStore.activePlayer()) {
+      this._router.navigate(['/', 'dashboard', 'players'])
+    }
   }
 
   public onMobileBackClick(): void {
