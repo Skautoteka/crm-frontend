@@ -16,9 +16,5 @@ export class ReportsTitleComponent {
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-report-title');
-
-    setTimeout(() => {
-      console.log(this.reportsStore.activeReport())
-    }, 500)
   }
 }
