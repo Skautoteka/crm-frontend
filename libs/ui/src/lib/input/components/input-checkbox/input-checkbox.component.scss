@@ -1,0 +1,38 @@
+.skt-ui-input-checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  cursor: pointer;
+
+  &__label {
+    font-size: 0.75rem;
+    cursor: pointer;
+    margin-bottom: 0.25rem;
+  }
+
+  &__wrapper {
+    position: relative;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-47%, -53%);
+    pointer-events: none;
+  }
+
+  &__checkbox {
+    all: unset;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--primary);
+
+    &:focus {
+      outline: 0.25rem solid rgba(#a3b0ad, 0.15);
+    }
+  }
+}

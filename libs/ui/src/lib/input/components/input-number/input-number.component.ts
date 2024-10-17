@@ -16,23 +16,23 @@ import { CommonModule, NgIf } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'skt-ui-input',
-  styleUrl: './input.component.scss',
-  templateUrl: './input.component.html',
+  selector: 'skt-ui-input-number',
+  styleUrl: './input-number.component.scss',
+  templateUrl: './input-number.component.html',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  imports: [FormsModule, FormsModule, CommonModule, NgIf],
+  imports: [FormsModule, CommonModule, NgIf],
   providers: [
     ClassBinder,
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: forwardRef(() => InputComponent)
+      useExisting: forwardRef(() => InputNumberComponent)
     }
   ]
 })
-export class InputComponent implements ControlValueAccessor, AfterViewInit {
+export class InputNumberComponent implements ControlValueAccessor, AfterViewInit {
   public placeholder = input<string>('');
   public label = input<string | null>(null);
   public isRequired = input<boolean>(false);
@@ -47,7 +47,7 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   private _onTouched!: () => void;
 
   constructor(classBinder: ClassBinder, private _injector: Injector) {
-    classBinder.bind('skt-ui-input');
+    classBinder.bind('skt-ui-input-number');
   }
 
   ngAfterViewInit(): void {

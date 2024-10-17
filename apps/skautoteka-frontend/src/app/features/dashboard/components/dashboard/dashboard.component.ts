@@ -18,12 +18,10 @@ import { AuthStore } from '../../../auth/store/auth.store';
 export class DashboardComponent {
   public elements: SidenavElement[] = [
     { label: 'Zadania', icon: 'move-task', route: 'tasks' },
-    { label: 'Harmonogram', icon: 'calendar-today', route: 'calendar' },
     { label: 'Raporty', icon: 'file-document', route: 'reports' },
     { label: 'Zawodnicy', icon: 'user', route: 'players' },
     { label: 'Drużyny', icon: 'organisation', route: 'teams' },
-    { label: 'Analiza', icon: 'chart', route: 'analysis' },
-    { label: 'Pomoc', icon: 'info', route: 'help' }
+    { label: 'Analiza', icon: 'chart', route: 'analysis' }
   ];
 
   public authStore = inject(AuthStore);

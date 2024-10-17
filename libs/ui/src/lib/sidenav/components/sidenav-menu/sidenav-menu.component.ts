@@ -18,7 +18,7 @@ import { IconComponent } from '../../../icon';
 export class SidenavMenuComponent {
   @Input() elements: SidenavElement[] = [];
 
-  public logoutClicked = output<void>()
+  public logoutClicked = output<void>();
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-ui-sidenav-menu');

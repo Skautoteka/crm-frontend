@@ -1,0 +1,7 @@
+<div class="skt-ui-input-checkbox__wrapper">
+  @if(value()) {
+  <skt-ui-icon iconName="check" class="skt-ui-input-checkbox__icon" iconColor="var(--primary-3)" />
+  }
+  <input (click)="onCheckboxClick()" class="skt-ui-input-checkbox__checkbox" [checked]="value()" type="checkbox" />
+</div>
+<label (click)="onCheckboxClick()" class="skt-ui-input-checkbox__label">{{ label() }}</label>
