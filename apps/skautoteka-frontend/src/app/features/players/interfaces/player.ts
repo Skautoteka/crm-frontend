@@ -8,4 +8,5 @@ export type Player = {
   sex: IGender;
   age: string;
   team: Team;
+  position: 'FORWARD' | 'DEFENSE' | 'WINGER';
 } & IGenericModel;

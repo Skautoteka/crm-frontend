@@ -1,3 +1,28 @@
 .skt-players-name {
+  display: flex;
+  gap: 1.25rem;
 
+  &__logo {
+    width: 3.75rem;
+    height: 3.75rem;
+    border-radius: 0.5rem;
+    background-color: var(--primary-6);
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    justify-content: center;
+
+    &--main {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    &--sub {
+      font-size: 0.8125rem;
+      color: var(--primary-3);
+    }
+  }
 }
