@@ -9,7 +9,7 @@ export type User = {
 
 export type Role = {
   name: string;
-}
+};
 
 export interface LoginPayload {
   email: string;
@@ -19,8 +19,8 @@ export interface LoginPayload {
 export type Tokens = {
   accessToken: string;
   refreshToken: string;
-}
+};
 
 export type AccessToken = {
   accessToken: string;
-}
+};

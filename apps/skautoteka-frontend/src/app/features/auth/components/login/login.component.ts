@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from "@angular/core";
-import { ClassBinder } from "@skautoteka-frontend/common";
-import { AuthStore } from "../../store/auth.store";
-import { ButtonComponent, InputComponent, InputPasswordComponent } from "@skautoteka-frontend/ui";
-import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
+import { ClassBinder } from '@skautoteka-frontend/common';
+import { AuthStore } from '../../store/auth.store';
+import { ButtonComponent, InputComponent, InputPasswordComponent } from '@skautoteka-frontend/ui';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   standalone: true,
@@ -12,12 +12,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ClassBinder],
-  imports: [
-    InputComponent,
-    InputPasswordComponent,
-    ReactiveFormsModule,
-    ButtonComponent
-  ]
+  imports: [InputComponent, InputPasswordComponent, ReactiveFormsModule, ButtonComponent]
 })
 export class LoginComponent {
   private _classBinder = inject(ClassBinder);
@@ -28,7 +23,7 @@ export class LoginComponent {
   public loginGroup = this._formBuilder.group({
     email: this._formBuilder.control('', { validators: [Validators.required, Validators.email] }),
     password: this._formBuilder.control('', { validators: [Validators.required] })
-  })
+  });
 
   constructor() {
     this._classBinder.bind('skt-login');
@@ -37,11 +32,11 @@ export class LoginComponent {
   public onLogin(): void {
     const { email, password } = this.loginGroup.value;
 
-    if(!email || !password) {
+    if (!email || !password) {
       return;
     }
 
-    console.log(email, password)
+    console.log(email, password);
     this.authStore.login({ email, password });
   }
 }

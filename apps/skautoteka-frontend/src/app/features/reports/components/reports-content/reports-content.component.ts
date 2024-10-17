@@ -46,7 +46,7 @@ export class ReportsContentComponent {
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-reports-content');
-    this.reportsStore.getReports()
+    this.reportsStore.getReports();
   }
 
   public onRowClicked(id: string): void {

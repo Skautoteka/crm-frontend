@@ -1,1 +1,1 @@
-export * from './tasks-http.service'
+export * from './tasks-http.service';

@@ -5,7 +5,7 @@ import {
   InputComponent,
   InputContainerComponent,
   InputViewService,
-  LoaderComponent,
+  LoaderComponent
 } from '@skautoteka-frontend/ui';
 import { Player } from '../../interfaces';
 import { PlayersStore } from '../../store/players.store';
@@ -21,17 +21,14 @@ import { PlayersStore } from '../../store/players.store';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PlayersCreateComponent {
-  public playersStore = inject(PlayersStore)
+  public playersStore = inject(PlayersStore);
 
-  constructor(
-    classBinder: ClassBinder,
-    public inputView: InputViewService<Player>
-  ) {
+  constructor(classBinder: ClassBinder, public inputView: InputViewService<Player>) {
     classBinder.bind('skt-players-create');
     this.playersStore.fetchFields();
   }
 
   public onSaveButtonClick(): void {
-    this.playersStore.addPlayer(this.inputView.value)
+    this.playersStore.addPlayer(this.inputView.value);
   }
 }

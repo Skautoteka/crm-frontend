@@ -55,16 +55,16 @@ export class ReportsSideContentComponent {
   private _showSideContent() {
     effect(() => {
       const activeReport = this.reportsStore.activeReport();
-      if(activeReport) {
+      if (activeReport) {
         this._content.showSideContent(!!activeReport);
       }
-    })
+    });
   }
 
   private _deleteReport(): void {
     const activeReport = this.reportsStore.activeReport();
 
-    if(!activeReport) {
+    if (!activeReport) {
       return;
     }
 

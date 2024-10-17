@@ -12,7 +12,7 @@ import { ReportsStore } from '../../store/reports.store';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ReportsTitleComponent {
-  public reportsStore = inject(ReportsStore)
+  public reportsStore = inject(ReportsStore);
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-report-title');

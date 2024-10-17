@@ -6,7 +6,7 @@ import {
   LabelContainerComponent,
   ButtonComponent,
   InputComponent,
-  InputContainerComponent,
+  InputContainerComponent
 } from '@skautoteka-frontend/ui';
 import { AuthStore } from '../../../auth/store/auth.store';
 

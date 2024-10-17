@@ -14,7 +14,7 @@ import { TeamsStore } from '../../store/teams.store';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TeamsBasicInfoComponent {
-  public teamsStore = inject(TeamsStore)
+  public teamsStore = inject(TeamsStore);
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-teams-basic-info');

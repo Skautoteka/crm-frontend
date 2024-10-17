@@ -5,8 +5,5 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './features/auth/interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(appRoutes),
-    provideHttpClient(withInterceptors([authInterceptor])),
-  ]
+  providers: [provideRouter(appRoutes), provideHttpClient(withInterceptors([authInterceptor]))]
 };
