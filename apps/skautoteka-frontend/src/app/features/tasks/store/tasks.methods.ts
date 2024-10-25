@@ -1,6 +1,6 @@
 import { patchState, signalStoreFeature, type, withMethods } from '@ngrx/signals';
 import { Router } from '@angular/router';
-import { ModalService } from '@skautoteka-frontend/ui';
+import { ModalService, NotificationsService } from '@skautoteka-frontend/ui';
 import { inject } from '@angular/core';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
@@ -16,6 +16,7 @@ export const withTasksMethods = () => {
       const httpService = inject(TasksHttpService);
       const router = inject(Router);
       const modal = inject(ModalService);
+      const notification = inject(NotificationsService)
 
       /**
        * Gets all tasks from the database.
@@ -77,7 +78,10 @@ export const withTasksMethods = () => {
           switchMap(task =>
             httpService.addTask$(task).pipe(
               tapResponse({
-                next: ({ added }) => patchState(store, { tasks: [...store.tasks(), added] }),
+                next: ({ added }) => {
+                  patchState(store, { tasks: [...store.tasks(), added] });
+                  notification.success('Poprawnie dodano zadanie');
+                },
                 error: () => null,
                 finalize: () => modal.closeAll()
               })
