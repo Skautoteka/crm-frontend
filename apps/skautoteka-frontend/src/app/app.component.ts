@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, inject, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, ViewContainerRef } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NotificationsService, OverlayService } from '@skautoteka-frontend/ui';
+import { OverlayService } from '@skautoteka-frontend/ui';
 import '@angular/common/locales/global/pl';
 import { NotificationContainerComponent } from '@skautoteka-frontend/ui';
 
@@ -17,12 +17,7 @@ export class AppComponent implements AfterViewInit {
 
   constructor(private _overlay: OverlayService) {}
 
-  private _notifications = inject(NotificationsService)
-
   ngAfterViewInit(): void {
     this._overlay.initializeContainer(this.container);
-
-    this._notifications.success('Poprawnie zapisano rekord', 'asd')
-    this._notifications.error('hello', 'asd')
   }
 }

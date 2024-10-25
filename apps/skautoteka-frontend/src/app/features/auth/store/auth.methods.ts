@@ -4,10 +4,10 @@ import { AuthStoreState } from './auth.store';
 import { inject } from '@angular/core';
 import { AuthHttpService } from '../services/auth-http.service';
 import { LoginPayload } from '../interfaces/iauth';
-import { delay, pipe, switchMap, tap } from 'rxjs';
+import { catchError, delay, NEVER, pipe, switchMap, tap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
 import { Router, RouterStateSnapshot } from '@angular/router';
-import { LoaderService } from '@skautoteka-frontend/ui';
+import { LoaderService, NotificationsService } from '@skautoteka-frontend/ui';
 
 export const withAuthMethods = () => {
   return signalStoreFeature(
@@ -16,6 +16,7 @@ export const withAuthMethods = () => {
       const httpService = inject(AuthHttpService);
       const router = inject(Router);
       const loader = inject(LoaderService);
+      const notifications = inject(NotificationsService);
 
       /**
        * A method that is used to log in the user via the
@@ -36,7 +37,10 @@ export const withAuthMethods = () => {
                   patchState(store, { user });
                   router.navigate(['/', 'dashboard']);
                 },
-                error: () => null,
+                error: () => {
+                  notifications.error('Wpisane hasło lub email są niepoprawne')
+                  console.log('gte')
+                },
                 finalize: () => {
                   patchState(store, { isLoading: false });
                   loader.hideLoader('login');
