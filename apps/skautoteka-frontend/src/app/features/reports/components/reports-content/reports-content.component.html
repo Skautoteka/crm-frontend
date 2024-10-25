@@ -1,6 +1,6 @@
 <skt-ui-table [tableDef]="tableDef">
   @for (item of reportsStore.reports(); track item.id) {
-  <skt-ui-table-row (rowClicked)="onRowClicked(item.id)">
+  <skt-ui-table-row [isActive]="this.reportsStore.activeReport() === item" (rowClicked)="onRowClicked(item.id)">
     <skt-ui-table-row-cell>
       <div class="skt-reports-content__reports-logo"></div>
     </skt-ui-table-row-cell>

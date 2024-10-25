@@ -8,6 +8,7 @@ import {
   Renderer2,
   ViewChild,
   ViewEncapsulation,
+  effect,
   input
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
@@ -34,9 +35,14 @@ export class TableRowComponent {
   @Output() rowClicked = new EventEmitter<void>();
 
   public tableDef = input<TableDefinition>([]);
+  public isActive = input<boolean>(false);
 
   constructor(classBinder: ClassBinder, private _renderer: Renderer2) {
     classBinder.bind('skt-ui-table-row');
+
+    effect(() => {
+      classBinder.conditionalBind(this.isActive(), 'skt-ui-table-row--active');
+    })
   }
 
   public setTableDef(definition: TableDefinition): void {

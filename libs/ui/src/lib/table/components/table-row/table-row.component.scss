@@ -1,15 +1,20 @@
 .skt-ui-table-row {
   display: block;
-  padding: 1.5rem 0;
+  padding: 1.5rem 1rem;
   transition: background-color 0.3s ease;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
 
-  &:hover {
+  &:hover:not(.skt-ui-table-row--active) {
     background-color: rgba(#d1d7d6, 0.5);
     cursor: pointer;
   }
 
   &__row {
     display: grid;
+  }
+
+  &--active {
+    background-color: black;
+    color: var(--basic-8);
   }
 }
