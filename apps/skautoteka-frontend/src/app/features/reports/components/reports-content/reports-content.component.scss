@@ -55,6 +55,7 @@
     min-width: 2.5rem;
     height: 2.5rem;
     border-radius: 0.5rem;
-    background: var(--primary-6);
+    background: url("/assets/images/avatar-placeholder.png");
+    background-size: contain;
   }
 }

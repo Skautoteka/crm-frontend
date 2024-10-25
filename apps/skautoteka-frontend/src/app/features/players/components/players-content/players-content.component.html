@@ -1,6 +1,6 @@
 <skt-ui-table [tableDef]="tableDef">
   @for (item of playersStore.players(); track item.id) {
-  <skt-ui-table-row (rowClicked)="onRowClicked(item.id)">
+  <skt-ui-table-row [isActive]="this.playersStore.activePlayer() === item" (rowClicked)="onRowClicked(item.id)">
     <skt-ui-table-row-cell>
       <div class="skt-players-content__team-logo"></div>
     </skt-ui-table-row-cell>

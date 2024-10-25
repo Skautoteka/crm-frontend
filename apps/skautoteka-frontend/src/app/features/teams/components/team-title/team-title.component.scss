@@ -6,7 +6,8 @@
     display: block;
     width: 4rem;
     height: 4rem;
-    background-color: var(--primary-6);
+    background: url("/assets/images/team-placeholder.png");
+    background-size: contain;
     border-radius: 0.5rem;
   }
 

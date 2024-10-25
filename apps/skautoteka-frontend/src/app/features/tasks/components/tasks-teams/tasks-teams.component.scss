@@ -27,7 +27,8 @@
   &__team-logo {
     width: 2.875rem;
     height: 2.875rem;
-    background-color: var(--primary-6);
     border-radius: 0.5rem;
+    background: url("/assets/images/team-placeholder.png");
+    background-size: contain;
   }
 }
