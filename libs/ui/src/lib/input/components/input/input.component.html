@@ -18,3 +18,21 @@
     placeholder="{{ placeholder() }}"
   />
 </div>
+
+@if(errors() | keyvalue; as errors) {
+  <div class="skt-ui-input__errors">
+    @for(err of errors; track err.key) {
+      <span class="skt-ui-input__error">
+        @switch(err.key) {
+          @case('email') {
+            Enter correct email
+          }
+
+          @case('required') {
+            This field is required
+          }
+        }
+      </span>
+    }
+  </div>
+}

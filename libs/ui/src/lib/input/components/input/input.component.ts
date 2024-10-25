@@ -11,7 +11,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, NgControl, ValidationErrors } from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -38,6 +38,8 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   public isRequired = input<boolean>(false);
   public invalid = signal<boolean>(false);
 
+  public errors = signal<ValidationErrors | null>(null);
+
   protected _value = '';
   private _control!: NgControl;
   private _isDisabled = false;
@@ -56,7 +58,7 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   }
 
   public onBlur(): void {
-    this.invalid.set(!this._control.valid);
+    this._onTouched();
   }
 
   public onInputChange(value: string): void {
@@ -81,18 +83,14 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   }
 
   private _updateValidUi(): void {
-    if (!this._control.statusChanges) {
+    if (!this._control.valueChanges) {
       return;
     }
 
-    this._control.statusChanges.pipe(takeUntilDestroyed(this._destroyRef)).subscribe(event => {
-      if (event === 'VALID') {
-        this.invalid.set(false);
-      }
-
-      if (event === 'INVALID') {
-        this.invalid.set(true);
-      }
+    this._control.valueChanges.pipe(takeUntilDestroyed(this._destroyRef)).subscribe(() => {
+      const errors = this._control.errors;
+      this.errors.set(errors)
+      this.invalid.set(!!errors);
     });
   }
 }
