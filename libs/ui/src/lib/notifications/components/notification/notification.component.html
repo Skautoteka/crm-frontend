@@ -1,0 +1,8 @@
+<skt-ui-icon [iconName]="iconName()" iconColor="var(--basic-8)" />
+<div class="skt-ui-notification__wrapper">
+  <div class="skt-ui-notification__title">{{ title() }}</div>
+
+  @if(message(); as message) {
+    <span class="skt-ui-notification__message">{{ message }}</span>
+  }
+</div>

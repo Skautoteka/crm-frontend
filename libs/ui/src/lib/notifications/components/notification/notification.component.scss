@@ -1,9 +1,31 @@
 .skt-ui-notification {
   display: flex;
+  align-items: center;
+  gap: 0.5rem;
   height: 4.5rem;
-  min-width: 10rem;
   padding: 1.5rem 1rem;
   border-radius: 1rem;
+  pointer-events: all;
+  color: var(--basic-8);
+  font-size: 0.75rem;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity .3s ease;
+  width: fit-content;
 
-  background-color: red;
+  &:hover {
+    opacity: 1;
+  }
+
+  &__wrapper {
+    margin-right: 2rem;
+  }
+
+  &--success {
+    background-color: var(--primary-2);
+  }
+
+  &--failure {
+    background-color: var(--warn);
+  }
 }

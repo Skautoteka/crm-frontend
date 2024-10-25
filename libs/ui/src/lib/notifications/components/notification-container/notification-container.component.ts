@@ -26,8 +26,9 @@ export class NotificationContainerComponent {
   public addNotification(type: 'success' | 'failure', title: string, message?: string): void {
     const ref = this._renderNotification();
 
-    ref.setInput(type, type);
-    ref.setInput(title, title);
+    ref.setInput('type', type);
+    ref.setInput('title', title);
+    ref.setInput('ref', ref);
 
     if(message) {
       ref.setInput('message', message)

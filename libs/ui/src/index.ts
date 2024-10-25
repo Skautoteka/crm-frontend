@@ -9,3 +9,4 @@ export * from './lib/input';
 export * from './lib/table';
 export * from './lib/icon';
 export * from './lib/tag';
+export * from './lib/notifications'
