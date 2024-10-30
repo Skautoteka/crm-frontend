@@ -12,7 +12,7 @@ import {
 } from '@skautoteka-frontend/ui';
 import { DatePipe } from '@angular/common';
 import { StatusTextPipe } from '../../pipes';
-import { ReportsStore } from '../../store/reports.store';
+import { UsersStore } from '../../store/users.store';
 
 @Component({
   standalone: true,
@@ -36,20 +36,22 @@ import { ReportsStore } from '../../store/reports.store';
   ]
 })
 export class UsersContentComponent {
-  public reportsStore = inject(ReportsStore);
+  public usersStore = inject(UsersStore);
   public tableDef = [
     { name: 'Zdjecie', width: '4rem', hidden: true },
-    { name: 'Nazwa', width: 'auto' },
-    { name: 'Status', width: '7.5rem' },
-    { name: 'Data utworzenia', width: '25%' }
+    { name: 'Imię', width: '15%' },
+    { name: 'Nazwisko', width: '15%' },
+    { name: 'Email', width: '30%' },
+    { name: 'Region', width: '20%' },
+    { name: 'Rola', width: '20%' }
   ];
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-users-content');
-    this.reportsStore.getReports();
+    this.usersStore.getUsers();
   }
 
   public onRowClicked(id: string): void {
-    this.reportsStore.setActiveReport(id);
+    this.usersStore.setActiveUser(id);
   }
 }
