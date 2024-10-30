@@ -1,14 +1,12 @@
-@if(reportsStore.activeReport(); as user) {
+@if(usersStore.activeUser(); as user) {
 <skt-ui-label-container>
   <skt-ui-label>
-    <span label>Data utworzenia</span>
-    {{ user.createdAt | date }}
+    <span label>Imię</span>
+    {{ user.firstName }}
   </skt-ui-label>
   <skt-ui-label>
-    <span label>Status</span>
-    @if(user.status; as status) {
-    <skt-ui-tag [text]="status | statusText" [type]="status === 'IN_PROGRESS' ? 'simple' : 'success'"></skt-ui-tag>
-    }
+    <span label>Nazwisko</span>
+    {{ user.lastName }}
   </skt-ui-label>
 </skt-ui-label-container>
 }

@@ -10,7 +10,7 @@ import {
   TagComponent
 } from '@skautoteka-frontend/ui';
 import { StatusTextPipe } from '../../pipes';
-import { ReportsStore } from '../../store/reports.store';
+import { UsersStore } from '../../store/users.store';
 
 @Component({
   standalone: true,
@@ -33,7 +33,7 @@ import { ReportsStore } from '../../store/reports.store';
   ]
 })
 export class UsersBasicInfoComponent {
-  public reportsStore = inject(ReportsStore);
+  public usersStore = inject(UsersStore);
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-users-basic-info');
