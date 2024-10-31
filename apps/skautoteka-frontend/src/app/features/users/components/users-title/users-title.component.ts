@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { ReportsStore } from '../../store/reports.store';
+import { UsersStore } from '../../store/users.store';
 
 @Component({
   standalone: true,
@@ -12,7 +12,7 @@ import { ReportsStore } from '../../store/reports.store';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersTitleComponent {
-  public reportsStore = inject(ReportsStore);
+  public usersStore = inject(UsersStore);
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-users-title');

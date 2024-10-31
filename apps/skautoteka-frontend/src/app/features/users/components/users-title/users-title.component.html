@@ -1,7 +1,6 @@
-@if(reportsStore.activeReport(); as report) {
-<div class="skt-report-title__logo"></div>
-<div class="skt-report-title__title">
-  <div class="skt-report-title__report-name">{{ report.name }}</div>
-  <div class="skt-report-title__report-position">{{ report.player.name }}</div>
+@if(usersStore.activeUser(); as user) {
+<div class="skt-user-title__logo"></div>
+<div class="skt-user-title__title">
+  <div class="skt-user-title__user-name">{{ user.firstName }} {{ user.lastName }}</div>
 </div>
 }
