@@ -12,7 +12,7 @@ import {
 import { UsersBasicInfoComponent } from '../users-basic-info/users-basic-info.component';
 import { UsersTitleComponent } from '../users-title/users-title.component';
 import { UsersRatingComponent } from '../users-rating/users-rating.component';
-import { ReportsStore } from '../../store/reports.store';
+import { UsersStore } from '../../store/users.store';
 import { Router } from '@angular/router';
 
 @Component({
@@ -35,12 +35,12 @@ import { Router } from '@angular/router';
   ]
 })
 export class UsersSideContentComponent {
-  public reportsStore = inject(ReportsStore);
+  public usersStore = inject(UsersStore);
   public actionsConfig: ActionsConfig[] = [
     {
       type: 'DELETE',
       text: 'Usuń raport',
-      callback: () => this._deleteReport()
+      callback: () => this._deleteUser()
     }
   ];
 
@@ -50,31 +50,31 @@ export class UsersSideContentComponent {
     classBinder.bind('skt-users-side-content');
     this._showSideContent();
 
-    if (!this.reportsStore.activeReport()) {
-      this._router.navigate(['/', 'dashboard', 'reports']);
+    if (!this.usersStore.activeUser()) {
+      this._router.navigate(['/', 'dashboard', 'users']);
     }
   }
 
   public onMobileBackClick(): void {
-    this.reportsStore.setActiveReport(null);
+    this.usersStore.setActiveUser(null);
   }
 
   private _showSideContent() {
     effect(() => {
-      const activeReport = this.reportsStore.activeReport();
-      if (activeReport) {
-        this._content.showSideContent(!!activeReport);
+      const activeUser = this.usersStore.activeUser();
+      if (activeUser) {
+        this._content.showSideContent(!!activeUser);
       }
     });
   }
 
-  private _deleteReport(): void {
-    const activeReport = this.reportsStore.activeReport();
+  private _deleteUser(): void {
+    const activeUser = this.usersStore.activeUser();
 
-    if (!activeReport) {
+    if (!activeUser) {
       return;
     }
 
-    this.reportsStore.removeReport(activeReport.id);
+    this.usersStore.removeUser(activeUser.id);
   }
 }

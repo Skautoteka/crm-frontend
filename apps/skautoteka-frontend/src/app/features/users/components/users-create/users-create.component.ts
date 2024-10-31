@@ -3,7 +3,7 @@ import { ClassBinder } from '@skautoteka-frontend/common';
 import { ButtonComponent, InputComponent, InputContainerComponent, InputViewService } from '@skautoteka-frontend/ui';
 import { AsyncPipe } from '@angular/common';
 import { User } from '../../interfaces/user';
-import { ReportsStore } from '../../store/reports.store';
+import { UsersStore } from '../../store/users.store';
 
 @Component({
   standalone: true,
@@ -16,14 +16,13 @@ import { ReportsStore } from '../../store/reports.store';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersCreateComponent {
-  public reportsStore = inject(ReportsStore);
+  public usersStore = inject(UsersStore);
 
   constructor(classBinder: ClassBinder, public inputView: InputViewService<User>) {
     classBinder.bind('skt-users-create');
-    this.reportsStore.fetchFields();
   }
 
   public onSaveButtonClick(): void {
-    this.reportsStore.addReport(this.inputView.value);
+    // this.usersStore.addUser(this.inputView.value);
   }
 }
