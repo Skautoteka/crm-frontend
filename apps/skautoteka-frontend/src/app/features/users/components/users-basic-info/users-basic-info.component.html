@@ -1,12 +1,16 @@
 @if(usersStore.activeUser(); as user) {
 <skt-ui-label-container>
+    <skt-ui-label>
+      <span label>Imię</span>
+      {{ user.firstName }}
+    </skt-ui-label>
+    <skt-ui-label>
+      <span label>Nazwisko</span>
+      {{ user.lastName }}
+    </skt-ui-label>
   <skt-ui-label>
-    <span label>Imię</span>
-    {{ user.firstName }}
-  </skt-ui-label>
-  <skt-ui-label>
-    <span label>Nazwisko</span>
-    {{ user.lastName }}
+    <span label>Region</span>
+    {{ user.region }}
   </skt-ui-label>
 </skt-ui-label-container>
 }
