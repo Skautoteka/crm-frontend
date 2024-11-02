@@ -43,8 +43,8 @@ export class UsersComponent {
 
   public onAddNewClick(): void {
     this._modal.createModal(UsersCreateComponent, {
-      header: 'Dodaj raport',
-      subHeader: 'Wypełnij wszystkie wymagane informacje aby dodać raport'
+      header: 'Zarejestruj użytkownika',
+      subHeader: 'Wypełnij wszystkie wymagane informacje aby dodać nowego użytkownika'
     });
   }
 }
