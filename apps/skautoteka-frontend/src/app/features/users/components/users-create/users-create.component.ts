@@ -20,6 +20,7 @@ export class UsersCreateComponent {
 
   constructor(classBinder: ClassBinder, public inputView: InputViewService<User>) {
     classBinder.bind('skt-users-create');
+    this.usersStore.fetchFields();
   }
 
   public onSaveButtonClick(): void {
