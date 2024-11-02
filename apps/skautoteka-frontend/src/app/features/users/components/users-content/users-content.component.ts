@@ -11,7 +11,6 @@ import {
   TagComponent
 } from '@skautoteka-frontend/ui';
 import { DatePipe } from '@angular/common';
-import { StatusTextPipe } from '../../pipes';
 import { UsersStore } from '../../store/users.store';
 
 @Component({
@@ -31,8 +30,7 @@ import { UsersStore } from '../../store/users.store';
     TableRowCellComponent,
     TableRowComponent,
     TagComponent,
-    DatePipe,
-    StatusTextPipe
+    DatePipe
   ]
 })
 export class UsersContentComponent {

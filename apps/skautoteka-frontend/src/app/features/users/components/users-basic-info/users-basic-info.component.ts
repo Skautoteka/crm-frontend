@@ -9,7 +9,6 @@ import {
   TabsComponent,
   TagComponent
 } from '@skautoteka-frontend/ui';
-import { StatusTextPipe } from '../../pipes';
 import { UsersStore } from '../../store/users.store';
 
 @Component({
@@ -28,8 +27,7 @@ import { UsersStore } from '../../store/users.store';
     DatePipe,
     AsyncPipe,
     LabelContainerComponent,
-    TagComponent,
-    StatusTextPipe
+    TagComponent
   ]
 })
 export class UsersBasicInfoComponent {
