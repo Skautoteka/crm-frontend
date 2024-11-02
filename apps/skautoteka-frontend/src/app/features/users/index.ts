@@ -5,4 +5,3 @@ export * from './components/users-side-content/users-side-content.component';
 export * from './components/users-create/users-create.component';
 export * from './components/users-title/users-title.component';
 export * from './components/users-rating/users-rating.component';
-export * from './pipes';
