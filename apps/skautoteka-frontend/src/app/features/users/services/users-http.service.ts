@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/user';
+import { InputConfig } from '@skautoteka-frontend/ui';
 
 @Injectable({ providedIn: 'root' })
 export class UsersHttpService {
@@ -24,5 +25,12 @@ export class UsersHttpService {
    */
   public removeUser$(id: string): Observable<void> {
     return this.http.delete<void>('api/user/' + id);
+  }
+
+  /**
+   * Gets create fields for user model.
+   */
+  public getCreateFieldsConfig$(): Observable<InputConfig> {
+    return this.http.get<InputConfig>('api/user/create-fields');
   }
 }
