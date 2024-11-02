@@ -86,10 +86,27 @@ export const withUsersMethods = () => {
         patchState(store, { activeUser });
       };
 
+      /**
+       * Fetches the create fields from backend and saves it to the store.
+       */
+      const fetchFields = rxMethod<void>(
+        pipe(
+          switchMap(() =>
+            httpService.getCreateFieldsConfig$().pipe(
+              tapResponse({
+                next: createFields => patchState(store, { createFields }),
+                error: () => null
+              })
+            )
+          )
+        )
+      );
+
       return {
         getUsers,
         removeUser,
-        setActiveUser
+        setActiveUser,
+        fetchFields
       };
     })
   );
