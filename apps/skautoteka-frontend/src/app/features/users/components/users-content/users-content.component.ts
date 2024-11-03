@@ -37,11 +37,12 @@ export class UsersContentComponent {
   public usersStore = inject(UsersStore);
   public tableDef = [
     { name: 'Zdjecie', width: '4rem', hidden: true },
-    { name: 'Imię', width: '15%' },
-    { name: 'Nazwisko', width: '15%' },
-    { name: 'Email', width: '30%' },
-    { name: 'Region', width: '20%' },
-    { name: 'Rola', width: '20%' }
+    { name: 'Imię', width: '6rem' },
+    { name: 'Nazwisko', width: '6rem' },
+    { name: 'Email', width: '10rem' },
+    { name: 'Telefon', width: '7rem' },
+    { name: 'Region', width: '8rem' },
+    { name: 'Rola', width: '6rem' }
   ];
 
   constructor(classBinder: ClassBinder) {
