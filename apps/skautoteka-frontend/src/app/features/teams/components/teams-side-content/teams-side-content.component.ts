@@ -45,8 +45,8 @@ export class TeamsSideContentComponent {
     classBinder.bind('skt-teams-side-content');
     this._showSideContent();
 
-    if(!this.teamsStore.activeTeam()) {
-      this._router.navigate(['/', 'dashboard', 'teams'])
+    if (!this.teamsStore.activeTeam()) {
+      this._router.navigate(['/', 'dashboard', 'teams']);
     }
   }
 

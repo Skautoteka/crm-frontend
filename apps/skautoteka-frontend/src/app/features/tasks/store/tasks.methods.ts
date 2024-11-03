@@ -16,7 +16,7 @@ export const withTasksMethods = () => {
       const httpService = inject(TasksHttpService);
       const router = inject(Router);
       const modal = inject(ModalService);
-      const notification = inject(NotificationsService)
+      const notification = inject(NotificationsService);
 
       /**
        * Gets all tasks from the database.

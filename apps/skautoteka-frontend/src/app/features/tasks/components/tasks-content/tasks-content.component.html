@@ -16,7 +16,9 @@
       [class.skt-tasks-content__tasks-card-content--active]="tasksStore.activeTask()?.id === task.id"
     >
       <skt-ui-label>
-        <div label><span class="skt-tasks-content__tasks-card-header">Mecz</span> | {{ task.type ? 'Online' : 'Na miejscu' }}</div>
+        <div label>
+          <span class="skt-tasks-content__tasks-card-header">Mecz</span> | {{ task.type ? 'Online' : 'Na miejscu' }}
+        </div>
         {{ task.hostTeam.name }} vs {{ task.guestTeam.name }}
       </skt-ui-label>
 

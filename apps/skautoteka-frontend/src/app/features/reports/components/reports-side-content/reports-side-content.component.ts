@@ -50,8 +50,8 @@ export class ReportsSideContentComponent {
     classBinder.bind('skt-reports-side-content');
     this._showSideContent();
 
-    if(!this.reportsStore.activeReport()) {
-      this._router.navigate(['/', 'dashboard', 'reports'])
+    if (!this.reportsStore.activeReport()) {
+      this._router.navigate(['/', 'dashboard', 'reports']);
     }
   }
 

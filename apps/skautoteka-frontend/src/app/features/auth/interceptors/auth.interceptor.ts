@@ -16,8 +16,8 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, ne
 
   return next(req).pipe(
     catchError((err: HttpErrorResponse) => {
-      if(err.url && err.url.endsWith('login')) {
-        return throwError(() => err)
+      if (err.url && err.url.endsWith('login')) {
+        return throwError(() => err);
       }
 
       if (err.status === 403) {

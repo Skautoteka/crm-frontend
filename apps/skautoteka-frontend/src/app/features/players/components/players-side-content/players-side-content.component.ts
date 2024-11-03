@@ -12,7 +12,7 @@ import {
 import { PlayersStore } from '../../store/players.store';
 import { Router } from '@angular/router';
 import { PlayersBasicInfoComponent } from '../players-basic-info/players-basic-info.component';
-import { PlayersNameComponent } from "../players-name/players-name.component";
+import { PlayersNameComponent } from '../players-name/players-name.component';
 
 @Component({
   standalone: true,
@@ -30,7 +30,7 @@ import { PlayersNameComponent } from "../players-name/players-name.component";
     SideContentheaderActionsComponent,
     PlayersBasicInfoComponent,
     PlayersNameComponent
-]
+  ]
 })
 export class PlayersSideContentComponent {
   public playersStore = inject(PlayersStore);
@@ -45,8 +45,8 @@ export class PlayersSideContentComponent {
     classBinder.bind('skt-tasks-side-content');
     this._showSideContent();
 
-    if(!this.playersStore.activePlayer()) {
-      this._router.navigate(['/', 'dashboard', 'players'])
+    if (!this.playersStore.activePlayer()) {
+      this._router.navigate(['/', 'dashboard', 'players']);
     }
   }
 

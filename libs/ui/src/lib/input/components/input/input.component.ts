@@ -89,7 +89,7 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
 
     this._control.valueChanges.pipe(takeUntilDestroyed(this._destroyRef)).subscribe(() => {
       const errors = this._control.errors;
-      this.errors.set(errors)
+      this.errors.set(errors);
       this.invalid.set(!!errors);
     });
   }

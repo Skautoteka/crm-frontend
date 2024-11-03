@@ -42,7 +42,7 @@ export class TableRowComponent {
 
     effect(() => {
       classBinder.conditionalBind(this.isActive(), 'skt-ui-table-row--active');
-    })
+    });
   }
 
   public setTableDef(definition: TableDefinition): void {

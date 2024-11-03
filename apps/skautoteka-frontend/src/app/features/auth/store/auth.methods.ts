@@ -38,8 +38,8 @@ export const withAuthMethods = () => {
                   patchState(store, { user });
                   router.navigate(['/', 'dashboard']);
                 },
-                error: (err) => {
-                  console.log('error', err)
+                error: err => {
+                  console.log('error', err);
                   notifications.error('Wpisane hasło lub email są niepoprawne');
                 },
                 finalize: () => {

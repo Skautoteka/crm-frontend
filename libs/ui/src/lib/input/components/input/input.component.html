@@ -20,19 +20,11 @@
 </div>
 
 @if(errors() | keyvalue; as errors) {
-  <div class="skt-ui-input__errors">
-    @for(err of errors; track err.key) {
-      <span class="skt-ui-input__error">
-        @switch(err.key) {
-          @case('email') {
-            Wpisz poprawny adres email
-          }
-
-          @case('required') {
-            Te pole jest wymagane
-          }
-        }
-      </span>
-    }
-  </div>
+<div class="skt-ui-input__errors">
+  @for(err of errors; track err.key) {
+  <span class="skt-ui-input__error">
+    @switch(err.key) { @case('email') { Wpisz poprawny adres email } @case('required') { Te pole jest wymagane } }
+  </span>
+  }
+</div>
 }
