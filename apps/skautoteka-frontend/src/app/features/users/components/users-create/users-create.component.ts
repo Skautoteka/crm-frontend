@@ -24,6 +24,6 @@ export class UsersCreateComponent {
   }
 
   public onSaveButtonClick(): void {
-    // this.usersStore.addUser(this.inputView.value);
+    this.usersStore.addUser(this.inputView.value);
   }
 }

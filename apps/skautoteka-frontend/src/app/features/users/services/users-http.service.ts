@@ -3,10 +3,20 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/user';
 import { InputConfig } from '@skautoteka-frontend/ui';
+import { IModelResponse } from '@skautoteka-frontend/common';
 
 @Injectable({ providedIn: 'root' })
 export class UsersHttpService {
   constructor(private http: HttpClient) {}
+
+  /**
+   * Post http request that adds a new user.
+   *
+   * @param user
+   */
+  public addUser$(user: User): Observable<IModelResponse<User>> {
+    return this.http.post<IModelResponse<User>>('api/auth/register/', { ...user });
+  }
 
   /**
    * Retrieves all users from the database.
