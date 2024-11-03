@@ -39,7 +39,7 @@ export class UsersSideContentComponent {
   public actionsConfig: ActionsConfig[] = [
     {
       type: 'DELETE',
-      text: 'Usuń raport',
+      text: 'Usuń użytkownika',
       callback: () => this._deleteUser()
     }
   ];

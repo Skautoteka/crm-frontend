@@ -9,6 +9,14 @@
       {{ user.lastName }}
     </skt-ui-label>
   <skt-ui-label>
+    <span label>Email</span>
+    {{ user.email }}
+  </skt-ui-label>
+  <skt-ui-label>
+    <span label>Numer telefonu</span>
+    {{ user.phoneNumber ?? "-" }}
+  </skt-ui-label>
+  <skt-ui-label>
     <span label>Region</span>
     {{ user.region ?? "-" }}
   </skt-ui-label>
