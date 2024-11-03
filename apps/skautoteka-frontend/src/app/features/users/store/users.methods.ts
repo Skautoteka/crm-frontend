@@ -70,6 +70,23 @@ export const withUsersMethods = () => {
       );
 
       /**
+       * Adds a user to the store and to the database.
+       */
+      const addUser = rxMethod<User>(
+        pipe(
+          switchMap(user =>
+            httpService.addUser$(user).pipe(
+              tapResponse({
+                next: res => patchState(store, { users: [...store.users(), res.added] }),
+                error: () => null,
+                finalize: () => modal.closeAll()
+              })
+            )
+          )
+        )
+      );
+
+      /**
        * Sets active user.
        *
        * @param id
@@ -104,6 +121,7 @@ export const withUsersMethods = () => {
 
       return {
         getUsers,
+        addUser,
         removeUser,
         setActiveUser,
         fetchFields
