@@ -2,7 +2,7 @@
   height: 100vh;
   width: 100%;
   display: grid;
-  grid-template-columns: minmax(18rem, 22rem) auto;
+  grid-template-columns: minmax(14rem, 16rem) auto;
 
   @media (max-width: 850px) {
     grid-template-columns: 1fr;
