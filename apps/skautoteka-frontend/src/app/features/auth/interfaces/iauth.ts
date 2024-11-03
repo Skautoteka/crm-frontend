@@ -1,13 +1,17 @@
 export type User = {
-  email: string;
   firstName: string;
   lastName: string;
-  role: Role;
-  dateOfBirth: Date;
+  email: string;
   phoneNumber: string;
+  role: Role;
+  region: Region;
 };
 
 export type Role = {
+  name: string;
+};
+
+export type Region = {
   name: string;
 };
 
