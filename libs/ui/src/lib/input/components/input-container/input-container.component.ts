@@ -10,6 +10,7 @@ import { InputCheckboxComponent } from '../input-checkbox/input-checkbox.compone
 import { InputSelectComponent } from '../input-select/input-select.component';
 import { InputSearchComponent } from '../input-search/input-search.component';
 import { InputNumberComponent } from '../input-number/input-number.component';
+import { InputDbComponent } from '../input-db/input-db.component';
 
 @Component({
   selector: 'skt-ui-input-container',
@@ -29,7 +30,7 @@ import { InputNumberComponent } from '../input-number/input-number.component';
     InputSelectComponent,
     InputSearchComponent,
     InputNumberComponent,
-    InputNumberComponent
+    InputDbComponent
   ],
   providers: [ClassBinder]
 })

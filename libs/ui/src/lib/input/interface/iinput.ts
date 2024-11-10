@@ -15,4 +15,4 @@ export interface ISelectOption {
   label: string;
 }
 
-type InputType = 'TEXT' | 'BOOL' | 'DATE' | 'SELECT' | 'SEARCH' | 'NUMBER';
+type InputType = 'TEXT' | 'BOOL' | 'DATE' | 'SELECT' | 'SEARCH' | 'NUMBER' | 'DB';
