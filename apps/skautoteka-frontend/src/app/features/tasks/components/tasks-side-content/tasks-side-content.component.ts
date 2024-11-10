@@ -44,8 +44,8 @@ export class TasksSideContentComponent {
     classBinder.bind('skt-tasks-side-content');
     this._showSideContent();
 
-    if(!this.tasksStore.activeTask()) {
-      this._router.navigate(['/', 'dashboard', 'tasks'])
+    if (!this.tasksStore.activeTask()) {
+      this._router.navigate(['/', 'dashboard', 'tasks']);
     }
   }
 

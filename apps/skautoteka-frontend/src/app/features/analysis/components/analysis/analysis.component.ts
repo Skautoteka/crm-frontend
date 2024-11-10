@@ -10,7 +10,7 @@ import { IconComponent } from '@skautoteka-frontend/ui';
   providers: [ClassBinder],
   imports: [IconComponent],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AnalysisComponent {
   constructor(classBinder: ClassBinder) {

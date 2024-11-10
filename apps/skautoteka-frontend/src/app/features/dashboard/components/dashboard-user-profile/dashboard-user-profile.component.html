@@ -1,11 +1,5 @@
 <div class="skt-dashboard-user-profile__section-wrapper">
   <div class="information-section personal">
-    <skt-ui-label-container style="margin-bottom: 1rem">
-      <skt-ui-label>
-        <span label>Informacje personalne</span>
-      </skt-ui-label>
-    </skt-ui-label-container>
-
     <div class="skt-dashboard-user-profile__info-row">
       <skt-ui-label-container>
         <skt-ui-label [valueClass]="'big'">
@@ -24,19 +18,13 @@
 
     <skt-ui-label-container>
       <skt-ui-label [valueClass]="'big'">
-        <span label>Wiek</span>
-        {{ calculateAge(authStore.dateOfBirth()) }} lat
+        <span label>Rola</span>
+        {{ authStore.roleName() }}
       </skt-ui-label>
     </skt-ui-label-container>
   </div>
 
   <div>
-    <skt-ui-label-container style="margin-bottom: 1rem">
-      <skt-ui-label>
-        <span label>Informacje kontaktowe</span>
-      </skt-ui-label>
-    </skt-ui-label-container>
-
     <div class="skt-dashboard-user-profile__info-row">
       <skt-ui-label-container>
         <skt-ui-label [valueClass]="'big'">
@@ -48,10 +36,21 @@
 
     <skt-ui-label-container>
       <skt-ui-label [valueClass]="'big'">
-        <span label>Telefon</span>
-        {{ authStore.phoneNumber() }}
+        <span label>Region</span>
+        {{ authStore.regionName() }}
       </skt-ui-label>
     </skt-ui-label-container>
+  </div>
+
+  <div>
+    <div class="skt-dashboard-user-profile__info-row">
+      <skt-ui-label-container>
+        <skt-ui-label [valueClass]="'big'">
+          <span label>Telefon</span>
+          {{ authStore.phoneNumber() }}
+        </skt-ui-label>
+      </skt-ui-label-container>
+    </div>
   </div>
 </div>
 

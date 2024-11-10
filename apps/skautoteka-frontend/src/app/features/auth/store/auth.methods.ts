@@ -34,14 +34,16 @@ export const withAuthMethods = () => {
               switchMap(() => httpService.getUser$()),
               tapResponse({
                 next: user => {
+                  console.log('user', user);
                   patchState(store, { user });
                   router.navigate(['/', 'dashboard']);
                 },
-                error: () => {
-                  notifications.error('Wpisane hasło lub email są niepoprawne')
-                  console.log('gte')
+                error: err => {
+                  console.log('error', err);
+                  notifications.error('Wpisane hasło lub email są niepoprawne');
                 },
                 finalize: () => {
+                  console.log('heer');
                   patchState(store, { isLoading: false });
                   loader.hideLoader('login');
                 }

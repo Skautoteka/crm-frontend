@@ -1,6 +1,16 @@
-import { ChangeDetectionStrategy, Component, ComponentRef, computed, effect, HostListener, inject, input, ViewEncapsulation } from "@angular/core";
-import { ClassBinder } from "@skautoteka-frontend/common";
-import { IconComponent } from "../../../icon";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ComponentRef,
+  computed,
+  effect,
+  HostListener,
+  inject,
+  input,
+  ViewEncapsulation
+} from '@angular/core';
+import { ClassBinder } from '@skautoteka-frontend/common';
+import { IconComponent } from '../../../icon';
 
 @Component({
   standalone: true,
@@ -18,7 +28,7 @@ export class NotificationComponent {
   }
 
   @HostListener('mouseenter') public onMouseEnter(): void {
-    if(this._timeoutRef) {
+    if (this._timeoutRef) {
       clearTimeout(this._timeoutRef);
     }
   }
@@ -35,7 +45,7 @@ export class NotificationComponent {
 
   public iconName = computed(() => {
     return this.type() === 'success' ? 'info' : 'info';
-  })
+  });
 
   private _classBinder = inject(ClassBinder);
 
@@ -48,7 +58,7 @@ export class NotificationComponent {
     effect(() => {
       const type = this.type();
       this._classBinder.bind('skt-ui-notification--' + type);
-    })
+    });
 
     this._setDestroyTimeout();
   }

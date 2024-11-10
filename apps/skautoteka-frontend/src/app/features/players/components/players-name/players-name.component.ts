@@ -17,19 +17,19 @@ export class PlayersNameComponent {
   public playerPosition = computed(() => {
     const activePlayer = this.playersStore.activePlayer();
 
-    if(!activePlayer) {
+    if (!activePlayer) {
       return 'Brak informacji';
     }
 
-    switch(activePlayer.position) {
+    switch (activePlayer.position) {
       case 'DEFENSE':
         return 'Obrońca';
       case 'FORWARD':
         return 'Napastnik';
       case 'WINGER':
-        return 'Skrzydłowy'
+        return 'Skrzydłowy';
     }
-  })
+  });
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-players-name');

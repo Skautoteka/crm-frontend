@@ -53,7 +53,7 @@ export class InputPasswordComponent implements ControlValueAccessor, AfterViewIn
 
   public onBlur(): void {
     this.invalid.set(!this._control.valid);
-    this.errors.set(this._control.errors)
+    this.errors.set(this._control.errors);
   }
 
   public onInputChange(value: string): void {
@@ -80,7 +80,7 @@ export class InputPasswordComponent implements ControlValueAccessor, AfterViewIn
 
     this._control.valueChanges.pipe(takeUntilDestroyed(this._destroyRef)).subscribe(() => {
       const errors = this._control.errors;
-      this.errors.set(errors)
+      this.errors.set(errors);
       this.invalid.set(!!errors);
     });
   }

@@ -31,9 +31,9 @@ export const AuthStore = signalStore(
         const user = store.user();
         return user ? user?.role?.name : null;
       }),
-      dateOfBirth: computed(() => {
+      regionName: computed(() => {
         const user = store.user();
-        return user ? user?.dateOfBirth : null;
+        return user ? user?.region?.name : null;
       }),
       phoneNumber: computed(() => {
         const user = store.user();

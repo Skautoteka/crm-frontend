@@ -1,7 +1,15 @@
-import { ChangeDetectionStrategy, Component, ComponentRef, inject, viewChild, ViewContainerRef, ViewEncapsulation } from "@angular/core";
-import { ClassBinder } from "@skautoteka-frontend/common";
-import { NotificationsService } from "../../services/notifications.service";
-import { NotificationComponent } from "../notification/notification.component";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ComponentRef,
+  inject,
+  viewChild,
+  ViewContainerRef,
+  ViewEncapsulation
+} from '@angular/core';
+import { ClassBinder } from '@skautoteka-frontend/common';
+import { NotificationsService } from '../../services/notifications.service';
+import { NotificationComponent } from '../notification/notification.component';
 
 @Component({
   standalone: true,
@@ -14,7 +22,7 @@ import { NotificationComponent } from "../notification/notification.component";
 })
 export class NotificationContainerComponent {
   private _classBinder = inject(ClassBinder);
-  private _notifications = inject(NotificationsService)
+  private _notifications = inject(NotificationsService);
 
   private _container = viewChild.required('container', { read: ViewContainerRef });
 
@@ -30,13 +38,13 @@ export class NotificationContainerComponent {
     ref.setInput('title', title);
     ref.setInput('ref', ref);
 
-    if(message) {
-      ref.setInput('message', message)
+    if (message) {
+      ref.setInput('message', message);
     }
   }
 
   private _renderNotification(): ComponentRef<NotificationComponent> {
     const container = this._container();
-    return container.createComponent(NotificationComponent)
+    return container.createComponent(NotificationComponent);
   }
 }

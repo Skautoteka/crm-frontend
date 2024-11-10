@@ -1,17 +1,17 @@
 @if(activeTask(); as task) {
-  <skt-ui-label-container>
-    <skt-ui-label>
-      <span label>Typ zadania</span>
-      {{ task.type ? 'Online' : 'Wyjazd na mecz' }}
-    </skt-ui-label>
-    <skt-ui-label>
-      <span label>Data</span>
-      {{ (task.startDate | date) || 'Brak informacji' }}
-    </skt-ui-label>
-    <skt-ui-label>
-      <span label>Adres meczu</span>
-      {{ task.location }}
-    </skt-ui-label>
-  </skt-ui-label-container>
+<skt-ui-label-container>
+  <skt-ui-label>
+    <span label>Typ zadania</span>
+    {{ task.type ? 'Online' : 'Wyjazd na mecz' }}
+  </skt-ui-label>
+  <skt-ui-label>
+    <span label>Data</span>
+    {{ (task.startDate | date) || 'Brak informacji' }}
+  </skt-ui-label>
+  <skt-ui-label>
+    <span label>Adres meczu</span>
+    {{ task.location }}
+  </skt-ui-label>
+</skt-ui-label-container>
 
 }

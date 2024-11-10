@@ -1,18 +1,18 @@
 @if(activeTask(); as task) {
-  <div class="skt-tasks-teams__team">
-    <div class="skt-tasks-teams__team-logo"></div>
-    <div class="skt-tasks-teams__team-info">
-      <span class="skt-tasks-teams__team-info-name">{{ task.hostTeam.name }}</span>
-      <span class="skt-tasks-teams__team-type">Gospodarz</span>
-    </div>
+<div class="skt-tasks-teams__team">
+  <div class="skt-tasks-teams__team-logo"></div>
+  <div class="skt-tasks-teams__team-info">
+    <span class="skt-tasks-teams__team-info-name">{{ task.hostTeam.name }}</span>
+    <span class="skt-tasks-teams__team-type">Gospodarz</span>
   </div>
+</div>
 
-  <div class="skt-tasks-teams__team">
-    <div class="skt-tasks-teams__team-info skt-tasks-teams__team-info--right">
-      <span class="skt-tasks-teams__team-info-name">{{ task.guestTeam.name }}</span>
-      <span class="skt-tasks-teams__team-type">Gość</span>
-    </div>
-    <div class="skt-tasks-teams__team-logo"></div>
+<div class="skt-tasks-teams__team">
+  <div class="skt-tasks-teams__team-info skt-tasks-teams__team-info--right">
+    <span class="skt-tasks-teams__team-info-name">{{ task.guestTeam.name }}</span>
+    <span class="skt-tasks-teams__team-type">Gość</span>
   </div>
+  <div class="skt-tasks-teams__team-logo"></div>
+</div>
 
 }
