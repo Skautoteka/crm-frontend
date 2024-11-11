@@ -23,6 +23,7 @@
     "@ngrx/signals": "^18.0.2",
     "@nx/angular": "19.1.0",
     "css.gg": "^2.1.1",
+    "ngxtension": "^4.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

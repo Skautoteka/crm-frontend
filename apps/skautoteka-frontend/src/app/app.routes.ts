@@ -1,6 +1,7 @@
 import { Route } from '@angular/router';
 import { DashboardGuard } from './features/auth/guards/auth.guard';
 import { LoginComponent } from './features/auth/components/login/login.component';
+import { sidenavElementResolver } from './features/dashboard/resolvers/sidenav-element.resolver';
 
 export const appRoutes: Route[] = [
   {
@@ -20,7 +21,8 @@ export const appRoutes: Route[] = [
   {
     path: 'dashboard',
     loadChildren: () => import('./features/dashboard/dashboard.routes').then(r => r.DASHBOARD_ROUTES),
-    canActivate: [DashboardGuard]
+    canActivate: [DashboardGuard],
+    resolve: { sidenavElements: sidenavElementResolver }
   },
   {
     path: '',
