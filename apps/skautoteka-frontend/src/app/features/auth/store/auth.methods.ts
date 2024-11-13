@@ -4,7 +4,7 @@ import { AuthStoreState } from './auth.store';
 import { inject } from '@angular/core';
 import { AuthHttpService } from '../services/auth-http.service';
 import { LoginPayload } from '../interfaces/iauth';
-import { catchError, delay, NEVER, pipe, switchMap, tap } from 'rxjs';
+import { delay, pipe, switchMap, tap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
 import { Router, RouterStateSnapshot } from '@angular/router';
 import { LoaderService, NotificationsService } from '@skautoteka-frontend/ui';
@@ -34,16 +34,13 @@ export const withAuthMethods = () => {
               switchMap(() => httpService.getUser$()),
               tapResponse({
                 next: user => {
-                  console.log('user', user);
                   patchState(store, { user });
                   router.navigate(['/', 'dashboard']);
                 },
-                error: err => {
-                  console.log('error', err);
+                error: () => {
                   notifications.error('Wpisane hasło lub email są niepoprawne');
                 },
                 finalize: () => {
-                  console.log('heer');
                   patchState(store, { isLoading: false });
                   loader.hideLoader('login');
                 }

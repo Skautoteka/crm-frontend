@@ -1,7 +1,7 @@
 import { patchState, signalStoreFeature, type, withMethods } from '@ngrx/signals';
 import { PlayersStoreState } from './players.store';
 import { Router } from '@angular/router';
-import { ModalService } from '@skautoteka-frontend/ui';
+import { ModalService, NotificationsService } from '@skautoteka-frontend/ui';
 import { inject } from '@angular/core';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
@@ -16,6 +16,7 @@ export const withPlayersMethods = () => {
       const httpService = inject(PlayersHttpService);
       const router = inject(Router);
       const modal = inject(ModalService);
+      const notifications = inject(NotificationsService)
 
       /**
        * Gets all players from the database.
@@ -96,7 +97,11 @@ export const withPlayersMethods = () => {
             httpService.getCreateFieldsConfig$().pipe(
               tapResponse({
                 next: createFields => patchState(store, { createFields }),
-                error: () => null
+                error: (err) => {
+                  console.log(err);
+                  notifications.error('', 'Skontaktuj sie z administratorem');
+
+                }
               })
             )
           )

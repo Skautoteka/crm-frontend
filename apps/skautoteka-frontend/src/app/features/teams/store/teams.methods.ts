@@ -7,7 +7,7 @@ import { TeamsHttpService } from '../services/teams-http.service';
 import { Team } from '../interfaces/team';
 import { TeamStoreState } from './teams.store';
 import { Router } from '@angular/router';
-import { ModalService } from '@skautoteka-frontend/ui';
+import { ModalService, NotificationsService } from '@skautoteka-frontend/ui';
 
 export const withTeamsMethods = () => {
   return signalStoreFeature(
@@ -16,6 +16,7 @@ export const withTeamsMethods = () => {
       const httpService = inject(TeamsHttpService);
       const router = inject(Router);
       const modal = inject(ModalService);
+      const notification = inject(NotificationsService);
 
       /**
        * Gets all the teams from the database.
@@ -27,7 +28,10 @@ export const withTeamsMethods = () => {
             httpService.getAllTeams$().pipe(
               tapResponse({
                 next: teams => patchState(store, { teams }),
-                error: () => null,
+                error: () => {
+                  notification.error('Brak dostepu do rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                },
                 finalize: () => patchState(store, { isLoading: false })
               })
             )
@@ -60,7 +64,10 @@ export const withTeamsMethods = () => {
             httpService.deleteTeam$(id).pipe(
               tapResponse({
                 next: () => patchState(store, { teams: _filterTeam(id) }),
-                error: () => null,
+                error: () => {
+                  notification.error('Brak dostepu do usuwania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                },
                 finalize: () => setActiveTeam(null)
               })
             )
@@ -76,8 +83,14 @@ export const withTeamsMethods = () => {
           switchMap(team =>
             httpService.addTeam$(team).pipe(
               tapResponse({
-                next: res => patchState(store, { teams: [...store.teams(), res.added] }),
-                error: () => null,
+                next: res => {
+                  patchState(store, { teams: [...store.teams(), res.added] })
+                  notification.success('Poprawnie dodano zadanie');
+                },
+                error: () => {
+                  notification.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                },
                 finalize: () => modal.closeAll()
               })
             )
@@ -94,7 +107,10 @@ export const withTeamsMethods = () => {
             httpService.getCreateFieldsConfig$().pipe(
               tapResponse({
                 next: createFields => patchState(store, { createFields }),
-                error: () => null
+                error: () => {
+                  notification.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                }
               })
             )
           )

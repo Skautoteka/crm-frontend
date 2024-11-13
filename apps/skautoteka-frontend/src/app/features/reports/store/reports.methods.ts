@@ -3,7 +3,7 @@ import { ReportsStoreState } from './reports.store';
 import { inject } from '@angular/core';
 import { ReportsHttpService } from '../services/reports-http.service';
 import { Router } from '@angular/router';
-import { ModalService } from '@skautoteka-frontend/ui';
+import { ModalService, NotificationsService } from '@skautoteka-frontend/ui';
 import { pipe, switchMap, tap } from 'rxjs';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
@@ -16,6 +16,7 @@ export const withReportsMethods = () => {
       const httpService = inject(ReportsHttpService);
       const router = inject(Router);
       const modal = inject(ModalService);
+      const notification = inject(NotificationsService);
 
       /**
        * Gets all reports from the database.
@@ -27,7 +28,10 @@ export const withReportsMethods = () => {
             httpService.getAllReports$().pipe(
               tapResponse({
                 next: reports => patchState(store, { reports }),
-                error: () => null,
+                error: () => {
+                  notification.error('Brak dostepu do rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                },
                 finalize: () => patchState(store, { isLoading: false })
               })
             )
@@ -62,7 +66,10 @@ export const withReportsMethods = () => {
             httpService.removeReport$(id).pipe(
               tapResponse({
                 next: () => patchState(store, { reports: _filterReport(id) }),
-                error: () => null,
+                error: () => {
+                  notification.error('Brak dostepu do usuwania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                },
                 finalize: () => setActiveReport(null)
               })
             )
@@ -78,8 +85,14 @@ export const withReportsMethods = () => {
           switchMap(player =>
             httpService.addReport$(player).pipe(
               tapResponse({
-                next: ({ added }) => patchState(store, { reports: [...store.reports(), added] }),
-                error: () => null,
+                next: ({ added }) => {
+                  patchState(store, { reports: [...store.reports(), added] });
+                  notification.success('Poprawnie dodano raport');
+                },
+                error: () => {
+                  notification.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                },
                 finalize: () => modal.closeAll()
               })
             )
@@ -96,7 +109,10 @@ export const withReportsMethods = () => {
             httpService.getCreateFieldsConfig$().pipe(
               tapResponse({
                 next: createFields => patchState(store, { createFields }),
-                error: () => null
+                error: () => {
+                  notification.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                }
               })
             )
           )
