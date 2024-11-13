@@ -27,7 +27,9 @@ export const withTasksMethods = () => {
           switchMap(() =>
             httpService.getAllTasks$().pipe(
               tapResponse({
-                next: tasks => patchState(store, { tasks }),
+                next: tasks => {
+                  patchState(store, { tasks });
+                },
                 error: () => {
                   notification.error('Brak dostepu do rekordow', 'Skontaktuj sie z administratorem');
                   modal.closeAll();
@@ -64,7 +66,10 @@ export const withTasksMethods = () => {
           switchMap(id =>
             httpService.removeTask$(id).pipe(
               tapResponse({
-                next: () => patchState(store, { tasks: _filterTask(id) }),
+                next: () => {
+                  patchState(store, { tasks: _filterTask(id) });
+                  notification.success('Poprawnie usunieto zadanie');
+                },
                 error: () => {
                   notification.error('Brak dostepu do usuwania rekordow', 'Skontaktuj sie z administratorem');
                   modal.closeAll();

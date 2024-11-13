@@ -65,7 +65,10 @@ export const withReportsMethods = () => {
           switchMap(id =>
             httpService.removeReport$(id).pipe(
               tapResponse({
-                next: () => patchState(store, { reports: _filterReport(id) }),
+                next: () => {
+                  patchState(store, { reports: _filterReport(id) });
+                  notification.success('Poprawnie usunieto raport');
+                },
                 error: () => {
                   notification.error('Brak dostepu do usuwania rekordow', 'Skontaktuj sie z administratorem');
                   modal.closeAll();

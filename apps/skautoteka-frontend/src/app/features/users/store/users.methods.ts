@@ -3,7 +3,7 @@ import { UsersStoreState } from './users.store';
 import { inject } from '@angular/core';
 import { UsersHttpService } from '../services/users-http.service';
 import { Router } from '@angular/router';
-import { ModalService } from '@skautoteka-frontend/ui';
+import { ModalService, NotificationsService } from '@skautoteka-frontend/ui';
 import { pipe, switchMap, tap } from 'rxjs';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
@@ -16,6 +16,7 @@ export const withUsersMethods = () => {
       const httpService = inject(UsersHttpService);
       const router = inject(Router);
       const modal = inject(ModalService);
+      const notifications = inject(NotificationsService);
 
       /**
        * Gets all users from the database.
@@ -27,7 +28,10 @@ export const withUsersMethods = () => {
             httpService.getAllUsers$().pipe(
               tapResponse({
                 next: users => patchState(store, { users }),
-                error: () => null,
+                error: () => {
+                  notifications.error('Brak dostepu do rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                },
                 finalize: () => patchState(store, { isLoading: false })
               })
             )
@@ -61,7 +65,10 @@ export const withUsersMethods = () => {
             httpService.removeUser$(id).pipe(
               tapResponse({
                 next: () => patchState(store, { users: _filterUser(id) }),
-                error: () => null,
+                error: () => {
+                  notifications.error('Brak dostepu do usuwania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                },
                 finalize: () => setActiveUser(null)
               })
             )
@@ -78,7 +85,10 @@ export const withUsersMethods = () => {
             httpService.addUser$(user).pipe(
               tapResponse({
                 next: res => patchState(store, { users: [...store.users(), res.added] }),
-                error: () => null,
+                error: () => {
+                  notifications.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                },
                 finalize: () => modal.closeAll()
               })
             )
@@ -112,7 +122,10 @@ export const withUsersMethods = () => {
             httpService.getCreateFieldsConfig$().pipe(
               tapResponse({
                 next: createFields => patchState(store, { createFields }),
-                error: () => null
+                error: () => {
+                  notifications.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                }
               })
             )
           )

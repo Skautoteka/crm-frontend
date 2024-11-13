@@ -16,7 +16,7 @@ export const withPlayersMethods = () => {
       const httpService = inject(PlayersHttpService);
       const router = inject(Router);
       const modal = inject(ModalService);
-      const notifications = inject(NotificationsService)
+      const notifications = inject(NotificationsService);
 
       /**
        * Gets all players from the database.
@@ -65,7 +65,10 @@ export const withPlayersMethods = () => {
           switchMap(id =>
             httpService.deletePlayer$(id).pipe(
               tapResponse({
-                next: () => patchState(store, { players: _filterPlayer(id) }),
+                next: () => {
+                  patchState(store, { players: _filterPlayer(id) });
+                  notifications.success('Poprawnie usunieto zawodnika');
+                },
                 error: () => {
                   notifications.error('Brak dostepu do usuwania rekordow', 'Skontaktuj sie z administratorem');
                   modal.closeAll();

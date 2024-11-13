@@ -63,7 +63,10 @@ export const withTeamsMethods = () => {
           switchMap(id =>
             httpService.deleteTeam$(id).pipe(
               tapResponse({
-                next: () => patchState(store, { teams: _filterTeam(id) }),
+                next: () => {
+                  patchState(store, { teams: _filterTeam(id) });
+                  notification.success('Poprawnie usunieto druzyne');
+                },
                 error: () => {
                   notification.error('Brak dostepu do usuwania rekordow', 'Skontaktuj sie z administratorem');
                   modal.closeAll();
