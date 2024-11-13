@@ -28,7 +28,10 @@ export const withPlayersMethods = () => {
             httpService.getAllPlayers$().pipe(
               tapResponse({
                 next: players => patchState(store, { players }),
-                error: () => null,
+                error: () => {
+                  notifications.error('Brak dostepu do rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                },
                 finalize: () => patchState(store, { isLoading: false })
               })
             )
@@ -63,7 +66,10 @@ export const withPlayersMethods = () => {
             httpService.deletePlayer$(id).pipe(
               tapResponse({
                 next: () => patchState(store, { players: _filterPlayer(id) }),
-                error: () => null,
+                error: () => {
+                  notifications.error('Brak dostepu do usuwania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                },
                 finalize: () => setActivePlayer(null)
               })
             )
@@ -79,8 +85,14 @@ export const withPlayersMethods = () => {
           switchMap(player =>
             httpService.addPlayer$(player).pipe(
               tapResponse({
-                next: ({ added }) => patchState(store, { players: [...store.players(), added] }),
-                error: () => null,
+                next: ({ added }) => {
+                  patchState(store, { players: [...store.players(), added] })
+                  notifications.success('Poprawnie dodano zawodnika');
+                },
+                error: () => {
+                  notifications.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                },
                 finalize: () => modal.closeAll()
               })
             )
@@ -97,10 +109,9 @@ export const withPlayersMethods = () => {
             httpService.getCreateFieldsConfig$().pipe(
               tapResponse({
                 next: createFields => patchState(store, { createFields }),
-                error: (err) => {
-                  console.log(err);
-                  notifications.error('', 'Skontaktuj sie z administratorem');
-
+                error: () => {
+                  notifications.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
                 }
               })
             )
