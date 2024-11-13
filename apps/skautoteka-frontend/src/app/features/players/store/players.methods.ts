@@ -89,7 +89,7 @@ export const withPlayersMethods = () => {
             httpService.addPlayer$(player).pipe(
               tapResponse({
                 next: ({ added }) => {
-                  patchState(store, { players: [...store.players(), added] })
+                  patchState(store, { players: [...store.players(), added] });
                   notifications.success('Poprawnie dodano zawodnika');
                 },
                 error: () => {

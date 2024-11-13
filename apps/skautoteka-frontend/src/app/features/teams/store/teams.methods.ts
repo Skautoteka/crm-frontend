@@ -87,7 +87,7 @@ export const withTeamsMethods = () => {
             httpService.addTeam$(team).pipe(
               tapResponse({
                 next: res => {
-                  patchState(store, { teams: [...store.teams(), res.added] })
+                  patchState(store, { teams: [...store.teams(), res.added] });
                   notification.success('Poprawnie dodano zadanie');
                 },
                 error: () => {
