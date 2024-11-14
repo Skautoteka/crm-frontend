@@ -1,29 +1,17 @@
-<skt-ui-list-card class="skt-tasks-reports__card">
-  <div class="skt-tasks-reports__card-content">
-    <div class="skt-tasks-reports__card-image"></div>
-    <div class="skt-tasks-reports__card-info">
-      <span class="skt-tasks-reports__card-info-name">Damian Kowalski</span>
-      <span class="skt-tasks-reports__card-info-position">Środkowy obrońca</span>
+<div class="skt-tasks-reports" *ngIf="assignedReports()?.length || 0 > 0; else noReports">
+  <skt-ui-list-card 
+    *ngFor="let report of assignedReports()" 
+    class="skt-tasks-reports__card"
+  >
+    <div class="skt-tasks-reports__card-content">
+      <div class="skt-tasks-reports__card-image"></div>
+      <div class="skt-tasks-reports__card-info">
+        <span class="skt-tasks-reports__card-info-name">{{ report.name }}</span>
+        <span class="skt-tasks-reports__card-info-position">{{ report.status }}</span>
+      </div>
     </div>
-  </div>
-</skt-ui-list-card>
-
-<skt-ui-list-card class="skt-tasks-reports__card">
-  <div class="skt-tasks-reports__card-content">
-    <div class="skt-tasks-reports__card-image"></div>
-    <div class="skt-tasks-reports__card-info">
-      <span class="skt-tasks-reports__card-info-name">Dawid Skrzelak</span>
-      <span class="skt-tasks-reports__card-info-position">Prawy skrzydłowy</span>
-    </div>
-  </div>
-</skt-ui-list-card>
-
-<skt-ui-list-card class="skt-tasks-reports__card">
-  <div class="skt-tasks-reports__card-content">
-    <div class="skt-tasks-reports__card-image"></div>
-    <div class="skt-tasks-reports__card-info">
-      <span class="skt-tasks-reports__card-info-name">Kamil Kowalski</span>
-      <span class="skt-tasks-reports__card-info-position">Środkowy obrońca</span>
-    </div>
-  </div>
-</skt-ui-list-card>
+  </skt-ui-list-card>
+</div>
+<ng-template #noReports>
+  <p>Nie ma przypisanych raportów</p>
+</ng-template>
