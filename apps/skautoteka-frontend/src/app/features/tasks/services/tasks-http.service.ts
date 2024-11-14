@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { InputConfig } from '@skautoteka-frontend/ui';
 import { Task } from '../interfaces/task';
 import { IModelResponse } from '@skautoteka-frontend/common';
+import { Report } from '../../reports/interfaces/report';
 
 @Injectable({ providedIn: 'root' })
 export class TasksHttpService {
@@ -32,6 +33,15 @@ export class TasksHttpService {
    */
   public addTask$(task: Task): Observable<IModelResponse<Task>> {
     return this.http.post<IModelResponse<Task>>('api/task', task);
+  }
+
+  /**
+   * Retrieves all reports based on task id from the database.
+   *
+   * @returns
+   */
+  public getAssignedReports$(id: string): Observable<Report[]> {
+    return this.http.get<Report[]>(`api/report/allByTaskId/${id}`);
   }
 
   /**
