@@ -54,10 +54,15 @@ export class TasksSideContentComponent {
   }
 
   private _showSideContent() {
-    effect(() => {
-      const activeTask = this.tasksStore.activeTask();
-      this._content.showSideContent(!!activeTask);
-    });
+    effect(
+      () => {
+        const activeTask = this.tasksStore.activeTask();
+        console.log('activeTask', activeTask);
+        this.tasksStore.getAssignedReports(activeTask?.id || '');
+        this._content.showSideContent(!!activeTask);
+      },
+      { allowSignalWrites: true }
+    );
   }
 
   private _deleteTask(): void {
