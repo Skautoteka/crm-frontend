@@ -11,5 +11,10 @@
     height: 1.5rem;
     justify-content: center;
     align-items: center;
+
+    :hover {
+      outline: 0.25rem solid rgba(163, 176, 173, 0.25);
+    }
   }
+  
 }
