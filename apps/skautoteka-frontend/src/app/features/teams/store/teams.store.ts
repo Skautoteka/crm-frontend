@@ -2,9 +2,11 @@ import { signalStore, withState } from '@ngrx/signals';
 import { Team } from '../interfaces/team';
 import { withTeamsMethods } from './teams.methods';
 import { InputConfig } from '@skautoteka-frontend/ui';
+import { Player } from '../../players/interfaces';
 
 export type TeamStoreState = {
   teams: Team[];
+  teamPlayers: Player[];
   isLoading: boolean;
   activeTeam: Team | null;
   createFields: InputConfig | null;
@@ -12,6 +14,7 @@ export type TeamStoreState = {
 
 const initialState: TeamStoreState = {
   teams: [],
+  teamPlayers: [],
   isLoading: false,
   activeTeam: null,
   createFields: null

@@ -36,6 +36,25 @@ export const withTeamsMethods = () => {
       );
 
       /**
+       * Gets all players based on team id from the database.
+       * @param id
+       */
+      const getTeamPlayers = rxMethod<string>(
+        pipe(
+          tap(() => patchState(store, { isLoading: true })),
+          switchMap(id =>
+            httpService.getTeamPlayers$(id).pipe(
+              tapResponse({
+                next: players => patchState(store, { teamPlayers: players }),
+                error: () => null,
+                finalize: () => patchState(store, { isLoading: false })
+              })
+            )
+          )
+        )
+      );
+
+      /**
        * A private method that is used to filter teams.
        *
        * @param id id of the team to remove
@@ -122,7 +141,8 @@ export const withTeamsMethods = () => {
         removeTeam,
         fetchFields,
         addTeam,
-        setActiveTeam
+        setActiveTeam,
+        getTeamPlayers
       };
     })
   );
