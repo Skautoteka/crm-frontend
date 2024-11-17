@@ -2,7 +2,7 @@
 <skt-ui-label-container>
   <skt-ui-label>
     <span label>Druzyna</span>
-    {{ player.team.name }}
+    {{ player.team?.name ?? '-' }}
   </skt-ui-label>
   <skt-ui-label>
     <span label>Plec</span>
