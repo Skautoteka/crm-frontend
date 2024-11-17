@@ -7,10 +7,12 @@ import {
   SideContentheaderActionsComponent,
   SideContentHeaderComponent,
   SideContentSectionComponent,
-  SideContentSectionHeaderComponent
+  SideContentSectionHeaderComponent,
+  SideContentSectionHeaderActionComponent
 } from '@skautoteka-frontend/ui';
 import { TeamTitleComponent } from '../team-title/team-title.component';
 import { TeamsBasicInfoComponent } from '../teams-basic-info/teams-basic-info.component';
+import { TeamsPlayersComponent } from '../teams-players/teams-players.component';
 import { TeamsStore } from '../../store/teams.store';
 import { Router } from '@angular/router';
 
@@ -29,7 +31,9 @@ import { Router } from '@angular/router';
     SideContentHeaderComponent,
     SideContentheaderActionsComponent,
     TeamTitleComponent,
-    TeamsBasicInfoComponent
+    TeamsBasicInfoComponent,
+    SideContentSectionHeaderActionComponent,
+    TeamsPlayersComponent
   ]
 })
 export class TeamsSideContentComponent {
@@ -55,10 +59,14 @@ export class TeamsSideContentComponent {
   }
 
   private _showSideContent() {
-    effect(() => {
-      const activeTeam = this.teamsStore.activeTeam();
-      this._content.showSideContent(!!activeTeam);
-    });
+    effect(
+      () => {
+        const activeTeam = this.teamsStore.activeTeam();
+        this.teamsStore.getTeamPlayers(activeTeam?.id || '');
+        this._content.showSideContent(!!activeTeam);
+      },
+      { allowSignalWrites: true }
+    );
   }
 
   private _deleteTeam(): void {
