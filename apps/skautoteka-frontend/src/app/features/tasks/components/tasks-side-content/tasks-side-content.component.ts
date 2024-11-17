@@ -7,13 +7,16 @@ import {
   SideContentheaderActionsComponent,
   SideContentHeaderComponent,
   SideContentSectionComponent,
-  SideContentSectionHeaderComponent
+  SideContentSectionHeaderComponent,
+  SideContentSectionHeaderActionComponent,
+  ModalService
 } from '@skautoteka-frontend/ui';
 import { TasksBasicInfoComponent } from '../tasks-basic-info/tasks-basic-info.component';
 import { TasksReportsComponent } from '../tasks-reports/tasks-reports.component';
 import { TasksTeamsComponent } from '../tasks-teams/tasks-teams.component';
 import { TasksStore } from '../../store/tasks.store';
 import { Router } from '@angular/router';
+import { ReportsCreateComponent } from '../../../reports';
 
 @Component({
   standalone: true,
@@ -31,7 +34,8 @@ import { Router } from '@angular/router';
     TasksReportsComponent,
     SideContentHeaderComponent,
     SideContentheaderActionsComponent,
-    TasksTeamsComponent
+    TasksTeamsComponent,
+    SideContentSectionHeaderActionComponent
   ]
 })
 export class TasksSideContentComponent {
@@ -39,6 +43,7 @@ export class TasksSideContentComponent {
   public actionsConfig: ActionsConfig[] = [{ type: 'DELETE', text: 'Usuń raport', callback: () => this._deleteTask() }];
 
   private _router = inject(Router);
+  private _modal = inject(ModalService);
 
   constructor(classBinder: ClassBinder, private _content: ContentService) {
     classBinder.bind('skt-tasks-side-content');
@@ -54,10 +59,14 @@ export class TasksSideContentComponent {
   }
 
   private _showSideContent() {
-    effect(() => {
-      const activeTask = this.tasksStore.activeTask();
-      this._content.showSideContent(!!activeTask);
-    });
+    effect(
+      () => {
+        const activeTask = this.tasksStore.activeTask();
+        this.tasksStore.getAssignedReports(activeTask?.id || '');
+        this._content.showSideContent(!!activeTask);
+      },
+      { allowSignalWrites: true }
+    );
   }
 
   private _deleteTask(): void {
@@ -68,5 +77,12 @@ export class TasksSideContentComponent {
     }
 
     this.tasksStore.removeTask(activeTask.id);
+  }
+
+  public onAddNewClick(): void {
+    this._modal.createModal(ReportsCreateComponent, {
+      header: 'Dodaj raport',
+      subHeader: 'Wypełnij wszystkie wymagane informacje aby dodać raport'
+    });
   }
 }

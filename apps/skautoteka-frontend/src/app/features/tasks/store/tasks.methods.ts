@@ -37,6 +37,25 @@ export const withTasksMethods = () => {
       );
 
       /**
+       * Gets all reports based on task id from the database.
+       * @param id
+       */
+      const getAssignedReports = rxMethod<string>(
+        pipe(
+          tap(() => patchState(store, { isLoading: true })),
+          switchMap(id =>
+            httpService.getAssignedReports$(id).pipe(
+              tapResponse({
+                next: reports => patchState(store, { assignedReports: reports }),
+                error: () => null,
+                finalize: () => patchState(store, { isLoading: false })
+              })
+            )
+          )
+        )
+      );
+
+      /**
        * Private method to filter tasks.
        *
        * @param id
@@ -125,6 +144,7 @@ export const withTasksMethods = () => {
 
       return {
         getTasks,
+        getAssignedReports,
         removeTask,
         addTask,
         fetchFields,

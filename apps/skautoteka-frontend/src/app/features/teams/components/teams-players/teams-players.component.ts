@@ -2,24 +2,24 @@ import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@
 import { CommonModule } from '@angular/common';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { LabelComponent, LabelContainerComponent, ListCardComponent } from '@skautoteka-frontend/ui';
-import { TasksStore } from '../../store/tasks.store';
+import { TeamsStore } from '../../store/teams.store';
 
 @Component({
   standalone: true,
-  selector: 'skt-tasks-reports',
-  styleUrl: './tasks-reports.component.scss',
-  templateUrl: 'tasks-reports.component.html',
+  selector: 'skt-teams-players',
+  styleUrl: './teams-players.component.scss',
+  templateUrl: 'teams-players.component.html',
   providers: [ClassBinder],
   imports: [LabelComponent, LabelContainerComponent, ListCardComponent, CommonModule],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TasksReportsComponent {
-  public tasksStore = inject(TasksStore);
+export class TeamsPlayersComponent {
+  public teamsStore = inject(TeamsStore);
 
-  public assignedReports = this.tasksStore.assignedReports;
+  public teamPlayers = this.teamsStore.teamPlayers;
 
   constructor(classBinder: ClassBinder) {
-    classBinder.bind('skt-tasks-reports');
+    classBinder.bind('skt-teams-player');
   }
 }

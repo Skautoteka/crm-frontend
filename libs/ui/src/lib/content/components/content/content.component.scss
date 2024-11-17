@@ -94,6 +94,7 @@
     padding: 2.5rem;
     grid-area: sidecontent;
     background: var(--primary-7);
+    overflow: scroll;
 
     @media (max-width: 850px) {
       position: absolute;

@@ -1,0 +1,16 @@
+<div class="skt-teams-players" *ngIf="teamPlayers()?.length || 0 > 0; else noPlayers">
+  <skt-ui-list-card 
+    *ngFor="let player of teamPlayers()" 
+    class="skt-teams-players__card"
+  >
+    <div class="skt-teams-players__card-content">
+      <div class="skt-teams-players__card-image"></div>
+      <div class="skt-teams-players__card-info">
+        <span class="skt-teams-players__card-info-name">{{ player.firstName }} {{ player.lastName }}</span>
+      </div>
+    </div>
+  </skt-ui-list-card>
+</div>
+<ng-template #noPlayers>
+  <p>Nie ma przypisanych zawodników</p>
+</ng-template>

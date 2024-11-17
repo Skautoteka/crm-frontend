@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Team } from '../interfaces/team';
 import { InputConfig } from '@skautoteka-frontend/ui';
 import { IGenericDelete, IModelResponse } from '@skautoteka-frontend/common';
+import { Player } from '../../players/interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class TeamsHttpService {
@@ -16,6 +17,15 @@ export class TeamsHttpService {
    */
   public getAllTeams$(): Observable<Team[]> {
     return this.http.get<Team[]>('api/team/all');
+  }
+
+  /**
+   * Retrieves all players based on team id from the database.
+   *
+   * @returns
+   */
+  public getTeamPlayers$(id: string): Observable<Player[]> {
+    return this.http.get<Player[]>(`api/player/allByTeamId/${id}`);
   }
 
   /**
