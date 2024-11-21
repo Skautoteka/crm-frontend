@@ -1,7 +1,7 @@
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { HttpClient } from "@angular/common/http";
 import { inject } from "@angular/core";
-import { patchState, signalStoreFeature, withMethods, withState } from "@ngrx/signals";
+import { patchState, signalStoreFeature, withHooks, withMethods, withState } from "@ngrx/signals";
 import { pipe, switchMap, tap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
 
@@ -54,6 +54,13 @@ export const withPermissions = (name: string) => signalStoreFeature(
        * @returns
        */
       clear: () => patchState(store, { permissions: defaultPermission })
+    }
+  }),
+  withHooks(store => {
+    return {
+      onInit: () => {
+        store.getPermissions();
+      }
     }
   })
 )
