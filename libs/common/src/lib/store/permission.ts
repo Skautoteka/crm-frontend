@@ -1,8 +1,7 @@
-import { AuthStore } from './../../../../../apps/skautoteka-frontend/src/app/features/auth/store/auth.store';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { HttpClient } from "@angular/common/http";
-import { effect, inject } from "@angular/core";
-import { patchState, signalStoreFeature, withHooks, withMethods, withState } from "@ngrx/signals";
+import { inject } from "@angular/core";
+import { patchState, signalStoreFeature, withMethods, withState } from "@ngrx/signals";
 import { pipe, switchMap, tap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
 
@@ -55,23 +54,6 @@ export const withPermissions = (name: string) => signalStoreFeature(
        * @returns
        */
       clear: () => patchState(store, { permissions: defaultPermission })
-    }
-  }),
-  withHooks(store => {
-    const auth = inject(AuthStore);
-
-    return {
-      onInit: () => {
-        store.getPermissions(auth.isLoggedIn);
-
-        effect(() => {
-          const isLoggedIn = auth.isLoggedIn();
-
-          if(!isLoggedIn) {
-            store.clear();
-          }
-        }, { allowSignalWrites: true })
-      }
     }
   })
 )
