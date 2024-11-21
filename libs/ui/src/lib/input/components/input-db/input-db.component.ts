@@ -119,6 +119,7 @@ export class InputDbComponent extends InputComponent implements ControlValueAcce
   }
 
   private _updateQueryResults(results: { id: string; name: string }[]): void {
+    console.log(results);
     this.queryLoading.set(false);
     this.options.set(results.map(result => ({ value: result.id, label: result.name })));
   }

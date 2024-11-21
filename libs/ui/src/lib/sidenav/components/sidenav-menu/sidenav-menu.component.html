@@ -1,6 +1,6 @@
 <nav class="skt-ui-sidenav-menu__navigation">
   <ul class="skt-ui-sidenav-menu__navigation-list">
-    @for (element of elements; track element) {
+    @for (element of elements(); track element) {
     <skt-ui-sidenav-menu-element [element]="element" />
     }
   </ul>

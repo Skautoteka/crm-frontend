@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input, output, ViewEncapsulation } from '@angular/core';
+import { injectRouteData } from 'ngxtension/inject-route-data';
+import { ChangeDetectionStrategy, Component, output, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { SidenavElement } from '../../interfaces';
 
@@ -16,7 +17,7 @@ import { IconComponent } from '../../../icon';
   providers: [ClassBinder]
 })
 export class SidenavMenuComponent {
-  @Input() elements: SidenavElement[] = [];
+  public elements = injectRouteData<SidenavElement[]>('sidenavElements');
 
   public logoutClicked = output<void>();
 

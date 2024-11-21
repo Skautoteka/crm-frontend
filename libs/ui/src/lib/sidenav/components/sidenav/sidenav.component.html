@@ -13,7 +13,7 @@
     <ng-content select="[top-section]"></ng-content>
   </div>
   @if ((device.isMobile$ | async) === false) {
-  <skt-ui-sidenav-menu (logoutClicked)="onLogoutClicked()" [elements]="elements"></skt-ui-sidenav-menu>
+  <skt-ui-sidenav-menu (logoutClicked)="onLogoutClicked()"></skt-ui-sidenav-menu>
   }
 </div>
 
@@ -23,6 +23,6 @@
 
 @if ((device.isMobile$ | async) === true) {
 <div class="skt-ui-sidenav__mobile-menu" [class.skt-ui-sidenav__mobile-menu--hidden]="!isMenuVisible">
-  <skt-ui-sidenav-menu (logoutClicked)="onLogoutClicked()" [elements]="elements"></skt-ui-sidenav-menu>
+  <skt-ui-sidenav-menu (logoutClicked)="onLogoutClicked()"></skt-ui-sidenav-menu>
 </div>
 }

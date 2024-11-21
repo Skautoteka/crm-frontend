@@ -3,13 +3,11 @@ import {
   ChangeDetectorRef,
   Component,
   inject,
-  Input,
   output,
   ViewEncapsulation
 } from '@angular/core';
 import { ClassBinder, DeviceService } from '@skautoteka-frontend/common';
 import { SidenavMenuComponent } from '../sidenav-menu/sidenav-menu.component';
-import { SidenavElement } from '../../interfaces';
 import { AsyncPipe } from '@angular/common';
 import { SidenavService } from '../../services/sidenav.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -25,8 +23,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   providers: [ClassBinder]
 })
 export class SidenavComponent {
-  @Input({ required: true }) elements: SidenavElement[] = [];
-
   public logoutClicked = output<void>();
 
   private _isVisible = false;

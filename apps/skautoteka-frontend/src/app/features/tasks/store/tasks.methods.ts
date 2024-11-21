@@ -27,8 +27,13 @@ export const withTasksMethods = () => {
           switchMap(() =>
             httpService.getAllTasks$().pipe(
               tapResponse({
-                next: tasks => patchState(store, { tasks }),
-                error: () => null,
+                next: tasks => {
+                  patchState(store, { tasks });
+                },
+                error: () => {
+                  notification.error('Brak dostepu do rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                },
                 finalize: () => patchState(store, { isLoading: false })
               })
             )
@@ -80,8 +85,14 @@ export const withTasksMethods = () => {
           switchMap(id =>
             httpService.removeTask$(id).pipe(
               tapResponse({
-                next: () => patchState(store, { tasks: _filterTask(id) }),
-                error: () => null,
+                next: () => {
+                  patchState(store, { tasks: _filterTask(id) });
+                  notification.success('Poprawnie usunieto zadanie');
+                },
+                error: () => {
+                  notification.error('Brak dostepu do usuwania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                },
                 finalize: () => setActiveTask(null)
               })
             )
@@ -101,7 +112,10 @@ export const withTasksMethods = () => {
                   patchState(store, { tasks: [...store.tasks(), added] });
                   notification.success('Poprawnie dodano zadanie');
                 },
-                error: () => null,
+                error: () => {
+                  notification.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                },
                 finalize: () => modal.closeAll()
               })
             )
@@ -118,7 +132,10 @@ export const withTasksMethods = () => {
             httpService.getCreateFieldsConfig$().pipe(
               tapResponse({
                 next: createFields => patchState(store, { createFields }),
-                error: () => null
+                error: () => {
+                  notification.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                }
               })
             )
           )
