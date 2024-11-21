@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   SideContentHeaderComponent,
@@ -14,6 +14,7 @@ import {
 import { ReportsBasicInfoComponent } from '../reports-basic-info/reports-basic-info.component';
 import { ReportsContentComponent } from '../reports-content/reports-content.component';
 import { ReportsCreateComponent } from '../reports-create/reports-create.component';
+import { ReportsStore } from '../../store/reports.store';
 
 @Component({
   standalone: true,
@@ -37,6 +38,8 @@ import { ReportsCreateComponent } from '../reports-create/reports-create.compone
   ]
 })
 export class ReportsComponent {
+  public reports = inject(ReportsStore);
+
   constructor(classBinder: ClassBinder, private _modal: ModalService) {
     classBinder.bind('skt-reports');
   }

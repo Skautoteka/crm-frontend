@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { ContentComponent, ButtonComponent, ModalService } from '@skautoteka-frontend/ui';
 import { TasksContentComponent } from '../tasks-content/tasks-content.component';
 import { TasksCreateComponent } from '../tasks-create/tasks-create.component';
+import { TasksStore } from '../../store/tasks.store';
 
 @Component({
   standalone: true,
@@ -15,6 +16,8 @@ import { TasksCreateComponent } from '../tasks-create/tasks-create.component';
   imports: [ContentComponent, TasksContentComponent, ButtonComponent]
 })
 export class TasksComponent {
+  public tasks = inject(TasksStore);
+
   constructor(classBinder: ClassBinder, private _modal: ModalService) {
     classBinder.bind('skt-tasks');
   }
