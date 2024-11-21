@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation, input, output } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { SimpleButtonComponent } from '../../../button';
 
@@ -17,8 +17,13 @@ export class SideContentSectionHeaderActionComponent {
   public icon = input<string>('');
   public iconColor = input<string>('');
   public buttonText = input<string | null>(null);
+  public actionClicked = output<void>();
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-ui-side-content-section-header-action');
+  }
+
+  public onButtonClicked(): void {
+    this.actionClicked.emit();
   }
 }

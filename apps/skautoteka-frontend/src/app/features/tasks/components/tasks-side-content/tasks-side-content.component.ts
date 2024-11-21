@@ -85,4 +85,11 @@ export class TasksSideContentComponent {
       subHeader: 'Wypełnij wszystkie wymagane informacje aby dodać raport'
     });
   }
+
+  public onNotesAddClick(): void {
+    this._modal.createModal(ReportsCreateComponent, {
+      header: 'Dodaj raport',
+      subHeader: 'Wypełnij wszystkie wymagane informacje aby dodać raport'
+    });
+  }
 }
