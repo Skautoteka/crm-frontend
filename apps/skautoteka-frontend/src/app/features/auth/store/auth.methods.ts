@@ -1,7 +1,7 @@
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { patchState, signalStoreFeature, type, withMethods } from '@ngrx/signals';
+import { patchState, signalStoreFeature, type, withComputed, withMethods } from '@ngrx/signals';
 import { AuthStoreState } from './auth.store';
-import { inject } from '@angular/core';
+import { computed, inject } from '@angular/core';
 import { AuthHttpService } from '../services/auth-http.service';
 import { LoginPayload } from '../interfaces/iauth';
 import { delay, pipe, switchMap, tap } from 'rxjs';
@@ -12,6 +12,11 @@ import { LoaderService, NotificationsService } from '@skautoteka-frontend/ui';
 export const withAuthMethods = () => {
   return signalStoreFeature(
     { state: type<AuthStoreState>() },
+    withComputed(store => {
+      return {
+        isLoggedIn: computed(() => store.user() !== null)
+      }
+    }),
     withMethods(store => {
       const httpService = inject(AuthHttpService);
       const router = inject(Router);

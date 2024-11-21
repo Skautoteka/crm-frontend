@@ -22,6 +22,5 @@ export class DashboardUserComponent {
   }
 
   public onActionClicked(type: 'notifications' | 'user-profile'): void {
-    console.log(type);
   }
 }

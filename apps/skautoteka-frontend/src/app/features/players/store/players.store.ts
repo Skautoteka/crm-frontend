@@ -11,11 +11,16 @@ export type PlayersStoreState = {
   createFields: InputConfig | null;
 };
 
-const initialState: PlayersStoreState = {
+export const initialState: PlayersStoreState = {
   players: [],
   isLoading: false,
   activePlayer: null,
   createFields: null
 };
 
-export const PlayersStore = signalStore({ providedIn: 'root' }, withState(initialState), withPlayersMethods(), withPermissions('player'));
+export const PlayersStore = signalStore(
+  { providedIn: 'root' },
+  withState(initialState),
+  withPlayersMethods(),
+  withPermissions('player')
+);

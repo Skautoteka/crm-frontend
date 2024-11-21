@@ -22,9 +22,7 @@ export class TasksContentComponent {
     this.tasksStore.getTasks();
   }
 
-  public handleTabChange(id: string | null): void {
-    console.log(id);
-  }
+  public handleTabChange(id: string | null): void {}
 
   public handleTaskClick(id: string): void {
     this.tasksStore.setActiveTask(id);

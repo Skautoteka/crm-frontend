@@ -1,4 +1,4 @@
-import { patchState, signalStoreFeature, type, withMethods } from '@ngrx/signals';
+import { patchState, signalStoreFeature, type, withHooks, withMethods } from '@ngrx/signals';
 import { PlayersStoreState } from './players.store';
 import { Router } from '@angular/router';
 import { ModalService, NotificationsService } from '@skautoteka-frontend/ui';
@@ -8,6 +8,7 @@ import { pipe, switchMap, tap } from 'rxjs';
 import { PlayersHttpService } from '../services/players-http.service';
 import { tapResponse } from '@ngrx/operators';
 import { Player } from '../interfaces';
+import { AuthStore } from '../../auth/store/auth.store';
 
 export const withPlayersMethods = () => {
   return signalStoreFeature(
@@ -146,6 +147,14 @@ export const withPlayersMethods = () => {
         fetchFields,
         setActivePlayer
       };
+    }),
+
+    withHooks((store, auth = inject(AuthStore)) => {
+      auth.isLoggedIn()
+
+      return {
+        onDestroy: () => console.log('destory')
+      }
     })
   );
 };

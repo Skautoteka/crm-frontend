@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { patchState, signalStoreFeature, withMethods, type } from '@ngrx/signals';
+import { patchState, signalStoreFeature, withMethods, type, withHooks } from '@ngrx/signals';
 import { tapResponse } from '@ngrx/operators';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
@@ -8,6 +8,7 @@ import { Team } from '../interfaces/team';
 import { TeamStoreState } from './teams.store';
 import { Router } from '@angular/router';
 import { ModalService, NotificationsService } from '@skautoteka-frontend/ui';
+import { AuthStore } from '../../auth/store/auth.store';
 
 export const withTeamsMethods = () => {
   return signalStoreFeature(
@@ -163,6 +164,13 @@ export const withTeamsMethods = () => {
         setActiveTeam,
         getTeamPlayers
       };
+    }),
+    withHooks(store => {
+      const auth = inject(AuthStore);
+
+      return {
+        onInit: () => {}
+      }
     })
   );
 };
