@@ -19,6 +19,12 @@ const defaultPermission = {
   create: false
 }
 
+/**
+ * Signal store feature for managing permissions
+ *
+ * @param name
+ * @returns
+ */
 export const withPermissions = (name: string) => signalStoreFeature(
   withState<{ permissions: Permissions | null, permissionsLoading: boolean }>
     ({ permissions: null, permissionsLoading: false }),

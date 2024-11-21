@@ -2,6 +2,7 @@ import { InputConfig } from '@skautoteka-frontend/ui';
 import { Player } from '../interfaces';
 import { signalStore, withState } from '@ngrx/signals';
 import { withPlayersMethods } from './players.methods';
+import { withPermissions } from '@skautoteka-frontend/common';
 
 export type PlayersStoreState = {
   players: Player[];
@@ -17,4 +18,4 @@ const initialState: PlayersStoreState = {
   createFields: null
 };
 
-export const PlayersStore = signalStore({ providedIn: 'root' }, withState(initialState), withPlayersMethods());
+export const PlayersStore = signalStore({ providedIn: 'root' }, withState(initialState), withPlayersMethods(), withPermissions('player'));

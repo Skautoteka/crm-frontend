@@ -3,6 +3,7 @@ import { Team } from '../interfaces/team';
 import { withTeamsMethods } from './teams.methods';
 import { InputConfig } from '@skautoteka-frontend/ui';
 import { Player } from '../../players/interfaces';
+import { withPermissions } from '@skautoteka-frontend/common';
 
 export type TeamStoreState = {
   teams: Team[];
@@ -20,4 +21,4 @@ const initialState: TeamStoreState = {
   createFields: null
 };
 
-export const TeamsStore = signalStore({ providedIn: 'root' }, withState(initialState), withTeamsMethods());
+export const TeamsStore = signalStore({ providedIn: 'root' }, withState(initialState), withTeamsMethods(), withPermissions('team'));
