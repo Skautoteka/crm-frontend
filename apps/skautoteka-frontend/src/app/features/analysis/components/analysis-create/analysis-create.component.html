@@ -1,0 +1,22 @@
+<div class="skt-analysis-create__form">
+  @if(step() === 0) {
+    <div (click)="onBoxClick('report')" class="skt-analysis-create__type-box" [class.skt-analysis-create__type-box--active]="type() === 'report'">
+      <skt-ui-icon iconName="notes" />
+      Notatka
+    </div>
+    <div (click)="onBoxClick('note')" class="skt-analysis-create__type-box" [class.skt-analysis-create__type-box--active]="type() === 'note'">
+      <skt-ui-icon iconName="user" />
+      Raport
+    </div>
+  } @else if(step() === lastStep) {
+    teraz jestem ostatni krok
+  }
+</div>
+
+<div class="skt-analysis-create__buttons">
+  @if(step() !== 0) {
+    <skt-ui-simple-button (click)="onPreviosStepClick()">Poprzedni krok</skt-ui-simple-button>
+  }
+
+  <skt-ui-button [disabled]="!type()" (click)="onNextStepClick()">{{ step() === lastStep ? 'Stwórz analizę' : 'Następny krok' }}</skt-ui-button>
+</div>

@@ -1,0 +1,47 @@
+.skt-analysis-create {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 4rem);
+  padding-bottom: 2rem;
+
+  &__buttons {
+    display: flex;
+    gap: 1rem;
+
+    * {
+      flex-grow: 1;
+    }
+  }
+
+  &__form {
+    display: flex;
+    gap: 1rem;
+    padding: 2rem 0;
+  }
+
+  &__type-box {
+    width: 11rem;
+    height: 7.5rem;
+    background-color: var(--primary-7);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color .3s ease;
+    border: 2px solid var(--primary-6);
+    color: var(--primary-3);
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background-color: var(--primary-6);
+    }
+
+    &--active {
+      background-color: var(--primary-6);
+      border: 2px solid var(--primary-5);
+    }
+  }
+}

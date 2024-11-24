@@ -1,4 +1,10 @@
-<skt-ui-tabs>
+<skt-ui-tabs (tabChange)="onTabChange($event)">
   <skt-ui-tab id="create">Stwórz</skt-ui-tab>
   <skt-ui-tab id="assigned">Twoje analizy</skt-ui-tab>
 </skt-ui-tabs>
+
+@if(activeTab() === 'create') {
+  <skt-analysis-create></skt-analysis-create>
+} @else if(activeTab() === 'assigned') {
+  assigned tab
+}
