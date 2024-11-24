@@ -46,6 +46,7 @@
     border-radius: 0.5rem;
     height: 2.5625rem;
     width: 100%;
+    min-width: 20rem;
     box-sizing: border-box;
     padding: 0 0.75rem;
     font-size: 0.8125rem;
@@ -88,7 +89,6 @@
     flex-direction: column;
     background-color: #fafafa;
     border: 1px solid var(--basic-8);
-    min-width: 22.5rem;
     border-radius: 0.5rem;
     animation-name: fade-in;
     animation-duration: 0.3s;

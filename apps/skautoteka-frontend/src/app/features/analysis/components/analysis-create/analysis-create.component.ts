@@ -1,22 +1,30 @@
-import { ChangeDetectionStrategy, Component, signal, ViewEncapsulation } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject, signal, ViewEncapsulation } from "@angular/core";
 import { ClassBinder } from "@skautoteka-frontend/common";
-import { ButtonComponent, IconComponent, SimpleButtonComponent } from "@skautoteka-frontend/ui";
+import { ButtonComponent, IconComponent, InputContainerComponent, InputViewService, SimpleButtonComponent } from "@skautoteka-frontend/ui";
+import { AnalysisStore } from "../../store/analysis.store";
 
 @Component({
   selector: 'skt-analysis-create',
   templateUrl: 'analysis-create.component.html',
   styleUrl: 'analysis-create.component.scss',
   standalone: true,
-  imports: [ButtonComponent, SimpleButtonComponent, IconComponent],
-  providers: [ClassBinder],
+  imports: [
+    ButtonComponent,
+    SimpleButtonComponent,
+    IconComponent,
+    InputContainerComponent
+  ],
+  providers: [ClassBinder, InputViewService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
 export class AnalysisCreateComponent {
+  public analysis = inject(AnalysisStore);
+
   public step = signal(0);
   public type = signal<'note' | 'report' | null>(null);
 
-  get lastStep(): number {
+  get formStep(): number {
     return 1;
   }
 
@@ -33,11 +41,12 @@ export class AnalysisCreateComponent {
       return;
     }
 
-    if(this.step() === this.lastStep) {
+    if(this.step() === this.formStep) {
       console.log('wysylamy');
       return;
     }
 
+    this.analysis.fetchFields();
     this.step.set(this.step() + 1);
   }
 

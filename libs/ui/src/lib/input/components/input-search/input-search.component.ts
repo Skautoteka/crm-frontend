@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  effect,
   ElementRef,
   forwardRef,
   inject,
@@ -53,10 +54,23 @@ export class InputSearchComponent extends InputComponent implements ControlValue
 
   private _http = inject(HttpClient);
   private _input = viewChild.required('input', { read: ElementRef });
+  private _modal = viewChild('modal', { read: ElementRef });
 
   constructor(classBinder: ClassBinder, _injector: Injector) {
     super(classBinder, _injector);
     classBinder.bind('skt-ui-input-search');
+
+    effect(() => {
+      const modal = this._modal();
+      const input = this._input();
+
+      if(!modal) {
+        return;
+      }
+
+      const box = input.nativeElement.getBoundingClientRect();
+      modal.nativeElement.style.width = box.width + 'px';
+    })
 
     this.query.valueChanges
       .pipe(
