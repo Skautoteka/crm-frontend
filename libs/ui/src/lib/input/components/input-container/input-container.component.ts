@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, effect, input, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { InputConfig } from '../../interface';
 import { InputComponent } from '../input/input.component';
 import { InputViewService } from '../../services';
@@ -11,6 +11,7 @@ import { InputSelectComponent } from '../input-select/input-select.component';
 import { InputSearchComponent } from '../input-search/input-search.component';
 import { InputNumberComponent } from '../input-number/input-number.component';
 import { InputDbComponent } from '../input-db/input-db.component';
+import { InputMultivalueComponent } from "../input-multivalue/input-multivalue.component";
 
 @Component({
   selector: 'skt-ui-input-container',
@@ -22,7 +23,6 @@ import { InputDbComponent } from '../input-db/input-db.component';
   imports: [
     FormsModule,
     CommonModule,
-    NgIf,
     ReactiveFormsModule,
     InputComponent,
     InputDateComponent,
@@ -30,8 +30,9 @@ import { InputDbComponent } from '../input-db/input-db.component';
     InputSelectComponent,
     InputSearchComponent,
     InputNumberComponent,
-    InputDbComponent
-  ],
+    InputDbComponent,
+    InputMultivalueComponent
+],
   providers: [ClassBinder]
 })
 export class InputContainerComponent<K> {

@@ -8,6 +8,7 @@
   &__buttons {
     display: flex;
     gap: 1rem;
+    margin-top: 1rem;
 
     * {
       flex-grow: 1;
@@ -17,7 +18,8 @@
   &__form {
     display: flex;
     gap: 1rem;
-    padding: 2rem 0;
+    padding: 1rem 0;
+    height: calc(100% - 3.5rem);
   }
 
   &__type-box {

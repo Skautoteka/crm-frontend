@@ -8,6 +8,7 @@ export interface ISingleInputConfig {
   type: InputType;
   options?: ISelectOption[];
   searchType?: string;
+  valueTypes?: ISingleInputConfig[]
 }
 
 export interface ISelectOption {
@@ -15,4 +16,4 @@ export interface ISelectOption {
   label: string;
 }
 
-type InputType = 'TEXT' | 'BOOL' | 'DATE' | 'SELECT' | 'SEARCH' | 'NUMBER' | 'DB';
+type InputType = 'TEXT' | 'BOOL' | 'DATE' | 'SELECT' | 'SEARCH' | 'NUMBER' | 'DB' | 'MULTIVALUE';

@@ -2,10 +2,13 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  effect,
+  ElementRef,
   forwardRef,
   Injector,
   input,
   signal,
+  viewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
@@ -39,13 +42,34 @@ export class InputSelectComponent extends InputComponent implements ControlValue
 
   public activeOption = signal<ISelectOption | null>(null);
 
+  private _input = viewChild.required('input', { read: ElementRef });
+  private _modal = viewChild('modal', { read: ElementRef });
+
   constructor(classBinder: ClassBinder, _injector: Injector) {
     super(classBinder, _injector);
     classBinder.bind('skt-ui-input-select');
+
+    effect(() => {
+      const modal = this._modal();
+      const input = this._input();
+
+      if(!modal) {
+        return;
+      }
+
+      const box = input.nativeElement.getBoundingClientRect();
+      modal.nativeElement.style.width = box.width + 'px';
+    })
   }
 
   public onClick(): void {
     this.dropdownVisible.set(true);
+  }
+
+  public override writeValue(value: string): void {
+      if(!value) {
+        this.activeOption.set(null);
+      }
   }
 
   public onOptionClick(option: ISelectOption): void {
@@ -57,5 +81,9 @@ export class InputSelectComponent extends InputComponent implements ControlValue
 
   public onOutsideClick(): void {
     this.dropdownVisible.set(false);
+  }
+
+  public override onBlur(): void {
+    this._onTouched();
   }
 }

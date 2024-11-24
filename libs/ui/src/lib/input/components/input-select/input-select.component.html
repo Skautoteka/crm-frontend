@@ -24,6 +24,7 @@
     placeholder="{{ placeholder() }}"
     cdkOverlayOrigin
     #trigger="cdkOverlayOrigin"
+    #input
     readonly
   />
 </div>
@@ -34,7 +35,7 @@
   [cdkConnectedOverlayOpen]="dropdownVisible()"
   (overlayOutsideClick)="onOutsideClick()"
 >
-  <div class="skt-ui-input-select__modal">
+  <div class="skt-ui-input-select__modal" #modal>
     @for(option of options(); track option.value) {
     <div (click)="onOptionClick(option)" class="skt-ui-input-select__option">
       <span class="skt-ui-input-select__option-label">{{ option.label }}</span>

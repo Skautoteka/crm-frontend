@@ -1,0 +1,52 @@
+@switch (config().type) { @case ('TEXT') {
+  <skt-ui-input
+    [formControl]="formControl"
+    [isRequired]="true"
+    [label]="config().label"
+    [placeholder]="config().placeholder"
+  />
+  } @case ('NUMBER') {
+  <skt-ui-input-number
+  [formControl]="formControl"
+    [isRequired]="config().isRequired"
+    [label]="config().label"
+    [placeholder]="config().placeholder"
+  />
+  } @case ('DATE') {
+  <skt-ui-input-date
+  [formControl]="formControl"
+    [isRequired]="config().isRequired"
+    [label]="config().label"
+    [placeholder]="config().placeholder"
+  />
+  } @case ('BOOL') {
+  <skt-ui-input-checkbox
+    [formControl]="formControl"
+    [isRequired]="config().isRequired"
+    [label]="config().label"
+  />
+  } @case ('SELECT') {
+  <skt-ui-input-select
+    [formControl]="formControl"
+    [isRequired]="config().isRequired"
+    [label]="config().label"
+    [placeholder]="config().placeholder"
+    [options]="config().options || []"
+  />
+  } @case ('SEARCH') {
+  <skt-ui-input-search
+    [formControl]="formControl"
+    [isRequired]="config().isRequired"
+    [label]="config().label"
+    [placeholder]="config().placeholder"
+    [searchType]="config().searchType || null"
+  />
+  } @case ('DB') {
+  <skt-ui-input-db
+    [formControl]="formControl"
+    [isRequired]="config().isRequired"
+    [label]="config().label"
+    [placeholder]="config().placeholder"
+    [searchType]="config().searchType || null"
+  />
+  } }
