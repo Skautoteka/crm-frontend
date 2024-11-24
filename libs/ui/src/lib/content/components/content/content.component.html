@@ -13,6 +13,8 @@
   <ng-content select="[content]"></ng-content>
 </div>
 
-<div class="skt-ui-content__side-content">
-  <router-outlet></router-outlet>
-</div>
+@if(showSide()) {
+  <div class="skt-ui-content__side-content">
+    <router-outlet></router-outlet>
+  </div>
+}

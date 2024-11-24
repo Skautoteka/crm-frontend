@@ -1,8 +1,5 @@
-<div class="skt-analysis__container">
-  <div class="skt-analysis__header">
-    <skt-ui-icon iconName="info"></skt-ui-icon>
-    Widok analizy nie jest dostepny
+<skt-ui-content [showSide]="false" header="Analiza" subHeader="Stwórz analizę na podstawie wpisanych filtrów">
+  <div class="skt-tasks__actions" header-actions>
   </div>
-
-  <div class="skt-analysis__sub-header">Przejdz do innej karty. Widok analizy jest w trakcie rozwoju.</div>
-</div>
+  <skt-analysis-content content />
+</skt-ui-content>

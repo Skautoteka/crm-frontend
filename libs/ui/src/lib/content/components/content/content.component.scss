@@ -19,6 +19,14 @@
     gap: 1rem;
   }
 
+  &--no-side {
+    grid-template-areas:
+      "header"
+      "content";
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
+  }
+
   &__header {
     box-sizing: content-box;
     animation-name: fade-in;
@@ -95,6 +103,7 @@
     grid-area: sidecontent;
     background: var(--primary-7);
     overflow: scroll;
+    overflow-x: hidden;
 
     @media (max-width: 850px) {
       position: absolute;
