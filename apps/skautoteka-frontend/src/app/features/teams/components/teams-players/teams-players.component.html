@@ -1,8 +1,5 @@
 <div class="skt-teams-players" *ngIf="teamPlayers()?.length || 0 > 0; else noPlayers">
-  <skt-ui-list-card 
-    *ngFor="let player of teamPlayers()" 
-    class="skt-teams-players__card"
-  >
+  <skt-ui-list-card *ngFor="let player of teamPlayers()" class="skt-teams-players__card">
     <div class="skt-teams-players__card-content">
       <div class="skt-teams-players__card-image"></div>
       <div class="skt-teams-players__card-info">

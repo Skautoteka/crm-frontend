@@ -8,12 +8,7 @@
     }
   </label>
   } @if(activeOption()) {
-  <skt-ui-icon
-    (click)="onCloseClick()"
-    class="skt-ui-input-db__icon"
-    iconColor="var(--primary-4)"
-    iconName="close"
-  />
+  <skt-ui-icon (click)="onCloseClick()" class="skt-ui-input-db__icon" iconColor="var(--primary-4)" iconName="close" />
   }
 
   <input
@@ -36,7 +31,7 @@
   (overlayOutsideClick)="onOutsideClick()"
 >
   <div class="skt-ui-input-db__modal">
-  @if(queryLoading()) {
+    @if(queryLoading()) {
     <div class="skt-ui-input-db__spinner-wrapper">
       <div class="skt-ui-input-db__spinner"></div>
       <span>Trwa ladowanie</span>
