@@ -24,6 +24,5 @@ export class SideContentSectionHeaderActionComponent {
 
   public onIconClick(): void {
     this.iconAction.emit();
-    console.log(' this.iconAction', this.iconAction);
   }
 }

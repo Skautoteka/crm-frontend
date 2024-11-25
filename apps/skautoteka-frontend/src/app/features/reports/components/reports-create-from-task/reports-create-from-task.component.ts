@@ -26,7 +26,6 @@ export class ReportsCreateFromTaskComponent {
   }
 
   public onSaveButtonClick(): void {
-    console.log('this.inputView.value', this.inputView.value);
     const taskId = this.tasksStore.activeTask()?.id;
     console.log({ ...this.inputView.value, taskId });
     this.reportsStore.addReport({ ...this.inputView.value, taskId });
