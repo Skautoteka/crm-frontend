@@ -2,5 +2,5 @@
   <div class="skt-ui-side-content-section-header-action__header">
     {{ title() }}
   </div>
-  <skt-ui-icon [iconName]=icon() [iconColor]=iconColor()></skt-ui-icon>
+  <skt-ui-icon [iconName]=icon() [iconColor]=iconColor() (iconAction)="onIconClick()"></skt-ui-icon>
 </div>
