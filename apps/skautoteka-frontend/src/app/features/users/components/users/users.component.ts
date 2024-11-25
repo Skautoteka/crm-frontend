@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   SideContentHeaderComponent,
@@ -14,6 +14,7 @@ import {
 import { UsersBasicInfoComponent } from '../users-basic-info/users-basic-info.component';
 import { UsersContentComponent } from '../users-content/users-content.component';
 import { UsersCreateComponent } from '../users-create/users-create.component';
+import { UsersStore } from '../../store/users.store';
 
 @Component({
   standalone: true,
@@ -37,6 +38,8 @@ import { UsersCreateComponent } from '../users-create/users-create.component';
   ]
 })
 export class UsersComponent {
+  public users = inject(UsersStore);
+
   constructor(classBinder: ClassBinder, private _modal: ModalService) {
     classBinder.bind('skt-users');
   }

@@ -3,6 +3,7 @@ import { signalStore, withState } from '@ngrx/signals';
 import { Task } from '../interfaces/task';
 import { Report } from '../../reports/interfaces/report';
 import { withTasksMethods } from './tasks.methods';
+import { withPermissions } from '@skautoteka-frontend/common';
 
 export type TasksStoreState = {
   tasks: Task[];
@@ -20,4 +21,4 @@ const initialState: TasksStoreState = {
   createFields: null
 };
 
-export const TasksStore = signalStore({ providedIn: 'root' }, withState(initialState), withTasksMethods());
+export const TasksStore = signalStore({ providedIn: 'root' }, withState(initialState), withTasksMethods(), withPermissions('task'));

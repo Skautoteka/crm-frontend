@@ -20,7 +20,7 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, ne
         return throwError(() => err);
       }
 
-      if (err.status === 403) {
+      if (err.status === 401) {
         if (err.url && err.url.endsWith('refresh-token')) {
           router.navigate(['/', 'auth']);
           return EMPTY;

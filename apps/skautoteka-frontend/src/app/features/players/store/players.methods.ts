@@ -1,13 +1,14 @@
-import { patchState, signalStoreFeature, type, withMethods } from '@ngrx/signals';
+import { patchState, signalStoreFeature, type, withHooks, withMethods } from '@ngrx/signals';
 import { PlayersStoreState } from './players.store';
 import { Router } from '@angular/router';
-import { ModalService } from '@skautoteka-frontend/ui';
+import { ModalService, NotificationsService } from '@skautoteka-frontend/ui';
 import { inject } from '@angular/core';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
 import { PlayersHttpService } from '../services/players-http.service';
 import { tapResponse } from '@ngrx/operators';
 import { Player } from '../interfaces';
+import { AuthStore } from '../../auth/store/auth.store';
 
 export const withPlayersMethods = () => {
   return signalStoreFeature(
@@ -16,6 +17,7 @@ export const withPlayersMethods = () => {
       const httpService = inject(PlayersHttpService);
       const router = inject(Router);
       const modal = inject(ModalService);
+      const notifications = inject(NotificationsService);
 
       /**
        * Gets all players from the database.
@@ -27,7 +29,10 @@ export const withPlayersMethods = () => {
             httpService.getAllPlayers$().pipe(
               tapResponse({
                 next: players => patchState(store, { players }),
-                error: () => null,
+                error: () => {
+                  notifications.error('Brak dostepu do rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                },
                 finalize: () => patchState(store, { isLoading: false })
               })
             )
@@ -61,8 +66,14 @@ export const withPlayersMethods = () => {
           switchMap(id =>
             httpService.deletePlayer$(id).pipe(
               tapResponse({
-                next: () => patchState(store, { players: _filterPlayer(id) }),
-                error: () => null,
+                next: () => {
+                  patchState(store, { players: _filterPlayer(id) });
+                  notifications.success('Poprawnie usunieto zawodnika');
+                },
+                error: () => {
+                  notifications.error('Brak dostepu do usuwania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                },
                 finalize: () => setActivePlayer(null)
               })
             )
@@ -78,8 +89,14 @@ export const withPlayersMethods = () => {
           switchMap(player =>
             httpService.addPlayer$(player).pipe(
               tapResponse({
-                next: ({ added }) => patchState(store, { players: [...store.players(), added] }),
-                error: () => null,
+                next: ({ added }) => {
+                  patchState(store, { players: [...store.players(), added] });
+                  notifications.success('Poprawnie dodano zawodnika');
+                },
+                error: () => {
+                  notifications.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                },
                 finalize: () => modal.closeAll()
               })
             )
@@ -96,7 +113,10 @@ export const withPlayersMethods = () => {
             httpService.getCreateFieldsConfig$().pipe(
               tapResponse({
                 next: createFields => patchState(store, { createFields }),
-                error: () => null
+                error: () => {
+                  notifications.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                }
               })
             )
           )
@@ -127,6 +147,14 @@ export const withPlayersMethods = () => {
         fetchFields,
         setActivePlayer
       };
+    }),
+
+    withHooks((store, auth = inject(AuthStore)) => {
+      auth.isLoggedIn()
+
+      return {
+        onDestroy: () => console.log('destory')
+      }
     })
   );
 };

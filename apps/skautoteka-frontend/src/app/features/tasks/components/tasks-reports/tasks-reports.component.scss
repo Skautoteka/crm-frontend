@@ -3,6 +3,12 @@
   gap: 2rem;
   flex-wrap: wrap;
 
+  &__empty {
+    font-size: 0.8125rem;
+    color: var(--primary-4);
+    font-weight: 400;
+  }
+
   &__card {
     flex-grow: 1;
     flex-basis: 0;

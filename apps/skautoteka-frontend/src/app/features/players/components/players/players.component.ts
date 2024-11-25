@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { ButtonComponent, ContentComponent, ModalService } from '@skautoteka-frontend/ui';
 import { PlayersContentComponent } from '../players-content/players-content.component';
 import { PlayersCreateComponent } from '../players-create/players-create.component';
+import { PlayersStore } from '../../store/players.store';
 
 @Component({
   standalone: true,
@@ -15,6 +16,8 @@ import { PlayersCreateComponent } from '../players-create/players-create.compone
   imports: [ContentComponent, ButtonComponent, PlayersContentComponent]
 })
 export class PlayersComponent {
+  public players = inject(PlayersStore);
+
   constructor(classBinder: ClassBinder, private _modal: ModalService) {
     classBinder.bind('skt-players');
   }

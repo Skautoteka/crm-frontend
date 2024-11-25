@@ -36,7 +36,6 @@ export class LoginComponent {
       return;
     }
 
-    console.log(email, password);
     this.authStore.login({ email, password });
   }
 }

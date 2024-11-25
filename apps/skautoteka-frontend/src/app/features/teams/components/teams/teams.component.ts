@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   SideContentHeaderComponent,
@@ -12,6 +12,7 @@ import {
 } from '@skautoteka-frontend/ui';
 import { TeamsContentComponent } from '../teams-content/teams-content.component';
 import { TeamsCreateComponent } from '../teams-create/teams-create.component';
+import { TeamsStore } from '../../store/teams.store';
 
 @Component({
   standalone: true,
@@ -33,6 +34,8 @@ import { TeamsCreateComponent } from '../teams-create/teams-create.component';
   ]
 })
 export class TeamsComponent {
+  public teams = inject(TeamsStore);
+
   constructor(classBinder: ClassBinder, private _modal: ModalService) {
     classBinder.bind('skt-teams');
   }
