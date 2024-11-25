@@ -16,7 +16,7 @@ import { TasksReportsComponent } from '../tasks-reports/tasks-reports.component'
 import { TasksTeamsComponent } from '../tasks-teams/tasks-teams.component';
 import { TasksStore } from '../../store/tasks.store';
 import { Router } from '@angular/router';
-import { ReportsCreateComponent } from '../../../reports';
+import { ReportsCreateFromTaskComponent } from '../../../reports';
 
 @Component({
   standalone: true,
@@ -80,7 +80,7 @@ export class TasksSideContentComponent {
   }
 
   public onAddNewClick(): void {
-    this._modal.createModal(ReportsCreateComponent, {
+    this._modal.createModal(ReportsCreateFromTaskComponent, {
       header: 'Dodaj raport',
       subHeader: 'Wypełnij wszystkie wymagane informacje aby dodać raport'
     });

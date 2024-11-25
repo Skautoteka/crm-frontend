@@ -5,5 +5,5 @@ export type Report = {
   name: string;
   status: 'IN_PROGRESS' | 'COMPLETED';
   player: Player;
-  taskId: string;
+  taskId: string | undefined;
 } & IGenericModel;
