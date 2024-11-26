@@ -18,4 +18,9 @@ const initialState: ReportsStoreState = {
   createFields: null
 };
 
-export const ReportsStore = signalStore({ providedIn: 'root' }, withState(initialState), withReportsMethods(), withPermissions('report'));
+export const ReportsStore = signalStore(
+  { providedIn: 'root' },
+  withState(initialState),
+  withReportsMethods(),
+  withPermissions('report')
+);

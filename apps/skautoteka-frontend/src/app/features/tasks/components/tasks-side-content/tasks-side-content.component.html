@@ -12,13 +12,25 @@
     <skt-tasks-basic-info></skt-tasks-basic-info>
   </skt-ui-side-content-section>
 
-    <skt-ui-side-content-section>
-      <skt-ui-side-content-section-header-action (actionClicked)="onNotesAddClick()" title="Przypisane notatki" buttonText="Dodaj notatke" icon="file-document" iconColor="#2f4d47" ></skt-ui-side-content-section-header-action>
-      <!-- <skt-tasks-reports></skt-tasks-reports> -->
-    </skt-ui-side-content-section>
+  <skt-ui-side-content-section>
+    <skt-ui-side-content-section-header-action
+      (actionClicked)="onNotesAddClick()"
+      title="Przypisane notatki"
+      buttonText="Dodaj notatke"
+      icon="file-document"
+      iconColor="#2f4d47"
+    ></skt-ui-side-content-section-header-action>
+    <!-- <skt-tasks-reports></skt-tasks-reports> -->
+  </skt-ui-side-content-section>
 
-    <skt-ui-side-content-section>
-      <skt-ui-side-content-section-header-action (actionClicked)="onRaportsNewClick()" title="Przypisane raporty" icon="notes" buttonText="Dodaj raport" iconColor="#2f4d47"></skt-ui-side-content-section-header-action>
-      <skt-tasks-reports></skt-tasks-reports>
-    </skt-ui-side-content-section>
-  </skt-ui-side-content>
+  <skt-ui-side-content-section>
+    <skt-ui-side-content-section-header-action
+      (actionClicked)="onRaportsNewClick()"
+      title="Przypisane raporty"
+      icon="notes"
+      buttonText="Dodaj raport"
+      iconColor="#2f4d47"
+    ></skt-ui-side-content-section-header-action>
+    <skt-tasks-reports></skt-tasks-reports>
+  </skt-ui-side-content-section>
+</skt-ui-side-content>

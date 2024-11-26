@@ -170,7 +170,7 @@ export const withTeamsMethods = () => {
 
       return {
         onInit: () => {}
-      }
+      };
     })
   );
 };

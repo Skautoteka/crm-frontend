@@ -1,16 +1,16 @@
 @if(teamPlayers().length) {
-  <div class="skt-teams-players">
-    @for(player of teamPlayers(); track player.id) {
-      <skt-ui-list-card class="skt-teams-players__card">
-      <div class="skt-teams-players__card-content">
-        <div class="skt-teams-players__card-image"></div>
-        <div class="skt-teams-players__card-info">
-          <span class="skt-teams-players__card-info-name">{{ player.firstName }} {{ player.lastName }}</span>
-        </div>
+<div class="skt-teams-players">
+  @for(player of teamPlayers(); track player.id) {
+  <skt-ui-list-card class="skt-teams-players__card">
+    <div class="skt-teams-players__card-content">
+      <div class="skt-teams-players__card-image"></div>
+      <div class="skt-teams-players__card-info">
+        <span class="skt-teams-players__card-info-name">{{ player.firstName }} {{ player.lastName }}</span>
       </div>
-    </skt-ui-list-card>
-    }
-  </div>
+    </div>
+  </skt-ui-list-card>
+  }
+</div>
 } @else {
-  <p class="skt-teams-players__empty">Nie ma przypisanych zawodników</p>
+<p class="skt-teams-players__empty">Nie ma przypisanych zawodników</p>
 }

@@ -18,4 +18,9 @@ const initialState: UsersStoreState = {
   createFields: null
 };
 
-export const UsersStore = signalStore({ providedIn: 'root' }, withState(initialState), withUsersMethods(), withPermissions('user'));
+export const UsersStore = signalStore(
+  { providedIn: 'root' },
+  withState(initialState),
+  withUsersMethods(),
+  withPermissions('user')
+);
