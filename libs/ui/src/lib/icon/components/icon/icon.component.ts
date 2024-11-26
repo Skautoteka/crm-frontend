@@ -5,6 +5,7 @@ import {
   ElementRef,
   input,
   Input,
+  output,
   Renderer2,
   ViewChild,
   ViewEncapsulation
@@ -27,6 +28,7 @@ export class IconComponent {
 
   @Input({ required: true }) iconName = '';
   public iconColor = input<string>('');
+  public iconAction = output<void>();
 
   constructor(classBinder: ClassBinder, private _renderer: Renderer2) {
     classBinder.bind('skt-ui-icon');
@@ -35,5 +37,9 @@ export class IconComponent {
       const color = this.iconColor();
       this._renderer.setStyle(this.iconWrapper.nativeElement, 'color', color);
     });
+  }
+
+  public iconOnClick() {
+    this.iconAction.emit();
   }
 }

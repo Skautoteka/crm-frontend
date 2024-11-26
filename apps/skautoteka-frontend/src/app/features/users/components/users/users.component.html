@@ -1,7 +1,7 @@
 <skt-ui-content header="Użytkownicy" subHeader="Zarządzaj wszystkimi użytkownikami w bazie danych">
   <div class="skt-users__actions" header-actions>
     @if(users.permissions()?.create) {
-      <skt-ui-button (click)="onAddNewClick()"> Zarejestruj użytkownika </skt-ui-button>
+    <skt-ui-button (click)="onAddNewClick()"> Zarejestruj użytkownika </skt-ui-button>
     }
   </div>
   <skt-users-content content></skt-users-content>

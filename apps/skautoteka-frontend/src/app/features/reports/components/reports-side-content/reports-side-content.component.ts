@@ -7,7 +7,8 @@ import {
   SideContentheaderActionsComponent,
   SideContentHeaderComponent,
   SideContentSectionComponent,
-  SideContentSectionHeaderComponent
+  SideContentSectionHeaderComponent,
+  SideContentSectionHeaderActionComponent
 } from '@skautoteka-frontend/ui';
 import { ReportsBasicInfoComponent } from '../reports-basic-info/reports-basic-info.component';
 import { ReportsTitleComponent } from '../reports-title/reports-title.component';
@@ -31,7 +32,8 @@ import { Router } from '@angular/router';
     SideContentHeaderComponent,
     SideContentheaderActionsComponent,
     ReportsTitleComponent,
-    ReportsRatingComponent
+    ReportsRatingComponent,
+    SideContentSectionHeaderActionComponent
   ]
 })
 export class ReportsSideContentComponent {

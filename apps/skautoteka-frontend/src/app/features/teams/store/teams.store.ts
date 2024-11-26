@@ -21,4 +21,9 @@ const initialState: TeamStoreState = {
   createFields: null
 };
 
-export const TeamsStore = signalStore({ providedIn: 'root' }, withState(initialState), withTeamsMethods(), withPermissions('team'));
+export const TeamsStore = signalStore(
+  { providedIn: 'root' },
+  withState(initialState),
+  withTeamsMethods(),
+  withPermissions('team')
+);
