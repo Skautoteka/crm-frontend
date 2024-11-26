@@ -1,5 +1,6 @@
 import { IGender, IGenericModel } from '@skautoteka-frontend/common';
 import { Team } from '../../teams/interfaces/team';
+import { Position } from './position';
 
 export type Player = {
   id: string;
@@ -9,5 +10,5 @@ export type Player = {
   sex: IGender;
   age: string;
   team: Team;
-  position: 'FORWARD' | 'DEFENSE' | 'WINGER';
+  position: Position;
 } & IGenericModel;
