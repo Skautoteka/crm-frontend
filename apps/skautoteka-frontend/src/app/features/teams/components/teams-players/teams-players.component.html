@@ -1,4 +1,4 @@
-@if(teamPlayers()?.length) {
+@if(teamPlayers().length) {
   <div class="skt-teams-players">
     @for(player of teamPlayers(); track player.id) {
       <skt-ui-list-card class="skt-teams-players__card">

@@ -79,7 +79,7 @@ export class TasksSideContentComponent {
     this.tasksStore.removeTask(activeTask.id);
   }
 
-  public onAddNewClick(): void {
+  public onRaportsNewClick(): void {
     this._modal.createModal(ReportsCreateFromTaskComponent, {
       header: 'Dodaj raport',
       subHeader: 'Wypełnij wszystkie wymagane informacje aby dodać raport'
@@ -87,9 +87,9 @@ export class TasksSideContentComponent {
   }
 
   public onNotesAddClick(): void {
-    this._modal.createModal(ReportsCreateComponent, {
-      header: 'Dodaj raport',
-      subHeader: 'Wypełnij wszystkie wymagane informacje aby dodać raport'
-    });
+    // this._modal.createModal(ReportsCreateComponent, {
+    //   header: 'Dodaj raport',
+    //   subHeader: 'Wypełnij wszystkie wymagane informacje aby dodać raport'
+    // });
   }
 }

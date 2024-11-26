@@ -1,5 +1,5 @@
 
-@if(assignedReports()?.length) {
+@if(assignedReports().length) {
   <div class="skt-tasks-reports">
     @for(report of assignedReports(); track report.id) {
       <skt-ui-list-card class="skt-tasks-reports__card">
