@@ -8,7 +8,6 @@ import { Team } from '../interfaces/team';
 import { TeamStoreState } from './teams.store';
 import { Router } from '@angular/router';
 import { ModalService, NotificationsService } from '@skautoteka-frontend/ui';
-import { AuthStore } from '../../auth/store/auth.store';
 
 export const withTeamsMethods = () => {
   return signalStoreFeature(
@@ -163,13 +162,6 @@ export const withTeamsMethods = () => {
         addTeam,
         setActiveTeam,
         getTeamPlayers
-      };
-    }),
-    withHooks(store => {
-      const auth = inject(AuthStore);
-
-      return {
-        onInit: () => {}
       };
     })
   );
