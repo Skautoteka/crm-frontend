@@ -27,7 +27,7 @@ export class ReportsCreateFromTaskComponent {
 
   public onSaveButtonClick(): void {
     const taskId = this.tasksStore.activeTask()?.id;
-    console.log({ ...this.inputView.value, taskId });
     this.reportsStore.addReport({ ...this.inputView.value, taskId });
+    setTimeout(() => this.tasksStore.getAssignedReports(taskId || ''), 100); // TODO how to get assigned reports on addition od report
   }
 }
