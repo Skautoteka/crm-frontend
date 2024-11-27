@@ -2,7 +2,7 @@
 <div class="skt-tasks-reports">
   @for(report of assignedReports(); track report.id) {
   <skt-ui-list-card class="skt-tasks-reports__card">
-    <div class="skt-tasks-reports__card-content">
+    <div class="skt-tasks-reports__card-content" (click)="openReport(report)">
       <div class="skt-tasks-reports__card-image"></div>
       <div class="skt-tasks-reports__card-info">
         <span class="skt-tasks-reports__card-info-name">{{ report.name }}</span>

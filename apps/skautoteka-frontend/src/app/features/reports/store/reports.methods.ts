@@ -139,12 +139,22 @@ export const withReportsMethods = () => {
         patchState(store, { activeReport });
       };
 
+      /**
+       * Sets active report.
+       *
+       * @param id
+       */
+      const setSelectedReport = (report: Report) => {
+        patchState(store, { selectedReport: report });
+      };
+
       return {
         getReports,
         removeReport,
         addReport,
         fetchFields,
-        setActiveReport
+        setActiveReport,
+        setSelectedReport
       };
     })
   );

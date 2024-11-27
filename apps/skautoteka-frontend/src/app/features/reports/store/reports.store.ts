@@ -8,6 +8,7 @@ export type ReportsStoreState = {
   reports: Report[];
   isLoading: boolean;
   activeReport: Report | null;
+  selectedReport: Report | null;
   createFields: InputConfig | null;
 };
 
@@ -15,6 +16,7 @@ const initialState: ReportsStoreState = {
   reports: [],
   isLoading: false,
   activeReport: null,
+  selectedReport: null,
   createFields: null
 };
 
