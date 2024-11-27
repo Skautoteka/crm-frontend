@@ -9,6 +9,7 @@ export type Player = {
   name: string;
   sex: IGender;
   age: string;
+  nationality: string;
   team: Team;
   position: Position;
 } & IGenericModel;
