@@ -1,0 +1,126 @@
+<div class="skt-reports-report__section-wrapper">
+  <div class="skt-reports-report__info-row">
+
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Imię</span>
+        {{ selectedReport()?.player?.firstName }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Nazwisko</span>
+        {{ selectedReport()?.player?.lastName }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+    
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Wiek</span>
+        {{ selectedReport()?.player?.age }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Narodowość</span>
+        {{ selectedReport()?.player?.nationality }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+  </div>
+
+  <div class="skt-reports-report__info-row">
+
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Płeć</span>
+        {{ selectedReport()?.player?.sex }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Wiek</span>
+        {{ selectedReport()?.player?.age }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Pozycja</span>
+        {{ selectedReport()?.player?.position?.name }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+      <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Opcjonalna pozycja</span>
+        {{ selectedReport()?.player?.position?.name }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+  </div>
+
+  <div class="skt-reports-report__info-row">
+
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Wzrost</span>
+        -
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Waga</span>
+        -
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Budowa ciała</span>
+        -
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+  </div>
+
+  <div class="skt-reports-report__info-row">
+
+  @for (trait of selectedReport()?.traits; track trait.traitId) {
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>{{ trait.trait.name }}</span>
+        {{ trait.value }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+    }
+  </div>
+
+  <div class="skt-reports-report__text-rows">
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Opis postawy fizycznej</span>
+        {{ selectedReport()?.description?.physicalDescription }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Opis postawy mentalnej</span>
+        {{ selectedReport()?.description?.mentalDescription }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Opis postawy technicznej</span>
+        {{ selectedReport()?.description?.technicalDescription }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+  </div>
+  
+</div>
