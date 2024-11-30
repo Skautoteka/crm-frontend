@@ -6,7 +6,7 @@
       [options]="options()"
       [(ngModel)]="chosenOption"
     />
-    <skt-ui-button (click)="onAddFilterClick()" class="skt-ui-input-multivalue__filter-button">Dodaj filtr</skt-ui-button>
+    <skt-ui-button (click)="onAddFilterClick()" [disabled]="!chosenOption()" class="skt-ui-input-multivalue__filter-button">Dodaj filtr</skt-ui-button>
   </div>
 
   <div class="skt-ui-input-multivalue__filters-container">

@@ -85,7 +85,12 @@ export class InputMultivalueComponent implements ControlValueAccessor, AfterView
   }
 
   public onAddFilterClick(): void {
-    const name = this.chosenOption()
+    const name = this.chosenOption();
+
+    if(!name) {
+      return;
+    }
+
     const config = this.valueTypes()?.find(type => type.name === name);
     this.chosenOption.set(null);
 
