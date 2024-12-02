@@ -36,11 +36,12 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   public placeholder = input<string>('');
   public label = input<string | null>(null);
   public isRequired = input<boolean>(false);
+  public startValue = input<any>('');
   public invalid = signal<boolean>(false);
 
   public errors = signal<ValidationErrors | null>(null);
 
-  protected _value = '';
+  protected _value = this.startValue();
   private _control!: NgControl;
   private _isDisabled = false;
   private _destroyRef = inject(DestroyRef);
@@ -67,7 +68,7 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   }
 
   writeValue(value: string): void {
-    this._value = value;
+    this._value = value ?? this.startValue();
   }
 
   registerOnChange(fn: () => void): void {
