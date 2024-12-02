@@ -3,9 +3,9 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { LabelComponent, LabelContainerComponent, ListCardComponent, ModalService } from '@skautoteka-frontend/ui';
 import { TasksStore } from '../../store/tasks.store';
-import { ReportsReportComponent } from '../../../reports/components/reports-report/reports-report.component';
 import { Report } from '../../../reports/interfaces/report';
 import { ReportsStore } from '../../../reports/store/reports.store';
+import { ReportsCreateFullComponent } from '../../../reports/components/reports-create-full/reports-create-full.component';
 
 @Component({
   standalone: true,
@@ -13,7 +13,14 @@ import { ReportsStore } from '../../../reports/store/reports.store';
   styleUrl: './tasks-reports.component.scss',
   templateUrl: 'tasks-reports.component.html',
   providers: [ClassBinder, DatePipe],
-  imports: [LabelComponent, LabelContainerComponent, ListCardComponent, CommonModule, DatePipe],
+  imports: [
+    LabelComponent,
+    LabelContainerComponent,
+    ListCardComponent,
+    CommonModule,
+    DatePipe,
+    ReportsCreateFullComponent
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -31,7 +38,7 @@ export class TasksReportsComponent {
     const formattedDate = this.datePipe.transform(report.createdAt, 'dd-MM-yyyy');
     this.reportStore.setSelectedReport(report);
 
-    this._modal.createModal(ReportsReportComponent, {
+    this._modal.createModal(ReportsCreateFullComponent, {
       header: `Raport: ${report.name}`,
       subHeader: `Utworzony: ${formattedDate}`
     });
