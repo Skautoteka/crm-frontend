@@ -123,6 +123,25 @@ export const withReportsMethods = () => {
       );
 
       /**
+       * Fetches the create fields from backend and saves it to the store.
+       */
+      const fetchReportFields = rxMethod<string>(
+        pipe(
+          switchMap(id =>
+            httpService.getReportsFieldsConfig$(id).pipe(
+              tapResponse({
+                next: reportFields => patchState(store, { reportFields }),
+                error: () => {
+                  notification.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                }
+              })
+            )
+          )
+        )
+      );
+
+      /**
        * Sets active report.
        *
        * @param id
@@ -153,6 +172,7 @@ export const withReportsMethods = () => {
         removeReport,
         addReport,
         fetchFields,
+        fetchReportFields,
         setActiveReport,
         setSelectedReport
       };

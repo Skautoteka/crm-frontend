@@ -10,6 +10,7 @@ export type ReportsStoreState = {
   activeReport: Report | null;
   selectedReport: Report | null;
   createFields: InputConfig | null;
+  reportFields: InputConfig | null;
 };
 
 const initialState: ReportsStoreState = {
@@ -17,7 +18,8 @@ const initialState: ReportsStoreState = {
   isLoading: false,
   activeReport: null,
   selectedReport: null,
-  createFields: null
+  createFields: null,
+  reportFields: null
 };
 
 export const ReportsStore = signalStore(

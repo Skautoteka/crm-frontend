@@ -17,6 +17,13 @@ export class ReportsHttpService {
   }
 
   /**
+   * Gets create fields for report model.
+   */
+  public getReportsFieldsConfig$(id: string): Observable<InputConfig> {
+    return this.http.get<InputConfig>('api/report/get-fields/' + id);
+  }
+
+  /**
    * Retrieves all reports from the database.
    *
    * @returns
