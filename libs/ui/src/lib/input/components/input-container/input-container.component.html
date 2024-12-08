@@ -13,10 +13,22 @@
   <skt-ui-input-number
     [formControlName]="input.name"
     [isRequired]="input.isRequired"
+    [isDisabled]="input?.isDisabled ?? false"
+    [startValue]="input?.value"
     [label]="input.label"
     [placeholder]="input.placeholder"
   />
-  } @case ('DATE') {
+  } @case ('TEXTAREA') {
+  <skt-ui-input-text
+    [formControlName]="input.name"
+    [isRequired]="input.isRequired"
+    [isDisabled]="input?.isDisabled ?? false"
+    [startValue]="input?.value"
+    [label]="input.label"
+    [placeholder]="input.placeholder"
+  />
+  } 
+  @case ('DATE') {
   <skt-ui-input-date
     [formControlName]="input.name"
     [isRequired]="input.isRequired"

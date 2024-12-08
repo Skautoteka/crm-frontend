@@ -38,13 +38,14 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
   public isRequired = input<boolean>(false);
   public isDisabled = input<boolean>(false);
   public invalid = signal<boolean>(false);
+  public startValue = input<any>(null);
 
-  protected _value = '';
+  protected _value = this.startValue();
   private _control!: NgControl;
   private _isDisabled = false;
   private _destroyRef = inject(DestroyRef);
 
-  protected _onChange!: (value: string) => void;
+  protected _onChange!: (value: number) => void;
   private _onTouched!: () => void;
 
   constructor(classBinder: ClassBinder, private _injector: Injector) {
@@ -53,6 +54,14 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
 
   ngAfterViewInit(): void {
     this._control = this._injector.get(NgControl);
+
+    if (this.startValue) {
+      this._value = this.startValue();
+      if (this._onChange) {
+        this._onChange(this._value);
+      }
+    }
+
     this._updateValidUi();
   }
 
@@ -60,13 +69,13 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
     this.invalid.set(!this._control.valid);
   }
 
-  public onInputChange(value: string): void {
+  public onInputChange(value: number): void {
     this._value = value;
     this._onChange(this._value);
   }
 
-  writeValue(value: string): void {
-    this._value = value;
+  writeValue(value: number): void {
+    this._value = value ?? this.startValue();
   }
 
   registerOnChange(fn: () => void): void {

@@ -11,6 +11,7 @@ import { InputSelectComponent } from '../input-select/input-select.component';
 import { InputSearchComponent } from '../input-search/input-search.component';
 import { InputNumberComponent } from '../input-number/input-number.component';
 import { InputDbComponent } from '../input-db/input-db.component';
+import { InputTextComponent } from '../input-text/input-text.component';
 
 @Component({
   selector: 'skt-ui-input-container',
@@ -30,7 +31,8 @@ import { InputDbComponent } from '../input-db/input-db.component';
     InputSelectComponent,
     InputSearchComponent,
     InputNumberComponent,
-    InputDbComponent
+    InputDbComponent,
+    InputTextComponent
   ],
   providers: [ClassBinder]
 })
