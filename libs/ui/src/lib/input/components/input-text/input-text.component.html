@@ -1,0 +1,30 @@
+<div class="skt-ui-input__container">
+  @if(label()) {
+  <label class="skt-ui-input__label">
+    {{ label() }}
+
+    @if(isRequired()) {
+    <span class="skt-ui-input__label--required">*</span>
+    }
+  </label>
+  }
+  <textarea
+    (ngModelChange)="onInputChange($event)"
+    [ngModel]="_value"
+    (blur)="onBlur()"
+    class="skt-ui-input__textarea"
+    [class.skt-ui-input__textarea--invalid]="invalid()"
+    [disabled]="isDisabled()"
+    placeholder="{{ placeholder() }}"
+  ></textarea>
+</div>
+
+@if(errors() | keyvalue; as errors) {
+<div class="skt-ui-input__errors">
+  @for(err of errors; track err.key) {
+  <span class="skt-ui-input__error">
+    @switch(err.key) { @case('email') { Wpisz poprawny adres email } @case('required') { Te pole jest wymagane } }
+  </span>
+  }
+</div>
+}

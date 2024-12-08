@@ -1,0 +1,66 @@
+.skt-ui-input {
+  display: block;
+  width: 100%;
+
+  &__textarea {
+    all: unset;
+    border: 1px solid var(--primary-1);
+    border-radius: 0.5rem;
+    width: 100%;
+    height: 6rem; 
+    box-sizing: border-box;
+    padding: 0.75rem;
+    font-size: 0.8125rem;
+    color: var(--primary-black);
+    resize: none;
+    transition: all 0.125s;
+
+    &::placeholder {
+      color: var(--basic-6);
+    }
+
+    &:focus {
+      outline: 0.25rem solid rgba(#a3b0ad, 0.25);
+    }
+
+    &--invalid {
+      border: 1px solid var(--warn);
+
+      &::placeholder {
+        color: var(--warn);
+      }
+
+      &:focus {
+        outline: 0.25rem solid rgba(#ec5b5b, 0.25);
+      }
+    }
+
+    &:disabled {
+      background-color: var(--basic-2);
+      border-color: var(--basic-4);
+      color: var(--basic-5);
+      cursor: not-allowed;
+    }
+  }
+
+  &__label {
+    display: block;
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.75rem;
+
+    &--required {
+      color: var(--warn);
+    }
+  }
+
+  &__errors {
+    margin-top: 0.25rem;
+  }
+
+  &__error {
+    font-size: 0.75rem;
+    margin-left: 0.75rem;
+    color: var(--warn);
+  }
+}
