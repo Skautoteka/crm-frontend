@@ -15,6 +15,7 @@
     type="text"
     class="skt-ui-input__input"
     [class.skt-ui-input__input--invalid]="invalid()"
+    [disabled]="isDisabled()"
     placeholder="{{ placeholder() }}"
   />
 </div>

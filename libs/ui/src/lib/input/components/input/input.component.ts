@@ -36,6 +36,7 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   public placeholder = input<string>('');
   public label = input<string | null>(null);
   public isRequired = input<boolean>(false);
+  public isDisabled = input<boolean>(false);
   public startValue = input<any>('');
   public invalid = signal<boolean>(false);
 
@@ -51,6 +52,7 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
 
   constructor(classBinder: ClassBinder, private _injector: Injector) {
     classBinder.bind('skt-ui-input');
+    console.log('isDisabled', this.isDisabled());
   }
 
   ngAfterViewInit(): void {

@@ -36,6 +36,7 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
   public placeholder = input<string>('');
   public label = input<string | null>(null);
   public isRequired = input<boolean>(false);
+  public isDisabled = input<boolean>(false);
   public invalid = signal<boolean>(false);
 
   protected _value = '';

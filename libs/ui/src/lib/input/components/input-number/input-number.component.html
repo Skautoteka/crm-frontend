@@ -15,6 +15,7 @@
     type="number"
     class="skt-ui-input-number__input"
     [class.skt-ui-input-number__input--invalid]="invalid()"
+    [disabled]="isDisabled()"
     placeholder="{{ placeholder() }}"
   />
 </div>
