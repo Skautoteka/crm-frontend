@@ -52,11 +52,18 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
 
   constructor(classBinder: ClassBinder, private _injector: Injector) {
     classBinder.bind('skt-ui-input');
-    console.log('isDisabled', this.isDisabled());
   }
 
   ngAfterViewInit(): void {
     this._control = this._injector.get(NgControl);
+
+    if (this.startValue) {
+      this._value = this.startValue();
+      if (this._onChange) {
+        this._onChange(this._value);
+      }
+    }
+
     this._updateValidUi();
   }
 
