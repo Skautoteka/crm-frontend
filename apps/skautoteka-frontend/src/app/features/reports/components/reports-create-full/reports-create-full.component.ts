@@ -4,6 +4,7 @@ import { ButtonComponent, InputComponent, InputContainerComponent, InputViewServ
 import { AsyncPipe } from '@angular/common';
 import { Report } from '../../interfaces/report';
 import { ReportsStore } from '../../store/reports.store';
+import { TasksStore } from '../../../tasks/store/tasks.store';
 
 @Component({
   standalone: true,
@@ -17,6 +18,7 @@ import { ReportsStore } from '../../store/reports.store';
 })
 export class ReportsCreateFullComponent {
   public reportsStore = inject(ReportsStore);
+  public tasksStore = inject(TasksStore);
 
   constructor(classBinder: ClassBinder, public inputView: InputViewService<Report>) {
     classBinder.bind('skt-tasks-create-full');
@@ -24,6 +26,6 @@ export class ReportsCreateFullComponent {
   }
 
   public onSaveButtonClick(): void {
-    // this.reportsStore.addReport(this.inputView.value);
+    this.reportsStore.updateReport({ ...this.inputView.value, id: this.reportsStore.selectedReport()?.id || '' });
   }
 }

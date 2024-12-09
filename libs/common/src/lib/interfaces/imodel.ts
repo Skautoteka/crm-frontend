@@ -1,6 +1,7 @@
 export interface IModelResponse<T> {
   success: boolean;
   added: T & IGenericModel;
+  updated: T & IGenericModel;
 }
 
 export interface IGenericModel {

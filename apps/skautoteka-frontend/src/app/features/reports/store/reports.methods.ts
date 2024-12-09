@@ -85,8 +85,8 @@ export const withReportsMethods = () => {
        */
       const addReport = rxMethod<Report>(
         pipe(
-          switchMap(player =>
-            httpService.addReport$(player).pipe(
+          switchMap(report =>
+            httpService.addReport$(report).pipe(
               tapResponse({
                 next: ({ added }) => {
                   patchState(store, { reports: [...store.reports(), added] });
@@ -94,6 +94,31 @@ export const withReportsMethods = () => {
                 },
                 error: () => {
                   notification.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                },
+                finalize: () => modal.closeAll()
+              })
+            )
+          )
+        )
+      );
+
+      /**
+       * Updates a report to the store and to the database.
+       */
+      const updateReport = rxMethod<Report>(
+        pipe(
+          switchMap(report =>
+            httpService.updateReport$(report).pipe(
+              tapResponse({
+                next: ({ updated }) => {
+                  patchState(store, {
+                    reports: store.reports().map(r => (r.id === updated.id ? updated : r))
+                  });
+                  notification.success('Poprawnie zaktualizowano raport');
+                },
+                error: () => {
+                  notification.error('Brak dostepu do aktualizacji rekordow', 'Skontaktuj sie z administratorem');
                   modal.closeAll();
                 },
                 finalize: () => modal.closeAll()
@@ -163,7 +188,7 @@ export const withReportsMethods = () => {
        *
        * @param id
        */
-      const setSelectedReport = (report: Report) => {
+      const setSelectedReport = (report: Report | null) => {
         patchState(store, { selectedReport: report });
       };
 
@@ -171,6 +196,7 @@ export const withReportsMethods = () => {
         getReports,
         removeReport,
         addReport,
+        updateReport,
         fetchFields,
         fetchReportFields,
         setActiveReport,
