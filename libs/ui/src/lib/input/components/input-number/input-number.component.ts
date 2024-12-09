@@ -76,6 +76,9 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
 
   writeValue(value: number): void {
     this._value = value ?? this.startValue();
+    if (this._onChange) {
+      this._onChange(this._value);
+    }
   }
 
   registerOnChange(fn: () => void): void {

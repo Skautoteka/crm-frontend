@@ -14,7 +14,7 @@
     [formControlName]="input.name"
     [isRequired]="input.isRequired"
     [isDisabled]="input?.isDisabled ?? false"
-    [startValue]="input?.value"
+    [startValue]="input?.value || null"
     [label]="input.label"
     [placeholder]="input.placeholder"
   />
