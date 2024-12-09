@@ -10,6 +10,8 @@ export interface ISingleInputConfig {
   value?: any;
   options?: ISelectOption[];
   searchType?: string;
+  min?: number;
+  max?: number;
 }
 
 export interface ISelectOption {

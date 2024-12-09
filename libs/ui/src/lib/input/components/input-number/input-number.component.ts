@@ -39,6 +39,8 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
   public isDisabled = input<boolean>(false);
   public invalid = signal<boolean>(false);
   public startValue = input<any>(null);
+  public min = input<number | null>(Number.MIN_SAFE_INTEGER);
+  public max = input<number | null>(Number.MAX_SAFE_INTEGER);
 
   protected _value = this.startValue();
   private _control!: NgControl;
