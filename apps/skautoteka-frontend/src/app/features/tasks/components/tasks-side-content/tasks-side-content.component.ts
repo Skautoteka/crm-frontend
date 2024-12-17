@@ -17,6 +17,8 @@ import { TasksTeamsComponent } from '../tasks-teams/tasks-teams.component';
 import { TasksStore } from '../../store/tasks.store';
 import { Router } from '@angular/router';
 import { ReportsCreateFromTaskComponent } from '../../../reports';
+import { NotesCreateComponent } from '../../../notes';
+import { TasksNotesComponent } from '../tasks-notes/tasks-notes.component';
 
 @Component({
   standalone: true,
@@ -35,7 +37,8 @@ import { ReportsCreateFromTaskComponent } from '../../../reports';
     SideContentHeaderComponent,
     SideContentheaderActionsComponent,
     TasksTeamsComponent,
-    SideContentSectionHeaderActionComponent
+    SideContentSectionHeaderActionComponent,
+    TasksNotesComponent
   ]
 })
 export class TasksSideContentComponent {
@@ -63,6 +66,7 @@ export class TasksSideContentComponent {
       () => {
         const activeTask = this.tasksStore.activeTask();
         this.tasksStore.getAssignedReports(activeTask?.id || '');
+        this.tasksStore.getAssignedNotes(activeTask?.id || '');
         this._content.showSideContent(!!activeTask);
       },
       { allowSignalWrites: true }
@@ -87,9 +91,9 @@ export class TasksSideContentComponent {
   }
 
   public onNotesAddClick(): void {
-    // this._modal.createModal(ReportsCreateComponent, {
-    //   header: 'Dodaj raport',
-    //   subHeader: 'Wypełnij wszystkie wymagane informacje aby dodać raport'
-    // });
+    this._modal.createModal(NotesCreateComponent, {
+      header: 'Dodaj notatke',
+      subHeader: 'Wypełnij wszystkie wymagane informacje aby dodać notatke'
+    });
   }
 }

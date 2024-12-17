@@ -5,6 +5,7 @@ import { InputConfig } from '@skautoteka-frontend/ui';
 import { Task } from '../interfaces/task';
 import { IModelResponse } from '@skautoteka-frontend/common';
 import { Report } from '../../reports/interfaces/report';
+import { Note } from '../../notes/interfaces/note';
 
 @Injectable({ providedIn: 'root' })
 export class TasksHttpService {
@@ -42,6 +43,15 @@ export class TasksHttpService {
    */
   public getAssignedReports$(id: string): Observable<Report[]> {
     return this.http.get<Report[]>(`api/report/allByTaskId/${id}`);
+  }
+
+  /**
+   * Retrieves all notes based on task id from the database.
+   *
+   * @returns
+   */
+  public getAssignedNotes$(id: string): Observable<Note[]> {
+    return this.http.get<Note[]>(`api/note/allByTaskId/${id}`);
   }
 
   /**

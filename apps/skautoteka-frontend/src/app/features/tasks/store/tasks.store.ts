@@ -4,10 +4,12 @@ import { Task } from '../interfaces/task';
 import { Report } from '../../reports/interfaces/report';
 import { withTasksMethods } from './tasks.methods';
 import { withPermissions } from '@skautoteka-frontend/common';
+import { Note } from '../../notes/interfaces/note';
 
 export type TasksStoreState = {
   tasks: Task[];
   assignedReports: Report[];
+  assignedNotes: Note[];
   isLoading: boolean;
   activeTask: Task | null;
   createFields: InputConfig | null;
@@ -16,6 +18,7 @@ export type TasksStoreState = {
 const initialState: TasksStoreState = {
   tasks: [],
   assignedReports: [],
+  assignedNotes: [],
   isLoading: false,
   activeTask: null,
   createFields: null
