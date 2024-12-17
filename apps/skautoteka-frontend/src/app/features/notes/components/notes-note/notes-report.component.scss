@@ -1,0 +1,38 @@
+.skt-notes-note {
+  &__section-wrapper {
+    display: grid;
+    grid-template-rows: repeat(1, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  &__info-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  &__text-rows {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  &__rating-wrapper {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.75rem;
+  }
+
+  &__rating-title {
+    font-size: 0.875rem;
+    color: var(--basic-4);
+  }
+
+  &__rating-value {
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+}
