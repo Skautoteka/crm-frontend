@@ -6,7 +6,8 @@ import {
   Injector,
   input,
   signal,
-  ViewEncapsulation
+  ViewEncapsulation,
+  OnInit
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -33,15 +34,25 @@ import { ISelectOption } from '../../interface';
     }
   ]
 })
-export class InputSelectComponent extends InputComponent implements ControlValueAccessor, AfterViewInit {
+export class InputSelectComponent extends InputComponent implements ControlValueAccessor, AfterViewInit, OnInit {
   public dropdownVisible = signal<boolean>(false);
   public options = input.required<ISelectOption[]>();
+  public override startValue = input<any>(null);
 
   public activeOption = signal<ISelectOption | null>(null);
 
   constructor(classBinder: ClassBinder, _injector: Injector) {
     super(classBinder, _injector);
     classBinder.bind('skt-ui-input-select');
+  }
+
+  ngOnInit() {
+    if (this.startValue()) {
+      const initialOption = this.options().find(option => option.value === this.startValue());
+      if (initialOption) {
+        this.activeOption.set(initialOption);
+      }
+    }
   }
 
   public onClick(): void {
@@ -59,3 +70,4 @@ export class InputSelectComponent extends InputComponent implements ControlValue
     this.dropdownVisible.set(false);
   }
 }
+
