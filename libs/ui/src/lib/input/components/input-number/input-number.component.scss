@@ -32,6 +32,13 @@
         outline: 0.25rem solid rgba(#ec5b5b, 0.25);
       }
     }
+
+    &:disabled {
+      background-color: var(--basic-2);
+      border-color: var(--basic-4);
+      color: var(--basic-5);
+      cursor: not-allowed;
+    }
   }
 
   &__label {

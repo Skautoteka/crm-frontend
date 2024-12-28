@@ -1,0 +1,8 @@
+<skt-ui-content header="Raporty" subHeader="Zarządzaj wszystkimi raportami w bazie danych">
+  <div class="skt-notes__actions" header-actions>
+    @if(notes.permissions()?.create) {
+    <skt-ui-button (click)="onAddNewClick()"> Dodaj nowy raport </skt-ui-button>
+    }
+  </div>
+  <skt-notes-content content></skt-notes-content>
+</skt-ui-content>

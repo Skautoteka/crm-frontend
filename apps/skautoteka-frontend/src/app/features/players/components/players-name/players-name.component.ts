@@ -19,15 +19,8 @@ export class PlayersNameComponent {
 
     if (!activePlayer) {
       return 'Brak informacji';
-    }
-
-    switch (activePlayer.position) {
-      case 'DEFENSE':
-        return 'Obrońca';
-      case 'FORWARD':
-        return 'Napastnik';
-      case 'WINGER':
-        return 'Skrzydłowy';
+    } else {
+      return activePlayer.position.name;
     }
   });
 

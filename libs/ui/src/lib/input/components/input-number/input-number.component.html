@@ -9,12 +9,16 @@
   </label>
   }
   <input
-    (ngModelChange)="onInputChange($event)"
-    [ngModel]="_value"
+    (input)="onInputChange($event)"
+    [value]="_value"
     (blur)="onBlur()"
     type="number"
     class="skt-ui-input-number__input"
     [class.skt-ui-input-number__input--invalid]="invalid()"
-    placeholder="{{ placeholder() }}"
+    [disabled]="isDisabled()"
+    [attr.placeholder]="placeholder()"
+    [attr.min]="min()"
+    [attr.max]="max()"
+    step="any"
   />
 </div>

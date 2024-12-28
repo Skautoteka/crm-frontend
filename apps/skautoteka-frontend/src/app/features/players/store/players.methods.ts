@@ -150,11 +150,11 @@ export const withPlayersMethods = () => {
     }),
 
     withHooks((store, auth = inject(AuthStore)) => {
-      auth.isLoggedIn()
+      auth.isLoggedIn();
 
       return {
         onDestroy: () => console.log('destory')
-      }
+      };
     })
   );
 };

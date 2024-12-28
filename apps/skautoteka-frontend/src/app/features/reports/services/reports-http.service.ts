@@ -17,6 +17,13 @@ export class ReportsHttpService {
   }
 
   /**
+   * Gets create fields for report model.
+   */
+  public getReportsFieldsConfig$(id: string): Observable<InputConfig> {
+    return this.http.get<InputConfig>('api/report/get-fields/' + id);
+  }
+
+  /**
    * Retrieves all reports from the database.
    *
    * @returns
@@ -41,6 +48,15 @@ export class ReportsHttpService {
    * @param report
    */
   public addReport$(report: Report): Observable<IModelResponse<Report>> {
-    return this.http.post<IModelResponse<Report>>('api/report', { ...report });
+    return this.http.post<IModelResponse<Report>>('api/report/add', { ...report });
+  }
+
+  /**
+   * Post http request that adds a new report.
+   *
+   * @param report
+   */
+  public updateReport$(report: Report): Observable<IModelResponse<Report>> {
+    return this.http.post<IModelResponse<Report>>('api/report/update', { ...report });
   }
 }

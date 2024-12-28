@@ -20,7 +20,4 @@ export class DashboardUserComponent {
   constructor(classBinder: ClassBinder, public device: DeviceService) {
     classBinder.bind('skt-dashboard-user');
   }
-
-  public onActionClicked(type: 'notifications' | 'user-profile'): void {
-  }
 }
