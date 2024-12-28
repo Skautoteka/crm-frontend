@@ -20,7 +20,7 @@ export class PlayersNameComponent {
     if (!activePlayer) {
       return 'Brak informacji';
     } else {
-      return activePlayer.position.name
+      return activePlayer.position.name;
     }
   });
 

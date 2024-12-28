@@ -70,4 +70,3 @@ export class InputSelectComponent extends InputComponent implements ControlValue
     this.dropdownVisible.set(false);
   }
 }
-

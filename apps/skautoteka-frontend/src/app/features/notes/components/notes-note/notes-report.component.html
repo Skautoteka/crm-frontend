@@ -1,6 +1,5 @@
 <div class="skt-notes-note__section-wrapper">
   <div class="skt-notes-note__info-row">
-
     <skt-ui-label-container>
       <skt-ui-label [valueClass]="'big'">
         <span label>Imię</span>
@@ -14,7 +13,7 @@
         {{ selectedNote()?.player?.lastName }}
       </skt-ui-label>
     </skt-ui-label-container>
-    
+
     <skt-ui-label-container>
       <skt-ui-label [valueClass]="'big'">
         <span label>Wiek</span>
@@ -28,11 +27,9 @@
         {{ selectedNote()?.player?.nationality }}
       </skt-ui-label>
     </skt-ui-label-container>
-
   </div>
 
   <div class="skt-notes-note__info-row">
-
     <skt-ui-label-container>
       <skt-ui-label [valueClass]="'big'">
         <span label>Płeć</span>
@@ -53,17 +50,15 @@
         {{ selectedNote()?.player?.position?.name }}
       </skt-ui-label>
     </skt-ui-label-container>
-      <skt-ui-label-container>
+    <skt-ui-label-container>
       <skt-ui-label [valueClass]="'big'">
         <span label>Opcjonalna pozycja</span>
         {{ selectedNote()?.player?.position?.name }}
       </skt-ui-label>
     </skt-ui-label-container>
-
   </div>
 
   <div class="skt-notes-note__info-row">
-
     <skt-ui-label-container>
       <skt-ui-label [valueClass]="'big'">
         <span label>Wzrost</span>
@@ -84,12 +79,10 @@
         -
       </skt-ui-label>
     </skt-ui-label-container>
-
   </div>
 
   <div class="skt-notes-note__info-row">
-
-  @for (trait of selectedNote()?.traits; track trait.traitId) {
+    @for (trait of selectedNote()?.traits; track trait.traitId) {
     <skt-ui-label-container>
       <skt-ui-label [valueClass]="'big'">
         <span label>{{ trait.trait.name }}</span>
@@ -120,7 +113,5 @@
         {{ selectedNote()?.description?.technicalDescription }}
       </skt-ui-label>
     </skt-ui-label-container>
-
   </div>
-  
 </div>
