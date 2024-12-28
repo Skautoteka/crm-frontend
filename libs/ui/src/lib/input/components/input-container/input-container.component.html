@@ -54,6 +54,8 @@
     [isRequired]="input.isRequired"
     [label]="input.label"
     [placeholder]="input.placeholder"
+    [startValue]="input?.value?.name"
+    [startValueId]="input?.value?.id"
     [searchType]="input.searchType || null"
   />
   } @case ('DB') {
@@ -62,6 +64,7 @@
     [isRequired]="input.isRequired"
     [label]="input.label"
     [placeholder]="input.placeholder"
+    [startValue]="input?.value"
     [searchType]="input.searchType || null"
   />
   } } }
