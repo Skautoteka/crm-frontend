@@ -46,6 +46,10 @@
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "buildTarget": "skautoteka-frontend:build",
+        "port": 4200
+      },
       "configurations": {
         "production": {
           "buildTarget": "skautoteka-frontend:build:production"
