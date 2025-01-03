@@ -17,7 +17,7 @@ import { TasksTeamsComponent } from '../tasks-teams/tasks-teams.component';
 import { TasksStore } from '../../store/tasks.store';
 import { Router } from '@angular/router';
 import { ReportsCreateFromTaskComponent } from '../../../reports';
-import { NotesCreateComponent } from '../../../notes';
+import { NotesCreateFromTaskComponent } from '../../../notes';
 import { TasksNotesComponent } from '../tasks-notes/tasks-notes.component';
 
 @Component({
@@ -91,7 +91,7 @@ export class TasksSideContentComponent {
   }
 
   public onNotesAddClick(): void {
-    this._modal.createModal(NotesCreateComponent, {
+    this._modal.createModal(NotesCreateFromTaskComponent, {
       header: 'Dodaj notatke',
       subHeader: 'Wypełnij wszystkie wymagane informacje aby dodać notatke'
     });

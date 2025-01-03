@@ -56,8 +56,7 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
 
   ngAfterViewInit(): void {
     this._control = this._injector.get(NgControl);
-
-    if (this.startValue) {
+    if (this.startValue()) {
       this._value = this.startValue();
       if (this._onChange) {
         this._onChange(this._value);
@@ -76,8 +75,6 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
     let value = inputElement.valueAsNumber;
 
     if (isNaN(value)) {
-      // If the input is not a valid number, set it to null
-      this._value = null;
       if (this._onChange) {
         this._onChange(this._value);
       }
@@ -102,7 +99,7 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
   }
 
   writeValue(value: number | null): void {
-    this._value = value;
+    this._value = value ?? this.startValue();
     // Update the input element if it exists
     const inputElement = document.querySelector('input.skt-ui-input-number__input') as HTMLInputElement;
     if (inputElement) {

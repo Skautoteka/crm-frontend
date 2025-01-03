@@ -77,9 +77,10 @@ export class InputSearchComponent extends InputComponent implements ControlValue
     if (this.startValue() && this.startValueId()) {
       const defaultOption = { value: this.startValueId(), label: this.startValue() };
       this.activeOption.set(defaultOption);
-      this._onChange(this.startValueId());
       setTimeout(() => {
+        this._onChange(this.startValueId());
         if (this._input()?.nativeElement) {
+          this._onChange(defaultOption.value);
           this._input().nativeElement.value = defaultOption.label;
         }
       });
