@@ -62,8 +62,8 @@ export class InputContainerComponent<K> {
           {}
         );
         this.formGroup = this._fb.group(controls);
-        this._cdRef.detectChanges();
         this._inputView.setFormGroup(this.formGroup);
+        this._cdRef.detectChanges();
       }
     });
   }

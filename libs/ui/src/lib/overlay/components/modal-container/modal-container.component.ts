@@ -43,5 +43,6 @@ export class ModalContainerComponent<T> implements AfterViewInit {
 
   public onCloseClick(): void {
     this.closeClick.emit();
+    this.viewRef.clear();
   }
 }
