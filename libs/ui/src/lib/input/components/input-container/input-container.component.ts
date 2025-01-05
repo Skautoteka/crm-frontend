@@ -57,7 +57,7 @@ export class InputContainerComponent<K> {
         const controls = config.reduce(
           (prev, curr) => ({
             ...prev,
-            [curr.name]: new FormControl(null, { validators: curr.isRequired ? [Validators.required] : [] })
+            [curr.name]: new FormControl(curr?.value, { validators: curr.isRequired ? [Validators.required] : [] })
           }),
           {}
         );

@@ -165,6 +165,10 @@ export const withNotesMethods = () => {
         )
       );
 
+      const cleanNoteFields = () => {
+        patchState(store, { noteFields: null });
+      }; 
+
       /**
        * Sets active note.
        *
@@ -199,7 +203,8 @@ export const withNotesMethods = () => {
         fetchFields,
         fetchNoteFields,
         setActiveNote,
-        setSelectedNote
+        setSelectedNote,
+        cleanNoteFields
       };
     })
   );

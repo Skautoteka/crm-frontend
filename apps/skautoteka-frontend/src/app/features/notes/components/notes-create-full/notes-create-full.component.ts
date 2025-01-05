@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { ButtonComponent, InputComponent, InputContainerComponent, InputViewService } from '@skautoteka-frontend/ui';
 import { AsyncPipe } from '@angular/common';
@@ -16,13 +16,20 @@ import { TasksStore } from '../../../tasks/store/tasks.store';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NotesCreateFullComponent {
+export class NotesCreateFullComponent implements OnInit, OnDestroy {
   public notesStore = inject(NotesStore);
   public tasksStore = inject(TasksStore);
 
   constructor(classBinder: ClassBinder, public inputView: InputViewService<Note>) {
     classBinder.bind('skt-tasks-create-full');
+  }
+
+  ngOnInit() {
     this.notesStore.fetchNoteFields(this.notesStore.selectedNote()?.id || '');
+  }
+
+  ngOnDestroy() {
+    this.notesStore.cleanNoteFields();
   }
 
   public onSaveButtonClick(): void {

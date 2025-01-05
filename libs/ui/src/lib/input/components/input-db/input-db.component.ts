@@ -49,7 +49,7 @@ export class InputDbComponent extends InputComponent implements ControlValueAcce
   public queryLoading = signal<boolean>(false);
 
   public options = signal<ISelectOption[]>([]);
-  public override startValue = input<any>(null);
+  public startValue = input<any>(null);
 
   public activeOption = signal<ISelectOption | null>(null);
 

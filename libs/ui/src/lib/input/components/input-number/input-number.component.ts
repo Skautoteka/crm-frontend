@@ -38,16 +38,15 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
   public isRequired = input<boolean>(false);
   public isDisabled = input<boolean>(false);
   public invalid = signal<boolean>(false);
-  public startValue = input<any>(null);
   public min = input<number | null>(null);
   public max = input<number | null>(null);
 
-  protected _value = this.startValue();
+  protected _value = '';
   private _control!: NgControl;
   private _isDisabled = false;
   private _destroyRef = inject(DestroyRef);
 
-  protected _onChange!: (value: number) => void;
+  protected _onChange!: (value: string) => void;
   private _onTouched!: () => void;
 
   constructor(classBinder: ClassBinder, private _injector: Injector) {
@@ -56,12 +55,6 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
 
   ngAfterViewInit(): void {
     this._control = this._injector.get(NgControl);
-    if (this.startValue()) {
-      this._value = this.startValue();
-      if (this._onChange) {
-        this._onChange(this._value);
-      }
-    }
 
     this._updateValidUi();
   }
@@ -92,22 +85,17 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
       inputElement.value = value.toString();
     }
 
-    this._value = value;
+    this._value = value.toString();
     if (this._onChange) {
       this._onChange(this._value);
     }
   }
 
-  writeValue(value: number | null): void {
-    this._value = value ?? this.startValue();
-    // Update the input element if it exists
-    const inputElement = document.querySelector('input.skt-ui-input-number__input') as HTMLInputElement;
-    if (inputElement) {
-      inputElement.value = this._value !== null ? this._value.toString() : '';
-    }
+  writeValue(value: string): void {
+    this._value = value;
   }
 
-  registerOnChange(fn: (value: number | null) => void): void {
+  registerOnChange(fn: (value: string) => void): void {
     this._onChange = fn;
   }
 

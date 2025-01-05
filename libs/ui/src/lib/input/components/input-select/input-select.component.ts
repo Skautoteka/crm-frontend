@@ -37,7 +37,7 @@ import { ISelectOption } from '../../interface';
 export class InputSelectComponent extends InputComponent implements ControlValueAccessor, AfterViewInit, OnInit {
   public dropdownVisible = signal<boolean>(false);
   public options = input.required<ISelectOption[]>();
-  public override startValue = input<any>(null);
+  public startValue = input<any>(null);
 
   public activeOption = signal<ISelectOption | null>(null);
 

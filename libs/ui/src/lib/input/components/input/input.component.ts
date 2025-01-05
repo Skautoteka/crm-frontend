@@ -37,12 +37,11 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   public label = input<string | null>(null);
   public isRequired = input<boolean>(false);
   public isDisabled = input<boolean>(false);
-  public startValue = input<any>(null);
   public invalid = signal<boolean>(false);
 
   public errors = signal<ValidationErrors | null>(null);
 
-  protected _value = this.startValue();
+  protected _value = '';
   private _control!: NgControl;
   private _isDisabled = false;
   private _destroyRef = inject(DestroyRef);
@@ -56,14 +55,6 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
 
   ngAfterViewInit(): void {
     this._control = this._injector.get(NgControl);
-
-    if (this.startValue) {
-      this._value = this.startValue();
-      if (this._onChange) {
-        this._onChange(this._value);
-      }
-    }
-
     this._updateValidUi();
   }
 
@@ -77,14 +68,16 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   }
 
   writeValue(value: string): void {
-    this._value = value ?? this.startValue();
+    this._value = value;
     if (this._onChange && this._value) {
       this._onChange(this._value);
     }
   }
 
   registerOnChange(fn: () => void): void {
-    this._onChange = fn;
+    if (!this._onChange) {
+      this._onChange = fn;
+    }
   }
 
   setDisabledState(isDisabled: boolean): void {
