@@ -8,7 +8,7 @@ import { TasksStore } from '../../../tasks/store/tasks.store';
 
 @Component({
   standalone: true,
-  selector: 'skt-tasks-create-full',
+  selector: 'skt-notes-create-full',
   styleUrl: './notes-create-full.component.scss',
   templateUrl: 'notes-create-full.component.html',
   providers: [ClassBinder, InputViewService],
@@ -21,7 +21,7 @@ export class NotesCreateFullComponent implements OnInit, OnDestroy {
   public tasksStore = inject(TasksStore);
 
   constructor(classBinder: ClassBinder, public inputView: InputViewService<Note>) {
-    classBinder.bind('skt-tasks-create-full');
+    classBinder.bind('skt-notes-create-full');
   }
 
   ngOnInit() {
