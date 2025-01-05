@@ -192,6 +192,10 @@ export const withReportsMethods = () => {
         patchState(store, { selectedReport: report });
       };
 
+      const cleanReportFields = () => {
+        patchState(store, { reportFields: null });
+      };
+
       return {
         getReports,
         removeReport,
@@ -200,7 +204,8 @@ export const withReportsMethods = () => {
         fetchFields,
         fetchReportFields,
         setActiveReport,
-        setSelectedReport
+        setSelectedReport,
+        cleanReportFields
       };
     })
   );

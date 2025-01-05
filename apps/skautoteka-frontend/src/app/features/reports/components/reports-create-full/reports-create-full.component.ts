@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { ButtonComponent, InputComponent, InputContainerComponent, InputViewService } from '@skautoteka-frontend/ui';
 import { AsyncPipe } from '@angular/common';
@@ -16,13 +16,20 @@ import { TasksStore } from '../../../tasks/store/tasks.store';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ReportsCreateFullComponent {
+export class ReportsCreateFullComponent implements OnInit, OnDestroy {
   public reportsStore = inject(ReportsStore);
   public tasksStore = inject(TasksStore);
 
   constructor(classBinder: ClassBinder, public inputView: InputViewService<Report>) {
     classBinder.bind('skt-tasks-create-full');
+  }
+
+  ngOnInit() {
     this.reportsStore.fetchReportFields(this.reportsStore.selectedReport()?.id || '');
+  }
+
+  ngOnDestroy() {
+    this.reportsStore.cleanReportFields();
   }
 
   public onSaveButtonClick(): void {
