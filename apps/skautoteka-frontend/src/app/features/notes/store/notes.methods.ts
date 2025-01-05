@@ -167,7 +167,7 @@ export const withNotesMethods = () => {
 
       const cleanNoteFields = () => {
         patchState(store, { noteFields: null });
-      }; 
+      };
 
       /**
        * Sets active note.
