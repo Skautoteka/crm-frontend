@@ -11,7 +11,6 @@ import { InputSelectComponent } from '../input-select/input-select.component';
 import { InputSearchComponent } from '../input-search/input-search.component';
 import { InputNumberComponent } from '../input-number/input-number.component';
 import { InputDbComponent } from '../input-db/input-db.component';
-import { InputMultivalueComponent } from "../input-multivalue/input-multivalue.component";
 
 @Component({
   selector: 'skt-ui-input-container',
@@ -30,9 +29,8 @@ import { InputMultivalueComponent } from "../input-multivalue/input-multivalue.c
     InputSelectComponent,
     InputSearchComponent,
     InputNumberComponent,
-    InputDbComponent,
-    InputMultivalueComponent
-],
+    InputDbComponent
+  ],
   providers: [ClassBinder]
 })
 export class InputContainerComponent<K> {

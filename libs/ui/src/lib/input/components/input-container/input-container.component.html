@@ -47,14 +47,6 @@
     [placeholder]="input.placeholder"
     [searchType]="input.searchType || null"
   />
-  } @case ('MULTIVALUE') {
-    <skt-ui-input-multivalue
-      [formControlName]="input.name"
-      [isRequired]="input.isRequired"
-      [label]="input.label"
-      [placeholder]="input.placeholder"
-      [valueTypes]="input.valueTypes || null"
-    />
-    } } }
+  } } }
 </ng-container>
 }
