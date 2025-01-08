@@ -5,6 +5,17 @@
   height: calc(100% - 4rem);
   padding-bottom: 2rem;
 
+  &__create-container {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__filters-list {
+    height: 100%;
+  }
+
   &__buttons {
     display: flex;
     gap: 1rem;

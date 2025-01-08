@@ -1,25 +1,23 @@
-import { ChangeDetectionStrategy, Component, inject, signal, ViewEncapsulation } from "@angular/core";
-import { ClassBinder } from "@skautoteka-frontend/common";
-import { ButtonComponent, IconComponent, InputContainerComponent, InputViewService, SimpleButtonComponent } from "@skautoteka-frontend/ui";
-import { AnalysisStore } from "../../store/analysis.store";
+import { ChangeDetectionStrategy, Component, inject, signal, ViewEncapsulation } from '@angular/core';
+import { ClassBinder } from '@skautoteka-frontend/common';
+import { ButtonComponent, IconComponent, InputViewService, SimpleButtonComponent } from '@skautoteka-frontend/ui';
+import { AnalysisStore } from '../../store/analysis.store';
+import { IFilter } from '../../interfaces/analysis';
 
 @Component({
   selector: 'skt-analysis-create',
   templateUrl: 'analysis-create.component.html',
   styleUrl: 'analysis-create.component.scss',
   standalone: true,
-  imports: [
-    ButtonComponent,
-    SimpleButtonComponent,
-    IconComponent,
-    InputContainerComponent
-  ],
+  imports: [ButtonComponent, SimpleButtonComponent, IconComponent],
   providers: [ClassBinder, InputViewService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
 export class AnalysisCreateComponent {
   public analysis = inject(AnalysisStore);
+
+  public filters: IFilter[] = [{ name: 'some name', label: 'some label', predicates: [] }];
 
   public step = signal(0);
   public type = signal<'note' | 'report' | null>(null);
@@ -37,16 +35,15 @@ export class AnalysisCreateComponent {
   }
 
   public onNextStepClick(): void {
-    if(!this.type()) {
+    if (!this.type()) {
       return;
     }
 
-    if(this.step() === this.formStep) {
+    if (this.step() === this.formStep) {
       console.log('wysylamy');
       return;
     }
 
-    this.analysis.fetchFields();
     this.step.set(this.step() + 1);
   }
 

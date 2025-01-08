@@ -9,7 +9,16 @@
       Raport
     </div>
   } @else if(step() === formStep) {
-    <skt-ui-input-container [config]="analysis.noteFields()"></skt-ui-input-container>
+    <div class="skt-analysis-create__create-container">
+      <div class="skt-analysis-create__filters-list">
+        @for(filter of filters; track filter.name) {
+          <div class="skt-analysis-create__filter">
+            <input class="skt-ui-input-checkbox__checkbox" type="checkbox" />
+          </div>
+        }
+      </div>
+      <div class="skt-analysis-create__chosen-filters"></div>
+    </div>
   }
 </div>
 
