@@ -20,7 +20,7 @@ export class AnalysisHttpService {
    * @returns
    */
   public getNoteFilters$(): Observable<AnalysisFiltersPaload> {
-    return this._http.get<AnalysisFiltersPaload>('/api/analysis/get-report-filters');
+    return this._http.get<AnalysisFiltersPaload>('/api/analysis/get-note-filters');
   }
 
   /**

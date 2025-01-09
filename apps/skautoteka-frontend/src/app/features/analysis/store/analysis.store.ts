@@ -104,7 +104,14 @@ export const AnalysisStore = signalStore(
                 loader.hideLoader('filters');
               },
               next: ({ filters }) => {
-                patchState(store, { noteFilters: filters });
+                const group = fb.group(
+                  filters.reduce(
+                    (acc, curr) => ({ ...acc, [curr.name]: new FormControl<PredicateFilterValue | null>(null) }),
+                    {}
+                  )
+                );
+
+                patchState(store, { noteFilters: filters, noteFiltersGroup: group });
                 loader.hideLoader('filters');
               }
             })
@@ -176,7 +183,7 @@ export const AnalysisStore = signalStore(
       pipe(
         tap(() => loader.showLoader('analysis-progress')),
         switchMap(() => {
-          const group = store.reportFiltersGroup();
+          const group = store.noteFiltersGroup();
 
           if (!group) {
             throw new Error('There is no form group');
