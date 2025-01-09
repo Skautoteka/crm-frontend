@@ -4,6 +4,7 @@ import { ButtonComponent, InputComponent, InputContainerComponent, InputViewServ
 import { AsyncPipe } from '@angular/common';
 import { TasksStore } from '../../store/tasks.store';
 import { Task } from '../../interfaces';
+import { NotificationsService } from '@skautoteka-frontend/ui';
 
 @Component({
   standalone: true,
@@ -17,6 +18,7 @@ import { Task } from '../../interfaces';
 })
 export class TasksCreateComponent {
   public tasksStore = inject(TasksStore);
+  public notification = inject(NotificationsService);
 
   constructor(classBinder: ClassBinder, public inputView: InputViewService<Task>) {
     classBinder.bind('skt-tasks-create');
@@ -24,6 +26,10 @@ export class TasksCreateComponent {
   }
 
   public onSaveButtonClick(): void {
-    this.tasksStore.addTask(this.inputView.value);
+    if (this.inputView.isValid) {
+      this.tasksStore.addTask(this.inputView.value);
+    } else {
+      this.notification.error('Wypełnij poprawnie formularz');
+    }
   }
 }
