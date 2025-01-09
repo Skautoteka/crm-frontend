@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { InputConfig } from '@skautoteka-frontend/ui';
 import { Observable } from 'rxjs';
-import { ReportFiltersPayload } from '../interfaces/analysis';
+import { AnalysisFiltersPaload } from '../interfaces/analysis';
 
 @Injectable({ providedIn: 'root' })
 export class AnalysisHttpService {
@@ -11,7 +10,16 @@ export class AnalysisHttpService {
   /**
    * Retrieves all filters for report analysis
    */
-  public getReportFilters$(): Observable<ReportFiltersPayload> {
-    return this._http.get<ReportFiltersPayload>('/api/analysis/get-report-filters');
+  public getReportFilters$(): Observable<AnalysisFiltersPaload> {
+    return this._http.get<AnalysisFiltersPaload>('/api/analysis/get-report-filters');
+  }
+
+  /**
+   * Retrieves all filters for note analysis
+   *
+   * @returns
+   */
+  public getNoteFilters$(): Observable<AnalysisFiltersPaload> {
+    return this._http.get<AnalysisFiltersPaload>('/api/analysis/get-report-filters');
   }
 }

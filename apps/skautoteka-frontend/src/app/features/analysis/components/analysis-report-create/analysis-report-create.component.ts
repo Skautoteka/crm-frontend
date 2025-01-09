@@ -18,6 +18,6 @@ export class ReportCreateComponent {
 
   constructor() {
     this._classBinder.bind('skt-analysis-report-create');
-    this.analysis.getFilters();
+    this.analysis.getReportFilters();
   }
 }

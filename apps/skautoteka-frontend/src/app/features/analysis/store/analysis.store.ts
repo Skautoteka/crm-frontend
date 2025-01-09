@@ -1,4 +1,4 @@
-import { ReportFilter } from './../interfaces/analysis';
+import { NoteFilter, ReportFilter } from './../interfaces/analysis';
 import { inject } from '@angular/core';
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { LoaderService } from '@skautoteka-frontend/ui';
@@ -10,11 +10,13 @@ import { tapResponse } from '@ngrx/operators';
 export type AnalysisStoreState = {
   isLoading: boolean;
   reportFilters: ReportFilter[] | null;
+  noteFilters: NoteFilter[] | null;
 };
 
 const initialState: AnalysisStoreState = {
   isLoading: false,
-  reportFilters: null
+  reportFilters: null,
+  noteFilters: null
 };
 
 export const AnalysisStore = signalStore(
@@ -24,10 +26,30 @@ export const AnalysisStore = signalStore(
     const http = inject(AnalysisHttpService);
     const loader = inject(LoaderService);
 
+    const getNoteFilters = rxMethod<void>(
+      pipe(
+        tap(() => loader.showLoader('filters')),
+        switchMap(() =>
+          http.getNoteFilters$().pipe(
+            tapResponse({
+              error: () => {
+                patchState(store, { noteFilters: null });
+                loader.hideLoader('filters');
+              },
+              next: ({ filters }) => {
+                patchState(store, { noteFilters: filters });
+                loader.hideLoader('filters');
+              }
+            })
+          )
+        )
+      )
+    );
+
     /**
      * Retrieves filters from backend
      */
-    const getFilters = rxMethod<void>(
+    const getReportFilters = rxMethod<void>(
       pipe(
         tap(() => loader.showLoader('filters')),
         switchMap(() =>
@@ -48,7 +70,8 @@ export const AnalysisStore = signalStore(
     );
 
     return {
-      getFilters
+      getReportFilters,
+      getNoteFilters
     };
   })
 );
