@@ -1,4 +1,4 @@
-import { NoteFilter, PredicateFilterValue, ReportFilter } from './../interfaces/analysis';
+import { FilterPredicate, NoteFilter, PredicateFilterValue, ReportFilter } from './../interfaces/analysis';
 import { inject } from '@angular/core';
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { LoaderService } from '@skautoteka-frontend/ui';
@@ -109,7 +109,13 @@ export const AnalysisStore = signalStore(
               next: ({ filters }) => {
                 const group = fb.group(
                   filters.reduce(
-                    (acc, curr) => ({ ...acc, [curr.name]: new FormControl<PredicateFilterValue | null>(null) }),
+                    (acc, curr) => ({
+                      ...acc,
+                      [curr.name]: new FormControl<PredicateFilterValue | null>({
+                        value: null,
+                        predicate: FilterPredicate.eq
+                      })
+                    }),
                     {}
                   )
                 );
@@ -139,7 +145,13 @@ export const AnalysisStore = signalStore(
               next: ({ filters }) => {
                 const group = fb.group(
                   filters.reduce(
-                    (acc, curr) => ({ ...acc, [curr.name]: new FormControl<PredicateFilterValue | null>(null) }),
+                    (acc, curr) => ({
+                      ...acc,
+                      [curr.name]: new FormControl<PredicateFilterValue | null>({
+                        value: null,
+                        predicate: FilterPredicate.eq
+                      })
+                    }),
                     {}
                   )
                 );

@@ -81,6 +81,12 @@ export class InputSelectComponent extends InputComponent implements ControlValue
     if (!value) {
       this.activeOption.set(null);
     }
+
+    const option = this.options().find(o => o.value === value);
+
+    if (option) {
+      this.activeOption.set(option);
+    }
   }
 
   public onOptionClick(option: ISelectOption): void {

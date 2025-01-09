@@ -68,7 +68,9 @@ export class PredicateFilterComponent implements ControlValueAccessor {
     this._updateUI(value);
   }
 
-  private _updateUI(value: PredicateFilterValue): void {}
+  private _updateUI(value: PredicateFilterValue): void {
+    this.predicateControl.setValue(value.predicate, { emitEvent: false });
+  }
 
   private _onControlsChange(): void {
     this.predicateControl.valueChanges.pipe(takeUntilDestroyed()).subscribe(() => this._updateValue());
