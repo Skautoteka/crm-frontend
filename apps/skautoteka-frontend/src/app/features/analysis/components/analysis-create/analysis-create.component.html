@@ -1,24 +1,28 @@
 <div class="skt-analysis-create__form">
-  @if(step() === 0) {
-    <div (click)="onBoxClick('report')" class="skt-analysis-create__type-box" [class.skt-analysis-create__type-box--active]="type() === 'report'">
-      <skt-ui-icon iconName="notes" />
-      Notatka
-    </div>
-    <div (click)="onBoxClick('note')" class="skt-analysis-create__type-box" [class.skt-analysis-create__type-box--active]="type() === 'note'">
+  @if(analysis.step() === 0) {
+    <div (click)="onBoxClick('report')" class="skt-analysis-create__type-box" [class.skt-analysis-create__type-box--active]="analysis.type() === 'report'">
       <skt-ui-icon iconName="user" />
       Raport
     </div>
-  } @else if(step() === formStep) {
+    <div (click)="onBoxClick('note')" class="skt-analysis-create__type-box" [class.skt-analysis-create__type-box--active]="analysis.type() === 'note'">
+      <skt-ui-icon iconName="notes" />
+      Notatka
+    </div>
+  } @else if(analysis.step() === 1) {
     <div class="skt-analysis-create__create-container">
-      <skt-analysis-report-create />
+      @if(analysis.type() === 'report') {
+        <skt-analysis-report-create />
+      } @else {
+        hehe
+      }
     </div>
   }
 </div>
 
 <div class="skt-analysis-create__buttons">
-  @if(step() !== 0) {
+  @if(analysis.step() !== 0) {
     <skt-ui-simple-button (click)="onPreviosStepClick()">Wróć do wyboru typu</skt-ui-simple-button>
   }
 
-  <skt-ui-button [disabled]="!type()" (click)="onNextStepClick()">{{ step() === formStep ? 'Stwórz analizę' : 'Następny krok' }}</skt-ui-button>
+  <skt-ui-button [disabled]="!analysis.type()" (click)="onNextStepClick()">{{ analysis.step() === 1 ? 'Stwórz analizę' : 'Następny krok' }}</skt-ui-button>
 </div>

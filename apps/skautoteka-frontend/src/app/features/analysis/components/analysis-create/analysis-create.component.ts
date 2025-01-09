@@ -17,35 +17,28 @@ import { ReportCreateComponent } from '../analysis-report-create/analysis-report
 export class AnalysisCreateComponent {
   public analysis = inject(AnalysisStore);
 
-  public step = signal(0);
-  public type = signal<'note' | 'report' | null>(null);
-
-  get formStep(): number {
-    return 1;
-  }
-
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-analysis-create');
   }
 
   public onBoxClick(type: 'note' | 'report'): void {
-    this.type.set(type);
+    this.analysis.setType(type);
   }
 
   public onNextStepClick(): void {
-    if (!this.type()) {
+    if (!this.analysis.type()) {
       return;
     }
 
-    if (this.step() === this.formStep) {
+    if (this.analysis.step() === 1) {
       this.analysis.sendReportAnalysis();
       return;
     }
 
-    this.step.set(this.step() + 1);
+    this.analysis.setStep(this.analysis.step() + 1);
   }
 
   public onPreviosStepClick(): void {
-    this.step.set(this.step() - 1);
+    this.analysis.setStep(this.analysis.step() - 1);
   }
 }

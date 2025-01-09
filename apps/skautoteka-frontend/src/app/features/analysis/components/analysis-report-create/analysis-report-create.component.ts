@@ -28,10 +28,9 @@ export class ReportCreateComponent {
     this._classBinder.bind('skt-analysis-report-create');
     this.analysis.getReportFilters();
 
-    this.playerControl.valueChanges.pipe(takeUntilDestroyed()).subscribe(value => {
-      console.log(value);
-      this.analysis.setReportPlayerId(value);
-    });
+    this.playerControl.valueChanges
+      .pipe(takeUntilDestroyed())
+      .subscribe(value => this.analysis.setReportPlayerId(value));
 
     this.regionControl.valueChanges
       .pipe(takeUntilDestroyed())

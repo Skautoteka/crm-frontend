@@ -10,6 +10,8 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 export type AnalysisStoreState = {
   isLoading: boolean;
+  step: number;
+  type: 'note' | 'report' | null;
 
   /**
    * Report analysis state
@@ -27,6 +29,9 @@ export type AnalysisStoreState = {
 };
 
 const initialState: AnalysisStoreState = {
+  step: 0,
+  type: null,
+
   isLoading: false,
   reportFilters: null,
   reportFiltersGroup: null,
@@ -43,6 +48,24 @@ export const AnalysisStore = signalStore(
     const http = inject(AnalysisHttpService);
     const loader = inject(LoaderService);
     const fb = inject(FormBuilder);
+
+    /**
+     * Sets step of the form
+     *
+     * @param step
+     */
+    const setStep = (step: number) => {
+      patchState(store, { step });
+    };
+
+    /**
+     * Sets type of the form
+     *
+     * @param type
+     */
+    const setType = (type: 'note' | 'report') => {
+      patchState(store, { type });
+    };
 
     /**
      * Sets report player id in state
@@ -142,7 +165,9 @@ export const AnalysisStore = signalStore(
       getNoteFilters,
       sendReportAnalysis,
       setReportPlayerId,
-      setReportRegionId
+      setReportRegionId,
+      setStep,
+      setType
     };
   })
 );
