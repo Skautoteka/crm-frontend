@@ -1,27 +1,17 @@
-import { HttpClient } from "@angular/common/http";
-import { inject, Injectable } from "@angular/core";
-import { InputConfig } from "@skautoteka-frontend/ui";
-import { Observable } from "rxjs";
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { InputConfig } from '@skautoteka-frontend/ui';
+import { Observable } from 'rxjs';
+import { ReportFiltersPayload } from '../interfaces/analysis';
 
 @Injectable({ providedIn: 'root' })
 export class AnalysisHttpService {
   private _http = inject(HttpClient);
 
   /**
-   * Gets create fields for report
-   *
-   * @returns
+   * Retrieves all filters for report analysis
    */
-  public getCreateFieldsReportConfig$(): Observable<InputConfig> {
-    return this._http.get<InputConfig>('api/analysis/create-fields', { params: { type: 'report' } })
-  }
-
-  /**
-   * Gets create fields for note
-   *
-   * @returns
-   */
-  public getCreateFieldsNoteConfig$(): Observable<InputConfig> {
-    return this._http.get<InputConfig>('api/analysis/create-fields', { params: { type: 'note' } })
+  public getReportFilters$(): Observable<ReportFiltersPayload> {
+    return this._http.get<ReportFiltersPayload>('/api/analysis/get-report-filters');
   }
 }

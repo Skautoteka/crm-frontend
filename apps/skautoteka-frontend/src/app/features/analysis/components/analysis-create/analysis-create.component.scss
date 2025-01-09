@@ -12,6 +12,12 @@
     height: 100%;
   }
 
+  &__filter {
+    display: flex;
+    gap: 1rem;
+    align-items: end;
+  }
+
   &__filters-list {
     height: 100%;
   }

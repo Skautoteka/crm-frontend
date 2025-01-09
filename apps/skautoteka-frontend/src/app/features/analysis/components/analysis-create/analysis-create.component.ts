@@ -2,22 +2,20 @@ import { ChangeDetectionStrategy, Component, inject, signal, ViewEncapsulation }
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { ButtonComponent, IconComponent, InputViewService, SimpleButtonComponent } from '@skautoteka-frontend/ui';
 import { AnalysisStore } from '../../store/analysis.store';
-import { IFilter } from '../../interfaces/analysis';
+import { ReportCreateComponent } from '../analysis-report-create/analysis-report-create.component';
 
 @Component({
   selector: 'skt-analysis-create',
   templateUrl: 'analysis-create.component.html',
   styleUrl: 'analysis-create.component.scss',
   standalone: true,
-  imports: [ButtonComponent, SimpleButtonComponent, IconComponent],
+  imports: [ButtonComponent, SimpleButtonComponent, IconComponent, ReportCreateComponent],
   providers: [ClassBinder, InputViewService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
 export class AnalysisCreateComponent {
   public analysis = inject(AnalysisStore);
-
-  public filters: IFilter[] = [{ name: 'some name', label: 'some label', predicates: [] }];
 
   public step = signal(0);
   public type = signal<'note' | 'report' | null>(null);
