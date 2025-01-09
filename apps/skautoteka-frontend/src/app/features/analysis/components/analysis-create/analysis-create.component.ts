@@ -32,7 +32,12 @@ export class AnalysisCreateComponent {
     }
 
     if (this.analysis.step() === 1) {
-      this.analysis.sendReportAnalysis();
+      if (this.analysis.type() === 'report') {
+        this.analysis.sendReportAnalysis();
+      } else {
+        this.analysis.sendNoteAnalysis();
+      }
+
       return;
     }
 

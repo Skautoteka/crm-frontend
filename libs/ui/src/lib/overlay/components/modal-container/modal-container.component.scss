@@ -8,6 +8,8 @@
   border-radius: 0.5rem;
   pointer-events: all;
   padding: 2rem;
+  max-height: 80vh;
+  overflow-y: scroll;
 
   @media (min-width: 850px) {
     animation: web-show;

@@ -37,6 +37,7 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   public placeholder = input<string>('');
   public label = input<string | null>(null);
   public isRequired = input<boolean>(false);
+  public isDisabled = input<boolean>(false);
   public invalid = signal<boolean>(false);
 
   public errors = signal<ValidationErrors | null>(null);
@@ -71,10 +72,16 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   writeValue(value: string): void {
     this._value = value;
     this._cdRef.detectChanges();
+
+    if (this._onChange && this._value) {
+      this._onChange(this._value);
+    }
   }
 
   registerOnChange(fn: () => void): void {
-    this._onChange = fn;
+    if (!this._onChange) {
+      this._onChange = fn;
+    }
   }
 
   setDisabledState(isDisabled: boolean): void {

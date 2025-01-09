@@ -93,6 +93,9 @@ export const AnalysisStore = signalStore(
      */
     const setReportRegionId = (id: string | null): void => patchState(store, { reportRegionId: id });
 
+    /**
+     * Retrieves note filters
+     */
     const getNoteFilters = rxMethod<void>(
       pipe(
         tap(() => loader.showLoader('filters')),
@@ -150,6 +153,9 @@ export const AnalysisStore = signalStore(
       )
     );
 
+    /**
+     * Sends note analysis to the crm-backend service
+     */
     const sendNoteAnalysis = rxMethod<void>(
       pipe(
         tap(() => loader.showLoader('analysis-progress')),
@@ -183,7 +189,7 @@ export const AnalysisStore = signalStore(
       pipe(
         tap(() => loader.showLoader('analysis-progress')),
         switchMap(() => {
-          const group = store.noteFiltersGroup();
+          const group = store.reportFiltersGroup();
 
           if (!group) {
             throw new Error('There is no form group');

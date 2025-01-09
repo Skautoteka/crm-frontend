@@ -16,7 +16,9 @@ import { TasksReportsComponent } from '../tasks-reports/tasks-reports.component'
 import { TasksTeamsComponent } from '../tasks-teams/tasks-teams.component';
 import { TasksStore } from '../../store/tasks.store';
 import { Router } from '@angular/router';
-import { ReportsCreateComponent } from '../../../reports';
+import { ReportsCreateFromTaskComponent } from '../../../reports';
+import { NotesCreateFromTaskComponent } from '../../../notes';
+import { TasksNotesComponent } from '../tasks-notes/tasks-notes.component';
 
 @Component({
   standalone: true,
@@ -35,7 +37,8 @@ import { ReportsCreateComponent } from '../../../reports';
     SideContentHeaderComponent,
     SideContentheaderActionsComponent,
     TasksTeamsComponent,
-    SideContentSectionHeaderActionComponent
+    SideContentSectionHeaderActionComponent,
+    TasksNotesComponent
   ]
 })
 export class TasksSideContentComponent {
@@ -63,6 +66,7 @@ export class TasksSideContentComponent {
       () => {
         const activeTask = this.tasksStore.activeTask();
         this.tasksStore.getAssignedReports(activeTask?.id || '');
+        this.tasksStore.getAssignedNotes(activeTask?.id || '');
         this._content.showSideContent(!!activeTask);
       },
       { allowSignalWrites: true }
@@ -79,17 +83,17 @@ export class TasksSideContentComponent {
     this.tasksStore.removeTask(activeTask.id);
   }
 
-  public onAddNewClick(): void {
-    this._modal.createModal(ReportsCreateComponent, {
+  public onRaportsNewClick(): void {
+    this._modal.createModal(ReportsCreateFromTaskComponent, {
       header: 'Dodaj raport',
       subHeader: 'Wypełnij wszystkie wymagane informacje aby dodać raport'
     });
   }
 
   public onNotesAddClick(): void {
-    this._modal.createModal(ReportsCreateComponent, {
-      header: 'Dodaj raport',
-      subHeader: 'Wypełnij wszystkie wymagane informacje aby dodać raport'
+    this._modal.createModal(NotesCreateFromTaskComponent, {
+      header: 'Dodaj notatke',
+      subHeader: 'Wypełnij wszystkie wymagane informacje aby dodać notatke'
     });
   }
 }

@@ -9,7 +9,8 @@ import {
   input,
   signal,
   viewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  OnInit
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
@@ -39,7 +40,7 @@ import { IconComponent } from '../../../icon';
     }
   ]
 })
-export class InputDbComponent extends InputComponent implements ControlValueAccessor, AfterViewInit {
+export class InputDbComponent extends InputComponent implements ControlValueAccessor, AfterViewInit, OnInit {
   public searchType = input.required<string | null>();
 
   public dropdownVisible = signal<boolean>(false);
@@ -48,6 +49,7 @@ export class InputDbComponent extends InputComponent implements ControlValueAcce
   public queryLoading = signal<boolean>(false);
 
   public options = signal<ISelectOption[]>([]);
+  public startValue = input<any>(null);
 
   public activeOption = signal<ISelectOption | null>(null);
 
@@ -68,6 +70,15 @@ export class InputDbComponent extends InputComponent implements ControlValueAcce
         takeUntilDestroyed()
       )
       .subscribe(query => this._updateSearchQuery(query));
+  }
+
+  ngOnInit() {
+    if (this.startValue()) {
+      const initialOption = this.options().find(option => option.value === this.startValue());
+      if (initialOption) {
+        this.activeOption.set(initialOption);
+      }
+    }
   }
 
   public onClick(): void {

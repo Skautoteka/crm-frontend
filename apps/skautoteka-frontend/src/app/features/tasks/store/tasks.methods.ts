@@ -61,6 +61,25 @@ export const withTasksMethods = () => {
       );
 
       /**
+       * Gets all notes based on task id from the database.
+       * @param id
+       */
+      const getAssignedNotes = rxMethod<string>(
+        pipe(
+          tap(() => patchState(store, { isLoading: true })),
+          switchMap(id =>
+            httpService.getAssignedNotes$(id).pipe(
+              tapResponse({
+                next: notes => patchState(store, { assignedNotes: notes }),
+                error: () => null,
+                finalize: () => patchState(store, { isLoading: false })
+              })
+            )
+          )
+        )
+      );
+
+      /**
        * Private method to filter tasks.
        *
        * @param id
@@ -162,6 +181,7 @@ export const withTasksMethods = () => {
       return {
         getTasks,
         getAssignedReports,
+        getAssignedNotes,
         removeTask,
         addTask,
         fetchFields,

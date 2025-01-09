@@ -7,7 +7,19 @@
   width: 100%;
 
   .skt-ui-input {
-    flex-basis: 33%;
+    flex-basis: 35%;
+    flex-grow: 1;
+    min-width: 10rem;
+  }
+
+  .skt-ui-input-number {
+    flex-basis: 25%;
+    flex-grow: 1;
+    min-width: 10rem;
+  }
+
+  .skt-ui-input-text {
+    flex-basis: 100%;
     flex-grow: 1;
     min-width: 10rem;
   }

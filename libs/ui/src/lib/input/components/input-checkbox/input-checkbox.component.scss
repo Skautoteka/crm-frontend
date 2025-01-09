@@ -23,7 +23,15 @@
     transform: translate(-47%, -53%);
     pointer-events: none;
   }
+  &:disabled {
+    background-color: var(--basic-2);
+    border-color: var(--basic-4);
+    cursor: not-allowed;
 
+    & + .skt-ui-input-checkbox__icon {
+      color: var(--basic-5);
+    }
+  }
   &__checkbox {
     all: unset;
     width: 1rem;

@@ -36,7 +36,10 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
   public placeholder = input<string>('');
   public label = input<string | null>(null);
   public isRequired = input<boolean>(false);
+  public isDisabled = input<boolean>(false);
   public invalid = signal<boolean>(false);
+  public min = input<number | null>(null);
+  public max = input<number | null>(null);
 
   protected _value = '';
   private _control!: NgControl;
@@ -52,6 +55,7 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
 
   ngAfterViewInit(): void {
     this._control = this._injector.get(NgControl);
+
     this._updateValidUi();
   }
 
@@ -59,25 +63,48 @@ export class InputNumberComponent implements ControlValueAccessor, AfterViewInit
     this.invalid.set(!this._control.valid);
   }
 
-  public onInputChange(value: string): void {
-    this._value = value;
-    this._onChange(this._value);
+  public onInputChange(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    let value = inputElement.valueAsNumber;
+
+    if (isNaN(value)) {
+      if (this._onChange) {
+        this._onChange(this._value);
+      }
+      return;
+    }
+
+    const minValue = this.min();
+    const maxValue = this.max();
+
+    if (minValue !== null && value < minValue) {
+      value = minValue;
+      inputElement.value = value.toString();
+    } else if (maxValue !== null && value > maxValue) {
+      value = maxValue;
+      inputElement.value = value.toString();
+    }
+
+    this._value = value.toString();
+    if (this._onChange) {
+      this._onChange(this._value);
+    }
   }
 
   writeValue(value: string): void {
     this._value = value;
   }
 
-  registerOnChange(fn: () => void): void {
+  registerOnChange(fn: (value: string) => void): void {
     this._onChange = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this._isDisabled = isDisabled;
   }
 
   registerOnTouched(fn: () => void): void {
     this._onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this._isDisabled = isDisabled;
   }
 
   private _updateValidUi(): void {

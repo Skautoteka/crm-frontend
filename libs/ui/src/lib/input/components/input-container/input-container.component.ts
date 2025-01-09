@@ -11,6 +11,7 @@ import { InputSelectComponent } from '../input-select/input-select.component';
 import { InputSearchComponent } from '../input-search/input-search.component';
 import { InputNumberComponent } from '../input-number/input-number.component';
 import { InputDbComponent } from '../input-db/input-db.component';
+import { InputTextComponent } from '../input-text/input-text.component';
 
 @Component({
   selector: 'skt-ui-input-container',
@@ -29,7 +30,8 @@ import { InputDbComponent } from '../input-db/input-db.component';
     InputSelectComponent,
     InputSearchComponent,
     InputNumberComponent,
-    InputDbComponent
+    InputDbComponent,
+    InputTextComponent
   ],
   providers: [ClassBinder]
 })
@@ -54,13 +56,13 @@ export class InputContainerComponent<K> {
         const controls = config.reduce(
           (prev, curr) => ({
             ...prev,
-            [curr.name]: new FormControl(null, { validators: curr.isRequired ? [Validators.required] : [] })
+            [curr.name]: new FormControl(curr?.value, { validators: curr.isRequired ? [Validators.required] : [] })
           }),
           {}
         );
         this.formGroup = this._fb.group(controls);
-        this._cdRef.detectChanges();
         this._inputView.setFormGroup(this.formGroup);
+        this._cdRef.detectChanges();
       }
     });
   }

@@ -9,7 +9,8 @@ import {
   input,
   signal,
   viewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  OnInit
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -36,9 +37,10 @@ import { ISelectOption } from '../../interface';
     }
   ]
 })
-export class InputSelectComponent extends InputComponent implements ControlValueAccessor, AfterViewInit {
+export class InputSelectComponent extends InputComponent implements ControlValueAccessor, AfterViewInit, OnInit {
   public dropdownVisible = signal<boolean>(false);
   public options = input.required<ISelectOption[]>();
+  public startValue = input<any>(null);
 
   public activeOption = signal<ISelectOption | null>(null);
 
@@ -53,13 +55,22 @@ export class InputSelectComponent extends InputComponent implements ControlValue
       const modal = this._modal();
       const input = this._input();
 
-      if(!modal) {
+      if (!modal) {
         return;
       }
 
       const box = input.nativeElement.getBoundingClientRect();
       modal.nativeElement.style.width = box.width + 'px';
-    })
+    });
+  }
+
+  ngOnInit() {
+    if (this.startValue()) {
+      const initialOption = this.options().find(option => option.value === this.startValue());
+      if (initialOption) {
+        this.activeOption.set(initialOption);
+      }
+    }
   }
 
   public onClick(): void {
@@ -67,9 +78,9 @@ export class InputSelectComponent extends InputComponent implements ControlValue
   }
 
   public override writeValue(value: string): void {
-      if(!value) {
-        this.activeOption.set(null);
-      }
+    if (!value) {
+      this.activeOption.set(null);
+    }
   }
 
   public onOptionClick(option: ISelectOption): void {

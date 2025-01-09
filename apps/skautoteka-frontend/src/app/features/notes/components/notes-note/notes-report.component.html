@@ -1,0 +1,117 @@
+<div class="skt-notes-note__section-wrapper">
+  <div class="skt-notes-note__info-row">
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Imię</span>
+        {{ selectedNote()?.player?.firstName }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Nazwisko</span>
+        {{ selectedNote()?.player?.lastName }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Wiek</span>
+        {{ selectedNote()?.player?.age }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Narodowość</span>
+        {{ selectedNote()?.player?.nationality }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+  </div>
+
+  <div class="skt-notes-note__info-row">
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Płeć</span>
+        {{ selectedNote()?.player?.sex }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Wiek</span>
+        {{ selectedNote()?.player?.age }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Pozycja</span>
+        {{ selectedNote()?.player?.position?.name }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Opcjonalna pozycja</span>
+        {{ selectedNote()?.player?.position?.name }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+  </div>
+
+  <div class="skt-notes-note__info-row">
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Wzrost</span>
+        -
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Waga</span>
+        -
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Budowa ciała</span>
+        -
+      </skt-ui-label>
+    </skt-ui-label-container>
+  </div>
+
+  <div class="skt-notes-note__info-row">
+    @for (trait of selectedNote()?.traits; track trait.traitId) {
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>{{ trait.trait.name }}</span>
+        {{ trait.value }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+    }
+  </div>
+
+  <div class="skt-notes-note__text-rows">
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Opis postawy fizycznej</span>
+        {{ selectedNote()?.description?.physicalDescription }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Opis postawy mentalnej</span>
+        {{ selectedNote()?.description?.mentalDescription }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+
+    <skt-ui-label-container>
+      <skt-ui-label [valueClass]="'big'">
+        <span label>Opis postawy technicznej</span>
+        {{ selectedNote()?.description?.technicalDescription }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+  </div>
+</div>

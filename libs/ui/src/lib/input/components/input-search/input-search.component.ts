@@ -10,7 +10,8 @@ import {
   input,
   signal,
   viewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  OnInit
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
@@ -40,7 +41,7 @@ import { IconComponent } from '../../../icon';
     }
   ]
 })
-export class InputSearchComponent extends InputComponent implements ControlValueAccessor, AfterViewInit {
+export class InputSearchComponent extends InputComponent implements ControlValueAccessor, AfterViewInit, OnInit {
   public searchType = input.required<string | null>();
 
   public dropdownVisible = signal<boolean>(false);
@@ -49,6 +50,8 @@ export class InputSearchComponent extends InputComponent implements ControlValue
   public queryLoading = signal<boolean>(false);
 
   public options = signal<ISelectOption[]>([]);
+  public startValue = input<any>(null);
+  public startValueId = input<any>(null);
 
   public activeOption = signal<ISelectOption | null>(null);
 
@@ -82,6 +85,20 @@ export class InputSearchComponent extends InputComponent implements ControlValue
         takeUntilDestroyed()
       )
       .subscribe(query => this._updateSearchQuery(query));
+  }
+
+  ngOnInit() {
+    if (this.startValue() && this.startValueId()) {
+      const defaultOption = { value: this.startValueId(), label: this.startValue() };
+      this.activeOption.set(defaultOption);
+      setTimeout(() => {
+        this._onChange(this.startValueId());
+        if (this._input()?.nativeElement) {
+          this._onChange(defaultOption.value);
+          this._input().nativeElement.value = defaultOption.label;
+        }
+      });
+    }
   }
 
   public onClick(): void {

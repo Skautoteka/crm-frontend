@@ -1,17 +1,17 @@
-@if(assignedReports()?.length) {
-  <div class="skt-tasks-reports">
-    @for(report of assignedReports(); track report.id) {
-      <skt-ui-list-card class="skt-tasks-reports__card">
-      <div class="skt-tasks-reports__card-content">
-        <div class="skt-tasks-reports__card-image"></div>
-        <div class="skt-tasks-reports__card-info">
-          <span class="skt-tasks-reports__card-info-name">{{ report.name }}</span>
-          <span class="skt-tasks-reports__card-info-position">{{ report.status }}</span>
-        </div>
+@if(assignedReports().length) {
+<div class="skt-tasks-reports">
+  @for(report of assignedReports(); track report.id) {
+  <skt-ui-list-card class="skt-tasks-reports__card">
+    <div class="skt-tasks-reports__card-content" (click)="openReport(report)">
+      <div class="skt-tasks-reports__card-image"></div>
+      <div class="skt-tasks-reports__card-info">
+        <span class="skt-tasks-reports__card-info-name">{{ report.name }}</span>
+        <span class="skt-tasks-reports__card-info-position">{{ report.status }}</span>
       </div>
-    </skt-ui-list-card>
-    }
-  </div>
+    </div>
+  </skt-ui-list-card>
+  }
+</div>
 } @else {
-  <p class="skt-tasks-reports__empty">Nie ma przypisanych raportów</p>
+<p class="skt-tasks-reports__empty">Nie ma przypisanych raportów</p>
 }

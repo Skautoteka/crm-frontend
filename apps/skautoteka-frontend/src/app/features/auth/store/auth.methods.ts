@@ -15,7 +15,7 @@ export const withAuthMethods = () => {
     withComputed(store => {
       return {
         isLoggedIn: computed(() => store.user() !== null)
-      }
+      };
     }),
     withMethods(store => {
       const httpService = inject(AuthHttpService);
