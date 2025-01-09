@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, effect, input, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { InputConfig } from '../../interface';
 import { InputComponent } from '../input/input.component';
 import { InputViewService } from '../../services';
@@ -23,7 +23,6 @@ import { InputTextComponent } from '../input-text/input-text.component';
   imports: [
     FormsModule,
     CommonModule,
-    NgIf,
     ReactiveFormsModule,
     InputComponent,
     InputDateComponent,

@@ -12,6 +12,8 @@
   opacity: 0.8;
   transition: opacity 0.3s ease;
   width: fit-content;
+  animation-name: fade-in;
+  animation-duration: 0.3s;
 
   &:hover {
     opacity: 1;
@@ -32,5 +34,17 @@
 
   &--failure {
     background-color: var(--warn);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
   }
 }

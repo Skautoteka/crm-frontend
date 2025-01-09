@@ -1,0 +1,16 @@
+.skt-predicate-filter {
+  margin-bottom: 0.75rem;
+  display: block;
+
+  &__label {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--basic-5);
+  }
+
+  &__inputs {
+    display: flex;
+    margin-top: 0.5rem;
+    gap: 0.5rem;
+  }
+}

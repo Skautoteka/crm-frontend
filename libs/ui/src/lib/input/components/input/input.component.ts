@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   forwardRef,
@@ -12,7 +13,7 @@ import {
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, NgControl, ValidationErrors } from '@angular/forms';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -22,7 +23,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  imports: [FormsModule, FormsModule, CommonModule, NgIf],
+  imports: [FormsModule, FormsModule, CommonModule],
   providers: [
     ClassBinder,
     {
@@ -45,9 +46,10 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   private _control!: NgControl;
   private _isDisabled = false;
   private _destroyRef = inject(DestroyRef);
+  private _cdRef = inject(ChangeDetectorRef);
 
-  protected _onChange!: (value: string) => void;
-  private _onTouched!: () => void;
+  protected _onChange!: (value: string | null) => void;
+  protected _onTouched!: () => void;
 
   constructor(classBinder: ClassBinder, private _injector: Injector) {
     classBinder.bind('skt-ui-input');
@@ -69,6 +71,8 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
 
   writeValue(value: string): void {
     this._value = value;
+    this._cdRef.detectChanges();
+
     if (this._onChange && this._value) {
       this._onChange(this._value);
     }

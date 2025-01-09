@@ -45,6 +45,7 @@
   }
 
   &__table-body {
+    overflow-x: hidden;
     padding: 0.5rem 0.75rem;
     display: flex;
     height: calc(100% - 4rem);

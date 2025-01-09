@@ -2,10 +2,13 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  effect,
+  ElementRef,
   forwardRef,
   Injector,
   input,
   signal,
+  viewChild,
   ViewEncapsulation,
   OnInit
 } from '@angular/core';
@@ -41,9 +44,24 @@ export class InputSelectComponent extends InputComponent implements ControlValue
 
   public activeOption = signal<ISelectOption | null>(null);
 
+  private _input = viewChild.required('input', { read: ElementRef });
+  private _modal = viewChild('modal', { read: ElementRef });
+
   constructor(classBinder: ClassBinder, _injector: Injector) {
     super(classBinder, _injector);
     classBinder.bind('skt-ui-input-select');
+
+    effect(() => {
+      const modal = this._modal();
+      const input = this._input();
+
+      if (!modal) {
+        return;
+      }
+
+      const box = input.nativeElement.getBoundingClientRect();
+      modal.nativeElement.style.width = box.width + 'px';
+    });
   }
 
   ngOnInit() {
@@ -59,6 +77,18 @@ export class InputSelectComponent extends InputComponent implements ControlValue
     this.dropdownVisible.set(true);
   }
 
+  public override writeValue(value: string): void {
+    if (!value) {
+      this.activeOption.set(null);
+    }
+
+    const option = this.options().find(o => o.value === value);
+
+    if (option) {
+      this.activeOption.set(option);
+    }
+  }
+
   public onOptionClick(option: ISelectOption): void {
     this.activeOption.set(option);
     this._onChange(option.value);
@@ -68,5 +98,9 @@ export class InputSelectComponent extends InputComponent implements ControlValue
 
   public onOutsideClick(): void {
     this.dropdownVisible.set(false);
+  }
+
+  public override onBlur(): void {
+    this._onTouched();
   }
 }
