@@ -1,4 +1,4 @@
-import { NoteFilter, ReportFilter } from './../interfaces/analysis';
+import { NoteFilter, PredicateFilterValue, ReportFilter } from './../interfaces/analysis';
 import { inject } from '@angular/core';
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { LoaderService } from '@skautoteka-frontend/ui';
@@ -6,17 +6,22 @@ import { AnalysisHttpService } from '../services/analysis-http.service';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 export type AnalysisStoreState = {
   isLoading: boolean;
   reportFilters: ReportFilter[] | null;
+  reportFiltersGroup: FormGroup | null;
   noteFilters: NoteFilter[] | null;
+  noteFiltersGroup: FormGroup | null;
 };
 
 const initialState: AnalysisStoreState = {
   isLoading: false,
   reportFilters: null,
-  noteFilters: null
+  reportFiltersGroup: null,
+  noteFilters: null,
+  noteFiltersGroup: null
 };
 
 export const AnalysisStore = signalStore(
@@ -25,6 +30,7 @@ export const AnalysisStore = signalStore(
   withMethods(store => {
     const http = inject(AnalysisHttpService);
     const loader = inject(LoaderService);
+    const fb = inject(FormBuilder);
 
     const getNoteFilters = rxMethod<void>(
       pipe(
@@ -56,11 +62,18 @@ export const AnalysisStore = signalStore(
           http.getReportFilters$().pipe(
             tapResponse({
               error: () => {
-                patchState(store, { reportFilters: null });
+                patchState(store, { reportFilters: null, reportFiltersGroup: null });
                 loader.hideLoader('filters');
               },
               next: ({ filters }) => {
-                patchState(store, { reportFilters: filters });
+                const group = fb.group(
+                  filters.reduce(
+                    (acc, curr) => ({ ...acc, [curr.name]: new FormControl<PredicateFilterValue | null>(null) }),
+                    {}
+                  )
+                );
+
+                patchState(store, { reportFilters: filters, reportFiltersGroup: group });
                 loader.hideLoader('filters');
               }
             })

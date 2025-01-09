@@ -1,1 +1,23 @@
-.skt-analysis-report-create {}
+.skt-analysis-report-create {
+  &__filters {
+    height: calc(100% - 5.5rem);
+    overflow-y: auto;
+    padding: 0.125rem;
+  }
+
+  &__filter {}
+
+  &__filters-title {
+    font-weight: 500;
+    font-size: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  &__filters-subtitle {
+    font-weight: 500;
+    font-size: 0.8125rem;
+    color: var(--basic-5);
+    margin-bottom: 1rem;
+  }
+}

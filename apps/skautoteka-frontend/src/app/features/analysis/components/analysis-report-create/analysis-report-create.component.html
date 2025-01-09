@@ -1,0 +1,17 @@
+<div class="skt-analysis-report-create__filters-title">
+  Filtry raportów
+</div>
+<div class="skt-analysis-report-create__filters-subtitle">Wypełnij filtry, które Cię interesują</div>
+
+@if(analysis.reportFilters(); as filters) {
+  @if(analysis.reportFiltersGroup(); as group) {
+    <div [formGroup]="group" class="skt-analysis-report-create__filters">
+      @for(filter of filters; track filter.name) {
+        <div class="skt-analysis-report-create__filter">
+          <skt-predicate-filter [formControlName]="filter.name" [label]="filter.label" />
+        </div>
+      }
+    </div>
+  }
+}
+

@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { AnalysisStore } from '../../store/analysis.store';
+import { PredicateFilterComponent } from '../predicate-filter/predicate-filter.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
@@ -9,7 +11,8 @@ import { AnalysisStore } from '../../store/analysis.store';
   styleUrl: 'analysis-report-create.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [ClassBinder]
+  providers: [ClassBinder],
+  imports: [PredicateFilterComponent, ReactiveFormsModule]
 })
 export class ReportCreateComponent {
   public analysis = inject(AnalysisStore);
