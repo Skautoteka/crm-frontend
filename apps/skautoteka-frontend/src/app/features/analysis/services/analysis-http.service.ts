@@ -28,7 +28,11 @@ export class AnalysisHttpService {
    *
    * @returns
    */
-  public sendReportAnalysis$(filters: Record<string, any>): Observable<void> {
-    return this._http.post<void>('/api/analysis/analyze-report', { ...filters });
+  public sendReportAnalysis$(
+    filters: Record<string, any>,
+    playerId: string | null,
+    regionId: string | null
+  ): Observable<void> {
+    return this._http.post<void>('/api/analysis/analyze-report', { filters, playerId, regionId });
   }
 }

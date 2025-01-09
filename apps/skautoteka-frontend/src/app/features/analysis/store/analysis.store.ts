@@ -6,12 +6,22 @@ import { AnalysisHttpService } from '../services/analysis-http.service';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 export type AnalysisStoreState = {
   isLoading: boolean;
+
+  /**
+   * Report analysis state
+   */
   reportFilters: ReportFilter[] | null;
   reportFiltersGroup: FormGroup | null;
+  reportPlayerId: string | null;
+  reportRegionId: string | null;
+
+  /**
+   * Note analysis state
+   */
   noteFilters: NoteFilter[] | null;
   noteFiltersGroup: FormGroup | null;
 };
@@ -20,6 +30,8 @@ const initialState: AnalysisStoreState = {
   isLoading: false,
   reportFilters: null,
   reportFiltersGroup: null,
+  reportPlayerId: null,
+  reportRegionId: null,
   noteFilters: null,
   noteFiltersGroup: null
 };
@@ -31,6 +43,22 @@ export const AnalysisStore = signalStore(
     const http = inject(AnalysisHttpService);
     const loader = inject(LoaderService);
     const fb = inject(FormBuilder);
+
+    /**
+     * Sets report player id in state
+     *
+     * @param id
+     * @returns
+     */
+    const setReportPlayerId = (id: string | null): void => patchState(store, { reportPlayerId: id });
+
+    /**
+     * Sets report region id in state
+     *
+     * @param id
+     * @returns
+     */
+    const setReportRegionId = (id: string | null): void => patchState(store, { reportRegionId: id });
 
     const getNoteFilters = rxMethod<void>(
       pipe(
@@ -90,11 +118,12 @@ export const AnalysisStore = signalStore(
         tap(() => loader.showLoader('analysis-progress')),
         switchMap(() => {
           const group = store.reportFiltersGroup();
+
           if (!group) {
             throw new Error('There is no form group');
           }
 
-          return http.sendReportAnalysis$(group.value).pipe(
+          return http.sendReportAnalysis$(group.value, store.reportPlayerId(), store.reportRegionId()).pipe(
             tapResponse({
               next: () => {
                 loader.hideLoader('analysis-progress');
@@ -111,7 +140,9 @@ export const AnalysisStore = signalStore(
     return {
       getReportFilters,
       getNoteFilters,
-      sendReportAnalysis
+      sendReportAnalysis,
+      setReportPlayerId,
+      setReportRegionId
     };
   })
 );

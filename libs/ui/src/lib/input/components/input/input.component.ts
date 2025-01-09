@@ -47,7 +47,7 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   private _destroyRef = inject(DestroyRef);
   private _cdRef = inject(ChangeDetectorRef);
 
-  protected _onChange!: (value: string) => void;
+  protected _onChange!: (value: string | null) => void;
   protected _onTouched!: () => void;
 
   constructor(classBinder: ClassBinder, private _injector: Injector) {

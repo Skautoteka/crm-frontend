@@ -2,7 +2,9 @@ import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { AnalysisStore } from '../../store/analysis.store';
 import { PredicateFilterComponent } from '../predicate-filter/predicate-filter.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { InputSearchComponent } from '@skautoteka-frontend/ui';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   standalone: true,
@@ -12,15 +14,27 @@ import { ReactiveFormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [ClassBinder],
-  imports: [PredicateFilterComponent, ReactiveFormsModule]
+  imports: [PredicateFilterComponent, ReactiveFormsModule, InputSearchComponent]
 })
 export class ReportCreateComponent {
   public analysis = inject(AnalysisStore);
+
+  public playerControl = new FormControl('');
+  public regionControl = new FormControl('');
 
   private _classBinder = inject(ClassBinder);
 
   constructor() {
     this._classBinder.bind('skt-analysis-report-create');
     this.analysis.getReportFilters();
+
+    this.playerControl.valueChanges.pipe(takeUntilDestroyed()).subscribe(value => {
+      console.log(value);
+      this.analysis.setReportPlayerId(value);
+    });
+
+    this.regionControl.valueChanges
+      .pipe(takeUntilDestroyed())
+      .subscribe(value => this.analysis.setReportRegionId(value));
   }
 }

@@ -64,13 +64,13 @@ export class InputSearchComponent extends InputComponent implements ControlValue
       const modal = this._modal();
       const input = this._input();
 
-      if(!modal) {
+      if (!modal) {
         return;
       }
 
       const box = input.nativeElement.getBoundingClientRect();
       modal.nativeElement.style.width = box.width + 'px';
-    })
+    });
 
     this.query.valueChanges
       .pipe(
@@ -109,6 +109,7 @@ export class InputSearchComponent extends InputComponent implements ControlValue
   public onCloseClick(): void {
     this.activeOption.set(null);
     this.query.setValue('', { emitEvent: false });
+    this._onChange(null);
   }
 
   private _updateSearchQuery(query: string | null): void {

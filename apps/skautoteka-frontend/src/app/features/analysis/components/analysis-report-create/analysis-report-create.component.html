@@ -22,4 +22,20 @@
     Filtry pól raportów
   </div>
   <div class="skt-analysis-report-create__filters-subtitle">Wypełnij filtry charakterystyczne dla raportów</div>
+
+  <div class="skt-analysis-report-create__field-filters">
+    <skt-ui-input-search
+    [formControl]="playerControl"
+    label="Zawodnik raportu"
+    placeholder="Wyszukaj zawodnika"
+    searchType="player"
+  />
+
+  <skt-ui-input-search
+  [formControl]="regionControl"
+  label="Region raportu"
+  placeholder="Wyszukaj region"
+  searchType="region"
+/>
+  </div>
 </div>
