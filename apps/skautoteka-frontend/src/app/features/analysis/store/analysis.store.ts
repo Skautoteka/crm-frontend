@@ -26,6 +26,7 @@ export type AnalysisStoreState = {
    */
   noteFilters: NoteFilter[] | null;
   noteFiltersGroup: FormGroup | null;
+  noteTeamId: string | null;
 };
 
 const initialState: AnalysisStoreState = {
@@ -38,7 +39,8 @@ const initialState: AnalysisStoreState = {
   reportPlayerId: null,
   reportRegionId: null,
   noteFilters: null,
-  noteFiltersGroup: null
+  noteFiltersGroup: null,
+  noteTeamId: null
 };
 
 export const AnalysisStore = signalStore(
@@ -74,6 +76,14 @@ export const AnalysisStore = signalStore(
      * @returns
      */
     const setReportPlayerId = (id: string | null): void => patchState(store, { reportPlayerId: id });
+
+    /**
+     * Sets note team id
+     *
+     * @param id
+     * @returns
+     */
+    const setNoteTeamId = (id: string | null): void => patchState(store, { noteTeamId: id });
 
     /**
      * Sets report region id in state
@@ -133,6 +143,32 @@ export const AnalysisStore = signalStore(
       )
     );
 
+    const sendNoteAnalysis = rxMethod<void>(
+      pipe(
+        tap(() => loader.showLoader('analysis-progress')),
+        switchMap(() => {
+          const group = store.noteFiltersGroup();
+
+          if (!group) {
+            throw new Error('There is no form group');
+          }
+
+          return http.sendNoteAnalysis$(group.value, store.noteTeamId()).pipe(
+            tapResponse({
+              next: () => {
+                patchState(store, initialState);
+                loader.hideLoader('analysis-progress');
+              },
+              error: () => {
+                patchState(store, initialState);
+                loader.hideLoader('analysis-progress');
+              }
+            })
+          );
+        })
+      )
+    );
+
     /**
      * Sends report analysis
      */
@@ -149,9 +185,11 @@ export const AnalysisStore = signalStore(
           return http.sendReportAnalysis$(group.value, store.reportPlayerId(), store.reportRegionId()).pipe(
             tapResponse({
               next: () => {
+                patchState(store, initialState);
                 loader.hideLoader('analysis-progress');
               },
               error: () => {
+                patchState(store, initialState);
                 loader.hideLoader('analysis-progress');
               }
             })
@@ -164,10 +202,12 @@ export const AnalysisStore = signalStore(
       getReportFilters,
       getNoteFilters,
       sendReportAnalysis,
+      sendNoteAnalysis,
       setReportPlayerId,
       setReportRegionId,
       setStep,
-      setType
+      setType,
+      setNoteTeamId
     };
   })
 );

@@ -9,6 +9,7 @@ export type ReportFilter = {
 
 export type NoteFilter = {
   name: string;
+  label: string;
 };
 
 export interface PredicateFilterValue {

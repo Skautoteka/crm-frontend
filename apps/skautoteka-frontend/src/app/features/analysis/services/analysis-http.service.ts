@@ -35,4 +35,15 @@ export class AnalysisHttpService {
   ): Observable<void> {
     return this._http.post<void>('/api/analysis/analyze-report', { filters, playerId, regionId });
   }
+
+  /**
+   * Sends HTTP request in order to retrieve note analysis
+   *
+   * @param filters
+   * @param teamId
+   * @returns
+   */
+  public sendNoteAnalysis$(filters: Record<string, any>, teamId: string | null): Observable<void> {
+    return this._http.post<void>('/api/analysis/analyze-note', { filters, teamId });
+  }
 }
