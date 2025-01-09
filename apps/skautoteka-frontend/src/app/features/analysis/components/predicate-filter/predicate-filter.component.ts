@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, forwardRef, input, signal, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { FilterPredicate, PredicateFilterValue } from '../../interfaces/analysis';
-import { InputComponent, InputSelectComponent, ISelectOption } from '@skautoteka-frontend/ui';
+import { InputNumberComponent, InputSelectComponent, ISelectOption } from '@skautoteka-frontend/ui';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -20,7 +20,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
       multi: true
     }
   ],
-  imports: [InputSelectComponent, InputComponent, ReactiveFormsModule]
+  imports: [InputSelectComponent, InputNumberComponent, ReactiveFormsModule]
 })
 export class PredicateFilterComponent implements ControlValueAccessor {
   public disabled = signal(false);
