@@ -82,9 +82,36 @@ export const AnalysisStore = signalStore(
       )
     );
 
+    /**
+     * Sends report analysis
+     */
+    const sendReportAnalysis = rxMethod<void>(
+      pipe(
+        tap(() => loader.showLoader('analysis-progress')),
+        switchMap(() => {
+          const group = store.reportFiltersGroup();
+          if (!group) {
+            throw new Error('There is no form group');
+          }
+
+          return http.sendReportAnalysis$(group.value).pipe(
+            tapResponse({
+              next: () => {
+                loader.hideLoader('analysis-progress');
+              },
+              error: () => {
+                loader.hideLoader('analysis-progress');
+              }
+            })
+          );
+        })
+      )
+    );
+
     return {
       getReportFilters,
-      getNoteFilters
+      getNoteFilters,
+      sendReportAnalysis
     };
   })
 );

@@ -17,7 +17,7 @@
 
 <div class="skt-analysis-create__buttons">
   @if(step() !== 0) {
-    <skt-ui-simple-button (click)="onPreviosStepClick()">Poprzedni krok</skt-ui-simple-button>
+    <skt-ui-simple-button (click)="onPreviosStepClick()">Wróć do wyboru typu</skt-ui-simple-button>
   }
 
   <skt-ui-button [disabled]="!type()" (click)="onNextStepClick()">{{ step() === formStep ? 'Stwórz analizę' : 'Następny krok' }}</skt-ui-button>

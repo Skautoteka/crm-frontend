@@ -1,4 +1,8 @@
 .skt-analysis-report-create {
+  width: 100%;
+  display: flex;
+  gap: 4rem;
+
   &__filters {
     height: calc(100% - 5.5rem);
     overflow-y: auto;
@@ -6,7 +10,9 @@
     padding-right: 1rem;
   }
 
-  &__filter {}
+  &__section {
+
+  }
 
   &__filters-title {
     font-weight: 500;

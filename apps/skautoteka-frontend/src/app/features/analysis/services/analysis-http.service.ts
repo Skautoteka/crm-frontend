@@ -22,4 +22,13 @@ export class AnalysisHttpService {
   public getNoteFilters$(): Observable<AnalysisFiltersPaload> {
     return this._http.get<AnalysisFiltersPaload>('/api/analysis/get-report-filters');
   }
+
+  /**
+   * Sends request for analysis for reports
+   *
+   * @returns
+   */
+  public sendReportAnalysis$(filters: Record<string, any>): Observable<void> {
+    return this._http.post<void>('/api/analysis/analyze-report', { ...filters });
+  }
 }

@@ -38,7 +38,7 @@ export class AnalysisCreateComponent {
     }
 
     if (this.step() === this.formStep) {
-      console.log('wysylamy');
+      this.analysis.sendReportAnalysis();
       return;
     }
 

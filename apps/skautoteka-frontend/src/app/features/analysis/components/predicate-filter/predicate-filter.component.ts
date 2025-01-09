@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, forwardRef, input, signal, ViewEncapsulation } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { FilterPredicate, PredicateFilterValue } from '../../interfaces/analysis';
 import { InputComponent, InputSelectComponent, ISelectOption } from '@skautoteka-frontend/ui';
 import { ClassBinder } from '@skautoteka-frontend/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   standalone: true,
@@ -19,11 +20,14 @@ import { ClassBinder } from '@skautoteka-frontend/common';
       multi: true
     }
   ],
-  imports: [InputSelectComponent, InputComponent]
+  imports: [InputSelectComponent, InputComponent, ReactiveFormsModule]
 })
 export class PredicateFilterComponent implements ControlValueAccessor {
   public disabled = signal(false);
   public label = input.required();
+
+  public predicateControl = new FormControl();
+  public valueControl = new FormControl();
 
   public options: ISelectOption[] = [
     { value: FilterPredicate.lt, label: '<' },
@@ -45,6 +49,7 @@ export class PredicateFilterComponent implements ControlValueAccessor {
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-predicate-filter');
+    this._onControlsChange();
   }
 
   public registerOnChange(fn: (value: PredicateFilterValue) => void): void {
@@ -63,7 +68,20 @@ export class PredicateFilterComponent implements ControlValueAccessor {
     this._updateUI(value);
   }
 
-  private _updateUI(value: PredicateFilterValue): void {
-    console.log(value);
+  private _updateUI(value: PredicateFilterValue): void {}
+
+  private _onControlsChange(): void {
+    this.predicateControl.valueChanges.pipe(takeUntilDestroyed()).subscribe(() => this._updateValue());
+    this.valueControl.valueChanges.pipe(takeUntilDestroyed()).subscribe(() => this._updateValue());
+  }
+
+  private _updateValue(): void {
+    const predicate = this.predicateControl.value;
+    const value = this.valueControl.value;
+
+    this._onChange({
+      predicate,
+      value
+    });
   }
 }

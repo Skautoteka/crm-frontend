@@ -1,6 +1,6 @@
 <span class="skt-predicate-filter__label">{{ label() }}</span>
 
 <div class="skt-predicate-filter__inputs">
-  <skt-ui-input-select [options]="options" />
-  <skt-ui-input />
+  <skt-ui-input-select [formControl]="predicateControl" [options]="options" />
+  <skt-ui-input [formControl]="valueControl" />
 </div>
