@@ -8,5 +8,6 @@ export type Task = {
   location: string;
   startDate: string;
   status: 'IN_PROGRESS' | 'COMPLETED';
+  assignedToId: string | null;
   type: boolean;
 } & IGenericModel;

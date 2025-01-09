@@ -1,12 +1,11 @@
-<!-- <skt-ui-tabs (tabChange)="handleTabChange($event)"> -->
-<skt-ui-tabs>
+<skt-ui-tabs (tabChange)="handleTabChange($event)">
   <skt-ui-tab id="assigned">Przypisane</skt-ui-tab>
   <skt-ui-tab id="finished">Ukończone</skt-ui-tab>
   <skt-ui-tab id="unassigned">Wolne</skt-ui-tab>
 </skt-ui-tabs>
 
 <div class="skt-tasks-content__tasks">
-  @for (task of tasksStore.tasks(); track task.id) {
+  @for (task of tasksStore.tasks() | taskType : tab(); track task.id) {
   <skt-ui-list-card
     class="skt-tasks-content__tasks-card"
     [isActive]="tasksStore.activeTask()?.id === task.id"
