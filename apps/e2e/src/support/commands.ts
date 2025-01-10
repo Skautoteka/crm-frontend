@@ -33,3 +33,19 @@ Cypress.Commands.add('login', (email, password) => {
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', (username, password) => {
+  cy.session(
+    [username, password],
+    () => {
+      cy.visit('/');
+      cy.get('input[type="text"]').type(username);
+      cy.get('input[type="password"]').type(password);
+      cy.get('button[class="skt-ui-button__button"]').click();
+      cy.get('span').contains(/Zadania/);
+    },
+    {
+      cacheAcrossSpecs: true
+    }
+  );
+});
