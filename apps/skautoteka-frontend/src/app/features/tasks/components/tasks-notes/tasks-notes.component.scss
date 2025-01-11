@@ -2,6 +2,7 @@
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
+  width: 100%;
 
   &__empty {
     font-size: 0.8125rem;
@@ -11,6 +12,7 @@
 
   &__card {
     flex-grow: 1;
+    justify-content: space-between;
     flex-basis: 0;
   }
 
