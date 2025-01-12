@@ -1,0 +1,56 @@
+.skt-analysis-values-modal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+
+  &__tile {
+    border-radius: 1rem;
+    border: 1px solid var(--primary-5);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-grow: 1;
+    max-width: 15rem;
+  }
+
+  &__tile-title {
+    color: var(--primary-1);
+    font-size: 0.7125rem;
+    font-weight: 500;
+  }
+
+  &__value-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  &__tile-subtitle {
+    font-size: 0.875rem;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+  }
+
+  &__sub-header {
+    color: var(--primary-4);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  &__container {
+    width: 100%;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+  }
+}

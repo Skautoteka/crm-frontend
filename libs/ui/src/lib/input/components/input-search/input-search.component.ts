@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  effect,
   ElementRef,
   forwardRef,
   inject,
@@ -49,17 +50,30 @@ export class InputSearchComponent extends InputComponent implements ControlValue
   public queryLoading = signal<boolean>(false);
 
   public options = signal<ISelectOption[]>([]);
-  public override startValue = input<any>(null);
+  public startValue = input<any>(null);
   public startValueId = input<any>(null);
 
   public activeOption = signal<ISelectOption | null>(null);
 
   private _http = inject(HttpClient);
   private _input = viewChild.required('input', { read: ElementRef });
+  private _modal = viewChild('modal', { read: ElementRef });
 
   constructor(classBinder: ClassBinder, _injector: Injector) {
     super(classBinder, _injector);
     classBinder.bind('skt-ui-input-search');
+
+    effect(() => {
+      const modal = this._modal();
+      const input = this._input();
+
+      if (!modal) {
+        return;
+      }
+
+      const box = input.nativeElement.getBoundingClientRect();
+      modal.nativeElement.style.width = box.width + 'px';
+    });
 
     this.query.valueChanges
       .pipe(
@@ -77,9 +91,10 @@ export class InputSearchComponent extends InputComponent implements ControlValue
     if (this.startValue() && this.startValueId()) {
       const defaultOption = { value: this.startValueId(), label: this.startValue() };
       this.activeOption.set(defaultOption);
-      this._onChange(this.startValueId());
       setTimeout(() => {
+        this._onChange(this.startValueId());
         if (this._input()?.nativeElement) {
+          this._onChange(defaultOption.value);
           this._input().nativeElement.value = defaultOption.label;
         }
       });
@@ -111,6 +126,7 @@ export class InputSearchComponent extends InputComponent implements ControlValue
   public onCloseClick(): void {
     this.activeOption.set(null);
     this.query.setValue('', { emitEvent: false });
+    this._onChange(null);
   }
 
   private _updateSearchQuery(query: string | null): void {

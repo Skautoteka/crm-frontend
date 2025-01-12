@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, effect, input, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { InputConfig } from '../../interface';
 import { InputComponent } from '../input/input.component';
 import { InputViewService } from '../../services';
@@ -23,7 +23,6 @@ import { InputTextComponent } from '../input-text/input-text.component';
   imports: [
     FormsModule,
     CommonModule,
-    NgIf,
     ReactiveFormsModule,
     InputComponent,
     InputDateComponent,
@@ -57,13 +56,13 @@ export class InputContainerComponent<K> {
         const controls = config.reduce(
           (prev, curr) => ({
             ...prev,
-            [curr.name]: new FormControl(null, { validators: curr.isRequired ? [Validators.required] : [] })
+            [curr.name]: new FormControl(curr?.value, { validators: curr.isRequired ? [Validators.required] : [] })
           }),
           {}
         );
         this.formGroup = this._fb.group(controls);
-        this._cdRef.detectChanges();
         this._inputView.setFormGroup(this.formGroup);
+        this._cdRef.detectChanges();
       }
     });
   }

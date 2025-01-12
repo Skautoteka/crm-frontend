@@ -1,0 +1,84 @@
+@if(analysis.analysisResult(); as entries) {
+  <div class="skt-analysis-result__content-container">
+    <div class="skt-analysis-result__title-container">
+      <span class="skt-analysis-result__result-title">
+        Wyniki analizy
+      </span>
+      <span class="skt-analysis-result__result-subtitle">
+        {{ 'Znaleziono ' + entries.length + ' wyników z wcześniej wypisanych raportów lub notatek' }}
+      </span>
+    </div>
+
+    <div class="skt-analysis-result__entries">
+      @if(analysis.analysisResultType() === 'report') {
+        @for(entry of entries; track entry) {
+          <div class="skt-analysis-result__entry">
+            <div class="skt-analysis-result__entry-info">
+              <span class="skt-analysis-result__entry-info-label">Imię i nazwisko</span>
+              @if(entry.player) {
+                <span class="skt-analysis-result__entry-info-value">{{ entry.player.name }}</span>
+              }
+            </div>
+
+            <div class="skt-analysis-result__entry-info">
+              <span class="skt-analysis-result__entry-info-label">Płeć</span>
+              @if(entry.player) {
+                <span class="skt-analysis-result__entry-info-value">{{ entry.player.sex }}</span>
+              }
+            </div>
+
+            <div class="skt-analysis-result__entry-info">
+              <span class="skt-analysis-result__entry-info-label">Wzrost</span>
+              @if(entry.player) {
+                <span class="skt-analysis-result__entry-info-value">{{ entry.player.height }}</span>
+              }
+            </div>
+
+            <div class="skt-analysis-result__entry-info">
+              <span class="skt-analysis-result__entry-info-label">Kraj</span>
+              @if(entry.player) {
+                <span class="skt-analysis-result__entry-info-value">{{ entry.player.nationality }}</span>
+              }
+            </div>
+
+            <div class="skt-analysis-result__actions">
+              <skt-ui-simple-button (click)="onValuesButtonClick(entry)" iconName="notes">Zobacz oceny</skt-ui-simple-button>
+            </div>
+
+          </div>
+        }
+      } @else {
+        @for(entry of entries; track entry) {
+          <div class="skt-analysis-result__entry">
+            <div class="skt-analysis-result__entry-info">
+              <span class="skt-analysis-result__entry-info-label">Numer na koszulce</span>
+              @if(entry.playerNumber) {
+                <span class="skt-analysis-result__entry-info-value">{{ entry.playerNumber }}</span>
+              } @else {
+                <span class="skt-analysis-result__entry-info-value">Brak informacji</span>
+              }
+            </div>
+
+            <div class="skt-analysis-result__entry-info">
+              <span class="skt-analysis-result__entry-info-label">Nazwa ostatniej notatki</span>
+              @if(getNoteName(entry); as note) {
+                <span class="skt-analysis-result__entry-info-value">{{ note }}</span>
+              } @else {
+                <span class="skt-analysis-result__entry-info-value">Brak informacji</span>
+              }
+            </div>
+
+            <div class="skt-analysis-result__actions">
+              <skt-ui-simple-button iconName="notes" (click)="onValuesButtonClick(entry)">Zobacz oceny</skt-ui-simple-button>
+            </div>
+          </div>
+        }
+      }
+    </div>
+  </div>
+
+
+  <div class="skt-analysis-result__bottom-actions">
+    <skt-ui-button (click)="onNewCreateClick()">Stwórz nową analizę</skt-ui-button>
+  </div>
+}

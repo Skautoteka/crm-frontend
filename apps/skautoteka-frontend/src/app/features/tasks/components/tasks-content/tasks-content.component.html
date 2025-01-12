@@ -1,12 +1,11 @@
-<!-- <skt-ui-tabs (tabChange)="handleTabChange($event)"> -->
-<skt-ui-tabs>
+<skt-ui-tabs (tabChange)="handleTabChange($event)">
   <skt-ui-tab id="assigned">Przypisane</skt-ui-tab>
   <skt-ui-tab id="finished">Ukończone</skt-ui-tab>
   <skt-ui-tab id="unassigned">Wolne</skt-ui-tab>
 </skt-ui-tabs>
 
 <div class="skt-tasks-content__tasks">
-  @for (task of tasksStore.tasks(); track task.id) {
+  @for (task of tasksStore.tasks() | taskType : tab(); track task.id) {
   <skt-ui-list-card
     class="skt-tasks-content__tasks-card"
     [isActive]="tasksStore.activeTask()?.id === task.id"
@@ -36,5 +35,15 @@
       }
     </div>
   </skt-ui-list-card>
+  } @empty {
+    <div class="skt-tasks-content__container">
+      <div class="skt-tasks-content__header">
+        <skt-ui-icon iconName="info"></skt-ui-icon>
+        Brak rekordów
+      </div>
+
+      <div class="skt-tasks-content__sub-header">Brak rekordów w tej sekcji. Zmień sekcję używająć przycisków powyżej, lub stwórz nowe zadanie</div>
+    </div>
+
   }
 </div>

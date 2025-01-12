@@ -10,6 +10,7 @@ export interface ISingleInputConfig {
   value?: any;
   options?: ISelectOption[];
   searchType?: string;
+  valueTypes?: ISingleInputConfig[];
   min?: number;
   max?: number;
 }
@@ -19,4 +20,4 @@ export interface ISelectOption {
   label: string;
 }
 
-type InputType = 'TEXT' | 'BOOL' | 'DATE' | 'SELECT' | 'SEARCH' | 'NUMBER' | 'DB' | 'TEXTAREA';
+type InputType = 'TEXT' | 'BOOL' | 'DATE' | 'SELECT' | 'SEARCH' | 'NUMBER' | 'DB' | 'MULTIVALUE' | 'TEXTAREA';

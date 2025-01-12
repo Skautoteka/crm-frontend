@@ -34,7 +34,7 @@
   [cdkConnectedOverlayOpen]="dropdownVisible()"
   (overlayOutsideClick)="onOutsideClick()"
 >
-  <div class="skt-ui-input-search__modal">
+  <div #modal class="skt-ui-input-search__modal">
     @if(query.value?.length === 0) {
     <span class="skt-ui-input-search__prompt">Wpisz i wyszukaj rekord</span>
     } @else if(queryLoading()) {

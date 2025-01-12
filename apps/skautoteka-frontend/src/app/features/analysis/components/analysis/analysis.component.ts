@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { IconComponent } from '@skautoteka-frontend/ui';
+import { ContentComponent } from '@skautoteka-frontend/ui';
+import { AnalysisContentComponent } from "../analysis-content/analysis-content.component";
 
 @Component({
   standalone: true,
@@ -8,7 +9,7 @@ import { IconComponent } from '@skautoteka-frontend/ui';
   styleUrl: './analysis.component.scss',
   templateUrl: 'analysis.component.html',
   providers: [ClassBinder],
-  imports: [IconComponent],
+  imports: [ContentComponent, AnalysisContentComponent],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

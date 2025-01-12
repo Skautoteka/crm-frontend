@@ -1,0 +1,34 @@
+<div class="skt-analysis-note-create__section">
+  <div class="skt-analysis-note-create__filters-title">
+    Filtry ocen notatek
+  </div>
+  <div class="skt-analysis-note-create__filters-subtitle">Wypełnij filtr ogólnej oceny notatki</div>
+
+  @if(analysis.noteFilters(); as filters) {
+    @if(analysis.noteFiltersGroup(); as group) {
+      <div [formGroup]="group" class="skt-analysis-note-create__filters">
+        @for(filter of filters; track filter.name) {
+          <div class="skt-analysis-note-create__filter">
+            <skt-predicate-filter [formControlName]="filter.name" [label]="filter.label" />
+          </div>
+        }
+      </div>
+    }
+  }
+</div>
+
+<div class="skt-analysis-note-create__section">
+  <div class="skt-analysis-note-create__filters-title">
+    Filtry pól notatek
+  </div>
+  <div class="skt-analysis-note-create__filters-subtitle">Wypełnij filtry charakterystyczne dla notatek</div>
+
+  <div class="skt-analysis-note-create__field-filters">
+    <skt-ui-input-search
+    [formControl]="teamControl"
+    label="Zespół notatki"
+    placeholder="Wyszukaj zespół"
+    searchType="team"
+  />
+  </div>
+</div>

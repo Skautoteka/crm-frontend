@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   forwardRef,
@@ -12,7 +13,7 @@ import {
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, NgControl, ValidationErrors } from '@angular/forms';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -22,7 +23,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  imports: [FormsModule, FormsModule, CommonModule, NgIf],
+  imports: [FormsModule, FormsModule, CommonModule],
   providers: [
     ClassBinder,
     {
@@ -37,18 +38,18 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   public label = input<string | null>(null);
   public isRequired = input<boolean>(false);
   public isDisabled = input<boolean>(false);
-  public startValue = input<any>(null);
   public invalid = signal<boolean>(false);
 
   public errors = signal<ValidationErrors | null>(null);
 
-  protected _value = this.startValue();
+  protected _value = '';
   private _control!: NgControl;
   private _isDisabled = false;
   private _destroyRef = inject(DestroyRef);
+  private _cdRef = inject(ChangeDetectorRef);
 
-  protected _onChange!: (value: string) => void;
-  private _onTouched!: () => void;
+  protected _onChange!: (value: string | null) => void;
+  protected _onTouched!: () => void;
 
   constructor(classBinder: ClassBinder, private _injector: Injector) {
     classBinder.bind('skt-ui-input');
@@ -56,14 +57,6 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
 
   ngAfterViewInit(): void {
     this._control = this._injector.get(NgControl);
-
-    if (this.startValue) {
-      this._value = this.startValue();
-      if (this._onChange) {
-        this._onChange(this._value);
-      }
-    }
-
     this._updateValidUi();
   }
 
@@ -77,14 +70,18 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   }
 
   writeValue(value: string): void {
-    this._value = value ?? this.startValue();
-    if (this._onChange) {
+    this._value = value;
+    this._cdRef.detectChanges();
+
+    if (this._onChange && this._value) {
       this._onChange(this._value);
     }
   }
 
   registerOnChange(fn: () => void): void {
-    this._onChange = fn;
+    if (!this._onChange) {
+      this._onChange = fn;
+    }
   }
 
   setDisabledState(isDisabled: boolean): void {

@@ -11,7 +11,6 @@ import {
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { ComponentType } from '@angular/cdk/overlay';
-import { IconComponent } from '../../../icon';
 import { IModalOptions } from '../../interface/imodal';
 
 @Component({
@@ -21,8 +20,7 @@ import { IModalOptions } from '../../interface/imodal';
   templateUrl: 'modal-container.component.html',
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [IconComponent]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ModalContainerComponent<T> implements AfterViewInit {
   @ViewChild('mountPoint', { read: ViewContainerRef })
@@ -43,5 +41,6 @@ export class ModalContainerComponent<T> implements AfterViewInit {
 
   public onCloseClick(): void {
     this.closeClick.emit();
+    this.viewRef.clear();
   }
 }

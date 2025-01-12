@@ -59,4 +59,11 @@ export class ReportsHttpService {
   public updateReport$(report: Report): Observable<IModelResponse<Report>> {
     return this.http.post<IModelResponse<Report>>('api/report/update', { ...report });
   }
+
+  /**
+   * Retrieves all unassigned tasks
+   */
+  public getUnassigned$(): Observable<Report[]> {
+    return this.http.get<Report[]>('api/report/unassigned');
+  }
 }

@@ -1,8 +1,10 @@
 .skt-ui-input-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 1rem;
   flex-wrap: wrap;
-  margin: 1.5rem 0;
+  padding: 1.5rem 0;
+  width: 100%;
 
   .skt-ui-input {
     flex-basis: 35%;

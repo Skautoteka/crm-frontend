@@ -63,4 +63,15 @@ export class TasksHttpService {
   public removeTask$(id: string): Observable<void> {
     return this.http.delete<void>('api/task/' + id.toString());
   }
+
+  /**
+   * Assigns a report to task
+   *
+   * @param taskId
+   * @param reportId
+   * @returns
+   */
+  public assignReport$(taskId: string, reportId: string): Observable<void> {
+    return this.http.post<void>('api/task/assign-report', { reportId, taskId });
+  }
 }
