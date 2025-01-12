@@ -1,3 +1,4 @@
+import { IconComponent } from '@skautoteka-frontend/ui';
 import { ChangeDetectionStrategy, Component, inject, signal, ViewEncapsulation } from '@angular/core';
 import { ClassBinder, DeviceService } from '@skautoteka-frontend/common';
 import { LabelComponent, ListCardComponent, TabComponent, TabsComponent } from '@skautoteka-frontend/ui';
@@ -13,7 +14,16 @@ import { TaskTypePipe } from '../../pipes/task-type.pipe';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TabsComponent, DatePipe, TabComponent, TaskTypePipe, ListCardComponent, LabelComponent, AsyncPipe]
+  imports: [
+    TabsComponent,
+    IconComponent,
+    DatePipe,
+    TabComponent,
+    TaskTypePipe,
+    ListCardComponent,
+    LabelComponent,
+    AsyncPipe
+  ]
 })
 export class TasksContentComponent {
   public tasksStore = inject(TasksStore);
