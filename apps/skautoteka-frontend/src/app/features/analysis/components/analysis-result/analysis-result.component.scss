@@ -43,16 +43,18 @@
     gap: 4rem;
     display: flex;
     background-color: var(--primary-7);
-
-    &:hover {
-      background-color: var(--primary-6);
-    }
   }
 
   &__result-title {
     font-weight: 500;
     font-size: 1.25rem;
     margin-bottom: 0.25rem;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
   }
 
   &__result-subtitle {

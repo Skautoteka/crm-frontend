@@ -11,9 +11,15 @@ export type ReportFilter = {
   label: string;
 };
 
+export interface AnalysisResultPayload {
+  entries: AnalysisResult[];
+  type: 'note' | 'report';
+}
+
 export interface AnalysisResult {
   playerId: string;
   player: Player;
+  playerNumber: null | number;
   related: AnalysisRelatedRecords[];
   value: AnalysisValue[];
 }

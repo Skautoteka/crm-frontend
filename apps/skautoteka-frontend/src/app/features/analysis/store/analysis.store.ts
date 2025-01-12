@@ -38,6 +38,7 @@ export type AnalysisStoreState = {
    * Analysis results
    */
   analysisResult: AnalysisResult[] | null;
+  analysisResultType: 'note' | 'report' | null;
 };
 
 const initialState: AnalysisStoreState = {
@@ -53,7 +54,8 @@ const initialState: AnalysisStoreState = {
   noteFiltersGroup: null,
   noteTeamId: null,
 
-  analysisResult: null
+  analysisResult: null,
+  analysisResultType: null
 };
 
 export const AnalysisStore = signalStore(
@@ -213,10 +215,10 @@ export const AnalysisStore = signalStore(
 
           return http.sendNoteAnalysis$(group.value, store.noteTeamId()).pipe(
             tapResponse({
-              next: analysisResult => {
+              next: ({ entries, type }) => {
                 loader.hideLoader('analysis-progress');
                 notification.success('Sukces', 'Udało się poprawnie utworzyć analizę');
-                patchState(store, { analysisResult });
+                patchState(store, { analysisResult: entries, analysisResultType: type });
               },
               error: () => {
                 patchState(store, initialState);
@@ -244,10 +246,10 @@ export const AnalysisStore = signalStore(
 
           return http.sendReportAnalysis$(group.value, store.reportPlayerId(), store.reportRegionId()).pipe(
             tapResponse({
-              next: analysisResult => {
+              next: ({ entries, type }) => {
                 loader.hideLoader('analysis-progress');
                 notification.success('Sukces', 'Udało się poprawnie utworzyć analizę');
-                patchState(store, { analysisResult });
+                patchState(store, { analysisResult: entries, analysisResultType: type });
               },
               error: () => {
                 patchState(store, initialState);

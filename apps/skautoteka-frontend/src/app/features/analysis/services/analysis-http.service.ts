@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AnalysisFiltersPaload, AnalysisResult } from '../interfaces/analysis';
+import { AnalysisFiltersPaload, AnalysisResultPayload } from '../interfaces/analysis';
 
 @Injectable({ providedIn: 'root' })
 export class AnalysisHttpService {
@@ -32,8 +32,8 @@ export class AnalysisHttpService {
     filters: Record<string, any>,
     playerId: string | null,
     regionId: string | null
-  ): Observable<AnalysisResult[]> {
-    return this._http.post<AnalysisResult[]>('/api/analysis/analyze-report', { filters, playerId, regionId });
+  ): Observable<AnalysisResultPayload> {
+    return this._http.post<AnalysisResultPayload>('/api/analysis/analyze-report', { filters, playerId, regionId });
   }
 
   /**
@@ -43,7 +43,7 @@ export class AnalysisHttpService {
    * @param teamId
    * @returns
    */
-  public sendNoteAnalysis$(filters: Record<string, any>, teamId: string | null): Observable<AnalysisResult[]> {
-    return this._http.post<AnalysisResult[]>('/api/analysis/analyze-note', { filters, teamId });
+  public sendNoteAnalysis$(filters: Record<string, any>, teamId: string | null): Observable<AnalysisResultPayload> {
+    return this._http.post<AnalysisResultPayload>('/api/analysis/analyze-note', { filters, teamId });
   }
 }

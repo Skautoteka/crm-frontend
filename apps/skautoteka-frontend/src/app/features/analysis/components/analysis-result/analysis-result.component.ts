@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { AnalysisStore } from '../../store/analysis.store';
-import { ButtonComponent } from '@skautoteka-frontend/ui';
+import { ButtonComponent, SimpleButtonComponent } from '@skautoteka-frontend/ui';
 
 @Component({
   standalone: true,
@@ -11,7 +11,7 @@ import { ButtonComponent } from '@skautoteka-frontend/ui';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [ClassBinder],
-  imports: [ButtonComponent]
+  imports: [ButtonComponent, SimpleButtonComponent]
 })
 export class AnalysisResultComponent {
   public analysis = inject(AnalysisStore);
