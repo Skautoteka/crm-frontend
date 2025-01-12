@@ -22,7 +22,7 @@ export interface AnalysisResult {
   playerId: string;
   player: Player;
   playerNumber: null | number;
-  related: AnalysisRelatedRecords[];
+  related: AnalysisRelatedRecords;
   value: AnalysisValue[];
 }
 

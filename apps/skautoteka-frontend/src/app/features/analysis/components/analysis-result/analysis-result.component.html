@@ -59,6 +59,15 @@
               }
             </div>
 
+            <div class="skt-analysis-result__entry-info">
+              <span class="skt-analysis-result__entry-info-label">Nazwa ostatniej notatki</span>
+              @if(getNoteName(entry); as note) {
+                <span class="skt-analysis-result__entry-info-value">{{ note }}</span>
+              } @else {
+                <span class="skt-analysis-result__entry-info-value">Brak informacji</span>
+              }
+            </div>
+
             <div class="skt-analysis-result__actions">
               <skt-ui-simple-button iconName="notes" (click)="onValuesButtonClick(entry)">Zobacz oceny</skt-ui-simple-button>
             </div>

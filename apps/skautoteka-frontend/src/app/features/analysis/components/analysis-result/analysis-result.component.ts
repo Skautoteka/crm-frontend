@@ -27,6 +27,18 @@ export class AnalysisResultComponent {
     this.analysis.clearAnalysis();
   }
 
+  public getNoteName(entry: AnalysisResult): string {
+    let newest = entry.related[0];
+
+    entry.related.forEach(entry => {
+      if (new Date(newest?.createdAt) < new Date(entry?.createdAt)) {
+        newest = entry;
+      }
+    });
+
+    return newest?.name || 'Brak informacji';
+  }
+
   public onValuesButtonClick(entry: AnalysisResult): void {
     this.modal.createModal(AnalysisValuesModalComponent, {
       header: 'Oceny z analizy',
