@@ -30,7 +30,7 @@ export class ModalService {
     type: ComponentType<unknown>,
     options?: IModalOptions
   ): ComponentRef<ModalContainerComponent<unknown>> {
-    const ref = this._overlay.createComponent(ModalContainerComponent);
+    const ref = this._overlay.createComponent(ModalContainerComponent, options?.data);
     ref.setInput('componentType', type);
     ref.setInput('options', options);
     this._handleModalClose(ref);

@@ -16,6 +16,8 @@ export interface AnalysisResultPayload {
   type: 'note' | 'report';
 }
 
+export type AnalysisLabels = { key: string; label: string }[];
+
 export interface AnalysisResult {
   playerId: string;
   player: Player;

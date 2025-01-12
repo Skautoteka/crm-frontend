@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AnalysisFiltersPaload, AnalysisResultPayload } from '../interfaces/analysis';
+import { AnalysisFiltersPaload, AnalysisLabels, AnalysisResultPayload } from '../interfaces/analysis';
 
 @Injectable({ providedIn: 'root' })
 export class AnalysisHttpService {
@@ -45,5 +45,14 @@ export class AnalysisHttpService {
    */
   public sendNoteAnalysis$(filters: Record<string, any>, teamId: string | null): Observable<AnalysisResultPayload> {
     return this._http.post<AnalysisResultPayload>('/api/analysis/analyze-note', { filters, teamId });
+  }
+
+  /**
+   * Retrieves labels map for all assessments.
+   *
+   * @returns
+   */
+  public getLabels$(): Observable<AnalysisLabels> {
+    return this._http.get<AnalysisLabels>('/api/analysis/get-labels');
   }
 }

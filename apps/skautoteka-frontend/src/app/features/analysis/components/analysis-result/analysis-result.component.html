@@ -5,7 +5,7 @@
         Wyniki analizy
       </span>
       <span class="skt-analysis-result__result-subtitle">
-        {{ 'Znaleziono ' + entries.length + ' wyników z wcześneij wypisanych raportów lub notatek' }}
+        {{ 'Znaleziono ' + entries.length + ' wyników z wcześniej wypisanych raportów lub notatek' }}
       </span>
     </div>
 
@@ -42,7 +42,7 @@
             </div>
 
             <div class="skt-analysis-result__actions">
-              <skt-ui-simple-button iconName="notes">Zobacz oceny</skt-ui-simple-button>
+              <skt-ui-simple-button (click)="onValuesButtonClick(entry)" iconName="notes">Zobacz oceny</skt-ui-simple-button>
             </div>
 
           </div>
@@ -59,7 +59,9 @@
               }
             </div>
 
-            <skt-ui-simple-button iconName="notes">Zobacz oceny</skt-ui-simple-button>
+            <div class="skt-analysis-result__actions">
+              <skt-ui-simple-button iconName="notes" (click)="onValuesButtonClick(entry)">Zobacz oceny</skt-ui-simple-button>
+            </div>
           </div>
         }
       }

@@ -1,6 +1,11 @@
-import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
+import { ComponentRef, Injectable, InjectionToken, Injector, ViewContainerRef } from '@angular/core';
 import { ComponentType } from '@angular/cdk/overlay';
 import { OverlayContainerComponent } from '../components/overlay-container/overlay-container.component';
+
+/**
+ * Injection token used to inject custom data into overlay
+ */
+export const OVERLAY_DATA = new InjectionToken<any>('overlay.data');
 
 @Injectable({ providedIn: 'root' })
 export class OverlayService {
@@ -22,9 +27,17 @@ export class OverlayService {
    *
    * @param type
    */
-  public createComponent<T>(type: ComponentType<T>): ComponentRef<T> {
+  public createComponent<T>(type: ComponentType<T>, data?: any): ComponentRef<T> {
     if (!this._viewRef) {
       throw new Error('No viewRef provided');
+    }
+
+    if (data) {
+      return this._viewRef.createComponent(type, {
+        injector: Injector.create({
+          providers: [{ provide: OVERLAY_DATA, useValue: data }]
+        })
+      });
     }
 
     return this._viewRef.createComponent(type);
