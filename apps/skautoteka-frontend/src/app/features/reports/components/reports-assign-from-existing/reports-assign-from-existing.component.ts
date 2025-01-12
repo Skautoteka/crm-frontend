@@ -4,7 +4,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ReportsStore } from '../../store/reports.store';
 import { DatePipe } from '@angular/common';
 import { TasksStore } from '../../../tasks/store/tasks.store';
-import { DialogService, ModalService, NotificationsService } from '@skautoteka-frontend/ui';
+import { DialogService, IconComponent, ModalService, NotificationsService } from '@skautoteka-frontend/ui';
 import { ReportsCreateFromTaskComponent } from '../reports-create-from-task/reports-create-from-task.component';
 
 @Component({
@@ -15,7 +15,7 @@ import { ReportsCreateFromTaskComponent } from '../reports-create-from-task/repo
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ClassBinder],
-  imports: [DatePipe]
+  imports: [DatePipe, IconComponent]
 })
 export class ReportsAssignFromExistingComponent {
   public reports = inject(ReportsStore);
@@ -46,7 +46,7 @@ export class ReportsAssignFromExistingComponent {
       confirmInfo: {
         message: 'Tak',
         callback: () => {
-          this.reports.assignTask$(task.id, id).subscribe({
+          this.tasks.assignReport$(task.id, id).subscribe({
             next: () => {
               this._notification.success('Sukces', 'Udało się przypisać raport');
               ref.close();

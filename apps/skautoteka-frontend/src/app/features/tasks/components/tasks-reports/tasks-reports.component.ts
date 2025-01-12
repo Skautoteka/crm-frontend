@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { LabelComponent, LabelContainerComponent, ListCardComponent, ModalService } from '@skautoteka-frontend/ui';
+import { ListCardComponent, ModalService } from '@skautoteka-frontend/ui';
 import { TasksStore } from '../../store/tasks.store';
 import { Report } from '../../../reports/interfaces/report';
 import { ReportsStore } from '../../../reports/store/reports.store';
@@ -13,14 +13,7 @@ import { ReportsCreateFullComponent } from '../../../reports/components/reports-
   styleUrl: './tasks-reports.component.scss',
   templateUrl: 'tasks-reports.component.html',
   providers: [ClassBinder, DatePipe],
-  imports: [
-    LabelComponent,
-    LabelContainerComponent,
-    ListCardComponent,
-    CommonModule,
-    DatePipe,
-    ReportsCreateFullComponent
-  ],
+  imports: [ListCardComponent, CommonModule],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

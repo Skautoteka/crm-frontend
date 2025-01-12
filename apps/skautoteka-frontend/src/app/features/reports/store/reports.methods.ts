@@ -205,15 +205,6 @@ export const withReportsMethods = () => {
         return httpService.getUnassigned$();
       };
 
-      /**
-       * Assigns a user id to task
-       *
-       * @returns
-       */
-      const assignTask$ = (taskId: string, reportId: string): Observable<void> => {
-        return httpService.assignTask$(taskId, reportId);
-      };
-
       return {
         getReports,
         removeReport,
@@ -224,7 +215,6 @@ export const withReportsMethods = () => {
         setActiveReport,
         setSelectedReport,
         cleanReportFields,
-        assignTask$,
         getUnassigned$
       };
     })

@@ -1,6 +1,8 @@
-<div class="skt-reports-assign-from-existing__title">
-  Wybierz raport do przypisania
-</div>
+@if(unassigned()?.length) {
+  <div class="skt-reports-assign-from-existing__title">
+    Wybierz raport do przypisania
+  </div>
+}
 
 <div class="skt-reports-assign-from-existing__item-wrapper">
   @if(unassigned(); as unassigned) {
@@ -34,7 +36,14 @@
         </div>
       </div>
     } @empty {
-      brak rekordów
+      <div class="skt-reports-assign-from-existing__container">
+        <div class="skt-reports-assign-from-existing__header">
+          <skt-ui-icon iconName="info"></skt-ui-icon>
+          Brak rekordów
+        </div>
+
+        <div class="skt-reports-assign-from-existing__sub-header">Brak raportów, które nie są przypisane do żadnego zadania</div>
+      </div>
     }
   }
 </div>

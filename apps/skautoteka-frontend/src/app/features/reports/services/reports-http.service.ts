@@ -66,15 +66,4 @@ export class ReportsHttpService {
   public getUnassigned$(): Observable<Report[]> {
     return this.http.get<Report[]>('api/report/unassigned');
   }
-
-  /**
-   * Assigns a user id to a task id
-   *
-   * @param taskId
-   * @param reportId
-   * @returns
-   */
-  public assignTask$(taskId: string, reportId: string): Observable<void> {
-    return this.http.post<void>('api/report/assign-task', { reportId, taskId });
-  }
 }

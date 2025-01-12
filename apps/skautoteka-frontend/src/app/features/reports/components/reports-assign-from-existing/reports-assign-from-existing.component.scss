@@ -7,7 +7,6 @@
     display: flex;
     flex-direction: column;
     margin-top: 1rem;
-    min-height: 15rem;
     gap: 0.5rem;
     max-height: 17rem;
     overflow-y: scroll;
@@ -28,6 +27,30 @@
     font-size: 0.8125rem;
     font-weight: 400;
     color: var(--primary-black);
+  }
+
+
+  &__header {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+  }
+
+  &__sub-header {
+    color: var(--primary-4);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    max-width: 25rem;
+    text-align: center;
+  }
+
+  &__container {
+    padding: 4rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
   }
 
   &__item {

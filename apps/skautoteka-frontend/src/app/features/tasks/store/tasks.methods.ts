@@ -178,6 +178,20 @@ export const withTasksMethods = () => {
         patchState(store, { activeTask });
       };
 
+      /**
+       * Assigns a user id to task
+       *
+       * @returns
+       */
+      const assignReport$ = (taskId: string, reportId: string): Observable<void> => {
+        return httpService.assignReport$(taskId, reportId).pipe(
+          tap(() => {
+            getAssignedNotes(taskId);
+            getAssignedReports(taskId);
+          })
+        );
+      };
+
       return {
         getTasks,
         getAssignedReports,
@@ -185,7 +199,8 @@ export const withTasksMethods = () => {
         removeTask,
         addTask,
         fetchFields,
-        setActiveTask
+        setActiveTask,
+        assignReport$
       };
     })
   );
