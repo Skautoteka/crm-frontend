@@ -1,0 +1,27 @@
+.skt-analysis-result {
+  height: 100%;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__result-title {
+    font-weight: 500;
+    font-size: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  &__result-subtitle {
+    font-weight: 500;
+    font-size: 0.8125rem;
+    color: var(--basic-5);
+    margin-bottom: 1rem;
+  }
+
+  &__title-container {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+  }
+}

@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, signal, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { TabComponent, TabsComponent } from '@skautoteka-frontend/ui';
 import { AnalysisCreateComponent } from '../analysis-create/analysis-create.component';
+import { AnalysisStore } from '../../store/analysis.store';
+import { AnalysisResultComponent } from '../analysis-result/analysis-result.component';
 
 @Component({
   standalone: true,
@@ -11,10 +12,11 @@ import { AnalysisCreateComponent } from '../analysis-create/analysis-create.comp
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TabsComponent, TabComponent, AnalysisCreateComponent]
+  imports: [AnalysisCreateComponent, AnalysisResultComponent]
 })
 export class AnalysisContentComponent {
   public activeTab = signal<string | null>(null);
+  public analysis = inject(AnalysisStore);
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-analysis-content');

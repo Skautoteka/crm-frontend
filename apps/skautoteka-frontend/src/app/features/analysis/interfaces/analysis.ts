@@ -7,6 +7,11 @@ export type ReportFilter = {
   label: string;
 };
 
+export interface AnalysisResult {
+  id: string;
+  entries: any[];
+}
+
 export type NoteFilter = {
   name: string;
   label: string;

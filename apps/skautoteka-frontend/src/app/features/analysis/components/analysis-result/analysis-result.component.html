@@ -1,0 +1,21 @@
+@if(analysis.analysisResult()?.entries; as entries) {
+  <div class="skt-analysis-result__title-container">
+    <span class="skt-analysis-result__result-title">
+      Wyniki analizy
+    </span>
+    <span class="skt-analysis-result__result-subtitle">
+      {{ 'Znaleziono ' + entries.length + ' wyników' }}
+    </span>
+  </div>
+
+  <div class="skt-analysis-result__entries">
+    @for(entry of entries; track entry) {
+      <div class="skt-analysis-result__entry">i am an entry</div>
+    }
+  </div>
+
+
+  <div class="skt-analysis-result__actions">
+    <skt-ui-button (click)="onNewCreateClick()">Stwórz nową analizę</skt-ui-button>
+  </div>
+}

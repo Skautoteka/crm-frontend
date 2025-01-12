@@ -1,2 +1,12 @@
-<skt-ui-input-container [config]="reportsStore.createFields()"></skt-ui-input-container>
+<skt-ui-tabs (tabChange)="handleTabChange($event)">
+  <skt-ui-tab id="new">Dodaj nowy</skt-ui-tab>
+  <skt-ui-tab id="assign">Przypisz istniejący</skt-ui-tab>
+</skt-ui-tabs>
+
+@if(tab() === 'new') {
+  <skt-ui-input-container [config]="reportsStore.createFields()"></skt-ui-input-container>
+} @else {
+
+}
+
 <skt-ui-button [disabled]="!inputView.isValid" (click)="onSaveButtonClick()">Zapisz raport</skt-ui-button>

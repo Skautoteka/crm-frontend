@@ -1,10 +1,16 @@
-import { FilterPredicate, NoteFilter, PredicateFilterValue, ReportFilter } from './../interfaces/analysis';
+import {
+  AnalysisResult,
+  FilterPredicate,
+  NoteFilter,
+  PredicateFilterValue,
+  ReportFilter
+} from './../interfaces/analysis';
 import { inject } from '@angular/core';
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
-import { LoaderService } from '@skautoteka-frontend/ui';
+import { LoaderService, NotificationsService } from '@skautoteka-frontend/ui';
 import { AnalysisHttpService } from '../services/analysis-http.service';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { pipe, switchMap, tap } from 'rxjs';
+import { NEVER, pipe, switchMap, tap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
@@ -27,6 +33,11 @@ export type AnalysisStoreState = {
   noteFilters: NoteFilter[] | null;
   noteFiltersGroup: FormGroup | null;
   noteTeamId: string | null;
+
+  /**
+   * Analysis results
+   */
+  analysisResult: AnalysisResult | null;
 };
 
 const initialState: AnalysisStoreState = {
@@ -40,7 +51,9 @@ const initialState: AnalysisStoreState = {
   reportRegionId: null,
   noteFilters: null,
   noteFiltersGroup: null,
-  noteTeamId: null
+  noteTeamId: null,
+
+  analysisResult: null
 };
 
 export const AnalysisStore = signalStore(
@@ -50,6 +63,7 @@ export const AnalysisStore = signalStore(
     const http = inject(AnalysisHttpService);
     const loader = inject(LoaderService);
     const fb = inject(FormBuilder);
+    const notification = inject(NotificationsService);
 
     /**
      * Sets step of the form
@@ -57,6 +71,10 @@ export const AnalysisStore = signalStore(
      * @param step
      */
     const setStep = (step: number) => {
+      if (step === 0) {
+        patchState(store, { type: null });
+      }
+
       patchState(store, { step });
     };
 
@@ -94,13 +112,24 @@ export const AnalysisStore = signalStore(
     const setReportRegionId = (id: string | null): void => patchState(store, { reportRegionId: id });
 
     /**
+     * Clears analysis
+     *
+     * @returns
+     */
+    const clearAnalysis = () => patchState(store, initialState);
+
+    /**
      * Retrieves note filters
      */
     const getNoteFilters = rxMethod<void>(
       pipe(
-        tap(() => loader.showLoader('filters')),
-        switchMap(() =>
-          http.getNoteFilters$().pipe(
+        switchMap(() => {
+          if (store.noteFilters()) {
+            return NEVER;
+          }
+
+          loader.showLoader('filters');
+          return http.getNoteFilters$().pipe(
             tapResponse({
               error: () => {
                 patchState(store, { noteFilters: null });
@@ -124,8 +153,8 @@ export const AnalysisStore = signalStore(
                 loader.hideLoader('filters');
               }
             })
-          )
-        )
+          );
+        })
       )
     );
 
@@ -134,9 +163,13 @@ export const AnalysisStore = signalStore(
      */
     const getReportFilters = rxMethod<void>(
       pipe(
-        tap(() => loader.showLoader('filters')),
-        switchMap(() =>
-          http.getReportFilters$().pipe(
+        switchMap(() => {
+          if (store.reportFilters()) {
+            return NEVER;
+          }
+
+          loader.showLoader('filters');
+          return http.getReportFilters$().pipe(
             tapResponse({
               error: () => {
                 patchState(store, { reportFilters: null, reportFiltersGroup: null });
@@ -160,8 +193,8 @@ export const AnalysisStore = signalStore(
                 loader.hideLoader('filters');
               }
             })
-          )
-        )
+          );
+        })
       )
     );
 
@@ -181,12 +214,14 @@ export const AnalysisStore = signalStore(
           return http.sendNoteAnalysis$(group.value, store.noteTeamId()).pipe(
             tapResponse({
               next: () => {
-                patchState(store, initialState);
                 loader.hideLoader('analysis-progress');
+                notification.success('Sukces', 'Udało się poprawnie utworzyć analizę');
+                patchState(store, { analysisResult: { id: '123', entries: [] } });
               },
               error: () => {
                 patchState(store, initialState);
                 loader.hideLoader('analysis-progress');
+                notification.error('Wystąpił problem', 'Nie udało się utworzyć analizy');
               }
             })
           );
@@ -210,12 +245,14 @@ export const AnalysisStore = signalStore(
           return http.sendReportAnalysis$(group.value, store.reportPlayerId(), store.reportRegionId()).pipe(
             tapResponse({
               next: () => {
-                patchState(store, initialState);
                 loader.hideLoader('analysis-progress');
+                notification.success('Sukces', 'Udało się poprawnie utworzyć analizę');
+                patchState(store, { analysisResult: { id: '123', entries: [] } });
               },
               error: () => {
                 patchState(store, initialState);
                 loader.hideLoader('analysis-progress');
+                notification.error('Wystąpił problem', 'Nie udało się utworzyć analizy');
               }
             })
           );
@@ -232,7 +269,8 @@ export const AnalysisStore = signalStore(
       setReportRegionId,
       setStep,
       setType,
-      setNoteTeamId
+      setNoteTeamId,
+      clearAnalysis
     };
   })
 );

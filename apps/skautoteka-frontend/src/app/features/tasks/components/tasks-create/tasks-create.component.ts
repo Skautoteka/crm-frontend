@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { ButtonComponent, InputComponent, InputContainerComponent, InputViewService } from '@skautoteka-frontend/ui';
-import { AsyncPipe } from '@angular/common';
+import { ButtonComponent, InputContainerComponent, InputViewService } from '@skautoteka-frontend/ui';
 import { TasksStore } from '../../store/tasks.store';
 import { Task } from '../../interfaces';
 
@@ -11,7 +10,7 @@ import { Task } from '../../interfaces';
   styleUrl: './tasks-create.component.scss',
   templateUrl: 'tasks-create.component.html',
   providers: [ClassBinder, InputViewService],
-  imports: [InputComponent, ButtonComponent, InputContainerComponent, AsyncPipe],
+  imports: [ButtonComponent, InputContainerComponent],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
