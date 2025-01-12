@@ -1,16 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import {
-  LabelComponent,
-  ListCardComponent,
-  TabComponent,
-  TabsComponent,
-  TableComponent,
-  TableRowCellComponent,
-  TableRowComponent,
-  TagComponent
-} from '@skautoteka-frontend/ui';
-import { DatePipe } from '@angular/common';
+import { TableComponent, TableRowCellComponent, TableRowComponent } from '@skautoteka-frontend/ui';
 import { UsersStore } from '../../store/users.store';
 
 @Component({
@@ -21,17 +11,7 @@ import { UsersStore } from '../../store/users.store';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    TabsComponent,
-    TabComponent,
-    ListCardComponent,
-    LabelComponent,
-    TableComponent,
-    TableRowCellComponent,
-    TableRowComponent,
-    TagComponent,
-    DatePipe
-  ]
+  imports: [TableComponent, TableRowCellComponent, TableRowComponent]
 })
 export class UsersContentComponent {
   public usersStore = inject(UsersStore);
@@ -40,8 +20,6 @@ export class UsersContentComponent {
     { name: 'Imię', width: '15%' },
     { name: 'Nazwisko', width: '15%' },
     { name: 'Email', width: '25%' },
-    { name: 'Telefon', width: '15%' },
-    { name: 'Region', width: '15%' },
     { name: 'Rola', width: '10%' }
   ];
 

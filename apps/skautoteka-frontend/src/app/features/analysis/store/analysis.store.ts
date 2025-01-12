@@ -37,7 +37,7 @@ export type AnalysisStoreState = {
   /**
    * Analysis results
    */
-  analysisResult: AnalysisResult | null;
+  analysisResult: AnalysisResult[] | null;
 };
 
 const initialState: AnalysisStoreState = {
@@ -213,10 +213,10 @@ export const AnalysisStore = signalStore(
 
           return http.sendNoteAnalysis$(group.value, store.noteTeamId()).pipe(
             tapResponse({
-              next: () => {
+              next: analysisResult => {
                 loader.hideLoader('analysis-progress');
                 notification.success('Sukces', 'Udało się poprawnie utworzyć analizę');
-                patchState(store, { analysisResult: { id: '123', entries: [] } });
+                patchState(store, { analysisResult });
               },
               error: () => {
                 patchState(store, initialState);
@@ -244,10 +244,10 @@ export const AnalysisStore = signalStore(
 
           return http.sendReportAnalysis$(group.value, store.reportPlayerId(), store.reportRegionId()).pipe(
             tapResponse({
-              next: () => {
+              next: analysisResult => {
                 loader.hideLoader('analysis-progress');
                 notification.success('Sukces', 'Udało się poprawnie utworzyć analizę');
-                patchState(store, { analysisResult: { id: '123', entries: [] } });
+                patchState(store, { analysisResult });
               },
               error: () => {
                 patchState(store, initialState);

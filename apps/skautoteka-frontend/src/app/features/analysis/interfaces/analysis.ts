@@ -1,3 +1,7 @@
+import { Note } from '../../notes/interfaces/note';
+import { Player } from '../../players/interfaces';
+import { Report } from '../../reports/interfaces/report';
+
 export interface AnalysisFiltersPaload {
   filters: ReportFilter[];
 }
@@ -8,9 +12,19 @@ export type ReportFilter = {
 };
 
 export interface AnalysisResult {
-  id: string;
-  entries: any[];
+  playerId: string;
+  player: Player;
+  related: AnalysisRelatedRecords[];
+  value: AnalysisValue[];
 }
+
+export interface AnalysisValue {
+  average: number;
+  latestValue: number;
+  name: string;
+}
+
+export type AnalysisRelatedRecords = (Note & Report)[];
 
 export type NoteFilter = {
   name: string;
