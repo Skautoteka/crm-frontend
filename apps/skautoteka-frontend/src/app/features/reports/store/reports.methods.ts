@@ -4,7 +4,7 @@ import { inject } from '@angular/core';
 import { ReportsHttpService } from '../services/reports-http.service';
 import { Router } from '@angular/router';
 import { ModalService, NotificationsService } from '@skautoteka-frontend/ui';
-import { pipe, switchMap, tap } from 'rxjs';
+import { Observable, pipe, switchMap, tap } from 'rxjs';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { Report } from '../interfaces/report';
@@ -196,6 +196,24 @@ export const withReportsMethods = () => {
         patchState(store, { reportFields: null });
       };
 
+      /**
+       *
+       * @param taskId
+       * @returns
+       */
+      const getUnassigned$ = (): Observable<Report[]> => {
+        return httpService.getUnassigned$();
+      };
+
+      /**
+       * Assigns a user id to task
+       *
+       * @returns
+       */
+      const assignTask$ = (taskId: string, reportId: string): Observable<void> => {
+        return httpService.assignTask$(taskId, reportId);
+      };
+
       return {
         getReports,
         removeReport,
@@ -205,7 +223,9 @@ export const withReportsMethods = () => {
         fetchReportFields,
         setActiveReport,
         setSelectedReport,
-        cleanReportFields
+        cleanReportFields,
+        assignTask$,
+        getUnassigned$
       };
     })
   );

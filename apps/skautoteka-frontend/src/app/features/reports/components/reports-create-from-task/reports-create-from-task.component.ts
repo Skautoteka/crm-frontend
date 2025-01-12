@@ -10,6 +10,7 @@ import {
 import { Report } from '../../interfaces/report';
 import { ReportsStore } from '../../store/reports.store';
 import { TasksStore } from '../../../tasks/store/tasks.store';
+import { ReportsAssignFromExistingComponent } from '../reports-assign-from-existing/reports-assign-from-existing.component';
 
 @Component({
   standalone: true,
@@ -17,7 +18,7 @@ import { TasksStore } from '../../../tasks/store/tasks.store';
   styleUrl: './reports-create-from-task.component.scss',
   templateUrl: 'reports-create-from-task.component.html',
   providers: [ClassBinder, InputViewService],
-  imports: [ButtonComponent, InputContainerComponent, TabsComponent, TabComponent],
+  imports: [ButtonComponent, InputContainerComponent, TabsComponent, TabComponent, ReportsAssignFromExistingComponent],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
