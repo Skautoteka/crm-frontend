@@ -17,9 +17,9 @@ export class UsersContentComponent {
   public usersStore = inject(UsersStore);
   public tableDef = [
     { name: 'Zdjecie', width: '4rem', hidden: true },
-    { name: 'Imię', width: '15%' },
-    { name: 'Nazwisko', width: '15%' },
-    { name: 'Email', width: '25%' },
+    { name: 'Imię', width: '20%' },
+    { name: 'Nazwisko', width: '20%' },
+    { name: 'Email', width: '30%' },
     { name: 'Rola', width: '10%' }
   ];
 
