@@ -16,7 +16,7 @@ export class ListCardComponent {
   public assign = input<boolean>(false);
   public isActive = input<boolean>(false);
 
-  public assignClicked = output();
+  public unassignClicked = output();
   public trashClicked = output();
 
   constructor(classBinder: ClassBinder) {
@@ -32,6 +32,6 @@ export class ListCardComponent {
   }
 
   public onAssignedClick(): void {
-    this.assignClicked.emit();
+    this.unassignClicked.emit();
   }
 }

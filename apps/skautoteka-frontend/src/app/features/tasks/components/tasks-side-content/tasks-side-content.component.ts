@@ -65,7 +65,7 @@ export class TasksSideContentComponent {
     effect(
       () => {
         const activeTask = this.tasksStore.activeTask();
-        this.tasksStore.getAssignedReports(activeTask?.id || '');
+        this.tasksStore.getAssignedReports();
         this.tasksStore.getAssignedNotes();
         this._content.showSideContent(!!activeTask);
       },

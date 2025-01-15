@@ -66,4 +66,14 @@ export class ReportsHttpService {
   public getUnassigned$(): Observable<Report[]> {
     return this.http.get<Report[]>('api/report/unassigned');
   }
+
+  /**
+   * Unassigns the report from a task
+   *
+   * @param id
+   * @returns
+   */
+  public unassignReport$(id: string): Observable<void> {
+    return this.http.post<void>('api/report/unassign/', { id });
+  }
 }

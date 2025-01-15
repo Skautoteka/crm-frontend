@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ModalService, NotificationsService } from '@skautoteka-frontend/ui';
 import { inject } from '@angular/core';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { NEVER, Observable, pipe, switchMap, tap } from 'rxjs';
+import { EMPTY, NEVER, Observable, pipe, switchMap, tap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
 import { TasksStoreState } from './tasks.store';
 import { TasksHttpService } from '../services/tasks-http.service';
@@ -45,18 +45,24 @@ export const withTasksMethods = () => {
        * Gets all reports based on task id from the database.
        * @param id
        */
-      const getAssignedReports = rxMethod<string>(
+      const getAssignedReports = rxMethod<void>(
         pipe(
           tap(() => patchState(store, { isLoading: true })),
-          switchMap(id =>
-            httpService.getAssignedReports$(id).pipe(
+          switchMap(() => {
+            const activeTask = store.activeTask();
+
+            if (!activeTask) {
+              return EMPTY;
+            }
+
+            return httpService.getAssignedReports$(activeTask.id).pipe(
               tapResponse({
                 next: reports => patchState(store, { assignedReports: reports }),
                 error: () => null,
                 finalize: () => patchState(store, { isLoading: false })
               })
-            )
-          )
+            );
+          })
         )
       );
 
@@ -193,7 +199,7 @@ export const withTasksMethods = () => {
         return httpService.assignReport$(taskId, reportId).pipe(
           tap(() => {
             getAssignedNotes();
-            getAssignedReports(taskId);
+            getAssignedReports();
           })
         );
       };

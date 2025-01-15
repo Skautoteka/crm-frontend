@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { ListCardComponent, ModalService } from '@skautoteka-frontend/ui';
+import { DialogService, ListCardComponent, ModalService } from '@skautoteka-frontend/ui';
 import { TasksStore } from '../../store/tasks.store';
 import { Report } from '../../../reports/interfaces/report';
 import { ReportsStore } from '../../../reports/store/reports.store';
@@ -23,6 +23,8 @@ export class TasksReportsComponent {
 
   public assignedReports = this.tasksStore.assignedReports;
 
+  private _dialog = inject(DialogService);
+
   constructor(classBinder: ClassBinder, private _modal: ModalService, private datePipe: DatePipe) {
     classBinder.bind('skt-tasks-reports');
   }
@@ -34,6 +36,42 @@ export class TasksReportsComponent {
     this._modal.createModal(ReportsCreateFullComponent, {
       header: `Raport: ${report.name}`,
       subHeader: `Utworzony: ${formattedDate}`
+    });
+  }
+
+  public onTrashClicked(id: string): void {
+    const ref = this._dialog.createPrompt({
+      message: 'Czy na pewno chcesz usunąć rekord?',
+      auxiliaryMessage: 'Usunięcie skutkuje całkowitym usunięciem danych',
+      confirmInfo: {
+        message: 'Tak, usuwam',
+        callback: () => {
+          this.reportStore.removeReport(id);
+          ref.close();
+        }
+      },
+      cancelInfo: {
+        message: 'Nie usuwaj',
+        callback: () => ref.close()
+      }
+    });
+  }
+
+  public onUnassignClicked(id: string): void {
+    const ref = this._dialog.createPrompt({
+      message: 'Czy na pewno chcesz usunąć przypisanie raportu do zadania?',
+      auxiliaryMessage: 'Usunięcie przypisania raportu do zadania jest przywracalne',
+      confirmInfo: {
+        message: 'Tak, usuń',
+        callback: () => {
+          this.reportStore.unassignReport(id);
+          ref.close();
+        }
+      },
+      cancelInfo: {
+        message: 'Nie usuwaj',
+        callback: () => ref.close()
+      }
     });
   }
 }
