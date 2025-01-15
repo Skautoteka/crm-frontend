@@ -10,5 +10,5 @@
 }
 
 @if(tab() === 'new') {
-  <skt-ui-button [disabled]="!inputView.isValid" (click)="onSaveButtonClick()">Zapisz raport</skt-ui-button>
+  <skt-ui-button id='save-report-btn' [disabled]="!inputView.isValid" (click)="onSaveButtonClick()">Zapisz raport</skt-ui-button>
 }

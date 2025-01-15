@@ -89,7 +89,7 @@ export const withNotesMethods = () => {
               tapResponse({
                 next: ({ added }) => {
                   patchState(store, { notes: [...store.notes(), added] });
-                  notification.success('Poprawnie dodano raport');
+                  notification.success('Poprawnie dodano notatke');
                 },
                 error: () => {
                   notification.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');
@@ -114,7 +114,7 @@ export const withNotesMethods = () => {
                   patchState(store, {
                     notes: store.notes().map(r => (r.id === updated.id ? updated : r))
                   });
-                  notification.success('Poprawnie zaktualizowano raport');
+                  notification.success('Poprawnie zaktualizowano notatke');
                 },
                 error: () => {
                   notification.error('Brak dostepu do aktualizacji rekordow', 'Skontaktuj sie z administratorem');
