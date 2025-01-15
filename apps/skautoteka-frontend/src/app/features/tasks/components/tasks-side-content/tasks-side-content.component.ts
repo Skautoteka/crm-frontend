@@ -66,7 +66,7 @@ export class TasksSideContentComponent {
       () => {
         const activeTask = this.tasksStore.activeTask();
         this.tasksStore.getAssignedReports(activeTask?.id || '');
-        this.tasksStore.getAssignedNotes(activeTask?.id || '');
+        this.tasksStore.getAssignedNotes();
         this._content.showSideContent(!!activeTask);
       },
       { allowSignalWrites: true }

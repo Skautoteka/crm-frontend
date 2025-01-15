@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { ButtonComponent, InputComponent, InputContainerComponent, InputViewService } from '@skautoteka-frontend/ui';
-import { AsyncPipe } from '@angular/common';
+import { ButtonComponent, InputContainerComponent, InputViewService } from '@skautoteka-frontend/ui';
 import { Note } from '../../interfaces/note';
 import { NotesStore } from '../../store/notes.store';
 import { TasksStore } from '../../../tasks/store/tasks.store';
@@ -12,7 +11,7 @@ import { TasksStore } from '../../../tasks/store/tasks.store';
   styleUrl: './notes-create-from-task.component.scss',
   templateUrl: 'notes-create-from-task.component.html',
   providers: [ClassBinder, InputViewService],
-  imports: [InputComponent, ButtonComponent, InputContainerComponent, AsyncPipe],
+  imports: [ButtonComponent, InputContainerComponent],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -26,8 +25,12 @@ export class NotesCreateFromTaskComponent {
   }
 
   public onSaveButtonClick(): void {
-    const taskId = this.tasksStore.activeTask()?.id;
-    this.notesStore.addNote({ ...this.inputView.value, taskId });
-    setTimeout(() => this.tasksStore.getAssignedNotes(taskId || ''), 100); // TODO how to get assigned notes on addition od note
+    const activeTask = this.tasksStore.activeTask();
+
+    if (!activeTask) {
+      return;
+    }
+
+    this.notesStore.addNote({ ...this.inputView.value, taskId: activeTask.id });
   }
 }

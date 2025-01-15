@@ -1,7 +1,7 @@
 @if(assignedReports().length) {
 <div class="skt-tasks-reports">
   @for(report of assignedReports(); track report.id) {
-  <skt-ui-list-card class="skt-tasks-reports__card">
+  <skt-ui-list-card [assign]="true" class="skt-tasks-reports__card">
     <div class="skt-tasks-reports__card-content" (click)="openReport(report)">
       <div class="skt-tasks-reports__card-image"></div>
       <div class="skt-tasks-reports__card-info">
