@@ -110,6 +110,7 @@ export const withNotesMethods = () => {
                     notes: store.notes().map(r => (r.id === updated.id ? updated : r))
                   });
                   notification.success('Poprawnie zaktualizowano notatkę');
+                  tasks.getAssignedNotes();
                 },
                 error: () => {
                   notification.error('Brak dostepu do aktualizacji rekordow', 'Skontaktuj sie z administratorem');
