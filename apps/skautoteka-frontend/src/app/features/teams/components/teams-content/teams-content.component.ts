@@ -19,8 +19,8 @@ export class TeamsContentComponent {
   public tableDef = [
     { name: 'Zdjecie', width: '4rem', hidden: true },
     { name: 'Nazwa', width: 'auto' },
-    { name: 'Kraj', width: '25%' },
-    { name: 'Miasto', width: '30%' }
+    { name: 'Miasto', width: '30%' },
+    { name: 'Kraj', width: '25%' }
   ];
 
   constructor(classBinder: ClassBinder) {

@@ -51,6 +51,10 @@ export class InputContainerComponent<K> {
 
   private _buildInputs(): void {
     effect(() => {
+      if (this.formGroup) {
+        return;
+      }
+
       const config = this.config();
       if (config) {
         const controls = config.reduce(
@@ -60,6 +64,7 @@ export class InputContainerComponent<K> {
           }),
           {}
         );
+
         this.formGroup = this._fb.group(controls);
         this._inputView.setFormGroup(this.formGroup);
         this._cdRef.detectChanges();

@@ -2,21 +2,21 @@ import { patchState, signalStoreFeature, type, withMethods } from '@ngrx/signals
 import { NotesStoreState } from './notes.store';
 import { inject } from '@angular/core';
 import { NotesHttpService } from '../services/notes-http.service';
-import { Router } from '@angular/router';
 import { ModalService, NotificationsService } from '@skautoteka-frontend/ui';
 import { pipe, switchMap, tap } from 'rxjs';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { Note } from '../interfaces/note';
+import { TasksStore } from '../../tasks/store/tasks.store';
 
 export const withNotesMethods = () => {
   return signalStoreFeature(
     { state: type<NotesStoreState>() },
     withMethods(store => {
       const httpService = inject(NotesHttpService);
-      const router = inject(Router);
       const modal = inject(ModalService);
       const notification = inject(NotificationsService);
+      const tasks = inject(TasksStore);
 
       /**
        * Gets all notes from the database.
@@ -48,14 +48,6 @@ export const withNotesMethods = () => {
       const _filterNote = (id: string | null): Note[] => store.notes().filter(note => note.id !== id);
 
       /**
-       * A private method that is used to find a note from the store.
-       *
-       * @param id
-       * @returns
-       */
-      const _findNote = (id: string | null): Note | null => store.notes().find(note => note.id === id) || null;
-
-      /**
        * Removes note from the database and from the store.
        */
       const removeNote = rxMethod<string>(
@@ -66,13 +58,13 @@ export const withNotesMethods = () => {
               tapResponse({
                 next: () => {
                   patchState(store, { notes: _filterNote(id) });
-                  notification.success('Poprawnie usunieto raport');
+                  notification.success('Poprawnie usunieto notatkę');
+                  tasks.getAssignedNotes();
                 },
                 error: () => {
-                  notification.error('Brak dostepu do usuwania rekordow', 'Skontaktuj sie z administratorem');
+                  notification.error('Brak dostepu do usuwania rekordów', 'Skontaktuj sie z administratorem');
                   modal.closeAll();
-                },
-                finalize: () => setActiveNote(null)
+                }
               })
             )
           )
@@ -95,7 +87,10 @@ export const withNotesMethods = () => {
                   notification.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');
                   modal.closeAll();
                 },
-                finalize: () => modal.closeAll()
+                finalize: () => {
+                  modal.closeAll();
+                  tasks.getAssignedNotes();
+                }
               })
             )
           )
@@ -114,7 +109,7 @@ export const withNotesMethods = () => {
                   patchState(store, {
                     notes: store.notes().map(r => (r.id === updated.id ? updated : r))
                   });
-                  notification.success('Poprawnie zaktualizowano notatke');
+                  notification.success('Poprawnie zaktualizowano notatkę');
                 },
                 error: () => {
                   notification.error('Brak dostepu do aktualizacji rekordow', 'Skontaktuj sie z administratorem');
@@ -174,23 +169,6 @@ export const withNotesMethods = () => {
        *
        * @param id
        */
-      const setActiveNote = (id: string | null) => {
-        const activeNote = _findNote(id);
-
-        if (activeNote) {
-          router.navigate(['dashboard', 'notes', 'details', activeNote.id]);
-        } else {
-          router.navigate(['dashboard', 'notes']);
-        }
-
-        patchState(store, { activeNote });
-      };
-
-      /**
-       * Sets active note.
-       *
-       * @param id
-       */
       const setSelectedNote = (note: Note | null) => {
         patchState(store, { selectedNote: note });
       };
@@ -202,7 +180,6 @@ export const withNotesMethods = () => {
         updateNote,
         fetchFields,
         fetchNoteFields,
-        setActiveNote,
         setSelectedNote,
         cleanNoteFields
       };

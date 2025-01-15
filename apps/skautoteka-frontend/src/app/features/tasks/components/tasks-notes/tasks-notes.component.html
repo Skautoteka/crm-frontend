@@ -1,12 +1,14 @@
 @if(assignedNotes().length) {
 <div class="skt-tasks-notes">
   @for(note of assignedNotes(); track note.id) {
-  <skt-ui-list-card class="skt-tasks-notes__card">
+  <skt-ui-list-card (trashClicked)="onTrashClicked(note.id)" class="skt-tasks-notes__card">
     <div class="skt-tasks-notes__card-content" (click)="openNote(note)">
-      <div class="skt-tasks-notes__card-image"></div>
+      <div class="skt-tasks-notes__card-image">
+        <skt-ui-icon iconName="pen" />
+      </div>
       <div class="skt-tasks-notes__card-info">
         <span class="skt-tasks-notes__card-info-name">{{ note.name }}</span>
-        <span class="skt-tasks-notes__card-info-position">{{ note.status }}</span>
+        <span class="skt-tasks-notes__card-info-position">{{ note.status === 'IN_PROGRESS' ? 'W trakcie' : 'Ukończona' }}</span>
       </div>
     </div>
   </skt-ui-list-card>

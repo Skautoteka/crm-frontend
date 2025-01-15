@@ -7,12 +7,10 @@ import {
   SideContentheaderActionsComponent,
   SideContentHeaderComponent,
   SideContentSectionComponent,
-  SideContentSectionHeaderComponent,
   SideContentSectionHeaderActionComponent
 } from '@skautoteka-frontend/ui';
 import { NotesBasicInfoComponent } from '../notes-basic-info/notes-basic-info.component';
 import { NotesTitleComponent } from '../notes-title/notes-title.component';
-import { NotesRatingComponent } from '../notes-rating/notes-rating.component';
 import { NotesStore } from '../../store/notes.store';
 import { Router } from '@angular/router';
 
@@ -26,13 +24,11 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     SideContentComponent,
-    SideContentSectionHeaderComponent,
     SideContentSectionComponent,
     NotesBasicInfoComponent,
     SideContentHeaderComponent,
     SideContentheaderActionsComponent,
     NotesTitleComponent,
-    NotesRatingComponent,
     SideContentSectionHeaderActionComponent
   ]
 })
@@ -55,10 +51,6 @@ export class NotesSideContentComponent {
     if (!this.notesStore.activeNote()) {
       this._router.navigate(['/', 'dashboard', 'notes']);
     }
-  }
-
-  public onMobileBackClick(): void {
-    this.notesStore.setActiveNote(null);
   }
 
   private _showSideContent() {

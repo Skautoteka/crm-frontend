@@ -13,13 +13,26 @@
     width: 100%;
   }
 
+  &__actions {
+    border-radius: 0.5rem;
+    color: var(--primary-4);
+    background-color: var(--primary-6);
+    transition: background-color .3s ease;
+
+    &:hover {
+      background-color: var(--primary-5);
+      color: var(--primary-3);
+    }
+  }
+
+  &__actions-wrapper {
+    display: flex;
+    gap: 0.5rem;
+  }
+
   &--active {
     transition: background-color 0.3s;
     background-color: black;
-
-    .skt-ui-icon__wrapper {
-      color: var(--basic-10);
-    }
 
     &:hover {
       background-color: black;

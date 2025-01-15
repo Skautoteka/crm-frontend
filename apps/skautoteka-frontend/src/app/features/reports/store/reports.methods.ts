@@ -8,6 +8,7 @@ import { Observable, pipe, switchMap, tap } from 'rxjs';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { Report } from '../interfaces/report';
+import { TasksStore } from '../../tasks/store/tasks.store';
 
 export const withReportsMethods = () => {
   return signalStoreFeature(
@@ -17,6 +18,7 @@ export const withReportsMethods = () => {
       const router = inject(Router);
       const modal = inject(ModalService);
       const notification = inject(NotificationsService);
+      const tasks = inject(TasksStore);
 
       /**
        * Gets all reports from the database.
@@ -57,6 +59,29 @@ export const withReportsMethods = () => {
         store.reports().find(report => report.id === id) || null;
 
       /**
+       * Unassigns the report from a task
+       */
+      const unassignReport = rxMethod<string>(
+        pipe(
+          tap(() => patchState(store, { isLoading: true })),
+          switchMap(id =>
+            httpService.unassignReport$(id).pipe(
+              tapResponse({
+                next: () => {
+                  tasks.getAssignedReports();
+                  notification.success('Poprawnie usunieto przypisanie');
+                },
+                error: () => {
+                  notification.error('Brak dostepu do usuwania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                }
+              })
+            )
+          )
+        )
+      );
+
+      /**
        * Removes report from the database and from the store.
        */
       const removeReport = rxMethod<string>(
@@ -81,6 +106,29 @@ export const withReportsMethods = () => {
       );
 
       /**
+       * Removes report from the database and from the store.
+       */
+      const removeAuxilliaryReport = rxMethod<string>(
+        pipe(
+          tap(() => patchState(store, { isLoading: true })),
+          switchMap(id =>
+            httpService.removeReport$(id).pipe(
+              tapResponse({
+                next: () => {
+                  notification.success('Poprawnie usunieto raport');
+                  tasks.getAssignedReports();
+                },
+                error: () => {
+                  notification.error('Brak dostepu do usuwania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                }
+              })
+            )
+          )
+        )
+      );
+
+      /**
        * Adds a report to the store and to the database.
        */
       const addReport = rxMethod<Report>(
@@ -91,6 +139,7 @@ export const withReportsMethods = () => {
                 next: ({ added }) => {
                   patchState(store, { reports: [...store.reports(), added] });
                   notification.success('Poprawnie dodano raport');
+                  tasks.getAssignedReports();
                 },
                 error: () => {
                   notification.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');
@@ -208,10 +257,12 @@ export const withReportsMethods = () => {
       return {
         getReports,
         removeReport,
+        unassignReport,
         addReport,
         updateReport,
         fetchFields,
         fetchReportFields,
+        removeAuxilliaryReport,
         setActiveReport,
         setSelectedReport,
         cleanReportFields,

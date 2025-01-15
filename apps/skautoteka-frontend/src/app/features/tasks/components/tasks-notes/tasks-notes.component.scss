@@ -21,6 +21,10 @@
     height: 3rem;
     border-radius: 0.5rem;
     background-color: var(--primary-6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary-4);
   }
 
   &__card-content {
