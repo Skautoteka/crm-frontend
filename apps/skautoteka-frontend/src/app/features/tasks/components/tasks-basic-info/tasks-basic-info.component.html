@@ -6,7 +6,7 @@
   </skt-ui-label>
   <skt-ui-label>
     <span label>Data</span>
-    {{ (task.startDate | date) || 'Brak informacji' }}
+    {{ (task.startDate | date:'fullDate':'':'pl') || 'Brak informacji' }}
   </skt-ui-label>
   <skt-ui-label>
     <span label>Adres meczu</span>
