@@ -4,9 +4,9 @@
     <skt-ui-table-row-cell>
       <div class="skt-teams-content__team-logo"></div>
     </skt-ui-table-row-cell>
-    <skt-ui-table-row-cell>{{ item.name }}</skt-ui-table-row-cell>
-    <skt-ui-table-row-cell>{{ item.city }}</skt-ui-table-row-cell>
-    <skt-ui-table-row-cell>{{ item.country }}</skt-ui-table-row-cell>
+    <skt-ui-table-row-cell>{{ item.name || 'Brak informacji' }}</skt-ui-table-row-cell>
+    <skt-ui-table-row-cell>{{ item.city || 'Brak informacji' }}</skt-ui-table-row-cell>
+    <skt-ui-table-row-cell>{{ item.country || 'Brak informacji' }}</skt-ui-table-row-cell>
   </skt-ui-table-row>
   }
 </skt-ui-table>

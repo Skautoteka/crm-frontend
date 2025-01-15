@@ -6,7 +6,7 @@
       <div class="skt-tasks-reports__card-image"></div>
       <div class="skt-tasks-reports__card-info">
         <span class="skt-tasks-reports__card-info-name">{{ report.name }}</span>
-        <span class="skt-tasks-reports__card-info-position">{{ report.status }}</span>
+        <span class="skt-tasks-reports__card-info-position">{{ report.status === 'IN_PROGRESS' ? 'W trakcie' : 'Ukończony' }}</span>
       </div>
     </div>
   </skt-ui-list-card>

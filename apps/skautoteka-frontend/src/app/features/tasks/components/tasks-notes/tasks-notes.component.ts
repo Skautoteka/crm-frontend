@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { DialogService, ListCardComponent, ModalService } from '@skautoteka-frontend/ui';
+import { DialogService, IconComponent, ListCardComponent, ModalService } from '@skautoteka-frontend/ui';
 import { TasksStore } from '../../store/tasks.store';
 import { Note } from '../../../notes/interfaces/note';
 import { NotesStore } from '../../../notes/store/notes.store';
@@ -13,7 +13,7 @@ import { NotesCreateFullComponent } from '../../../notes/components/notes-create
   styleUrl: './tasks-notes.component.scss',
   templateUrl: 'tasks-notes.component.html',
   providers: [ClassBinder, DatePipe],
-  imports: [ListCardComponent, CommonModule],
+  imports: [ListCardComponent, CommonModule, IconComponent],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

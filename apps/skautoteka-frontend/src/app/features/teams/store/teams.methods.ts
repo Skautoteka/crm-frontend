@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { patchState, signalStoreFeature, withMethods, type, withHooks } from '@ngrx/signals';
+import { patchState, signalStoreFeature, withMethods, type } from '@ngrx/signals';
 import { tapResponse } from '@ngrx/operators';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';

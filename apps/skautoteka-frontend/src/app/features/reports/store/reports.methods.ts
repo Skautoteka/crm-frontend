@@ -106,6 +106,29 @@ export const withReportsMethods = () => {
       );
 
       /**
+       * Removes report from the database and from the store.
+       */
+      const removeAuxilliaryReport = rxMethod<string>(
+        pipe(
+          tap(() => patchState(store, { isLoading: true })),
+          switchMap(id =>
+            httpService.removeReport$(id).pipe(
+              tapResponse({
+                next: () => {
+                  notification.success('Poprawnie usunieto raport');
+                  tasks.getAssignedReports();
+                },
+                error: () => {
+                  notification.error('Brak dostepu do usuwania rekordow', 'Skontaktuj sie z administratorem');
+                  modal.closeAll();
+                }
+              })
+            )
+          )
+        )
+      );
+
+      /**
        * Adds a report to the store and to the database.
        */
       const addReport = rxMethod<Report>(
@@ -239,6 +262,7 @@ export const withReportsMethods = () => {
         updateReport,
         fetchFields,
         fetchReportFields,
+        removeAuxilliaryReport,
         setActiveReport,
         setSelectedReport,
         cleanReportFields,

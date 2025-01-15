@@ -46,7 +46,7 @@ export class TasksReportsComponent {
       confirmInfo: {
         message: 'Tak, usuwam',
         callback: () => {
-          this.reportStore.removeReport(id);
+          this.reportStore.removeAuxilliaryReport(id);
           ref.close();
         }
       },
