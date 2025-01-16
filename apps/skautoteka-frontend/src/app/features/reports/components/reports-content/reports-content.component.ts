@@ -1,15 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import {
-  LabelComponent,
-  ListCardComponent,
-  TabComponent,
-  TabsComponent,
-  TableComponent,
-  TableRowCellComponent,
-  TableRowComponent,
-  TagComponent
-} from '@skautoteka-frontend/ui';
+import { TableComponent, TableRowCellComponent, TableRowComponent, TagComponent } from '@skautoteka-frontend/ui';
 import { DatePipe } from '@angular/common';
 import { StatusTextPipe } from '../../pipes';
 import { ReportsStore } from '../../store/reports.store';
@@ -22,18 +13,7 @@ import { ReportsStore } from '../../store/reports.store';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    TabsComponent,
-    TabComponent,
-    ListCardComponent,
-    LabelComponent,
-    TableComponent,
-    TableRowCellComponent,
-    TableRowComponent,
-    TagComponent,
-    DatePipe,
-    StatusTextPipe
-  ]
+  imports: [TableComponent, TableRowCellComponent, TableRowComponent, TagComponent, DatePipe, StatusTextPipe]
 })
 export class ReportsContentComponent {
   public reportsStore = inject(ReportsStore);
@@ -41,7 +21,7 @@ export class ReportsContentComponent {
     { name: 'Zdjecie', width: '4rem', hidden: true },
     { name: 'Nazwa', width: 'auto' },
     { name: 'Status', width: '7.5rem' },
-    { name: 'Data utworzenia', width: '25%' }
+    { name: 'Data utworzenia', width: '40%' }
   ];
 
   constructor(classBinder: ClassBinder) {

@@ -24,8 +24,8 @@
       </skt-ui-label>
 
       <skt-ui-label>
-        <div label><span class="skt-tasks-content__tasks-card-header">Data</span> | Za 4 dni</div>
-        {{ (task.startDate | date) || 'Brak daty' }}
+        <div label><span class="skt-tasks-content__tasks-card-header">Data</span> | {{ task.startDate | daysLeft }}</div>
+        {{ (task.startDate | date:'fullDate':'':'pl') || 'Brak daty' }}
       </skt-ui-label>
 
       @if((device.isMobile$ | async) === false) {

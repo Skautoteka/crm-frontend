@@ -14,6 +14,8 @@ import { IconComponent } from '../../../icon';
 })
 export class ListCardComponent {
   public assign = input<boolean>(false);
+  public trash = input<boolean>(true);
+
   public isActive = input<boolean>(false);
 
   public unassignClicked = output();

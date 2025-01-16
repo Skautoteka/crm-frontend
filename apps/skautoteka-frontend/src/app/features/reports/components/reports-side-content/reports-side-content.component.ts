@@ -7,12 +7,10 @@ import {
   SideContentheaderActionsComponent,
   SideContentHeaderComponent,
   SideContentSectionComponent,
-  SideContentSectionHeaderComponent,
   SideContentSectionHeaderActionComponent
 } from '@skautoteka-frontend/ui';
 import { ReportsBasicInfoComponent } from '../reports-basic-info/reports-basic-info.component';
 import { ReportsTitleComponent } from '../reports-title/reports-title.component';
-import { ReportsRatingComponent } from '../reports-rating/reports-rating.component';
 import { ReportsStore } from '../../store/reports.store';
 import { Router } from '@angular/router';
 
@@ -26,13 +24,11 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     SideContentComponent,
-    SideContentSectionHeaderComponent,
     SideContentSectionComponent,
     ReportsBasicInfoComponent,
     SideContentHeaderComponent,
     SideContentheaderActionsComponent,
     ReportsTitleComponent,
-    ReportsRatingComponent,
     SideContentSectionHeaderActionComponent
   ]
 })

@@ -1,7 +1,7 @@
 @if(teamPlayers().length) {
 <div class="skt-teams-players">
   @for(player of teamPlayers(); track player.id) {
-  <skt-ui-list-card class="skt-teams-players__card">
+  <skt-ui-list-card [trash]="false" class="skt-teams-players__card">
     <div class="skt-teams-players__card-content">
       <div class="skt-teams-players__card-image"></div>
       <div class="skt-teams-players__card-info">

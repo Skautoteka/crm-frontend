@@ -11,7 +11,7 @@
         [type]="item.status === 'IN_PROGRESS' ? 'simple' : 'success'"
       ></skt-ui-tag>
     </skt-ui-table-row-cell>
-    <skt-ui-table-row-cell>{{ item.createdAt | date }}</skt-ui-table-row-cell>
+    <skt-ui-table-row-cell>{{ item.createdAt | date:'fullDate':'':'pl' }}</skt-ui-table-row-cell>
   </skt-ui-table-row>
   }
 </skt-ui-table>

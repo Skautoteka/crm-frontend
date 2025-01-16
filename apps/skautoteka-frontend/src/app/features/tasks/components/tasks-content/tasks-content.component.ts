@@ -5,6 +5,7 @@ import { LabelComponent, ListCardComponent, TabComponent, TabsComponent } from '
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { TasksStore } from '../../store/tasks.store';
 import { TaskTypePipe } from '../../pipes/task-type.pipe';
+import { DaysLeftPipe } from '../../pipes/days-left.pipe';
 
 @Component({
   standalone: true,
@@ -22,7 +23,8 @@ import { TaskTypePipe } from '../../pipes/task-type.pipe';
     TaskTypePipe,
     ListCardComponent,
     LabelComponent,
-    AsyncPipe
+    AsyncPipe,
+    DaysLeftPipe
   ]
 })
 export class TasksContentComponent {
