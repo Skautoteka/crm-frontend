@@ -6,5 +6,21 @@
   "tags": [],
   "implicitDependencies": ["skautoteka-frontend"],
   "// targets": "to see all targets run: nx show project e2e --web",
-  "targets": {}
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/e2e/cypress.config.ts",
+        "devServerTarget": "skautoteka-frontend:serve",
+        "baseUrl": "http://localhost:4200"
+      },
+      "configurations": {
+        "ci": {
+          "devServerTarget": "skautoteka-frontend:serve:ci",
+          "headless": true,
+          "browser": "chrome"
+        }
+      }
+    }
+  }
 }
