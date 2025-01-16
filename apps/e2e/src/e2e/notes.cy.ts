@@ -36,7 +36,7 @@ describe('Note Management', () => {
 
     cy.get('#save-note-btn').click();
 
-    cy.get('.skt-ui-notification--success').contains('Poprawnie zaktualizowano notatke');
+    cy.get('.skt-ui-notification--success').contains('Poprawnie zaktualizowano notatkę');
 
     cy.get('.skt-tasks-notes').find('.skt-tasks-notes__card-info').contains(name).click();
 
