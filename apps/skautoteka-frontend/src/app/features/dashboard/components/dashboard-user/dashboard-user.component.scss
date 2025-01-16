@@ -10,9 +10,56 @@
     flex-direction: row-reverse;
   }
 
+  &__avatar-input {
+    display: none;
+  }
+
+  &__avatar-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &__avatar-loader.skt-ui-loader {
+      padding: 0 !important;
+  }
+
+  &__avatar-overlay {
+    opacity: 0;
+    transition: opacity .3s ease;
+    background-color: var(--primary-1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    skt-ui-icon {
+      color: var(--primary-5);
+    };
+  }
+
   &__avatar {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    position: relative;
+    height: 64px;
+    width: 64px;
+
     @media (max-width: 850px) {
       width: 2.75rem;
+    }
+
+    &:hover {
+      .skt-dashboard-user__avatar-overlay {
+        opacity: 0.5;
+      }
     }
   }
 

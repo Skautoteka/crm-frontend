@@ -12,6 +12,8 @@
   &__card {
     flex-grow: 1;
     flex-basis: 0;
+
+
   }
 
   &__card-image {
@@ -26,12 +28,10 @@
     opacity: 0.6;
     transition: all 0.3s ease;
 
-    &:hover {
-      opacity: 1;
-    }
-
     display: flex;
     gap: 1rem;
+
+    cursor: default !important;
   }
 
   &__card-info {

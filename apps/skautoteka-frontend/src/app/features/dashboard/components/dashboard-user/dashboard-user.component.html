@@ -1,5 +1,15 @@
 <div class="skt-dashboard-user__avatar">
-  <img ngSrc="assets/images/avatar.png" [priority]="true" width="64" height="64" alt="avatar" />
+  @if(authStore.user() && showAvatar()){
+    <div class="skt-dashboard-user__avatar-image" [style.background-image]="'url(api/user/images/' + authStore.user()?.id + '.jpeg' + ')'"></div>
+  } @else {
+    <skt-ui-loader class="skt-dashboard-user__avatar-loader" />
+  }
+
+  <input type="file" class="skt-dashboard-user__avatar-input"
+       (change)="onFileSelected($event)" #fileUpload>
+  <div (click)="onClick()" class="skt-dashboard-user__avatar-overlay">
+    <skt-ui-icon iconName="pen" />
+  </div>
 </div>
 
 <div class="skt-dashboard-user__info">
