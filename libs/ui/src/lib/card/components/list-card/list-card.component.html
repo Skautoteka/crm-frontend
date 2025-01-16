@@ -9,7 +9,9 @@
     </div>
   }
 
-  <div (click)="onTrashClicked()" class="skt-ui-list-card__actions">
-    <skt-ui-icon iconName="trash"></skt-ui-icon>
-  </div>
+  @if(trash()) {
+    <div (click)="onTrashClicked()" class="skt-ui-list-card__actions">
+      <skt-ui-icon iconName="trash"></skt-ui-icon>
+    </div>
+  }
 </div>

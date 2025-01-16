@@ -52,6 +52,16 @@ export class InputSelectComponent extends InputComponent implements ControlValue
     classBinder.bind('skt-ui-input-select');
 
     effect(() => {
+      const dropdownVisible = this.dropdownVisible();
+      const modal = this._modal();
+      const input = this._input();
+
+      if (dropdownVisible && modal && input) {
+        modal.nativeElement.style.width = input.nativeElement.offsetWidth + 'px';
+      }
+    });
+
+    effect(() => {
       const modal = this._modal();
       const input = this._input();
 

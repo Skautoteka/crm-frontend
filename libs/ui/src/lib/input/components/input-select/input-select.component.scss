@@ -64,11 +64,12 @@
     flex-direction: column;
     background-color: #fafafa;
     border: 1px solid var(--basic-8);
-    min-width: 22.5rem;
     border-radius: 0.5rem;
     animation-name: fade-in;
     animation-duration: 0.3s;
     overflow: hidden;
+    max-height: 15rem;
+    overflow-y: scroll;
   }
 
   &__option {
@@ -78,6 +79,7 @@
     height: 2.5rem;
     width: 100%;
     cursor: pointer;
+    min-height: 2.5rem;
 
     &:hover {
       background-color: var(--primary-7);
