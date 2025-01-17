@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { LabelComponent, LabelContainerComponent } from '@skautoteka-frontend/ui';
-import { DatePipe } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { PlayersStore } from '../../store/players.store';
 
 @Component({
@@ -10,7 +10,7 @@ import { PlayersStore } from '../../store/players.store';
   styleUrl: './players-basic-info.component.scss',
   templateUrl: 'players-basic-info.component.html',
   providers: [ClassBinder],
-  imports: [LabelComponent, LabelContainerComponent, DatePipe],
+  imports: [LabelComponent, LabelContainerComponent, JsonPipe],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

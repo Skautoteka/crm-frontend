@@ -12,6 +12,22 @@
     <skt-teams-basic-info></skt-teams-basic-info>
   </skt-ui-side-content-section>
 
+  @if(teamsStore.activeTeam(); as team) {
+    <skt-ui-side-content-section>
+      <skt-ui-side-content-section-header title="Informacje systemowe"></skt-ui-side-content-section-header>
+      <skt-ui-label-container>
+        <skt-ui-label>
+          <span label>Dodany do systemu</span>
+          {{ team.createdAt | date:'fullDate':'':'pl' }}
+        </skt-ui-label>
+        <skt-ui-label>
+          <span label>Ostatnia modyfikacja</span>
+          {{ team.updatedAt | date:'fullDate':'':'pl' }}
+        </skt-ui-label>
+      </skt-ui-label-container>
+    </skt-ui-side-content-section>
+  }
+
   <skt-ui-side-content-section>
     <skt-ui-side-content-section-header-action
       title="Przypisani zawodnicy"
@@ -19,5 +35,6 @@
       iconColor="#2f4d47"
     ></skt-ui-side-content-section-header-action>
     <skt-teams-players></skt-teams-players>
+
   </skt-ui-side-content-section>
 </skt-ui-side-content>

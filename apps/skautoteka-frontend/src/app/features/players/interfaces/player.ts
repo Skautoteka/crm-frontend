@@ -13,4 +13,7 @@ export type Player = {
   nationality: string;
   team: Team;
   position: Position;
+  birthYear: number;
+  weight: number;
+  physique: string;
 } & IGenericModel;

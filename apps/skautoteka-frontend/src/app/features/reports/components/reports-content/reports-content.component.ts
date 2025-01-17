@@ -1,9 +1,17 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { TableComponent, TableRowCellComponent, TableRowComponent, TagComponent } from '@skautoteka-frontend/ui';
-import { DatePipe } from '@angular/common';
+import {
+  InfinitePipe,
+  LoaderComponent,
+  TableComponent,
+  TableRowCellComponent,
+  TableRowComponent,
+  TagComponent
+} from '@skautoteka-frontend/ui';
+import { AsyncPipe, DatePipe, NgFor } from '@angular/common';
 import { StatusTextPipe } from '../../pipes';
 import { ReportsStore } from '../../store/reports.store';
+import { of } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -13,7 +21,18 @@ import { ReportsStore } from '../../store/reports.store';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TableComponent, TableRowCellComponent, TableRowComponent, TagComponent, DatePipe, StatusTextPipe]
+  imports: [
+    TableComponent,
+    TableRowCellComponent,
+    TableRowComponent,
+    TagComponent,
+    DatePipe,
+    StatusTextPipe,
+    InfinitePipe,
+    AsyncPipe,
+    NgFor,
+    LoaderComponent
+  ]
 })
 export class ReportsContentComponent {
   public reportsStore = inject(ReportsStore);
@@ -28,6 +47,8 @@ export class ReportsContentComponent {
     classBinder.bind('skt-reports-content');
     this.reportsStore.getReports();
   }
+
+  public a$ = of([]);
 
   public onRowClicked(id: string): void {
     this.reportsStore.setActiveReport(id);

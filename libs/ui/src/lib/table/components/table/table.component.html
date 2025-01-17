@@ -11,7 +11,8 @@
     </tr>
   </thead>
 
-  <tbody class="skt-ui-table__table-body">
+  <tbody #tableBody class="skt-ui-table__table-body">
     <ng-content select="skt-ui-table-row"></ng-content>
+    <ng-content></ng-content>
   </tbody>
 </table>

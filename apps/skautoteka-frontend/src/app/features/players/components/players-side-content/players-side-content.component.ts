@@ -3,6 +3,8 @@ import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   ActionsConfig,
   ContentService,
+  LabelComponent,
+  LabelContainerComponent,
   SideContentComponent,
   SideContentheaderActionsComponent,
   SideContentHeaderComponent,
@@ -13,6 +15,7 @@ import { PlayersStore } from '../../store/players.store';
 import { Router } from '@angular/router';
 import { PlayersBasicInfoComponent } from '../players-basic-info/players-basic-info.component';
 import { PlayersNameComponent } from '../players-name/players-name.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -29,7 +32,10 @@ import { PlayersNameComponent } from '../players-name/players-name.component';
     SideContentHeaderComponent,
     SideContentheaderActionsComponent,
     PlayersBasicInfoComponent,
-    PlayersNameComponent
+    PlayersNameComponent,
+    LabelContainerComponent,
+    LabelComponent,
+    DatePipe
   ]
 })
 export class PlayersSideContentComponent {

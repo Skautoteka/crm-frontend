@@ -8,13 +8,16 @@ import {
   SideContentHeaderComponent,
   SideContentSectionComponent,
   SideContentSectionHeaderComponent,
-  SideContentSectionHeaderActionComponent
+  SideContentSectionHeaderActionComponent,
+  LabelContainerComponent,
+  LabelComponent
 } from '@skautoteka-frontend/ui';
 import { TeamTitleComponent } from '../team-title/team-title.component';
 import { TeamsBasicInfoComponent } from '../teams-basic-info/teams-basic-info.component';
 import { TeamsPlayersComponent } from '../teams-players/teams-players.component';
 import { TeamsStore } from '../../store/teams.store';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -33,7 +36,10 @@ import { Router } from '@angular/router';
     TeamTitleComponent,
     TeamsBasicInfoComponent,
     SideContentSectionHeaderActionComponent,
-    TeamsPlayersComponent
+    TeamsPlayersComponent,
+    LabelContainerComponent,
+    LabelComponent,
+    DatePipe
   ]
 })
 export class TeamsSideContentComponent {

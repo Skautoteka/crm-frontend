@@ -1,7 +1,14 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { TableComponent, TableRowCellComponent, TableRowComponent } from '@skautoteka-frontend/ui';
+import {
+  InfinitePipe,
+  LoaderComponent,
+  TableComponent,
+  TableRowCellComponent,
+  TableRowComponent
+} from '@skautoteka-frontend/ui';
 import { TeamsStore } from '../../store/teams.store';
+import { AsyncPipe, NgFor } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -11,7 +18,7 @@ import { TeamsStore } from '../../store/teams.store';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TableComponent, TableRowComponent, TableRowCellComponent]
+  imports: [TableComponent, TableRowComponent, TableRowCellComponent, InfinitePipe, AsyncPipe, NgFor, LoaderComponent]
 })
 export class TeamsContentComponent {
   public teamsStore = inject(TeamsStore);

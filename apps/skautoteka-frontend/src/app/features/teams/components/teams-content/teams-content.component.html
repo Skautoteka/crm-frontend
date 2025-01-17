@@ -1,6 +1,5 @@
 <skt-ui-table [tableDef]="tableDef">
-  @for (item of teamsStore.teams(); track item.id) {
-  <skt-ui-table-row [isActive]="this.teamsStore.activeTeam() === item" (rowClicked)="onRowClicked(item.id)">
+  <skt-ui-table-row *ngFor="let item of teamsStore.teams() | infinite | async" [isActive]="this.teamsStore.activeTeam() === item" (rowClicked)="onRowClicked(item.id)">
     <skt-ui-table-row-cell>
       <div class="skt-teams-content__team-logo"></div>
     </skt-ui-table-row-cell>
@@ -8,5 +7,8 @@
     <skt-ui-table-row-cell>{{ item.city || 'Brak informacji' }}</skt-ui-table-row-cell>
     <skt-ui-table-row-cell>{{ item.country || 'Brak informacji' }}</skt-ui-table-row-cell>
   </skt-ui-table-row>
+
+  @if(teamsStore.isLoading()) {
+    <skt-ui-loader />
   }
 </skt-ui-table>
