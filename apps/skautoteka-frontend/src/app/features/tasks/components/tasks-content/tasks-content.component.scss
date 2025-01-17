@@ -49,6 +49,8 @@
 
   &__tasks-card {
     padding-right: 1rem;
+    animation-name: fade-in-static;
+    animation-duration: 0.5s;
 
     &--active {
       transition: all 0.3s;

@@ -3,6 +3,8 @@
   padding: 1.5rem 1rem;
   transition: background-color 0.3s ease;
   border-radius: 1rem;
+  animation-name: fade-in-static;
+  animation-duration: 0.5s;
 
   &:hover:not(.skt-ui-table-row--active) {
     background-color: rgba(#d1d7d6, 0.5);

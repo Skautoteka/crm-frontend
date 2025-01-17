@@ -105,6 +105,16 @@ img {
   }
 }
 
+@keyframes fade-in-static {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 0.25rem;
 }
