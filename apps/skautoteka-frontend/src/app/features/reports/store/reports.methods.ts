@@ -25,7 +25,7 @@ export const withReportsMethods = () => {
        */
       const getReports = rxMethod<void>(
         pipe(
-          tap(() => patchState(store, { isLoading: true })),
+          tap(() => patchState(store, { isLoading: true, reports: [], activeReport: null })),
           switchMap(() =>
             httpService.getAllReports$().pipe(
               tapResponse({
@@ -140,6 +140,7 @@ export const withReportsMethods = () => {
                   patchState(store, { reports: [...store.reports(), added] });
                   notification.success('Poprawnie dodano raport');
                   tasks.getAssignedReports();
+                  setActiveReport(added.id);
                 },
                 error: () => {
                   notification.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');

@@ -23,7 +23,7 @@ export const withUsersMethods = () => {
        */
       const getUsers = rxMethod<void>(
         pipe(
-          tap(() => patchState(store, { isLoading: true })),
+          tap(() => patchState(store, { isLoading: true, users: [], activeUser: null })),
           switchMap(() =>
             httpService.getAllUsers$().pipe(
               tapResponse({

@@ -23,7 +23,7 @@ export const withTeamsMethods = () => {
        */
       const getTeams = rxMethod<void>(
         pipe(
-          tap(() => patchState(store, { isLoading: true })),
+          tap(() => patchState(store, { isLoading: true, teams: [], activeTeam: null })),
           switchMap(() =>
             httpService.getAllTeams$().pipe(
               tapResponse({
@@ -108,6 +108,7 @@ export const withTeamsMethods = () => {
                 next: res => {
                   patchState(store, { teams: [...store.teams(), res.added] });
                   notification.success('Poprawnie dodano zadanie');
+                  setActiveTeam(res.added.id);
                 },
                 error: () => {
                   notification.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');

@@ -6,6 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DaysLeftPipe implements PipeTransform {
   transform(isoDate: string) {
+    if (!isoDate) {
+      return 'Termin minął';
+    }
+
     const date = new Date(isoDate);
 
     const today = new Date();

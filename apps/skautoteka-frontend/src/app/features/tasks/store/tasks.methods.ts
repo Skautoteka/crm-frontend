@@ -23,7 +23,7 @@ export const withTasksMethods = () => {
        */
       const getTasks = rxMethod<void>(
         pipe(
-          tap(() => patchState(store, { isLoading: true })),
+          tap(() => patchState(store, { isLoading: true, tasks: [], activeTask: null })),
           switchMap(() =>
             httpService.getAllTasks$().pipe(
               tapResponse({
@@ -142,6 +142,7 @@ export const withTasksMethods = () => {
                 next: ({ added }) => {
                   patchState(store, { tasks: [...store.tasks(), added] });
                   notification.success('Poprawnie dodano zadanie');
+                  setActiveTask(added.id);
                 },
                 error: () => {
                   notification.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');

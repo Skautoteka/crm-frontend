@@ -24,7 +24,7 @@ export const withPlayersMethods = () => {
        */
       const getPlayers = rxMethod<void>(
         pipe(
-          tap(() => patchState(store, { isLoading: true })),
+          tap(() => patchState(store, { isLoading: true, players: [], activePlayer: null })),
           switchMap(() =>
             httpService.getAllPlayers$().pipe(
               tapResponse({
@@ -92,6 +92,7 @@ export const withPlayersMethods = () => {
                 next: ({ added }) => {
                   patchState(store, { players: [...store.players(), added] });
                   notifications.success('Poprawnie dodano zawodnika');
+                  setActivePlayer(added.id);
                 },
                 error: () => {
                   notifications.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');
