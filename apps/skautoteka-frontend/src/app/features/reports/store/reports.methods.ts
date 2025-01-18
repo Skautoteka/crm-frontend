@@ -3,13 +3,12 @@ import { ReportsStoreState } from './reports.store';
 import { inject } from '@angular/core';
 import { ReportsHttpService } from '../services/reports-http.service';
 import { Router } from '@angular/router';
-import { ModalService, NotificationsService } from '@skautoteka-frontend/ui';
+import { ModalService, NotificationsService, SidenavService } from '@skautoteka-frontend/ui';
 import { Observable, pipe, switchMap, tap } from 'rxjs';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { Report } from '../interfaces/report';
 import { TasksStore } from '../../tasks/store/tasks.store';
-import { SidenavService } from 'libs/ui/src/lib/sidenav/services/sidenav.service';
 
 export const withReportsMethods = () => {
   return signalStoreFeature(
