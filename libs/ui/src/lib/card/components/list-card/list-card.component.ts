@@ -14,12 +14,14 @@ import { IconComponent } from '../../../icon';
 })
 export class ListCardComponent {
   public assign = input<boolean>(false);
+  public pdf = input<boolean>(false);
   public trash = input<boolean>(true);
 
   public isActive = input<boolean>(false);
 
   public unassignClicked = output();
   public trashClicked = output();
+  public pdfClicked = output();
 
   constructor(classBinder: ClassBinder) {
     classBinder.bind('skt-ui-list-card');
@@ -35,5 +37,9 @@ export class ListCardComponent {
 
   public onAssignedClick(): void {
     this.unassignClicked.emit();
+  }
+
+  public onPdfClicked(): void {
+    this.pdfClicked.emit();
   }
 }

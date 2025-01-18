@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { DialogService, ListCardComponent, ModalService } from '@skautoteka-frontend/ui';
+import { DialogService, ListCardComponent, ModalService, NotificationsService } from '@skautoteka-frontend/ui';
 import { TasksStore } from '../../store/tasks.store';
 import { Report } from '../../../reports/interfaces/report';
 import { ReportsStore } from '../../../reports/store/reports.store';
 import { ReportsCreateFullComponent } from '../../../reports/components/reports-create-full/reports-create-full.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   standalone: true,
@@ -24,6 +25,8 @@ export class TasksReportsComponent {
   public assignedReports = this.tasksStore.assignedReports;
 
   private _dialog = inject(DialogService);
+  private _http = inject(HttpClient);
+  private _notification = inject(NotificationsService);
 
   constructor(classBinder: ClassBinder, private _modal: ModalService, private datePipe: DatePipe) {
     classBinder.bind('skt-tasks-reports');
@@ -36,6 +39,28 @@ export class TasksReportsComponent {
     this._modal.createModal(ReportsCreateFullComponent, {
       header: `Raport: ${report.name}`,
       subHeader: `Utworzony: ${formattedDate}`
+    });
+  }
+
+  public onPdfClicked(id: string): void {
+    this._http.get('api/report/pdf/' + id, { responseType: 'blob' }).subscribe({
+      next: res => {
+        const url = URL.createObjectURL(res);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${id}.pdf`;
+
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        URL.revokeObjectURL(url);
+        this._notification.success('Sukces', 'Udał się wygenerować plik PDF');
+      },
+      error: () => {
+        this._notification.error('Wystąpił błąd', 'Wystąpił błąd podczas pobierania pliku PDF');
+      }
     });
   }
 

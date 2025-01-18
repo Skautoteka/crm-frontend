@@ -3,6 +3,12 @@
 </div>
 
 <div class="skt-ui-list-card__actions-wrapper">
+  @if(pdf()) {
+    <div (click)="onPdfClicked()" class="skt-ui-list-card__actions">
+      <skt-ui-icon iconName="software-download"></skt-ui-icon>
+    </div>
+  }
+
   @if(assign()) {
     <div (click)="onAssignedClick()" class="skt-ui-list-card__actions">
       <skt-ui-icon iconName="lock-unlock"></skt-ui-icon>
