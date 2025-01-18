@@ -1,7 +1,14 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
-import { TableComponent, TableRowCellComponent, TableRowComponent } from '@skautoteka-frontend/ui';
+import {
+  InfinitePipe,
+  SearchPipe,
+  TableComponent,
+  TableRowCellComponent,
+  TableRowComponent
+} from '@skautoteka-frontend/ui';
 import { UsersStore } from '../../store/users.store';
+import { AsyncPipe, NgFor } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -11,7 +18,7 @@ import { UsersStore } from '../../store/users.store';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TableComponent, TableRowCellComponent, TableRowComponent]
+  imports: [TableComponent, TableRowCellComponent, TableRowComponent, InfinitePipe, SearchPipe, NgFor, AsyncPipe]
 })
 export class UsersContentComponent {
   public usersStore = inject(UsersStore);

@@ -3,6 +3,7 @@ import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   InfinitePipe,
   LoaderComponent,
+  SearchPipe,
   TableComponent,
   TableRowCellComponent,
   TableRowComponent,
@@ -31,7 +32,8 @@ import { of } from 'rxjs';
     InfinitePipe,
     AsyncPipe,
     NgFor,
-    LoaderComponent
+    LoaderComponent,
+    SearchPipe
   ]
 })
 export class ReportsContentComponent {

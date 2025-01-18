@@ -1,3 +1,4 @@
+
 <table class="skt-ui-table__table">
   <thead class="skt-ui-table__table-header">
     <tr #tableHeader class="skt-ui-table__table-header-row">
@@ -10,6 +11,18 @@
       }
     </tr>
   </thead>
+
+  <div class="skt-ui-table__table-search">
+    <div class="skt-ui-table__table-search-icon">
+      <skt-ui-icon (click)="input.focus()" iconName="search" iconColor="var(--primary-4)" />
+    </div>
+    <input #input placeholder="Wyszukaj rekord" class="skt-ui-table__table-search-input" [(ngModel)]="search" />
+
+    @if(search().length) {
+      <skt-ui-icon class="skt-ui-table__table-search-input-close" iconColor="var(--primary-1)" (click)="onClearClick()" iconName="close"  />
+    }
+
+  </div>
 
   <tbody #tableBody class="skt-ui-table__table-body">
     <ng-content select="skt-ui-table-row"></ng-content>

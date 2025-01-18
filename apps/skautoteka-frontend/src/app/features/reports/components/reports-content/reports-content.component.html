@@ -1,5 +1,5 @@
 <skt-ui-table [tableDef]="tableDef">
-  <skt-ui-table-row *ngFor="let item of reportsStore.reports() | infinite | async" [isActive]="this.reportsStore.activeReport() === item" (rowClicked)="onRowClicked(item.id)">
+  <skt-ui-table-row *ngFor="let item of reportsStore.reports() | infinite | search | async" [isActive]="this.reportsStore.activeReport() === item" (rowClicked)="onRowClicked(item.id)">
     <skt-ui-table-row-cell>
       <div class="skt-reports-content__reports-logo"></div>
     </skt-ui-table-row-cell>

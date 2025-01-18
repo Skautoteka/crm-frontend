@@ -1,6 +1,5 @@
 <skt-ui-table [tableDef]="tableDef">
-  @for (item of usersStore.users(); track item.id) {
-  <skt-ui-table-row [isActive]="this.usersStore.activeUser() === item" (rowClicked)="onRowClicked(item.id)">
+  <skt-ui-table-row *ngFor="let item of usersStore.users() | infinite | search | async" [isActive]="this.usersStore.activeUser() === item" (rowClicked)="onRowClicked(item.id)">
     <skt-ui-table-row-cell>
       <div class="skt-users-content__users-logo"></div>
     </skt-ui-table-row-cell>
@@ -9,5 +8,4 @@
     <skt-ui-table-row-cell>{{ item.email }}</skt-ui-table-row-cell>
     <skt-ui-table-row-cell>{{ item.role }}</skt-ui-table-row-cell>
   </skt-ui-table-row>
-  }
 </skt-ui-table>

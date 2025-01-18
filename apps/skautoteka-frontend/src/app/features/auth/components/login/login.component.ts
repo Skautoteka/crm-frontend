@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, inject, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { AuthStore } from '../../store/auth.store';
 import { ButtonComponent, InputComponent, InputPasswordComponent } from '@skautoteka-frontend/ui';
@@ -15,6 +15,12 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
   imports: [InputComponent, InputPasswordComponent, ReactiveFormsModule, ButtonComponent]
 })
 export class LoginComponent {
+  @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.onLogin();
+    }
+  }
+
   private _classBinder = inject(ClassBinder);
   private _formBuilder = inject(FormBuilder);
 

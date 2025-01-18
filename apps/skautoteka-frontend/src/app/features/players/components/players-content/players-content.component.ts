@@ -5,10 +5,11 @@ import {
   TableRowComponent,
   TableRowCellComponent,
   InfinitePipe,
-  LoaderComponent
+  LoaderComponent,
+  SearchPipe
 } from '@skautoteka-frontend/ui';
 import { PlayersStore } from '../../store/players.store';
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgFor } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -18,7 +19,16 @@ import { AsyncPipe, NgFor, NgIf } from '@angular/common';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TableComponent, TableRowComponent, TableRowCellComponent, InfinitePipe, NgFor, LoaderComponent, AsyncPipe]
+  imports: [
+    TableComponent,
+    TableRowComponent,
+    TableRowCellComponent,
+    InfinitePipe,
+    NgFor,
+    LoaderComponent,
+    AsyncPipe,
+    SearchPipe
+  ]
 })
 export class PlayersContentComponent {
   public playersStore = inject(PlayersStore);

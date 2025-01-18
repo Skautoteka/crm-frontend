@@ -10,6 +10,7 @@ import {
   input,
   QueryList,
   Renderer2,
+  signal,
   viewChild,
   ViewChild,
   ViewEncapsulation
@@ -19,6 +20,8 @@ import { TableDefinition } from '../../interfaces/itable';
 import { TableRowComponent } from '../table-row/table-row.component';
 import { BehaviorSubject, fromEvent } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { IconComponent } from '../../../icon';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
@@ -26,6 +29,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './table.component.scss',
   templateUrl: 'table.component.html',
   providers: [ClassBinder],
+  imports: [IconComponent, FormsModule],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -36,6 +40,8 @@ export class TableComponent implements AfterViewChecked, AfterViewInit {
 
   public destroyRef = inject(DestroyRef);
   public scrolledDown$ = new BehaviorSubject<boolean>(true);
+
+  public search = signal('');
 
   private _tableBody = viewChild.required<ElementRef>('tableBody');
 
@@ -62,6 +68,10 @@ export class TableComponent implements AfterViewChecked, AfterViewInit {
           this.scrolledDown$.next(false);
         }
       });
+  }
+
+  public onClearClick(): void {
+    this.search.set('');
   }
 
   private _setRowsTableDefinition(): void {

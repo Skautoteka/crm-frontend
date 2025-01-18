@@ -8,6 +8,7 @@ export interface IGenericModel {
   id: string;
   createdAt: string;
   updatedAt: string;
+  searchQuery: string | null;
 }
 
 export interface IGenericDelete {

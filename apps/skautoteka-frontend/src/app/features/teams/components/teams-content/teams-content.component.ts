@@ -3,6 +3,7 @@ import { ClassBinder } from '@skautoteka-frontend/common';
 import {
   InfinitePipe,
   LoaderComponent,
+  SearchPipe,
   TableComponent,
   TableRowCellComponent,
   TableRowComponent
@@ -18,7 +19,16 @@ import { AsyncPipe, NgFor } from '@angular/common';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TableComponent, TableRowComponent, TableRowCellComponent, InfinitePipe, AsyncPipe, NgFor, LoaderComponent]
+  imports: [
+    TableComponent,
+    SearchPipe,
+    TableRowComponent,
+    TableRowCellComponent,
+    InfinitePipe,
+    AsyncPipe,
+    NgFor,
+    LoaderComponent
+  ]
 })
 export class TeamsContentComponent {
   public teamsStore = inject(TeamsStore);
