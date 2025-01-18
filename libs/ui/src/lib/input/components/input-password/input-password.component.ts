@@ -6,12 +6,13 @@ import {
   forwardRef,
   inject,
   Injector,
+  input,
   signal,
   ViewEncapsulation
 } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, NgControl, ValidationErrors } from '@angular/forms';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -21,7 +22,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  imports: [FormsModule, FormsModule, CommonModule, NgIf],
+  imports: [FormsModule, FormsModule, CommonModule],
   providers: [
     ClassBinder,
     {
@@ -34,6 +35,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class InputPasswordComponent implements ControlValueAccessor, AfterViewInit {
   public invalid = signal<boolean>(false);
   public errors = signal<ValidationErrors | null>(null);
+  public label = input('Hasło');
+  public placeholder = input('Wpisz swoje hasło');
 
   protected _value = '';
   private _control!: NgControl;
