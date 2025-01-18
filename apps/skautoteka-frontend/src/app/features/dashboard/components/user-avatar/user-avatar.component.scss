@@ -1,0 +1,16 @@
+.skt-user-avatar {
+  min-height: 2.5rem;
+  min-width: 2.5rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  height: 100%;
+
+  &__avatar-image {
+    height: 100%;
+    min-height: 2.5rem;
+    min-width: 2.5rem;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}

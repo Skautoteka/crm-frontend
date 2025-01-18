@@ -9,6 +9,7 @@ import {
 } from '@skautoteka-frontend/ui';
 import { UsersStore } from '../../store/users.store';
 import { AsyncPipe, NgFor } from '@angular/common';
+import { UserAvatarComponent } from '../../../dashboard/components/user-avatar/user-avatar.component';
 
 @Component({
   standalone: true,
@@ -18,7 +19,16 @@ import { AsyncPipe, NgFor } from '@angular/common';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TableComponent, TableRowCellComponent, TableRowComponent, InfinitePipe, SearchPipe, NgFor, AsyncPipe]
+  imports: [
+    TableComponent,
+    TableRowCellComponent,
+    TableRowComponent,
+    InfinitePipe,
+    SearchPipe,
+    NgFor,
+    AsyncPipe,
+    UserAvatarComponent
+  ]
 })
 export class UsersContentComponent {
   public usersStore = inject(UsersStore);

@@ -5,7 +5,7 @@
     (rowClicked)="onRowClicked(item.id)"
   >
     <skt-ui-table-row-cell>
-      <div class="skt-users-content__users-logo"></div>
+      <skt-user-avatar [id]="item.id" />
     </skt-ui-table-row-cell>
     <skt-ui-table-row-cell>{{ item.firstName }}</skt-ui-table-row-cell>
     <skt-ui-table-row-cell>{{ item.lastName }}</skt-ui-table-row-cell>

@@ -14,6 +14,7 @@ import { AuthStore } from '../../../auth/store/auth.store';
 import { HttpClient } from '@angular/common/http';
 import { IconComponent, LoaderComponent, NotificationsService } from '@skautoteka-frontend/ui';
 import { catchError, NEVER } from 'rxjs';
+import { UserAvatarComponent } from '../user-avatar/user-avatar.component';
 
 @Component({
   standalone: true,
@@ -23,7 +24,15 @@ import { catchError, NEVER } from 'rxjs';
   providers: [ClassBinder],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [DashboardUserActionsComponent, AsyncPipe, TitleCasePipe, NgOptimizedImage, IconComponent, LoaderComponent]
+  imports: [
+    DashboardUserActionsComponent,
+    AsyncPipe,
+    TitleCasePipe,
+    NgOptimizedImage,
+    IconComponent,
+    LoaderComponent,
+    UserAvatarComponent
+  ]
 })
 export class DashboardUserComponent {
   public authStore = inject(AuthStore);
