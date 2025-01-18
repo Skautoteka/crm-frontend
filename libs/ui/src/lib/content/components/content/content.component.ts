@@ -23,7 +23,7 @@ export class ContentComponent {
     classBinder.bind('skt-ui-content');
 
     effect(() => {
-      classBinder.conditionalBind(!this.showSide(), 'skt-ui-content--no-side')
-    })
+      classBinder.conditionalBind(!this.showSide(), 'skt-ui-content--no-side');
+    });
   }
 }

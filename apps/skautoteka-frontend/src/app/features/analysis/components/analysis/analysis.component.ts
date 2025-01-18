@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ClassBinder } from '@skautoteka-frontend/common';
 import { ContentComponent } from '@skautoteka-frontend/ui';
-import { AnalysisContentComponent } from "../analysis-content/analysis-content.component";
+import { AnalysisContentComponent } from '../analysis-content/analysis-content.component';
 
 @Component({
   standalone: true,

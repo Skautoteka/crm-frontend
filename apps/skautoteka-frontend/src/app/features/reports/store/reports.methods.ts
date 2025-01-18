@@ -9,6 +9,7 @@ import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { Report } from '../interfaces/report';
 import { TasksStore } from '../../tasks/store/tasks.store';
+import { SidenavService } from 'libs/ui/src/lib/sidenav/services/sidenav.service';
 
 export const withReportsMethods = () => {
   return signalStoreFeature(
@@ -19,6 +20,7 @@ export const withReportsMethods = () => {
       const modal = inject(ModalService);
       const notification = inject(NotificationsService);
       const tasks = inject(TasksStore);
+      const navigation = inject(SidenavService);
 
       /**
        * Gets all reports from the database.
@@ -140,7 +142,10 @@ export const withReportsMethods = () => {
                   patchState(store, { reports: [...store.reports(), added] });
                   notification.success('Poprawnie dodano raport');
                   tasks.getAssignedReports();
-                  setActiveReport(added.id);
+
+                  if (navigation.active?.route === 'reports') {
+                    setActiveReport(added.id);
+                  }
                 },
                 error: () => {
                   notification.error('Brak dostepu do dodawania rekordow', 'Skontaktuj sie z administratorem');

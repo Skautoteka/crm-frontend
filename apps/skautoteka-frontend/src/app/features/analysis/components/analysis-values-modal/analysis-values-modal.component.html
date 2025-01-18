@@ -1,41 +1,35 @@
-@if(entry) {
-  @for (value of entry.values; track value.name) {
-    <div class="skt-analysis-values-modal__tile">
-      <div class="skt-analysis-values-modal__value-container">
-        <span class="skt-analysis-values-modal__tile-title">
-          Nazwa oceny
-        </span>
-        <span class="skt-analysis-values-modal__tile-subtitle">
-          {{ value.name | valueTranslate | async }}
-        </span>
-      </div>
+@if(entry) { @for (value of entry.values; track value.name) {
+<div class="skt-analysis-values-modal__tile">
+  <div class="skt-analysis-values-modal__value-container">
+    <span class="skt-analysis-values-modal__tile-title"> Nazwa oceny </span>
+    <span class="skt-analysis-values-modal__tile-subtitle">
+      {{ value.name | valueTranslate | async }}
+    </span>
+  </div>
 
-      <div class="skt-analysis-values-modal__value-container">
-        <span class="skt-analysis-values-modal__tile-title">
-          Ostatnio wystawiona ocena
-        </span>
-        <span class="skt-analysis-values-modal__tile-subtitle">
-          {{ value.latestValue || 'Brak informacji' }}
-        </span>
-      </div>
+  <div class="skt-analysis-values-modal__value-container">
+    <span class="skt-analysis-values-modal__tile-title"> Ostatnio wystawiona ocena </span>
+    <span class="skt-analysis-values-modal__tile-subtitle">
+      {{ value.latestValue || 'Brak informacji' }}
+    </span>
+  </div>
 
-      <div class="skt-analysis-values-modal__value-container">
-        <span class="skt-analysis-values-modal__tile-title">
-          Srednia ocen
-        </span>
-        <span class="skt-analysis-values-modal__tile-subtitle">
-          {{ value.average || 'Brak informacji' }}
-        </span>
-      </div>
-    </div>
-  } @empty {
-    <div class="skt-analysis-values-modal__container">
-      <div class="skt-analysis-values-modal__header">
-        <skt-ui-icon iconName="info"></skt-ui-icon>
-        Brak ocen
-      </div>
+  <div class="skt-analysis-values-modal__value-container">
+    <span class="skt-analysis-values-modal__tile-title"> Srednia ocen </span>
+    <span class="skt-analysis-values-modal__tile-subtitle">
+      {{ value.average || 'Brak informacji' }}
+    </span>
+  </div>
+</div>
+} @empty {
+<div class="skt-analysis-values-modal__container">
+  <div class="skt-analysis-values-modal__header">
+    <skt-ui-icon iconName="info"></skt-ui-icon>
+    Brak ocen
+  </div>
 
-      <div class="skt-analysis-values-modal__sub-header">Nie znaleziono żadnych ocen powiązanych z danym raportem lub notatką</div>
-    </div>
-  }
-}
+  <div class="skt-analysis-values-modal__sub-header">
+    Nie znaleziono żadnych ocen powiązanych z danym raportem lub notatką
+  </div>
+</div>
+} }

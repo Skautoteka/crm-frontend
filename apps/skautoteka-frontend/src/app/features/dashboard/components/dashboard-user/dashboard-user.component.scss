@@ -23,12 +23,12 @@
   }
 
   &__avatar-loader.skt-ui-loader {
-      padding: 0 !important;
+    padding: 0 !important;
   }
 
   &__avatar-overlay {
     opacity: 0;
-    transition: opacity .3s ease;
+    transition: opacity 0.3s ease;
     background-color: var(--primary-1);
     position: absolute;
     top: 0;
@@ -42,7 +42,7 @@
 
     skt-ui-icon {
       color: var(--primary-5);
-    };
+    }
   }
 
   &__avatar {

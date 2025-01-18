@@ -19,12 +19,12 @@
     </skt-ui-label>
   </skt-ui-label-container>
 
-<skt-ui-label-container>
-  <skt-ui-label [valueClass]="'big'">
-    <span label>Rola</span>
-    {{ authStore.roleName() }}
-  </skt-ui-label>
-</skt-ui-label-container>
+  <skt-ui-label-container>
+    <skt-ui-label [valueClass]="'big'">
+      <span label>Rola</span>
+      {{ authStore.roleName() }}
+    </skt-ui-label>
+  </skt-ui-label-container>
 
   <skt-ui-label-container>
     <skt-ui-label [valueClass]="'big'">
@@ -33,12 +33,12 @@
     </skt-ui-label>
   </skt-ui-label-container>
 
-<skt-ui-label-container>
-  <skt-ui-label [valueClass]="'big'">
-    <span label>Region</span>
-    {{ authStore.regionName() || 'Brak informacji' }}
-  </skt-ui-label>
-</skt-ui-label-container>
+  <skt-ui-label-container>
+    <skt-ui-label [valueClass]="'big'">
+      <span label>Region</span>
+      {{ authStore.regionName() || 'Brak informacji' }}
+    </skt-ui-label>
+  </skt-ui-label-container>
 
   <skt-ui-label-container>
     <skt-ui-label [valueClass]="'big'">
@@ -49,17 +49,22 @@
 </div>
 
 } @else {
-  <div class="skt-dashboard-user-profile__section-wrapper-password">
-    <div class="skt-dashboard-user-profile__section-wrapper-password-header">
-      Aby zmienić swoje hasło, wpisz aktualne hasło w pierwszym polu, następnie wpisz nowe hasło w nowym polu i na końcu potwierdź hasło
-    </div>
-
-    <div class="skt-dashboard-user-profile__section-wrapper-password-inputs">
-      <skt-ui-input-password [(ngModel)]="current" />
-      <skt-ui-input-password [(ngModel)]="newPassword" label="Nowe hasło" placeholder="Wpisz swoje nowe hasło" />
-      <skt-ui-input-password [(ngModel)]="confirmPassword" label="Potwierdź hasło" placeholder="Potwierdź swoje nowe hasło"  />
-    </div>
-
-    <skt-ui-button [disabled]="isDisabled()" (click)="onButtonClick()">Zmień hasło</skt-ui-button>
+<div class="skt-dashboard-user-profile__section-wrapper-password">
+  <div class="skt-dashboard-user-profile__section-wrapper-password-header">
+    Aby zmienić swoje hasło, wpisz aktualne hasło w pierwszym polu, następnie wpisz nowe hasło w nowym polu i na końcu
+    potwierdź hasło
   </div>
+
+  <div class="skt-dashboard-user-profile__section-wrapper-password-inputs">
+    <skt-ui-input-password [(ngModel)]="current" />
+    <skt-ui-input-password [(ngModel)]="newPassword" label="Nowe hasło" placeholder="Wpisz swoje nowe hasło" />
+    <skt-ui-input-password
+      [(ngModel)]="confirmPassword"
+      label="Potwierdź hasło"
+      placeholder="Potwierdź swoje nowe hasło"
+    />
+  </div>
+
+  <skt-ui-button [disabled]="isDisabled()" (click)="onButtonClick()">Zmień hasło</skt-ui-button>
+</div>
 }

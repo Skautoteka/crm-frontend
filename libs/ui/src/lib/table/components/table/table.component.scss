@@ -19,7 +19,7 @@
     align-content: center;
     background-color: var(--primary-7);
     opacity: 0.8;
-    transition: opacity .3s ease;
+    transition: opacity 0.3s ease;
 
     &:hover {
       opacity: 1;
@@ -48,7 +48,7 @@
     background-color: var(--primary-6);
     padding: 0 2.5rem;
     padding-right: 0.5rem;
-    transition: opacity .3s ease;
+    transition: opacity 0.3s ease;
     opacity: 0.8;
 
     &:hover {
@@ -58,10 +58,10 @@
 
   &__table-search-input-close {
     opacity: 0.5;
-    transition: opacity ease .3;
+    transition: opacity ease 0.3;
 
     animation-name: fade-in-static;
-    animation-duration: .3s;
+    animation-duration: 0.3s;
 
     &:hover {
       opacity: 1;

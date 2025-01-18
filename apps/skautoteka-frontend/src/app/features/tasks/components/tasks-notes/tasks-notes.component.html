@@ -8,7 +8,9 @@
       </div>
       <div class="skt-tasks-notes__card-info">
         <span class="skt-tasks-notes__card-info-name">{{ note.name }}</span>
-        <span class="skt-tasks-notes__card-info-position">{{ note.status === 'IN_PROGRESS' ? 'W trakcie' : 'Ukończona' }}</span>
+        <span class="skt-tasks-notes__card-info-position">{{
+          note.status === 'IN_PROGRESS' ? 'W trakcie' : 'Ukończona'
+        }}</span>
       </div>
     </div>
   </skt-ui-list-card>

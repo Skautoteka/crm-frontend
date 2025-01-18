@@ -1,12 +1,14 @@
 <div class="skt-dashboard-user__avatar">
   @if(authStore.user() && showAvatar()){
-    <div class="skt-dashboard-user__avatar-image" [style.background-image]="'url(api/user/images/' + authStore.user()?.id + '.jpeg' + ')'"></div>
+  <div
+    class="skt-dashboard-user__avatar-image"
+    [style.background-image]="'url(api/user/images/' + authStore.user()?.id + '.jpeg' + ')'"
+  ></div>
   } @else {
-    <skt-ui-loader class="skt-dashboard-user__avatar-loader" />
+  <skt-ui-loader class="skt-dashboard-user__avatar-loader" />
   }
 
-  <input type="file" class="skt-dashboard-user__avatar-input"
-       (change)="onFileSelected($event)" #fileUpload>
+  <input type="file" class="skt-dashboard-user__avatar-input" (change)="onFileSelected($event)" #fileUpload />
   <div (click)="onClick()" class="skt-dashboard-user__avatar-overlay">
     <skt-ui-icon iconName="pen" />
   </div>

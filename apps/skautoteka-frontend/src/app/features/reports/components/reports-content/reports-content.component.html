@@ -1,5 +1,9 @@
 <skt-ui-table [tableDef]="tableDef">
-  <skt-ui-table-row *ngFor="let item of reportsStore.reports() | infinite | search | async" [isActive]="this.reportsStore.activeReport() === item" (rowClicked)="onRowClicked(item.id)">
+  <skt-ui-table-row
+    *ngFor="let item of reportsStore.reports() | infinite | search | async"
+    [isActive]="this.reportsStore.activeReport() === item"
+    (rowClicked)="onRowClicked(item.id)"
+  >
     <skt-ui-table-row-cell>
       <div class="skt-reports-content__reports-logo"></div>
     </skt-ui-table-row-cell>
@@ -10,10 +14,10 @@
         [type]="item.status === 'IN_PROGRESS' ? 'simple' : 'success'"
       ></skt-ui-tag>
     </skt-ui-table-row-cell>
-    <skt-ui-table-row-cell>{{ item.createdAt | date:'fullDate':'':'pl' }}</skt-ui-table-row-cell>
+    <skt-ui-table-row-cell>{{ item.createdAt | date : 'fullDate' : '' : 'pl' }}</skt-ui-table-row-cell>
   </skt-ui-table-row>
 
   @if(reportsStore.isLoading()) {
-    <skt-ui-loader />
+  <skt-ui-loader />
   }
 </skt-ui-table>

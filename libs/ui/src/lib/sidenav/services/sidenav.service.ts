@@ -10,6 +10,10 @@ export class SidenavService {
 
   private _active: SidenavElement | null = null;
 
+  get active(): SidenavElement | null {
+    return this._active;
+  }
+
   constructor(private router: Router) {}
 
   public setActiveElement(element: SidenavElement): void {

@@ -25,8 +25,10 @@
       </skt-ui-label>
 
       <skt-ui-label>
-        <div label><span class="skt-tasks-content__tasks-card-header">Data</span> | {{ task.startDate | daysLeft }}</div>
-        {{ (task.startDate | date:'fullDate':'':'pl') || 'Brak daty' }}
+        <div label>
+          <span class="skt-tasks-content__tasks-card-header">Data</span> | {{ task.startDate | daysLeft }}
+        </div>
+        {{ (task.startDate | date : 'fullDate' : '' : 'pl') || 'Brak daty' }}
       </skt-ui-label>
 
       @if((device.isMobile$ | async) === false) {
@@ -38,14 +40,16 @@
     </div>
   </skt-ui-list-card>
   } @empty {
-    <div class="skt-tasks-content__container">
-      <div class="skt-tasks-content__header">
-        <skt-ui-icon iconName="info"></skt-ui-icon>
-        Brak rekordów
-      </div>
-
-      <div class="skt-tasks-content__sub-header">Brak rekordów w tej sekcji. Zmień sekcję używająć przycisków powyżej, lub stwórz nowe zadanie</div>
+  <div class="skt-tasks-content__container">
+    <div class="skt-tasks-content__header">
+      <skt-ui-icon iconName="info"></skt-ui-icon>
+      Brak rekordów
     </div>
+
+    <div class="skt-tasks-content__sub-header">
+      Brak rekordów w tej sekcji. Zmień sekcję używająć przycisków powyżej, lub stwórz nowe zadanie
+    </div>
+  </div>
 
   }
 </div>

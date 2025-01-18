@@ -32,14 +32,13 @@
   }
 
   &__entry-info-value {
-
   }
 
   &__entry {
     width: 100%;
     padding: 1rem;
     border-radius: 0.5rem;
-    transition: background-color .3s ease;
+    transition: background-color 0.3s ease;
     gap: 4rem;
     display: flex;
     background-color: var(--primary-7);

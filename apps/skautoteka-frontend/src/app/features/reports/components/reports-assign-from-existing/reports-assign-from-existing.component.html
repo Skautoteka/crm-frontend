@@ -1,49 +1,41 @@
 @if(unassigned()?.length) {
-  <div class="skt-reports-assign-from-existing__title">
-    Wybierz raport do przypisania
-  </div>
+<div class="skt-reports-assign-from-existing__title">Wybierz raport do przypisania</div>
 }
 
 <div class="skt-reports-assign-from-existing__item-wrapper">
-  @if(unassigned(); as unassigned) {
-    @for(record of unassigned; track record.id) {
-      <div (click)="onItemClick(record.id)" class="skt-reports-assign-from-existing__item">
-        <div class="skt-reports-assign-from-existing__item-info">
-          <span class="skt-reports-assign-from-existing__item-info-label">
-            Nazwa
-          </span>
-          <span class="skt-reports-assign-from-existing__item-info-value">
-            {{ record.name }}
-          </span>
-        </div>
+  @if(unassigned(); as unassigned) { @for(record of unassigned; track record.id) {
+  <div (click)="onItemClick(record.id)" class="skt-reports-assign-from-existing__item">
+    <div class="skt-reports-assign-from-existing__item-info">
+      <span class="skt-reports-assign-from-existing__item-info-label"> Nazwa </span>
+      <span class="skt-reports-assign-from-existing__item-info-value">
+        {{ record.name }}
+      </span>
+    </div>
 
-        <div class="skt-reports-assign-from-existing__item-info">
-          <span class="skt-reports-assign-from-existing__item-info-label">
-            Data modyfikacji
-          </span>
-          <span class="skt-reports-assign-from-existing__item-info-value">
-            {{ record.updatedAt | date:'fullDate':'':'pl' }}
-          </span>
-        </div>
+    <div class="skt-reports-assign-from-existing__item-info">
+      <span class="skt-reports-assign-from-existing__item-info-label"> Data modyfikacji </span>
+      <span class="skt-reports-assign-from-existing__item-info-value">
+        {{ record.updatedAt | date : 'fullDate' : '' : 'pl' }}
+      </span>
+    </div>
 
-        <div class="skt-reports-assign-from-existing__item-info">
-          <span class="skt-reports-assign-from-existing__item-info-label">
-            Zawodnik
-          </span>
-          <span class="skt-reports-assign-from-existing__item-info-value">
-            {{ record.player.name || 'Brak informacji' }}
-          </span>
-        </div>
-      </div>
-    } @empty {
-      <div class="skt-reports-assign-from-existing__container">
-        <div class="skt-reports-assign-from-existing__header">
-          <skt-ui-icon iconName="info"></skt-ui-icon>
-          Brak rekordów
-        </div>
+    <div class="skt-reports-assign-from-existing__item-info">
+      <span class="skt-reports-assign-from-existing__item-info-label"> Zawodnik </span>
+      <span class="skt-reports-assign-from-existing__item-info-value">
+        {{ record.player.name || 'Brak informacji' }}
+      </span>
+    </div>
+  </div>
+  } @empty {
+  <div class="skt-reports-assign-from-existing__container">
+    <div class="skt-reports-assign-from-existing__header">
+      <skt-ui-icon iconName="info"></skt-ui-icon>
+      Brak rekordów
+    </div>
 
-        <div class="skt-reports-assign-from-existing__sub-header">Brak raportów, które nie są przypisane do żadnego zadania</div>
-      </div>
-    }
-  }
+    <div class="skt-reports-assign-from-existing__sub-header">
+      Brak raportów, które nie są przypisane do żadnego zadania
+    </div>
+  </div>
+  } }
 </div>

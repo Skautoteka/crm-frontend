@@ -13,38 +13,36 @@
   </skt-ui-side-content-section>
 
   @if(playersStore.activePlayer(); as player) {
-    <skt-ui-side-content-section>
-      <skt-ui-side-content-section-header title="Informacje o budowie ciała"></skt-ui-side-content-section-header>
-      <skt-ui-label-container>
-        <skt-ui-label>
-          <span label>Postawa fizyczna</span>
-          {{ player.physique }}
-        </skt-ui-label>
-        <skt-ui-label>
-          <span label>Wysokość (w cm)</span>
-          {{ player.height }}
-        </skt-ui-label>
-        <skt-ui-label>
-          <span label>Masa ciała (w kg)</span>
-          {{ player.weight }}
-        </skt-ui-label>
-      </skt-ui-label-container>
-    </skt-ui-side-content-section>
-  }
-
-  @if(playersStore.activePlayer(); as player) {
-    <skt-ui-side-content-section>
-      <skt-ui-side-content-section-header title="Informacje systemowe"></skt-ui-side-content-section-header>
-      <skt-ui-label-container>
-        <skt-ui-label>
-          <span label>Dodany do systemu</span>
-          {{ player.createdAt | date:'fullDate':'':'pl' }}
-        </skt-ui-label>
-        <skt-ui-label>
-          <span label>Ostatnia modyfikacja</span>
-          {{ player.updatedAt | date:'fullDate':'':'pl' }}
-        </skt-ui-label>
-      </skt-ui-label-container>
-    </skt-ui-side-content-section>
+  <skt-ui-side-content-section>
+    <skt-ui-side-content-section-header title="Informacje o budowie ciała"></skt-ui-side-content-section-header>
+    <skt-ui-label-container>
+      <skt-ui-label>
+        <span label>Postawa fizyczna</span>
+        {{ player.physique }}
+      </skt-ui-label>
+      <skt-ui-label>
+        <span label>Wysokość (w cm)</span>
+        {{ player.height }}
+      </skt-ui-label>
+      <skt-ui-label>
+        <span label>Masa ciała (w kg)</span>
+        {{ player.weight }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+  </skt-ui-side-content-section>
+  } @if(playersStore.activePlayer(); as player) {
+  <skt-ui-side-content-section>
+    <skt-ui-side-content-section-header title="Informacje systemowe"></skt-ui-side-content-section-header>
+    <skt-ui-label-container>
+      <skt-ui-label>
+        <span label>Dodany do systemu</span>
+        {{ player.createdAt | date : 'fullDate' : '' : 'pl' }}
+      </skt-ui-label>
+      <skt-ui-label>
+        <span label>Ostatnia modyfikacja</span>
+        {{ player.updatedAt | date : 'fullDate' : '' : 'pl' }}
+      </skt-ui-label>
+    </skt-ui-label-container>
+  </skt-ui-side-content-section>
   }
 </skt-ui-side-content>

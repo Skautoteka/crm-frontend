@@ -29,7 +29,6 @@
     color: var(--primary-black);
   }
 
-
   &__header {
     display: flex;
     align-items: center;
@@ -62,7 +61,7 @@
     min-height: 4rem;
     border-radius: 0.5rem;
     background-color: var(--primary-7);
-    transition: background-color .3s ease;
+    transition: background-color 0.3s ease;
     cursor: pointer;
 
     &:hover {
